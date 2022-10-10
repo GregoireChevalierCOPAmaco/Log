@@ -1,4 +1,4 @@
-*** LOG Gregoire Chevaleir ***
+*** LOG Gregoire Chevalier ***
 
 **10 Octobre**
 - [ ] Prise en main du matériel
@@ -23,6 +23,23 @@
     - [x] Installation de vscode dans linux WSL (automatique au lancement de wsl via vscode)
     - [x] Vérifier les accès à Github via linux WSL (ssh/?) (https ok)
         - [x] Configuration ubunut-git :  git config --global user.email "you@example.com" / git config --global user.name "Your Name"
-    - [ ] Installation de Postman
-    - [ ] Installation de node
-    - [ ] Installation de docker
+    - [x] Installation de Postman
+        - [x] Téléchargement
+        - [x] Configuration
+        - [x] Validation email
+    - [x] Intégration au github copamaco
+    - [x] Installation de node
+        - [x] Check de (https://www.educative.io/answers/how-to-install-nodejs-on-ubuntu)
+        - [x] Installation des paquets avec 
+        ```
+        sudo apt-get install curl
+        curl -sL https://deb.nodesource.com/setup_16.17.1 | sudo -E bash -
+        sudo apt-get install nodejs
+        ```
+        - [x] Résolution de l'erreur "E: Unable to locate package npm avec"
+        ```
+        apt-get update
+        sudo apt-get install nodejs
+        ```
+    - [ ] Installation de docker desktop
+    - [ ] Installation de docker cli dans ubuntu
