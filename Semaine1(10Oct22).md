@@ -10,13 +10,18 @@
         - [x] Premier push
     - [x] Installation de discord
         - [x] Création du compte discord
-    - [ ] Installation de node
-    - [ ] Installation de docker
-    - [ ] Installation de Linux
+    - [x] Installation de Linux
         - [x] Check de (https://learn.microsoft.com/fr-fr/windows/wsl/install)
         - [x] Dans powershell admin, utilisation de la commande 
         ```
         wsl --install -d Ubuntu-20.04
         ```
-        - [ ] Paramétrage d'Ubuntu
+        - [x] Paramétrage d'Ubuntu
+            - [x] Unix username : gregoirechevaliercopamaco
+            - [x] Unix pw : procédure habituelle
+    - [x] Installation du plugin wsl dans vscode
+    - [x] Installation de vscode dans linux WSL (automatique au lancement de wsl via vscode)
+    - [ ] Vérifier les accès à Github via linux WSL (ssh)
     - [ ] Installation de Postman
+    - [ ] Installation de node
+    - [ ] Installation de docker
