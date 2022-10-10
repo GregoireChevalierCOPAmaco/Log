@@ -8,3 +8,7 @@
         - [x] Création du profil Github
         - [x] Création du repo log
         - [x] Premier push
+    - [ ] Installation de discord
+    - [ ] Installation de docker
+    - [ ] Installation de node
+    - [ ] Installation de Linux
