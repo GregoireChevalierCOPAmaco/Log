@@ -12,3 +12,4 @@
     - [ ] Installation de docker
     - [ ] Installation de node
     - [ ] Installation de Linux
+    - [ ] Installation de Postman
