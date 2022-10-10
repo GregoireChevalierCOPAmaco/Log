@@ -21,7 +21,8 @@
             - [x] Unix pw : procédure habituelle
     - [x] Installation du plugin wsl dans vscode
     - [x] Installation de vscode dans linux WSL (automatique au lancement de wsl via vscode)
-    - [ ] Vérifier les accès à Github via linux WSL (ssh)
+    - [x] Vérifier les accès à Github via linux WSL (ssh/?) (https ok)
+        - [x] Configuration ubunut-git :  git config --global user.email "you@example.com" / git config --global user.name "Your Name"
     - [ ] Installation de Postman
     - [ ] Installation de node
     - [ ] Installation de docker
