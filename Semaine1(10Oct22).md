@@ -1,7 +1,7 @@
 *** LOG Gregoire Chevalier ***
 
 **10 Octobre**
-- [ ] Prise en main du matériel
+- [x] Prise en main du matériel
     - [x] Changement du mot de pass utilisateur windows
     - [x] Installation du setup Git
         - [x] Installation de gitSK 2.38 64k
@@ -41,5 +41,9 @@
         apt-get update
         sudo apt-get install nodejs
         ```
-    - [ ] Installation de docker desktop
-    - [ ] Installation de docker cli dans ubuntu
+    - [x] Installation de docker desktop
+        - [x] Check de (https://docs.docker.com/desktop/windows/wsl/#:~:text=The%20docker%20CLI%20and%20UI,both%20v1%20or%20v2%20mode.)
+        - [x] Téléchargement et installation du Linux kernel update package.
+        - [x] Link de docker cli dans ubuntu : use wsl2 engine via docker desktop
+    - [x] Installation de flux
+- [x] Check de (https://www.docker.com/blog/announcing-docker-sbom-a-step-towards-more-visibility-into-docker-images/) Article docker sur la transparence des images : sbom
