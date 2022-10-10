@@ -47,3 +47,7 @@
         - [x] Link de docker cli dans ubuntu : use wsl2 engine via docker desktop
     - [x] Installation de flux
 - [x] Check de (https://www.docker.com/blog/announcing-docker-sbom-a-step-towards-more-visibility-into-docker-images/) Article docker sur la transparence des images : sbom
+- [ ] Création d'un projet template docker pour push ssh
+    - [ ] Création du repo
+    - [ ] Création de clé ssh ubuntu
+    - [ ] Création de clé ssh windows
