@@ -52,3 +52,9 @@
     - [x] Création de clé ssh ubuntu
     - [x] Création de clé ssh windows
     - [ ] Début du projet docker
+        - [x] Commande : 
+        ```
+        docker run -d -p 80:80 docker/getting-started
+        ```
+- [ ] Survol des projets en cours sur le github https://github.com/COP-AMACO
+
