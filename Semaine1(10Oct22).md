@@ -57,4 +57,6 @@
         docker run -d -p 80:80 docker/getting-started
         ```
 - [ ] Survol des projets en cours sur le github https://github.com/COP-AMACO
+- [x] Veille techno dockerfile
+    - [x] Check de (https://www.silicon.fr/31-bonnes-pratiques-securiser-conteneurs-docker-163501.html)
 
