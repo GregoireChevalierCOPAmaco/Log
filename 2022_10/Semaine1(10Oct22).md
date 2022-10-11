@@ -124,7 +124,7 @@
         ```
 - [x] 1er lancement de serveur avec ```ng serve```
     - [x] App fonctionnelle à l'adresse : (http://localhost:4200/#/login)
-    - [ ] Trouver comment accéder à la base de données
+    - [x] Trouver comment accéder à la base de données
         - [x] Lancer le service db
         - [x] Lancer le dockerfile avec compose
             - [x] Compose est installé (https://docs.docker.com/compose/install/)
@@ -134,9 +134,15 @@
             docker compose up
             ```
             - [x] Docker lancé, pulls effectués
+        - [x] Accéder à la base de données
+            - [x] Résolution de l'erreur
+            ```
+            Aborted connection 5 to db: 'unconnected' user: 'unauthenticated' host: '172.18.0.1' (This connection closed normally without authentication)
+            ```
+            - [x] Connexion à adminer (:8080) avec les ids présents dans le fichier /kmo-back/environements/mysql/local.env (serveur / user / pw / db)
     - [ ] Générer une adresse mail test
     - [ ] Générer un user test
-    - [ ] Survol de karma.conf.js
+    - [x] Survol de karma.conf.js
     - [ ] Découverte de karma
         - [x] Check de (https://karma-runner.github.io/latest/index.html)
 - [x] Check de (https://dev.to/i5han3/git-commit-message-convention-that-you-can-follow-1709)
