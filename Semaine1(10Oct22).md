@@ -60,3 +60,9 @@
 - [x] Veille techno dockerfile
     - [x] Check de (https://www.silicon.fr/31-bonnes-pratiques-securiser-conteneurs-docker-163501.html)
 
+**11 Octobre**
+- [ ] Survol des projets en cours sur le github https://github.com/COP-AMACO
+    - [ ] Check du projet KMO_Web
+        - [x] Check de la branche connect-to-IR
+    - [x] Check du projet avec Anthony
+    - [ ] Synthèse écrite
