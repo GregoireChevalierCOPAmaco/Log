@@ -123,5 +123,30 @@
         npm install -g @angular/cli
         ```
 - [x] 1er lancement de serveur avec ```ng serve```
+    - [x] App fonctionnelle à l'adresse : (http://localhost:4200/#/login)
+    - [ ] Trouver comment accéder à la base de données
+        - [x] Lancer le service db
+        - [x] Lancer le dockerfile avec compose
+            - [x] Compose est installé (https://docs.docker.com/compose/install/)
+            - [x] Positionnement dans le dossier /COP SAV/kmo-back
+            - [x] Utilisation de 
+            ```
+            docker compose up
+            ```
+            - [x] Docker lancé, pulls effectués
+    - [ ] Générer une adresse mail test
+    - [ ] Générer un user test
+    - [ ] Survol de karma.conf.js
+    - [ ] Découverte de karma
+        - [x] Check de (https://karma-runner.github.io/latest/index.html)
 - [x] Check de (https://dev.to/i5han3/git-commit-message-convention-that-you-can-follow-1709)
 - [ ] Se documenter / faire de la veille sur Angular
+- [ ] Se documenter / faire de la veille sur Karma
+- [ ] Se documenter / faire de la veille sur Jenkins
+- [ ] Suivre la procédure suggérée au lancement du docker : 
+```
+PLEASE REMEMBER TO SET A PASSWORD FOR THE MariaDB root USER !
+kmo-mysql    | To do so, start the server, then issue the following command:
+kmo-mysql    | 
+kmo-mysql    | '/usr/bin/mysql_secure_installation'
+```
