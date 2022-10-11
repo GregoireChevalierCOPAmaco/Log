@@ -61,7 +61,7 @@
     - [x] Check de (https://www.silicon.fr/31-bonnes-pratiques-securiser-conteneurs-docker-163501.html)
 
 **11 Octobre**
-- [ ] Immersion dans le projet KMO_Web
+- [x] Check du projet KMO_Web
     - [x] Check du projet avec Anthony
     - [x] Synthèse écrite
 - [x] Installation de TypeScript 4.8.4
@@ -69,7 +69,8 @@
     - [x] Installation windows local
         - [x] Résolution de : "npm should be run outside of the Node.js REPL, in your normal shell." : installation depuis win + R/cmd
         - [x] Redémarrage pour ajout au PATH
-    - [ ] Check du projet KMO_Web sur Github
+- [ ] Immersion dans le projet KMO_Web
+    - [x] Check du projet KMO_Web sur Github
         - [x] Check de la branche fix
         - [x] Check de la branche main
             - [x] Prise en compte du readme
@@ -140,8 +141,17 @@
             Aborted connection 5 to db: 'unconnected' user: 'unauthenticated' host: '172.18.0.1' (This connection closed normally without authentication)
             ```
             - [x] Connexion à adminer (:8080) avec les ids présents dans le fichier /kmo-back/environements/mysql/local.env (serveur / user / pw / db)
-    - [ ] Générer une adresse mail test
     - [ ] Générer un user test
+        - [ ] Récupération des users avec postman
+            - [ ] Configuration de la requête avec le token pour autoriser la connexion
+                - [x] Trouver le token d'auth
+                    - [x] Check de (https://swagger.io/docs/specification/authentication/bearer-authentication/)
+                    - [x] Récupération des ids de l'user de base en dur dans /KMO_WEB\kmo-back\src\users\users.service.ts
+                    - [x] lancement de la requete dans swagger user/login (id: admin.admin@admin.com pw: Admin123)
+                    - [x] Token : 
+                    ```
+                    eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk5ZmI0MmJhLTY4MGMtNGM1Ny05YTU2LThmNWY3ODU0ZjI2ZiIsImVtYWlsIjoiYWRtaW4uYWRtaW5AYWRtaW4uY29tIiwicm9sZSI6ImFkbWluIiwiZmlyc3RuYW1lIjoiYWRtaW4iLCJsYXN0bmFtZSI6ImFkbWluIiwiaWF0IjoxNjY1NDk2NDUyLCJleHAiOjE2NjU1OTE0NTJ9.lprur-fGrGAUUJ9wxpW0klL2P2wyho1TH_pMf06Y7Ao
+                    ```
     - [x] Survol de karma.conf.js
     - [ ] Découverte de karma
         - [x] Check de (https://karma-runner.github.io/latest/index.html)
