@@ -65,9 +65,11 @@
     - [x] Check du projet avec Anthony
     - [x] Synthèse écrite
     - [ ] Check du projet KMO_Web sur Github
-        - [x] Check de la branche connect-to-IR
-        - [ ] Check de la branche develop
-        - [ ] Pull en local de la branche develop
+        - [x] Check de la branche fix
+        - [x] Check de la branche develop
+            - [x] Prise en compte du readme
+        - [ ] Check de la branche connect-to-IR
+        - [ ] Pull en local de la branche connect-to-IR
         - [ ] Installations requises
 - [ ] Installation d'Angular
 - [ ] Installation de TypeScript
