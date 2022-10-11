@@ -165,10 +165,13 @@
         }
         ```
         (suppression de la ligne vehicule qui rendait la requete incorrecte)
+    - [ ] Recherche des controleurs et des pages dans le projet
+    - [x] Découverte de l'application
     - [x] Survol de karma.conf.js
-    - [ ] Découverte de karma
-        - [x] Check de (https://karma-runner.github.io/latest/index.html)
+- [ ] Découverte de karma
+    - [x] Check de (https://karma-runner.github.io/latest/index.html)
 - [x] Check de (https://dev.to/i5han3/git-commit-message-convention-that-you-can-follow-1709)
+- [x] Veille techno postman (https://learning.postman.com/docs/designing-and-developing-your-api/creating-an-api/)
 - [ ] Se documenter / faire de la veille sur Angular
 - [ ] Se documenter / faire de la veille sur Karma
 - [ ] Se documenter / faire de la veille sur Jenkins
