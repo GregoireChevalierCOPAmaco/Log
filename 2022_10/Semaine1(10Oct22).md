@@ -64,20 +64,64 @@
 - [ ] Immersion dans le projet KMO_Web
     - [x] Check du projet avec Anthony
     - [x] Synthèse écrite
+- [x] Installation de TypeScript 4.8.4
+    - [x] Installation ubuntu wsl ```npm i typescript```
+    - [x] Installation windows local
+        - [x] Résolution de : "npm should be run outside of the Node.js REPL, in your normal shell." : installation depuis win + R/cmd
+        - [x] Redémarrage pour ajout au PATH
     - [ ] Check du projet KMO_Web sur Github
         - [x] Check de la branche fix
-        - [x] Check de la branche develop
+        - [x] Check de la branche main
             - [x] Prise en compte du readme
-        - [ ] Check de la branche connect-to-IR
+        - [x] Check de la branche develop
             - [x] Le dossier .idea concerne les presets de l'ide IJ de jetbrains
-        - [ ] Pull en local de la branche connect-to-IR
-        - [ ] Installations requises
-- [ ] Installation de TypeScript
-    - [x] Installation ubuntu wsl ```npm i typescript```
-    - [ ] Installation windows local
-        - [x] Résolution de : "npm should be run outside of the Node.js REPL, in your normal shell." : installation depuis win + R/cmd
-- [ ] Installation d'Angular
-    - [ ] Installation windows local
-    - [ ] Installation ubuntu wsl
-- [ ] Installation de Tailwind
+        - [x] Pull en local de la branche develop sur ubuntu
+            - [x] Le pull chope toutes les branches, utiliser 
+            ```
+            git checkout <existing_branch>
+            ```
+        - [x] Installations requises
+            - [x] ```npm -i``` dans le dossier COP SAV
+            - [ ] Résolution de l'erreur : 
+            ```
+            npm ERR! code 1
+            npm ERR! path \\wsl.localhost\Ubuntu-20.04\home\gregoirechevaliercopamaco\hub\KMO_WEB\COP-SAV\node_modules\@angular\cli
+            npm ERR! command failed
+            npm ERR! command C:\WINDOWS\system32\cmd.exe /d /s /c C:\Users\GCHEVA~1\AppData\Local\Temp\postinstall-2572bf93.cmd
+            npm ERR! '\\wsl.localhost\Ubuntu-20.04\home\gregoirechevaliercopamaco\hub\KMO_WEB\COP-SAV\node_modules\@angular\cli'
+            npm ERR! CMD.EXE a ete demarre avec le chemin d'acces comme repertoire en
+            npm ERR! cours. Les chemins d'acces UNC ne sont pas prise en charge. Utilisation
+            npm ERR! du repertoire Windows par defaut.
+            npm ERR! node:internal/modules/cjs/loader:959
+            npm ERR!   throw err;
+            npm ERR!   ^
+            npm ERR!
+            npm ERR! Error: Cannot find module 'C:\Windows\bin\postinstall\script.js'
+            npm ERR!     at Function.Module._resolveFilename (node:internal/modules/cjs/loader:956:15)
+            npm ERR!     at Function.Module._load (node:internal/modules/cjs/loader:804:27)
+            npm ERR!     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:81:12)
+            npm ERR!     at node:internal/main/run_main_module:17:47 {
+            npm ERR!   code: 'MODULE_NOT_FOUND',
+            npm ERR!   requireStack: []
+            npm ERR! }
+            ```
+        - [x] Clone en local de la branche develop sur windows
+            - [x] Le pull chope toutes les branches, utiliser 
+            ```
+            git checkout <existing_branch>
+            ```
+        - [x] Installations requises
+            - [x] ```npm -i``` dans le dossier COP SAV
+            - [x] ```npm audit fix``` pour cleaner l'install puis --force
+        - [x] Résolution de l'erreur : 
+        ```
+        ng : Le terme «ng» n'est pas reconnu comme nom d'applet de commande, fonction, fichier de script ou programme exécutable. Vérifiez l'orthographe du nom, ou si un chemin 
+        d'accès existe, vérifiez que le chemin d'accès est correct et réessayez.
+        ```
+        - [x]  Installation de la consile angular sur windows 
+        ```
+        npm install -g @angular/cli
+        ```
+- [x] 1er lancement de serveur avec ```ng serve```
+- [x] Check de (https://dev.to/i5han3/git-commit-message-convention-that-you-can-follow-1709)
 - [ ] Se documenter / faire de la veille sur Angular
