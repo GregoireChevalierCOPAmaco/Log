@@ -69,8 +69,15 @@
         - [x] Check de la branche develop
             - [x] Prise en compte du readme
         - [ ] Check de la branche connect-to-IR
+            - [x] Le dossier .idea concerne les presets de l'ide IJ de jetbrains
         - [ ] Pull en local de la branche connect-to-IR
         - [ ] Installations requises
-- [ ] Installation d'Angular
 - [ ] Installation de TypeScript
+    - [x] Installation ubuntu wsl ```npm i typescript```
+    - [ ] Installation windows local
+        - [x] Résolution de : "npm should be run outside of the Node.js REPL, in your normal shell." : installation depuis win + R/cmd
+- [ ] Installation d'Angular
+    - [ ] Installation windows local
+    - [ ] Installation ubuntu wsl
 - [ ] Installation de Tailwind
+- [ ] Se documenter / faire de la veille sur Angular
