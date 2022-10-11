@@ -141,9 +141,9 @@
             Aborted connection 5 to db: 'unconnected' user: 'unauthenticated' host: '172.18.0.1' (This connection closed normally without authentication)
             ```
             - [x] Connexion à adminer (:8080) avec les ids présents dans le fichier /kmo-back/environements/mysql/local.env (serveur / user / pw / db)
-    - [ ] Générer un user test
-        - [ ] Récupération des users avec postman
-            - [ ] Configuration de la requête avec le token pour autoriser la connexion
+    - [x] Générer un user test
+        - [x] Récupération des users avec postman
+            - [x] Configuration de la requête avec le token pour autoriser la connexion
                 - [x] Trouver le token d'auth
                     - [x] Check de (https://swagger.io/docs/specification/authentication/bearer-authentication/)
                     - [x] Récupération des ids de l'user de base en dur dans /KMO_WEB\kmo-back\src\users\users.service.ts
@@ -152,6 +152,19 @@
                     ```
                     eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk5ZmI0MmJhLTY4MGMtNGM1Ny05YTU2LThmNWY3ODU0ZjI2ZiIsImVtYWlsIjoiYWRtaW4uYWRtaW5AYWRtaW4uY29tIiwicm9sZSI6ImFkbWluIiwiZmlyc3RuYW1lIjoiYWRtaW4iLCJsYXN0bmFtZSI6ImFkbWluIiwiaWF0IjoxNjY1NDk2NDUyLCJleHAiOjE2NjU1OTE0NTJ9.lprur-fGrGAUUJ9wxpW0klL2P2wyho1TH_pMf06Y7Ao
                     ```
+            - [x] Ajout du token dans postman : Authorization/type : BearerToken
+        - [x] Création de la requête postman pour créer un nouvel user : 
+        ```
+        {
+        "firstname": "firstnameTest",
+        "lastname": "lastnameTest",
+        "password": "pw123",
+        "email": "test.test@test.com",
+        "role": "technician",
+        "phoneNumber": "1"
+        }
+        ```
+        (suppression de la ligne vehicule qui rendait la requete incorrecte)
     - [x] Survol de karma.conf.js
     - [ ] Découverte de karma
         - [x] Check de (https://karma-runner.github.io/latest/index.html)
