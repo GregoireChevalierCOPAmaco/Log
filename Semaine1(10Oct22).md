@@ -61,8 +61,14 @@
     - [x] Check de (https://www.silicon.fr/31-bonnes-pratiques-securiser-conteneurs-docker-163501.html)
 
 **11 Octobre**
-- [ ] Survol des projets en cours sur le github https://github.com/COP-AMACO
-    - [ ] Check du projet KMO_Web
-        - [x] Check de la branche connect-to-IR
+- [ ] Immersion dans le projet KMO_Web
     - [x] Check du projet avec Anthony
-    - [ ] Synthèse écrite
+    - [x] Synthèse écrite
+    - [ ] Check du projet KMO_Web sur Github
+        - [x] Check de la branche connect-to-IR
+        - [ ] Check de la branche develop
+        - [ ] Pull en local de la branche develop
+        - [ ] Installations requises
+- [ ] Installation d'Angular
+- [ ] Installation de TypeScript
+- [ ] Installation de Tailwind
