@@ -241,14 +241,22 @@ kmo-mysql    | '/usr/bin/mysql_secure_installation'
         - [x] Étude des fichiers html, css et de tests pour le component user
         - [x] Check des fichiers interfaces relatifs aux components : IUSer & IStore, dans le dossier ./COP-SAV/src/app/core/interfaces
     - [x] Examen de la structure générale du projet (voir schema papier)
-    - [ ] Trouver les modules manquants (@Nestjs/xxx)
+    - [x] Trouver les modules manquants (@Nestjs/xxx)
     ```
     Cannot find module '@nestjs/testing' or its corresponding type declarations.
+    ```  
+    - [x] Utilisation des commandes 
     ```
+    npm install @nestjs/common
+    npm install @nestjs/core
+    npm install @nestjs/testing
+    ```
+    - [ ] Trouver l'emplacement de l'alias @nest mentionnés dans les fichiers de kmo_back
     - [x] Lecture de l'introduction à Nestjs
     - [ ] Passer au travers du pipeline de création de ticket
     - [x] Trouver le document / planning : pas de planning ou de trello, mais un jira en développement
-    - [ ] Trouver les informations sur le ci cd
+    - [x] Trouver les informations sur le ci cd
+        - [x] Pas de ci cd
     - [x] Trouver les informations sur le déploiement : actuellement avec amazon lightsail, le but étant de passer sur S3 pour l'image, et EC2 (= vps) pour pouvoir déployer depuis docker
 - [x] Décalage des intentions de veille technologique dans un fichier dédié
 - [x] Check de ce qu'est un polyfill (https://developer.mozilla.org/en-US/docs/Glossary/Polyfill#:~:text=A%20polyfill%20is%20a%20piece,do%20not%20natively%20support%20it.)

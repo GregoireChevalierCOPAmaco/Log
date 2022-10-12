@@ -12,3 +12,8 @@
 - [ ] Se documenter / faire de la veille sur Jenkins
 - [ ] Se documenter / faire de la veille sur Nest
 - [ ] Se documenter / faire de la veille sur les paradigmes de programmation, voir (https://en.wikipedia.org/wiki/Programming_paradigm)
+- [ ] Se documenter / faire de la veille sur Type ORM (nest)
+- [ ] Se documenter / faire de la veille sur ionic
+- [ ] Se documenter / faire de la veille sur le ci cd
+- [ ] Se documenter / faire de la veille sur les github actions
+- [ ] Se documenter / faire de la veille sur eslint
