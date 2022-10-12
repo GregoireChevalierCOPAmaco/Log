@@ -179,11 +179,57 @@
 ```
 PLEASE REMEMBER TO SET A PASSWORD FOR THE MariaDB root USER !
 kmo-mysql    | To do so, start the server, then issue the following command:
-kmo-mysql    | 
+kmo-mysql    | -
 kmo-mysql    | '/usr/bin/mysql_secure_installation'
 ```  
 
 **12 Octobre**
 - [x] Démarrage des dockers
 - [ ] Poursuite du survol du projet kmo web
-    
+    - [ ] Trouver l'emplacement du testing de l'application
+        - [x] Lancer les tests
+            - [x] Positionnement dans le dossier ./COP-SAV, et lancement des commandes :
+            ```
+            ng test
+            ng e2e
+            ```
+            - [ ] Étude des messages d'erreur :
+            ```
+            Error: src/app/pages/dashboard-ass/list-ticket/modif-ticket/modif-ticket.component.spec.ts:23:23 - error TS2339: Property 'toBeTruthy' does not exist on type 'void'.
+
+            23     expect(component).toBeTruthy();
+                                    ~~~~~~~~~~
+
+
+            Error: src/app/shared/directives/sortable-table.directive.spec.ts:5:23 - error TS2554: Expected 2 arguments, but got 0.        
+
+            5     const directive = new SortableTableDirective();
+                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+            src/app/shared/directives/sortable-table.directive.ts:47:15
+                47   constructor(private renderer: Renderer2, private targetElem: ElementRef) { }
+                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                An argument for 'renderer' was not provided.
+
+
+            Error: src/app/shared/pipes/filter-store.pipe.spec.ts:5:18 - error TS2554: Expected 1 arguments, but got 0.
+
+            5     const pipe = new FilterStorePipe();
+                            ~~~~~~~~~~~~~~~~~~~~~
+
+            src/app/shared/pipes/filter-store.pipe.ts:13:15
+                13   constructor(public toastService:ToastService) {
+                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            An argument for 'toastService' was not provided.
+            ```
+            Et dans le navigateur généré par karma :
+            ```
+            Incomplete: No specs found, , randomized with seed 10764
+            ```
+        - [ ] Comprendre le fonctionnement des tests  
+    - [ ] Trouver le document / planning
+    - [ ] Trouver les informations sur le ci cd / déploiement
+- [ ] Se documenter / faire de la veille sur TypeScript
+- [ ] Se documenter / faire de la veille sur Angular
+- [ ] Se documenter / faire de la veille sur Karma
+- [ ] Se documenter / faire de la veille sur Jenkins
