@@ -181,4 +181,9 @@ PLEASE REMEMBER TO SET A PASSWORD FOR THE MariaDB root USER !
 kmo-mysql    | To do so, start the server, then issue the following command:
 kmo-mysql    | 
 kmo-mysql    | '/usr/bin/mysql_secure_installation'
-```
+```  
+
+**12 Octobre**
+- [x] Démarrage des dockers
+- [ ] Poursuite du survol du projet kmo web
+    
