@@ -245,13 +245,14 @@ kmo-mysql    | '/usr/bin/mysql_secure_installation'
     ```
     Cannot find module '@nestjs/testing' or its corresponding type declarations.
     ```  
-    - [x] Utilisation des commandes 
+    - [x] Utilisation des commandes suivantes dans le dossier kmo back
     ```
     npm install @nestjs/common
     npm install @nestjs/core
     npm install @nestjs/testing
+    npm audit fix --force
     ```
-    - [ ] Trouver l'emplacement de l'alias @nest mentionnés dans les fichiers de kmo_back
+    - [x] Trouver l'emplacement de l'alias @nest mentionnés dans les fichiers de kmo_back -> dossier /node_modules
     - [x] Lecture de l'introduction à Nestjs
     - [ ] Passer au travers du pipeline de création de ticket
     - [x] Trouver le document / planning : pas de planning ou de trello, mais un jira en développement
