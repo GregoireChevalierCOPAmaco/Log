@@ -235,9 +235,7 @@ kmo-mysql    | '/usr/bin/mysql_secure_installation'
     - [ ] Étude précise de la création d'utilisateur via fichier ```user.component.ts``` dans le dossier ./COP-SAV/src/app/pages/cop/user
         - [ ] Étude des fichiers html, css et de tests pour le component user
     - [ ] Passer au travers du pipeline de création de ticket
-    - [ ] Trouver le document / planning
-    - [ ] Trouver les informations sur le ci cd / déploiement
-- [ ] Se documenter / faire de la veille sur TypeScript
-- [ ] Se documenter / faire de la veille sur Angular
-- [ ] Se documenter / faire de la veille sur Karma
-- [ ] Se documenter / faire de la veille sur Jenkins
+    - [x] Trouver le document / planning : pas de planning ou de trello, mais un jira en développement
+    - [ ] Trouver les informations sur le ci cd
+    - [x] Trouver les informations sur le déploiement : actuellement avec amazon lightsail, le but étant de passer sur S3 pour l'image, et EC2 (= vps) pour pouvoir déployer depuis docker
+- [x] Décalage des intentions de veille technologique dans un fichier dédié
