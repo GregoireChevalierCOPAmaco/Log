@@ -10,3 +10,5 @@
     - [ ] Angular Concetps
 - [ ] Se documenter / faire de la veille sur Karma
 - [ ] Se documenter / faire de la veille sur Jenkins
+- [ ] Se documenter / faire de la veille sur Nest
+- [ ] Se documenter / faire de la veille sur les paradigmes de programmation, voir (https://en.wikipedia.org/wiki/Programming_paradigm)
