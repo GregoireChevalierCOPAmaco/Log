@@ -264,5 +264,6 @@ kmo-mysql    | '/usr/bin/mysql_secure_installation'
 - [x] Check de ce qu'est un lifecycle hook d'Angular (https://angular.io/guide/lifecycle-hooks)
 - [x] Check de ce qu'est la programmation fonctionnelle : FP & a programmation fonctionnelle réactive : FRP 
 (https://fr.wikipedia.org/wiki/Programmation_fonctionnelle)
+- [ ] Grosse lecture (https://www.typescriptlang.org/docs/handbook/intro.html) et (https://www.typescriptlang.org/assets/typescript-handbook.pdf)
 - [ ] Définir les contraintes de test
 - [ ] Rechercher le framework de test le plus adapté aux problématiques du projet

@@ -3,7 +3,6 @@
     - [ ] Lightsail (doc légère)
     - [ ] S3 
     - [ ] EC2
-- [ ] Se documenter / faire de la veille sur TypeScript
 - [ ] Se documenter / faire de la veille sur Angular
     - [x] Angular Lifecycle Hooks
     - [ ] Angular Reacive Forms (en cours)
@@ -12,6 +11,9 @@
 - [ ] Se documenter / faire de la veille sur Jenkins
 - [ ] Se documenter / faire de la veille sur Nest
 - [ ] Se documenter / faire de la veille sur les paradigmes de programmation, voir (https://en.wikipedia.org/wiki/Programming_paradigm)
+- [ ] Se documenter / faire de la veille sur TypeScript
+    - [x] Lecture de documentation
+    - [ ] Pratique
 - [ ] Se documenter / faire de la veille sur Type ORM (nest)
 - [ ] Se documenter / faire de la veille sur ionic
 - [ ] Se documenter / faire de la veille sur le ci cd
