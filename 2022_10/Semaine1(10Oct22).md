@@ -226,7 +226,15 @@ kmo-mysql    | '/usr/bin/mysql_secure_installation'
             ```
             Incomplete: No specs found, , randomized with seed 10764
             ```
-        - [ ] Comprendre le fonctionnement des tests  
+        - [ ] Comprendre le fonctionnement des tests
+            - [x] Check du fichier testing.d.ts dans le dossier ./COP-SAV/node-modules/@angular/core/testing
+            - [ ] Check des fichiers de tests dans les dossiers contenus dans list-tickets 
+        - [ ] Questions à poser concernant les tests :
+            - Nomenclature des noms de fichiers de tests ?
+            - Apparemment les fichiers de tests finissent par ```.spec.ts``` et sont liés au fichier du même nom qui finit juste en ```.ts``` ?
+    - [ ] Étude précise de la création d'utilisateur via fichier ```user.component.ts``` dans le dossier ./COP-SAV/src/app/pages/cop/user
+        - [ ] Étude des fichiers html, css et de tests pour le component user
+    - [ ] Passer au travers du pipeline de création de ticket
     - [ ] Trouver le document / planning
     - [ ] Trouver les informations sur le ci cd / déploiement
 - [ ] Se documenter / faire de la veille sur TypeScript
