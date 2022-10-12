@@ -186,7 +186,7 @@ kmo-mysql    | '/usr/bin/mysql_secure_installation'
 **12 Octobre**
 - [x] Démarrage des dockers
 - [ ] Poursuite du survol du projet kmo web
-    - [ ] Trouver l'emplacement du testing de l'application
+    - [x] Trouver l'emplacement du testing de l'application
         - [x] Lancer les tests
             - [x] Positionnement dans le dossier ./COP-SAV, et lancement des commandes :
             ```
@@ -226,16 +226,19 @@ kmo-mysql    | '/usr/bin/mysql_secure_installation'
             ```
             Incomplete: No specs found, , randomized with seed 10764
             ```
-        - [ ] Comprendre le fonctionnement des tests
-            - [x] Check du fichier testing.d.ts dans le dossier ./COP-SAV/node-modules/@angular/core/testing
-            - [ ] Check des fichiers de tests dans les dossiers contenus dans list-tickets 
-        - [ ] Questions à poser concernant les tests :
-            - Nomenclature des noms de fichiers de tests ?
-            - Apparemment les fichiers de tests finissent par ```.spec.ts``` et sont liés au fichier du même nom qui finit juste en ```.ts``` ?
+    - [ ] Comprendre le fonctionnement des tests
+        - [x] Check du fichier testing.d.ts dans le dossier ./COP-SAV/node-modules/@angular/core/testing
+        - [ ] Check des fichiers de tests dans les dossiers contenus dans list-tickets 
+    - [ ] Questions à poser concernant les tests :
+        - Nomenclature des noms de fichiers de tests ?
+        - Apparemment les fichiers de tests finissent par ```.spec.ts``` et sont liés au fichier du même nom qui finit juste en ```.ts``` ?
     - [ ] Étude précise de la création d'utilisateur via fichier ```user.component.ts``` dans le dossier ./COP-SAV/src/app/pages/cop/user
-        - [ ] Étude des fichiers html, css et de tests pour le component user
+        - [x] Étude des fichiers html, css et de tests pour le component user
+        - [x] Check des fichiers interfaces relatifs aux components : IUSer & IStore, dans le dossier ./COP-SAV/src/app/core/interfaces
     - [ ] Passer au travers du pipeline de création de ticket
     - [x] Trouver le document / planning : pas de planning ou de trello, mais un jira en développement
     - [ ] Trouver les informations sur le ci cd
     - [x] Trouver les informations sur le déploiement : actuellement avec amazon lightsail, le but étant de passer sur S3 pour l'image, et EC2 (= vps) pour pouvoir déployer depuis docker
 - [x] Décalage des intentions de veille technologique dans un fichier dédié
+- [x] Check de ce qu'est un polyfill (https://developer.mozilla.org/en-US/docs/Glossary/Polyfill#:~:text=A%20polyfill%20is%20a%20piece,do%20not%20natively%20support%20it.)
+- [x] Check de ce qu'est un lifecycle hook d'Angular (https://angular.io/guide/lifecycle-hooks)

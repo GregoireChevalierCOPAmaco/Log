@@ -1,0 +1,2 @@
+Check de (https://angular.io/guide/reactive-forms)
+- Les formulaires réactifs fournissent une approche basée sur un modèle pour gérer les entrées de formulaire dont les valeurs changent au fil du temps. Ce guide vous montre comment créer et mettre à jour un contrôle de formulaire de base, passer à l'utilisation de plusieurs contrôles dans un groupe, valider des valeurs de formulaire et créer des formulaires dynamiques dans lesquels vous pouvez ajouter ou supprimer des contrôles au moment de l'exécution.

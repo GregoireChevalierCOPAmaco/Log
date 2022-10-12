@@ -5,5 +5,8 @@
     - [ ] EC2
 - [ ] Se documenter / faire de la veille sur TypeScript
 - [ ] Se documenter / faire de la veille sur Angular
+    - [x] Angular Lifecycle Hooks
+    - [ ] Angular Reacive Forms (en cours)
+    - [ ] Angular Concetps
 - [ ] Se documenter / faire de la veille sur Karma
 - [ ] Se documenter / faire de la veille sur Jenkins
