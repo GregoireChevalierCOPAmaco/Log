@@ -4,7 +4,7 @@ https://www.grottedubarbu.fr/best-practices-dockerfile/
 https://gist.github.com/marvell/7c812736565928e602c4 (clear de apt cache)
 **Convention commits git**
 https://dev.to/i5han3/git-commit-message-convention-that-you-can-follow-1709
-**Karmaa Js Test**
+**Karma Js Test**
 https://karma-runner.github.io/latest/index.html
 **Intégration continue**
 https://www.jenkins.io/
@@ -17,3 +17,6 @@ https://guide-angular.wishtack.io/angular/observables/subscribe (subscribe : mà
 https://angular.io/guide/architecture (concepts)
 https://angular.io/guide/lifecycle-hooks (lifecycle hooks)
 https://angular.io/guide/reactive-forms (reactive forms)
+**Jasmine Ts Test**
+https://stackoverflow.com/questions/32615713/tobetrue-vs-tobetruthy-vs-tobetrue
+https://github.com/jasmine/jasmine/blob/4097718b6682f643833f5435b63e4f590f22919f/lib/jasmine-core/jasmine.js#L2908 (toBeTruthy())

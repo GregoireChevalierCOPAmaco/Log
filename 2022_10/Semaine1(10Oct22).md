@@ -226,13 +226,14 @@ kmo-mysql    | '/usr/bin/mysql_secure_installation'
             ```
             Incomplete: No specs found, , randomized with seed 10764
             ```
+            - [x] Check de (https://github.com/jasmine/jasmine/blob/4097718b6682f643833f5435b63e4f590f22919f/lib/jasmine-core/jasmine.js#L2908) pour comprendre ce qu'est toBeTruthy()
     - [ ] Comprendre le fonctionnement des tests
         - [x] Check du fichier testing.d.ts dans le dossier ./COP-SAV/node-modules/@angular/core/testing
         - [ ] Check des fichiers de tests dans les dossiers contenus dans list-tickets 
     - [ ] Questions à poser concernant les tests :
         - Nomenclature des noms de fichiers de tests ?
         - Apparemment les fichiers de tests finissent par ```.spec.ts``` et sont liés au fichier du même nom qui finit juste en ```.ts``` ?
-    - [ ] Étude précise de la création d'utilisateur via fichier ```user.component.ts``` dans le dossier ./COP-SAV/src/app/pages/cop/user
+    - [x] Étude précise de la création d'utilisateur via fichier ```user.component.ts``` dans le dossier ./COP-SAV/src/app/pages/cop/user
         - [x] Étude des fichiers html, css et de tests pour le component user
         - [x] Check des fichiers interfaces relatifs aux components : IUSer & IStore, dans le dossier ./COP-SAV/src/app/core/interfaces
     - [ ] Passer au travers du pipeline de création de ticket
