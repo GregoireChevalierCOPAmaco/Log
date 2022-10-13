@@ -330,11 +330,35 @@ kmo-mysql    | '/usr/bin/mysql_secure_installation'
             ```  
             Et création du service comme attendu.
         - [x] Recréer le service avec class et controller associés
+            - [x] Envoi de la commande 
+            ```
+            ionic generate service services/TestServices/test
+            ```  
+            - [x] Compréhension de ce qu'est un controller dans le carde d'angular et ocmment on le créée / l'assigne.
+            - [x] Check de (https://docs.angularjs.org/guide/controller)
+            - [x] Arrêt des essais sur ionic (kmo-app : ionic) et passage sur essais cop sav (angular)
+            - [ ] Création d'un component page test sur angular
+                - [x] Positionnement dans le dossier : KMO_WEB\COP-SAV\src\app>
+                - [x] Commande passée : 
+                ```
+                ng g component pages/testGreg/testgreg
+                ```  
+                Retour dans le terminal : 
+                ```
+                CREATE src/app/pages/testGreg/testgreg/testgreg.component.html (23 bytes)
+                CREATE src/app/pages/testGreg/testgreg/testgreg.component.spec.ts (640 bytes)
+                CREATE src/app/pages/testGreg/testgreg/testgreg.component.ts (283 bytes)
+                CREATE src/app/pages/testGreg/testgreg/testgreg.component.css (0 bytes)
+                UPDATE src/app/app.module.ts (6669 bytes)
+                ```  
+                - [x] Lancement du serveur pour constater le résultat
+                - [ ] Comprendre pourquoi l'affichage de création de tickets s'affiche au lieu du visuel template de la page.
     - [ ] Créer une interaction avec le component test via Nest
     - [ ] Faire persister le résultat en bdd
 - [ ] Voir les interactions avec les services aws
 - [ ] Poursuite lecture (https://www.typescriptlang.org/assets/typescript-handbook.pdf)
 - [ ] Testing du projet
+    - [ ] Aller voir (https://ionicframework.com/docs/angular/testing#general-testing-structure)
     - [ ] Définir les contraintes de test
     - [ ] Rechercher le framework de test le plus adapté aux problématiques du projet  
     - [ ] Réaliser des essais de tests
