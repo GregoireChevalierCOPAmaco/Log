@@ -311,13 +311,24 @@ kmo-mysql    | '/usr/bin/mysql_secure_installation'
         ng generate service services/TestServices/test
         ```
         - [x] Suppression du service créé, dossier créé
-        - [ ] Recréer le service via ionic
-            - [ ] Résoudre le problème :
+        - [x] Recréer le service via ionic
+            - [x] Résoudre le problème :
             ``` 
             ionic : Le terme «ionic» n'est pas reconnu comme nom d'applet de commande, fonction, fichier de script ou programme exécutable. Vérifiez 
             l'orthographe du nom, ou si un chemin d'accès existe, vérifiez que le chemin d'accès est correct et réessayez.
             ``` 
             - [x] Intégration de ionic au PATH et redémarrage
+            - [x] installation de 
+            ```
+            npm i @ionic/cli
+            npm i -g @ionic/cli
+            ```
+            Cette dernière commande résolvant le problème
+            - [x] Envoi de la commande 
+            ```
+            ionic generate service services/TestServices/test
+            ```  
+            Et création du service comme attendu.
     - [ ] Créer une interaction avec le component test via Nest
     - [ ] Faire persister le résultat en bdd
 - [ ] Voir les interactions avec les services aws
