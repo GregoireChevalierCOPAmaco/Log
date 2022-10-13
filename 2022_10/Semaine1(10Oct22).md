@@ -329,6 +329,7 @@ kmo-mysql    | '/usr/bin/mysql_secure_installation'
             ionic generate service services/TestServices/test
             ```  
             Et création du service comme attendu.
+        - [x] Recréer le service avec class et controller associés
     - [ ] Créer une interaction avec le component test via Nest
     - [ ] Faire persister le résultat en bdd
 - [ ] Voir les interactions avec les services aws
