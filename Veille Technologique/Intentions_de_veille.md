@@ -10,6 +10,8 @@
 - [ ] Se documenter / faire de la veille sur Karma
 - [ ] Se documenter / faire de la veille sur Jenkins
 - [ ] Se documenter / faire de la veille sur Nest
+    - [x] Nest decorators
+    - [ ] Controllers 
 - [ ] Se documenter / faire de la veille sur les paradigmes de programmation, voir (https://en.wikipedia.org/wiki/Programming_paradigm)
 - [ ] Se documenter / faire de la veille sur TypeScript
     - [x] Lecture de documentation

@@ -422,7 +422,9 @@ kmo-mysql    | '/usr/bin/mysql_secure_installation'
                     - [x] Remplissage du testService
                 - [x] Faire une présentation simple avec tailwind
     - [x] Reprise de lecture de doc (https://angular.io/guide/form-validation)
-    - [ ] Reprise de lecture de doc (https://docs.nestjs.com/first-steps#platform & onwards)
+    - [x] Reprise de lecture de doc (https://docs.nestjs.com/first-steps#platform & onwards)
+    - [x] Doc sur les decorators de Nest
+    - [ ] Doc sur les controllers
     - [ ] Angular & Nest interagissent-ils ensemble, et si oui comment ? Est-ce que je peux récupérer les données postées du form angular avec Nest et les faire persister en bdd ?
     - [ ] Créer une interaction avec le component test via Nest
     - [ ] Faire persister le résultat en bdd
