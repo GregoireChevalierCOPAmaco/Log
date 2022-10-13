@@ -299,7 +299,19 @@ kmo-mysql    | '/usr/bin/mysql_secure_installation'
         CREATE src/app/services/test-service/test-service.component.scss (0 bytes)
         ```  
         Le sous dossier, et les fichiers créés n'ont pas la nomenclature voulue.
-        - [ ] suppression du component et de ses dépendances
+        - [x] Suppression du component et de ses dépendances via le delete du sous dossier créé. A priori et selon (https://stackoverflow.com/questions/41354755/what-is-the-best-way-to-delete-a-component-with-cli), tout ce qui a besoin d'être supprimé est dans le dossier.
+        - [x] Nouvel essai avec ajout de flag --module=app.module : 
+        ```
+        ng g component services/test --module=app.module
+        ```
+        Retour terminal : File app.module does not exist.
+        - [x] Check de (https://angular.io/guide/styleguide) pour la nomenclature
+        - [x] Création d'un dossier TestService dans ./kmo-app/src/app/services en même temps que le service en question :
+        ```
+        ng generate service services/TestServices/test
+        ```
+        - [x] Suppression du service créé, dossier créé
+        - [ ] Recréer le service via ionic
     - [ ] Créer une interaction avec le component test via Nest
     - [ ] Faire persister le résultat en bdd
 - [ ] Voir les interactions avec les services aws
