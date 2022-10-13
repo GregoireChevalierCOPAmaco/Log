@@ -367,9 +367,59 @@ kmo-mysql    | '/usr/bin/mysql_secure_installation'
             {path: 'test-greg', component: TestGregComponent}
             ]
             ```
-            - [x] Route et page fonctionnelles
+            - [x] Route et page fonctionnelles (https://angular.io/tutorial/toh-pt5)
             - [ ] Ajouter un formulaire simple pour dialogue avec nest
-                - [ ] Trouver les composants form existants dans le projet
+                - [x] Trouver les composants form existants dans le projet
+                - [x] Check de (https://angular.io/guide/dynamic-form)
+                - [ ] Création d'un form 
+                    - [x] Ajout d'import nécessaire au form dans test-greg.component.ts :
+                    ```
+                    import { Component, HostListener, OnInit } from '@angular/core';
+                    import {FormBuilder, FormGroup} from "@angular/forms";
+                    ```
+                    - [x] Déclaration du constructeur et du form, changement de : 
+                    ```
+                    export class TestGregComponent implements OnInit {
+
+                    constructor() { }
+
+                    ngOnInit(): void {
+                    }
+
+                    }
+                    ``` 
+                    à : 
+                    ```
+                      constructor(private fb: FormBuilder) {
+                    }
+
+                    testForm!: FormGroup;
+
+                    ngOnInit(): void {
+                        this.testForm = this.fb.group({
+                        nom: [''],
+                        prenom: [''],
+                        })
+                    }
+
+                    test() {
+                        this.testService.test(this.testForm.value.email, this.testForm.value.password)
+
+                    }
+                    @HostListener('keydown.enter',['$event'])
+                    loginEnventEnter(event:KeyboardEvent){
+
+                        this.testService.test(this.testForm.value.email, this.testForm.value.password)
+
+                    }
+                    ```
+                    Cela génère l erreur relative à l'absence de testService.
+                    - [x] Création du testService en se calquant sur le loginService
+                    - [x] Déclaration de l'import du service dans le component :
+                    ```
+                    import { TestService } from "../../core/services/TestService/test.service";
+                    ```
+                    - [ ] Remplissage du testService
                 - [ ] Faire une présentation simple avec tailwind
     - [ ] Créer une interaction avec le component test via Nest
     - [ ] Faire persister le résultat en bdd
