@@ -419,8 +419,8 @@ kmo-mysql    | '/usr/bin/mysql_secure_installation'
                     ```
                     import { TestService } from "../../core/services/TestService/test.service";
                     ```
-                    - [ ] Remplissage du testService
-                - [ ] Faire une présentation simple avec tailwind
+                    - [x] Remplissage du testService
+                - [x] Faire une présentation simple avec tailwind
     - [ ] Créer une interaction avec le component test via Nest
     - [ ] Faire persister le résultat en bdd
 - [ ] Voir les interactions avec les services aws
