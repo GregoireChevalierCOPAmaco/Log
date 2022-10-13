@@ -266,4 +266,17 @@ kmo-mysql    | '/usr/bin/mysql_secure_installation'
 (https://fr.wikipedia.org/wiki/Programmation_fonctionnelle)
 - [ ] Grosse lecture (https://www.typescriptlang.org/docs/handbook/intro.html) et (https://www.typescriptlang.org/assets/typescript-handbook.pdf)
 - [ ] Définir les contraintes de test
-- [ ] Rechercher le framework de test le plus adapté aux problématiques du projet
+- [ ] Rechercher le framework de test le plus adapté aux problématiques du projet  
+  
+**13 Octobre**
+- [ ] Poursuite de l'intégration au projet kmo web
+    - [ ] Créer un component test sur Angular
+    - [ ] Créer une interaction avec le component test via Nest
+    - [ ] Faire persister le résultat en bdd
+- [ ] Voir les interactions avec les services aws
+- [ ] Poursuite lecture (https://www.typescriptlang.org/assets/typescript-handbook.pdf)
+- [ ] Testing du projet
+    - [ ] Définir les contraintes de test
+    - [ ] Rechercher le framework de test le plus adapté aux problématiques du projet  
+    - [ ] Réaliser des essais de tests
+
