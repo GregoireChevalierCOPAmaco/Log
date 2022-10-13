@@ -1,0 +1,5 @@
+- Objectif : générer un component de test fonctionnel et ses fichiers enfants et les intégrer dans le projet
+- Check de (https://angular.io/cli/generate)
+- Check de (https://angular.io/cli/generate#component-command)
+- Générer le component
+- Coupler à l'appmodule

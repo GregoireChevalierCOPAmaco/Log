@@ -271,6 +271,35 @@ kmo-mysql    | '/usr/bin/mysql_secure_installation'
 **13 Octobre**
 - [ ] Poursuite de l'intégration au projet kmo web
     - [ ] Créer un component test sur Angular
+        - [x] Création de la branche testGreg dans le git, et positionnement dessus, puis commit initial.
+        ```
+        git branch testGreg
+        git checkout testGreg
+        git add .
+        git commit -m "<message>"
+        ```  
+        - [x] Installation des dépendances nécessaires à la résolution des problèmes affichés dans la console pour kmo-app
+        ```
+        cd ..
+        cd kmo-app
+        npm i
+        npm i @angular/platform-browser
+        npm audit fix --force
+        npm i jimp
+        ```
+        - [x] Commande passée : 
+        ```
+        ng g component services/TestService
+        ```  
+        Retour dans le terminal : 
+        ```
+        CREATE src/app/services/test-service/test-service.component.html (31 bytes)
+        CREATE src/app/services/test-service/test-service.component.spec.ts (732 bytes)
+        CREATE src/app/services/test-service/test-service.component.ts (291 bytes)
+        CREATE src/app/services/test-service/test-service.component.scss (0 bytes)
+        ```  
+        Le sous dossier, et les fichiers créés n'ont pas la nomenclature voulue.
+        - [ ] suppression du component et de ses dépendances
     - [ ] Créer une interaction avec le component test via Nest
     - [ ] Faire persister le résultat en bdd
 - [ ] Voir les interactions avec les services aws

@@ -14,6 +14,9 @@
 - [ ] Se documenter / faire de la veille sur TypeScript
     - [x] Lecture de documentation
     - [ ] Pratique
+- [ ] Se documenter / faire de la veille sur Tailwind
+    - [ ] Lecture de documentation
+    - [ ] Pratique
 - [ ] Se documenter / faire de la veille sur Type ORM (nest)
 - [ ] Se documenter / faire de la veille sur ionic
 - [ ] Se documenter / faire de la veille sur le ci cd
