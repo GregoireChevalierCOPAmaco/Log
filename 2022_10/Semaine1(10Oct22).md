@@ -337,7 +337,7 @@ kmo-mysql    | '/usr/bin/mysql_secure_installation'
             - [x] Compréhension de ce qu'est un controller dans le carde d'angular et ocmment on le créée / l'assigne.
             - [x] Check de (https://docs.angularjs.org/guide/controller)
             - [x] Arrêt des essais sur ionic (kmo-app : ionic) et passage sur essais cop sav (angular)
-            - [ ] Création d'un component page test sur angular
+            - [x] Création d'un component page test sur angular
                 - [x] Positionnement dans le dossier : KMO_WEB\COP-SAV\src\app>
                 - [x] Commande passée : 
                 ```
@@ -352,7 +352,25 @@ kmo-mysql    | '/usr/bin/mysql_secure_installation'
                 UPDATE src/app/app.module.ts (6669 bytes)
                 ```  
                 - [x] Lancement du serveur pour constater le résultat
-                - [ ] Comprendre pourquoi l'affichage de création de tickets s'affiche au lieu du visuel template de la page.
+            - [x] Comprendre pourquoi l'affichage de création de tickets s'affiche au lieu du visuel template de la page.
+                - [x] Par défaut, la page /dashboard-ass est affichée lorsqu'une url n'est pas trouvée
+                - [x] Trouver le code responsable :
+                ```
+                {path: '**', component: DashboardAssComponent}
+                ```
+                Dans le fichier app_routing_modules.ts dans le dossier /src/app/
+            - [x] Ajout de la route dans le routing ici : app_routing_modules.ts 
+            ```
+            import { TestGregComponent } from "./pages/test-greg/test-greg.component";
+
+            const routes: Routes = [
+            {path: 'test-greg', component: TestGregComponent}
+            ]
+            ```
+            - [x] Route et page fonctionnelles
+            - [ ] Ajouter un formulaire simple pour dialogue avec nest
+                - [ ] Trouver les composants form existants dans le projet
+                - [ ] Faire une présentation simple avec tailwind
     - [ ] Créer une interaction avec le component test via Nest
     - [ ] Faire persister le résultat en bdd
 - [ ] Voir les interactions avec les services aws
