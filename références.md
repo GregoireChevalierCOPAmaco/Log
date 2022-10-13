@@ -21,6 +21,10 @@ https://angular.io/guide/styleguide (nomenclature)
 https://stackoverflow.com/questions/46105686/whats-the-difference-between-service-and-component-in-angular-2 (diff component/service)
 https://docs.angularjs.org/guide/controller (Controller)
 https://angular.io/tutorial/toh-pt5 (routing)
+https://angular.io/guide/reactive-forms
+https://angular.io/guide/form-validation
+**Nest**
+https://docs.nestjs.com/first-steps#platform
 **Jasmine Ts Test**
 https://stackoverflow.com/questions/32615713/tobetrue-vs-tobetruthy-vs-tobetrue
 https://github.com/jasmine/jasmine/blob/4097718b6682f643833f5435b63e4f590f22919f/lib/jasmine-core/jasmine.js#L2908 (toBeTruthy())
