@@ -552,13 +552,20 @@ kmo-mysql    | '/usr/bin/mysql_secure_installation'
             ```
             **Pas la peine de lancer Nest vu qu'il est lancé (API) depuis le docker**  
             **Nest == kmo-api == API == Swagger :3000**
-        - [ ] Se documenter sur TypeORM 
+        - [x] Se documenter sur TypeORM 
             - [x] Check de (https://docs.nestjs.com/techniques/database), (https://typeorm.io/data-source-options) & (https://typeorm.io/entities)
-        - [ ] Gérer l'interaction form data/api
+        - [x] Gérer l'interaction form data/api
+            - [x] Envoyer les données du formulaires 
+            - [x] Création d'un fichier interface ./src/app/core/interfacese/ITestGreg.ts
+            - [x] Liens réalisés dans les fichiers correspondants pour matcher l'interface
     - [ ] Faire persister le résultat en bdd
+        - [ ] Créer un endpoint dans l'api et le paramétrer pour accepter le retour fourni
+- [ ] Voir les interactions avec les services aws
+    - [ ] S3
+    - [ ] LightSail
+    - [ ] EC2
 - [ ] Testing du projet
     - [ ] Aller voir (https://ionicframework.com/docs/angular/testing#general-testing-structure)
-- [ ] Voir les interactions avec les services aws
     - [ ] Définir les contraintes de test
     - [ ] Rechercher le framework de test le plus adapté aux problématiques du projet  
     - [ ] Réaliser des essais de tests
