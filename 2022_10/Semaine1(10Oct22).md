@@ -429,10 +429,54 @@ kmo-mysql    | '/usr/bin/mysql_secure_installation'
   
 **14 Octobre**
 - [ ] Poursuite de l'intégration au projet kmo web
+    - [x] Angular & Nest interagissent-ils ensemble, et si oui comment ? Est-ce que je peux récupérer les données postées du form angular avec Nest et les faire persister en bdd ? -> Oui : Nest peut récupérer un objet json.
+    - [ ] S'assurer de la validité de l'objet retourné par le post du form testgreg
+        - [x] L'objet retourné est : 
+        ```
+        {nom: undefined, prenom: undefined}
+        nom
+        : 
+        undefined
+        prenom
+        : 
+        undefined
+        ```
+        - [x] Trouver pourquoi les paramètres retournés sont undefined
+            - [x] Check de (https://stackoverflow.com/questions/47025468/angular-form-input-value-undefined)
+            - [x] Check de (https://angular.io/guide/form-validation)
+            - [x] Reprise de (https://angular.io/guide/forms-overview)
+            - [x] Overview du code du component testgreg
+            - [x] Changement de 
+            ```
+              test() {
+                    this.testService.test(this.testForm.value.email, this.testForm.value.password)
+                    console.log(this.testForm.value.email)
+                }
+                @HostListener('keydown.enter',['$event'])
+                testEnventEnter(event:KeyboardEvent){
+
+                    this.testService.test(this.testForm.value.email, this.testForm.value.password)
+
+                }
+            ```
+            aux valeurs définies dans le form à savoir nom & prénom :
+            ```
+              test() {
+                this.testService.test(this.testForm.value.nom, this.testForm.value.prenom)
+                console.log(this.testForm.value.nom)
+            }
+            @HostListener('keydown.enter',['$event'])
+            testEnventEnter(event:KeyboardEvent){
+
+                this.testService.test(this.testForm.value.nom, this.testForm.value.prenom)
+
+            }
+            ```  
+            Boulet, va !
+        - [x] Résoudre le problème et faire retourner les valeurs correctes
     - [ ] Reprise de doc sur Nest, controllers
 - [ ] Testing du projet
     - [ ] Aller voir (https://ionicframework.com/docs/angular/testing#general-testing-structure)
-    - [ ] Angular & Nest interagissent-ils ensemble, et si oui comment ? Est-ce que je peux récupérer les données postées du form angular avec Nest et les faire persister en bdd ?
     - [ ] Créer une interaction avec le component test via Nest
     - [ ] Faire persister le résultat en bdd
 - [ ] Voir les interactions avec les services aws
