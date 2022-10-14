@@ -500,8 +500,11 @@ kmo-mysql    | '/usr/bin/mysql_secure_installation'
             at Module.require (node:internal/modules/cjs/loader:1028:19)
             ```
             - [x] Check de (https://stackoverflow.com/questions/58437564/npm-run-startdev-cannot-find-module) & (https://stackoverflow.com/questions/57944941/why-nest-js-throw-a-error-when-run-main-js/57964735#57964735)
-        - [ ] Tentative de lancement de nest
-            - [x] Dans le dossier ./kmo-back, lancement de commande :
+        - [ ] Tentative de lancement de nest avec 
+        ```
+        npm run start
+        ```  
+        - [x] Dans le dossier ./kmo-back, lancement de commande :  
             ```
             npm i
             ```
@@ -523,13 +526,15 @@ kmo-mysql    | '/usr/bin/mysql_secure_installation'
             ```
             npm install -g @nestjs/cli npm-check-updates
             nest update --force
+            npm-check-updates "/@nestjs*/" -u
+            npm install --legacy-peer-deps (pour typeorm qui faisait chier)
+            npm-check-updates "/nestjs*/" -u 
+            npm run start
             ```
-            - [ ] Résolution de l'erreur :
+            Démarrage ok mais erreur de co à la db :
             ```
-            Failed to execute command: npm uninstall --save @nestjs-modules/mailer @nestjs/common @nestjs/config @nestjs/core @nestjs/jwt @nestjs/passport @nestjs/platform-express @nestjs/swagger @nestjs/typeorm
-node:internal/process/promises:279
-            triggerUncaughtException(err, true /* fromPromise */);
-            ^
+            [Nest] 4580  - 14/10/2022 13:57:50   ERROR [TypeOrmModule] Unable to connect to the database.
+            Error: Access denied for user ''@'172.18.0.1' (using password: NO)
             ```
         - [ ] Se documenter sur TypeORM 
             - [x] Check de (https://docs.nestjs.com/techniques/database), (https://typeorm.io/data-source-options) & (https://typeorm.io/entities)
