@@ -30,6 +30,8 @@ https://www.codemag.com/Article/2005051/NestJS-Step-by-Step-Connecting-NestJS-wi
 **TypeORM**
 https://docs.nestjs.com/techniques/database 
 https://typeorm.io/entities
+https://typeorm.io/data-source-api
+https://typeorm.io/data-source-options
 **Jasmine Ts Test**
 https://stackoverflow.com/questions/32615713/tobetrue-vs-tobetruthy-vs-tobetrue
 https://github.com/jasmine/jasmine/blob/4097718b6682f643833f5435b63e4f590f22919f/lib/jasmine-core/jasmine.js#L2908 (toBeTruthy())

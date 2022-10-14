@@ -500,8 +500,39 @@ kmo-mysql    | '/usr/bin/mysql_secure_installation'
             at Module.require (node:internal/modules/cjs/loader:1028:19)
             ```
             - [x] Check de (https://stackoverflow.com/questions/58437564/npm-run-startdev-cannot-find-module) & (https://stackoverflow.com/questions/57944941/why-nest-js-throw-a-error-when-run-main-js/57964735#57964735)
+        - [ ] Tentative de lancement de nest
+            - [x] Dans le dossier ./kmo-back, lancement de commande :
+            ```
+            npm i
+            ```
+            Retour d'erreurs : 
+            ```
+            npm ERR! code ERESOLVE
+            npm ERR! ERESOLVE could not resolve
+            npm ERR!
+            npm ERR! While resolving: @nestjs/core@7.5.5
+            npm ERR! Found: @nestjs/common@8.4.7
+            ...
+            ...
+            npm ERR!     node_modules/@nestjs-modules/mailer
+            npm ERR!       @nestjs-modules/mailer@"^1.6.1" from the root project
+            npm ERR!     4 more (@nestjs/platform-express, @nestjs/swagger, ...)
+            ```
+            - [x] Check de (https://gist.github.com/caisback/acf7e31561fbb67d8d598f345daeb47e)
+            - [x] Lancement des commandes :
+            ```
+            npm install -g @nestjs/cli npm-check-updates
+            nest update --force
+            ```
+            - [ ] Résolution de l'erreur :
+            ```
+            Failed to execute command: npm uninstall --save @nestjs-modules/mailer @nestjs/common @nestjs/config @nestjs/core @nestjs/jwt @nestjs/passport @nestjs/platform-express @nestjs/swagger @nestjs/typeorm
+node:internal/process/promises:279
+            triggerUncaughtException(err, true /* fromPromise */);
+            ^
+            ```
         - [ ] Se documenter sur TypeORM 
-            - [x] Check de (https://docs.nestjs.com/techniques/database) & (https://typeorm.io/entities)
+            - [x] Check de (https://docs.nestjs.com/techniques/database), (https://typeorm.io/data-source-options) & (https://typeorm.io/entities)
         - [ ] Gérer l'interaction form data/api
     - [ ] Faire persister le résultat en bdd
 - [ ] Testing du projet
