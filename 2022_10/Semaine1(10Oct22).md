@@ -270,7 +270,7 @@ kmo-mysql    | '/usr/bin/mysql_secure_installation'
   
 **13 Octobre**
 - [ ] Poursuite de l'intégration au projet kmo web
-    - [ ] Créer un component test sur Angular
+    - [x] Créer un component test sur Angular
         - [x] Création de la branche testGreg dans le git, et positionnement dessus, puis commit initial.
         ```
         git branch testGreg
@@ -425,13 +425,17 @@ kmo-mysql    | '/usr/bin/mysql_secure_installation'
     - [x] Reprise de lecture de doc (https://docs.nestjs.com/first-steps#platform & onwards)
     - [x] Doc sur les decorators de Nest
     - [ ] Doc sur les controllers
+- [ ] Poursuite lecture (https://www.typescriptlang.org/assets/typescript-handbook.pdf)
+  
+**14 Octobre**
+- [ ] Poursuite de l'intégration au projet kmo web
+    - [ ] Reprise de doc sur Nest, controllers
+- [ ] Testing du projet
+    - [ ] Aller voir (https://ionicframework.com/docs/angular/testing#general-testing-structure)
     - [ ] Angular & Nest interagissent-ils ensemble, et si oui comment ? Est-ce que je peux récupérer les données postées du form angular avec Nest et les faire persister en bdd ?
     - [ ] Créer une interaction avec le component test via Nest
     - [ ] Faire persister le résultat en bdd
 - [ ] Voir les interactions avec les services aws
-- [ ] Poursuite lecture (https://www.typescriptlang.org/assets/typescript-handbook.pdf)
-- [ ] Testing du projet
-    - [ ] Aller voir (https://ionicframework.com/docs/angular/testing#general-testing-structure)
     - [ ] Définir les contraintes de test
     - [ ] Rechercher le framework de test le plus adapté aux problématiques du projet  
     - [ ] Réaliser des essais de tests
