@@ -478,7 +478,30 @@ kmo-mysql    | '/usr/bin/mysql_secure_installation'
     - [ ] Créer une interaction avec le component test via Nest
         - [x] Check de (https://www.codemag.com/Article/2005051/NestJS-Step-by-Step-Connecting-NestJS-with-Angular-Part-4)
         - [ ] Aller voir le code kmo-back
+            - [ ] Si je génère une entity (?) avec nest, est-ce que ça créée aussi la route et les interactions swagger associées ?
+            - [x] Lancement de ```npm run start:dev```, échec et retour d'erreur :
+            ```
+            > kmo@0.0.1 start:dev
+            > NODE_ENV=dev nest start --watch
+
+            'NODE_ENV' n’est pas reconnu en tant que commande interne
+            ou externe, un programme exécutable ou un fichier de commandes.
+            ```
+            - [x] Lancement de ```npm run start```, échec et retour d'erreur :
+            ```
+            > kmo@0.0.1 start
+            at Module.require (node:internal/modules/cjs/loader:1028:19)
+            at require (node:internal/modules/cjs/helpers:102:18)
+            at Object.<anonymous> (C:\Users\gchevalier\KMO_WEB\kmo-back\node_modules\@nestjs\swagger\dist\swagger-explorer.js:8:30)
+            at Module._compile (node:internal/modules/cjs/loader:1126:14)
+            at Object.Module._extensions..js (node:internal/modules/cjs/loader:1180:10)
+            at Module.load (node:internal/modules/cjs/loader:1004:32)
+            at Function.Module._load (node:internal/modules/cjs/loader:839:12)
+            at Module.require (node:internal/modules/cjs/loader:1028:19)
+            ```
+            - [x] Check de (https://stackoverflow.com/questions/58437564/npm-run-startdev-cannot-find-module) & (https://stackoverflow.com/questions/57944941/why-nest-js-throw-a-error-when-run-main-js/57964735#57964735)
         - [ ] Se documenter sur TypeORM 
+            - [x] Check de (https://docs.nestjs.com/techniques/database) & (https://typeorm.io/entities)
         - [ ] Gérer l'interaction form data/api
     - [ ] Faire persister le résultat en bdd
 - [ ] Testing du projet
