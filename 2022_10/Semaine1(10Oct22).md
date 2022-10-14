@@ -536,6 +536,22 @@ kmo-mysql    | '/usr/bin/mysql_secure_installation'
             [Nest] 4580  - 14/10/2022 13:57:50   ERROR [TypeOrmModule] Unable to connect to the database.
             Error: Access denied for user ''@'172.18.0.1' (using password: NO)
             ```
+            - [x] Déconnexion d'adminer avec les ids de kmo front
+            - [x] Connexion à adminer avec les ids du fichier ./environments/mysql/local.env
+            - [x] Utilisation de la commande ```NODE_ENV=local```. Retour d'erreur : 
+            ```
+            NODE_ENV=local : Le terme «NODE_ENV=local» n'est pas reconnu comme nom d'applet de commande
+            ```
+            - [x] Check de (https://stackoverflow.com/questions/11928013/node-env-is-not-recognized-as-an-internal-or-external-command-operable-comman)
+            - [x] Lancement de ```npm run start:local```
+            Démarrage ok mais erreur de co à la db :
+            ```
+            [Nest] 3896 
+            ERROR [TypeOrmModule] Unable to connect to the database. Retrying (1)...
+            Error: getaddrinfo ENOTFOUND KMO-mysql
+            ```
+            **Pas la peine de lancer Nest vu qu'il est lancé (API) depuis le docker**  
+            **Nest == kmo-api == API == Swagger :3000**
         - [ ] Se documenter sur TypeORM 
             - [x] Check de (https://docs.nestjs.com/techniques/database), (https://typeorm.io/data-source-options) & (https://typeorm.io/entities)
         - [ ] Gérer l'interaction form data/api
