@@ -25,7 +25,8 @@ https://angular.io/guide/reactive-forms
 https://angular.io/guide/form-validation
 **Nest**
 https://docs.nestjs.com/first-steps#platform
-https://stackoverflow.com/questions/63872093/accept-form-data-in-nest-js (interaction angular/nest)
+https://stackoverflow.com/questions/63872093/accept-form-data-in-nest-js
+https://www.codemag.com/Article/2005051/NestJS-Step-by-Step-Connecting-NestJS-with-Angular-Part-4 (interaction angular/nest)
 **Jasmine Ts Test**
 https://stackoverflow.com/questions/32615713/tobetrue-vs-tobetruthy-vs-tobetrue
 https://github.com/jasmine/jasmine/blob/4097718b6682f643833f5435b63e4f590f22919f/lib/jasmine-core/jasmine.js#L2908 (toBeTruthy())

@@ -430,7 +430,7 @@ kmo-mysql    | '/usr/bin/mysql_secure_installation'
 **14 Octobre**
 - [ ] Poursuite de l'intégration au projet kmo web
     - [x] Angular & Nest interagissent-ils ensemble, et si oui comment ? Est-ce que je peux récupérer les données postées du form angular avec Nest et les faire persister en bdd ? -> Oui : Nest peut récupérer un objet json.
-    - [ ] S'assurer de la validité de l'objet retourné par le post du form testgreg
+    - [x] S'assurer de la validité de l'objet retourné par le post du form testgreg
         - [x] L'objet retourné est : 
         ```
         {nom: undefined, prenom: undefined}
@@ -475,10 +475,14 @@ kmo-mysql    | '/usr/bin/mysql_secure_installation'
             Boulet, va !
         - [x] Résoudre le problème et faire retourner les valeurs correctes
     - [ ] Reprise de doc sur Nest, controllers
+    - [ ] Créer une interaction avec le component test via Nest
+        - [x] Check de (https://www.codemag.com/Article/2005051/NestJS-Step-by-Step-Connecting-NestJS-with-Angular-Part-4)
+        - [ ] Aller voir le code kmo-back
+        - [ ] Se documenter sur TypeORM 
+        - [ ] Gérer l'interaction form data/api
+    - [ ] Faire persister le résultat en bdd
 - [ ] Testing du projet
     - [ ] Aller voir (https://ionicframework.com/docs/angular/testing#general-testing-structure)
-    - [ ] Créer une interaction avec le component test via Nest
-    - [ ] Faire persister le résultat en bdd
 - [ ] Voir les interactions avec les services aws
     - [ ] Définir les contraintes de test
     - [ ] Rechercher le framework de test le plus adapté aux problématiques du projet  
