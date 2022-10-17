@@ -67,6 +67,131 @@
         ```
     - [ ] Survol des fichiers créés
     - [ ] Faire un comparatif des fichiers créés avec les fichiers user pour avoir une référence.
+        - [x] Modification du fichier exterior-contact.entity.ts de :
+        ```
+        export class ExteriorContact {}
+        ```
+        à :
+        ```
+        import {
+        BeforeInsert,
+        Column,
+        Entity,
+        JoinTable,
+        PrimaryGeneratedColumn
+        } from "typeorm";
+        
+        @Entity()
+        export class ExteriorContact {
+
+            @PrimaryGeneratedColumn("uuid")
+            id: string;
+
+            @Column({ nullable: false })
+            nom: string;
+
+            @Column({ nullable: false })
+            prenom: string;
+
+            @Column({ nullable: false , unique: true})
+            telephone: string;
+            
+            @BeforeInsert()
+            phoneNumberFormat() { 
+                this.telephone = this.telephone.replace(/(.{2})(?!$)/g, "$1.");
+            }
+
+        }
+        ```
+        - [x] Modification du fichier create-exterior-contact.dto.ts de :
+        ```
+        export class CreateExteriorContactDto {}
+        ```
+        à 
+        ```
+        import { ApiProperty } from "@nestjs/swagger";
+
+        export class CreateExteriorContactDto {
+            @ApiProperty()
+            nom: string;
+
+            @ApiProperty()
+            prenom: string;
+
+            @ApiProperty()
+            telephone: string;
+        }
+        ```
+        - [x] Modification du fichier update-exterior-contact.dto.ts de :
+        ```
+        import { PartialType } from '@nestjs/swagger';
+        import { CreateExteriorContactDto } from './create-exterior-contact.dto';
+
+        export class UpdateExteriorContactDto extends PartialType(CreateExteriorContactDto) {}
+        ```
+        à 
+        ```
+        import { PartialType } from '@nestjs/swagger';
+        import { CreateExteriorContactDto } from './create-exterior-contact.dto';
+        import { ApiProperty } from "@nestjs/swagger";
+
+        export class UpdateExteriorContactDto extends PartialType(CreateExteriorContactDto) {
+
+            @ApiProperty()
+            nom: string;
+
+            @ApiProperty()
+            prenom: string;
+
+            @ApiProperty()
+            telephone: string;
+
+        }
+        ```
+        - [x] Modification du fichier exterior-contact.controller.ts, ajout des lignes :
+        ```
+        import { ApiQuery, ApiTags } from '@nestjs/swagger';
+
+        @ApiTags('Exterior-contacts')
+        ```
+        - [x] Modification du fichier exterior-contact.module.ts, ajout des lignes :
+        ```
+        import { TypeOrmModule } from '@nestjs/typeorm';
+        import { ExteriorContact } from './entities/exterior-contact.entity';
+
+        @Module({
+        imports: [TypeOrmModule.forFeature([ExteriorContact])],
+        ...
+        exports: [ExteriorContactsService, TypeOrmModule]
+        ```
+        - [ ] Modification du fichier exterior-contacts.service.ts, définition des return du crud pour passage de message template :
+        ```
+        create(createExteriorContactDto: CreateExteriorContactDto) {
+            return 'This action adds a new exteriorContact';
+        }
+        ```
+        à du tangible.
+        - [x] Import des dépendances nécessaires
+        - [x] Définition du constructor
+        - [x] Écriture des fonctions (! = async ?) : async est nécessaire pour les users afin d'attendre d'avoir créé le premier user admin en dur pour lancer la db à laquelle se connecter. Nécessaire pour autre chose ? oui car attente réponse du service. Passage pour exemple de :
+            ```
+             async create() {
+                return 'This action adds a new exteriorContact';
+            }
+            ```
+            à :
+            ```
+              async create(createExteriorContactDto: CreateExteriorContactDto) {
+                const exteriorContact = await this.exteriorContactRepository.create(createExteriorContactDto);
+                
+                console.log('This action adds a new exteriorContact');
+                return this.exteriorContactRepository.save(exteriorContact).catch(err => {
+                throw new HttpException({
+                    message: err.message
+                }, HttpStatus.BAD_REQUEST);
+                });
+            }
+            ```
     - [ ] Ajout de la nouvelle table à la db. Migration ?
         - [ ] Check de (https://wanago.io/2022/07/25/api-nestjs-database-migrations-typeorm/)
 - [ ] Voir les interactions avec les services aws
