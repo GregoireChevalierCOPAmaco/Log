@@ -242,4 +242,5 @@
     - [ ] Aller voir (https://ionicframework.com/docs/angular/testing#general-testing-structure)
     - [ ] Définir les contraintes de test
     - [ ] Rechercher le framework de test le plus adapté aux problématiques du projet  
+        - [x] Check de (https://geekflare.com/fr/javascript-unit-testing/)
     - [ ] Réaliser des essais de tests
