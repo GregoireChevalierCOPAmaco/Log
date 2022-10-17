@@ -39,3 +39,5 @@ https://stackoverflow.com/questions/32615713/tobetrue-vs-tobetruthy-vs-tobetrue
 https://github.com/jasmine/jasmine/blob/4097718b6682f643833f5435b63e4f590f22919f/lib/jasmine-core/jasmine.js#L2908 (toBeTruthy())
 **AWS**
 https://www.techtarget.com/searchaws/definition/AWS-bucket (bucket)
+https://levelup.gitconnected.com/upload-files-to-s3-using-angular-and-nestjs-64721d815d18 (integration s3 angular nest)
+https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-bucket.html (création bucket)

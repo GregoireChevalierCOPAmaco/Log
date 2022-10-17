@@ -234,6 +234,8 @@
         ¯\ _ (ツ)_/¯
 - [ ] Voir les interactions avec les services aws
     - [ ] S3
+        - [x] Check de (https://levelup.gitconnected.com/upload-files-to-s3-using-angular-and-nestjs-64721d815d18)
+        - [x] Check de (https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-bucket.html)
     - [ ] LightSail
     - [ ] EC2
 - [ ] Testing du projet
