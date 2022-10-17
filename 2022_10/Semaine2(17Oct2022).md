@@ -3,6 +3,28 @@
 **17 Octobre**
 - [x] Résolution des problèmes de connexion WSL/Vscode
 - [ ] Trouver les fichiers relatifs au déploiement aws
+    - [x] Observation de la branche "KW273_upload_file_s3"
+        - [x] Check du fichier KMO_WEB/.idea/inspectionProfiles/Project_Default.xml
+        - [x] Check du fichier KMO_WEB/.idea/KMO_WEB.iml
+        - [x] Check du fichier KMO_WEB/.idea/modules.xml
+        - [x] Check du fichier KMO_WEB/COP-SAV/src/app/pages/cop/user/user.component.ts
+        - [x] Check du fichier KMO_WEB/kmo-back/environements/mysql/local.env avec ajout des lignes :
+        ```
+        AWS_ACCESS_KEY_ID = xxxxxxxxxxxxxxxx
+        AWS_SECRET_ACCESS_KEY = xxxxxxxxxxxxxx
+        ``` 
+        (ids et key masqués pour sécurité)
+        - [x] Check du fichier KMO_WEB/kmo-back/src/reports/S3UploadFile.service.ts
+        - [x] Check du fichier KMO_WEB/kmo-back/src/reports/reports.controller.ts (lien avec et utilisation du service S3uploadFile)
+        - [x] Check du fichier KMO_WEB/kmo-back/src/reports/reports.module.ts (lien avec le service S3uploadFile et lien comme provider)
+        - [x] Check du fichier KMO_WEB/kmo-back/src/reports/reports.service.ts (déclaration dans le constructeur, et utilisation dans le cadre d'awaits)
+        ```
+        let buffer = Buffer.from(signReportDto.signBase.split(",")[1], "base64");
+        await this.fileService.upload(buffer);
+        ```
+    - [ ] Observation de la branche "KW275_S3_API_back"
+    - [ ] Trouver ce à quoi correspond le terme 'Bucket' dans le contexte d'aws
+    - [ ] Trouver ce à quoi correspond le terme 'buffer' dans le contexte d'aws
     - [ ] Voir les interactions avec les services aws
         - [ ] S3
         - [ ] LightSail
