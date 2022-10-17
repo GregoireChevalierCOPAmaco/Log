@@ -1,0 +1,12 @@
+- Informations trouvées ici (https://www.techtarget.com/searchaws/definition/AWS-bucket)
+- Un Amazon S3 bucket est une ressource de stockage publique en cloud disponible dans le *Simple Storage Service* (S3), une offre de *stockage objet*.
+- Les buckets S3 stockent des objets consistants en données et métadonnées associées, un peu à la manière d'un dossier (folder)
+- Utilisation : 
+    - Le client (utilisateur) S3 créée tout d'abord un bucket au nom global unique, dans la région de son choix (de préférence géographiquement pas trop loin pour économie de coût et latence).
+    - Une fois le bucket créé, l'utilisateur choisit un niveau de bucket selon ses critères de redondance, prix et accessibilité. Il est à noter qu'un bucket put stocker des objets de différents niveaux (tiers) de buckets.
+    - L'utilisateur spécifie ensuite les privilèges d'accès aux objets stockés dans le bucket via des listes de contrôle des accès, politiques du bucket et l'AWS Identity Access Management. Il est possible de gérer tout ça via CLI, la console de gestion ou les api.
+- Fonctionnalités de bucket S3 : AWS propose plusieurs fonctionnalités pour ses buckets S3, parmi lesquelles le versionnage et sauvegarde de chaque version de bucket, ou les transferts rapides et sécurisés depuis un bucket vers des *edge locations*
+- Prix & limites de bucket : 
+    - There is no limit to the amount of objects an IT professional can store in a bucket, though buckets cannot exist inside of other buckets.
+    - S3 performance remains the same regardless of how many buckets an individual creates. Each AWS account can create 100 buckets, though more are available by requesting a service limit increase. The AWS account that creates a bucket owns it, and ownership is not transferable. An S3 customer can delete a bucket, but another AWS user can claim that globally unique name.
+    - AWS charges customers for storing objects in a bucket and for transferring objects in and out of buckets. Bucket pricing varies by region.

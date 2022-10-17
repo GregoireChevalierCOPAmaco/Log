@@ -2,7 +2,7 @@
 
 **17 Octobre**
 - [x] Résolution des problèmes de connexion WSL/Vscode
-- [ ] Trouver les fichiers relatifs au déploiement aws
+- [x] Trouver les fichiers relatifs au déploiement aws
     - [x] Observation de la branche "KW273_upload_file_s3"
         - [x] Check du fichier KMO_WEB/.idea/inspectionProfiles/Project_Default.xml
         - [x] Check du fichier KMO_WEB/.idea/KMO_WEB.iml
@@ -22,7 +22,7 @@
         let buffer = Buffer.from(signReportDto.signBase.split(",")[1], "base64");
         await this.fileService.upload(buffer);
         ```
-    - [ ] Observation de la branche "KW275_S3_API_back"
+    - [x] Observation de la branche "KW275_S3_API_back"
         - [x] Check du fichier KMO_WEB/.idea/inspectionProfiles/Project_Default.xml
         - [x] Check du fichier KMO_WEB/kmo-app/src/app/services/PhotoService/photo.service.ts
         - [x] Check du fichier KMO_WEB/kmo-app/README.md
@@ -32,13 +32,16 @@
         rpsPath: string;
         ```
         - [x] Check du fichier KMO_WEB/COP-SAV/src/app/core/services/ReportService/report.service.ts idem que plus haut.
-    - [ ] Trouver ce à quoi correspond le terme 'Bucket' dans le contexte d'aws
-    - [ ] Trouver ce à quoi correspond le terme 'buffer' dans le contexte d'aws
-    - [ ] Trouver ce à quoi correspondent les termes 'epiPath' & 'rpsPath' 
-    - [ ] Voir les interactions avec les services aws
-        - [ ] S3
-        - [ ] LightSail
-        - [ ] EC2
+- [x] Trouver ce à quoi correspond le terme 'Bucket' dans le contexte d'aws
+    - [x] Check de (https://www.techtarget.com/searchaws/definition/AWS-bucket)
+    - [x] Détail du concept dans un retour de veille.
+- [ ] Trouver ce à quoi correspond le terme 'buffer' dans le contexte d'aws
+- [ ] Trouver ce à quoi correspondent les termes 'epiPath' & 'rpsPath' 
+- [ ] Voir les interactions avec les services aws
+    - [ ] S3
+    - [ ] LightSail
+    - [ ] EC2
+- [ ] Créer une ensemble entité-classe-component-service-persistance
 - [ ] Testing du projet
     - [ ] Aller voir (https://ionicframework.com/docs/angular/testing#general-testing-structure)
     - [ ] Définir les contraintes de test
