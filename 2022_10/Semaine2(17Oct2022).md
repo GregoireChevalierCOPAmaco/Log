@@ -192,8 +192,12 @@
                 });
             }
             ```
-    - [ ] Ajout de la nouvelle table à la db. Migration ?
-        - [ ] Check de (https://wanago.io/2022/07/25/api-nestjs-database-migrations-typeorm/)
+    - [x] Ajout de la nouvelle table à la db. Migration ?
+        - [x] Check de (https://wanago.io/2022/07/25/api-nestjs-database-migrations-typeorm/)
+        - [x] Redémarrage des containers suffisant
+    - [x] Test de création d'exterior-content avec postman : fonctionnel.
+    - [x] Adaptation du formulaire front
+    - [ ] Lier le formulaire précédemment créé à l'entité
 - [ ] Voir les interactions avec les services aws
     - [ ] S3
     - [ ] LightSail
