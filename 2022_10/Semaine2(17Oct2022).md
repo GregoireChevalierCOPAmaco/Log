@@ -23,8 +23,18 @@
         await this.fileService.upload(buffer);
         ```
     - [ ] Observation de la branche "KW275_S3_API_back"
+        - [x] Check du fichier KMO_WEB/.idea/inspectionProfiles/Project_Default.xml
+        - [x] Check du fichier KMO_WEB/kmo-app/src/app/services/PhotoService/photo.service.ts
+        - [x] Check du fichier KMO_WEB/kmo-app/README.md
+        - [x] Check du fichier KMO_WEB/COP-SAV/src/app/core/interfaces/IReport.ts
+        ```
+        epiPath: string;
+        rpsPath: string;
+        ```
+        - [x] Check du fichier KMO_WEB/COP-SAV/src/app/core/services/ReportService/report.service.ts idem que plus haut.
     - [ ] Trouver ce à quoi correspond le terme 'Bucket' dans le contexte d'aws
     - [ ] Trouver ce à quoi correspond le terme 'buffer' dans le contexte d'aws
+    - [ ] Trouver ce à quoi correspondent les termes 'epiPath' & 'rpsPath' 
     - [ ] Voir les interactions avec les services aws
         - [ ] S3
         - [ ] LightSail
