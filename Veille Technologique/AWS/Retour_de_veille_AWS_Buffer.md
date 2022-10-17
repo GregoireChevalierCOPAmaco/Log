@@ -1,0 +1,4 @@
+- Le buffer aide à la synchronisation entre différents composants recevant des requêtes et des process de façon asynchrone. 
+- Le buffer gère l'équilibre entre les différents composants pour offrir un servie plus rapide, et assure que l'efficacité prime sur le traffic ou la charge.
+- Un buffer synchronisera les variation de composants et rendra l'arrangement plus élastique à un pic de charge ou de trafic. 
+Les composants sont susceptibles de fonctionner de manière instable pour recevoir et traiter les demandes. Le buffer assure l'équilibre en reliant de nombreux appareils et les fabrique au même rythme pour fournir des services plus rapides

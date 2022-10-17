@@ -35,8 +35,40 @@
 - [x] Trouver ce à quoi correspond le terme 'Bucket' dans le contexte d'aws
     - [x] Check de (https://www.techtarget.com/searchaws/definition/AWS-bucket)
     - [x] Détail du concept dans un retour de veille.
-- [ ] Trouver ce à quoi correspond le terme 'buffer' dans le contexte d'aws
+- [x] Trouver ce à quoi correspond le terme 'buffer' dans le contexte d'aws
+    - [x] Détail du concept dans un retour de veille.
 - [ ] Trouver ce à quoi correspondent les termes 'epiPath' & 'rpsPath' 
+    - [x] Check de (https://docs.nestjs.com/recipes/crud-generator)
+    - [x] Lancement des containers
+    - [x] Positionnement dans le dossier kmo-back
+        - [x] Lancement de la commande :
+        ```
+        nest g resource
+        ```
+        Et sélection des options :
+        - exteriorContacts (nom)
+        - API Rest
+        - oui à la génération d'entrypoints
+        Retour de console :
+        ```
+         nest g resource
+        ? What name would you like to use for this resource (plural, e.g., "users")? exteriorContacts
+        ? What transport layer do you use? REST API
+        ? Would you like to generate CRUD entry points? Yes
+        CREATE src/exterior-contacts/exterior-contacts.controller.ts (1129 bytes)
+        CREATE src/exterior-contacts/exterior-contacts.controller.spec.ts (678 bytes)
+        CREATE src/exterior-contacts/exterior-contacts.module.ts (326 bytes)
+        CREATE src/exterior-contacts/exterior-contacts.service.ts (765 bytes)
+        CREATE src/exterior-contacts/exterior-contacts.service.spec.ts (531 bytes)
+        CREATE src/exterior-contacts/dto/create-exterior-contact.dto.ts (41 bytes)
+        CREATE src/exterior-contacts/dto/update-exterior-contact.dto.ts (209 bytes)
+        CREATE src/exterior-contacts/entities/exterior-contact.entity.ts (32 bytes)
+        UPDATE src/app.module.ts (2615 bytes)
+        ```
+    - [ ] Survol des fichiers créés
+    - [ ] Faire un comparatif des fichiers créés avec les fichiers user pour avoir une référence.
+    - [ ] Ajout de la nouvelle table à la db. Migration ?
+        - [ ] Check de (https://wanago.io/2022/07/25/api-nestjs-database-migrations-typeorm/)
 - [ ] Voir les interactions avec les services aws
     - [ ] S3
     - [ ] LightSail
