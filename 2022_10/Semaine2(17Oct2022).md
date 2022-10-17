@@ -38,6 +38,7 @@
 - [x] Trouver ce à quoi correspond le terme 'buffer' dans le contexte d'aws
     - [x] Détail du concept dans un retour de veille.
 - [ ] Trouver ce à quoi correspondent les termes 'epiPath' & 'rpsPath' 
+- [x] Créer une ensemble entité-classe-component-service-persistance
     - [x] Check de (https://docs.nestjs.com/recipes/crud-generator)
     - [x] Lancement des containers
     - [x] Positionnement dans le dossier kmo-back
@@ -65,8 +66,8 @@
         CREATE src/exterior-contacts/entities/exterior-contact.entity.ts (32 bytes)
         UPDATE src/app.module.ts (2615 bytes)
         ```
-    - [ ] Survol des fichiers créés
-    - [ ] Faire un comparatif des fichiers créés avec les fichiers user pour avoir une référence.
+    - [x] Survol des fichiers créés
+    - [x] Faire un comparatif des fichiers créés avec les fichiers user pour avoir une référence.
         - [x] Modification du fichier exterior-contact.entity.ts de :
         ```
         export class ExteriorContact {}
@@ -164,7 +165,7 @@
         ...
         exports: [ExteriorContactsService, TypeOrmModule]
         ```
-        - [ ] Modification du fichier exterior-contacts.service.ts, définition des return du crud pour passage de message template :
+        - [x] Modification du fichier exterior-contacts.service.ts, définition des return du crud pour passage de message template :
         ```
         create(createExteriorContactDto: CreateExteriorContactDto) {
             return 'This action adds a new exteriorContact';
@@ -197,12 +198,44 @@
         - [x] Redémarrage des containers suffisant
     - [x] Test de création d'exterior-content avec postman : fonctionnel.
     - [x] Adaptation du formulaire front
-    - [ ] Lier le formulaire précédemment créé à l'entité
+    - [x] Lier le formulaire précédemment créé à l'entité
+        - [x] Check de (https://stackoverflow.com/questions/69242002/database-update-problem-in-angular-nestjs)
+        - [x] Dans le fichier   , changement de :
+        ```
+          async test() {
+            this.testService.test(this.testForm.value);
+        }
+        @HostListener('keydown.enter',['$event'])
+        testEnventEnter(event:KeyboardEvent){
+
+            this.testService.test(this.testForm.value).subscribe(res=>{
+            console.log(res);
+            })
+
+        }
+        ```
+        à : 
+        ```
+        async test() {
+            this.testService.test(this.testForm.value).subscribe(res=>{
+            console.log(res)
+            })
+        }
+        @HostListener('keydown.enter',['$event'])
+        testEnventEnter(event:KeyboardEvent){
+
+            this.testService.test(this.testForm.value).subscribe(res=>{
+            console.log(res);
+            })
+
+        }
+        ```
+        Le changement fait fonctionner l'ensemble et arriver les données en base. Mais je sais pas pourquoi juste rajouter subscribe(res) donne ce comportement 
+        ¯\ _ (ツ)_/¯
 - [ ] Voir les interactions avec les services aws
     - [ ] S3
     - [ ] LightSail
     - [ ] EC2
-- [ ] Créer une ensemble entité-classe-component-service-persistance
 - [ ] Testing du projet
     - [ ] Aller voir (https://ionicframework.com/docs/angular/testing#general-testing-structure)
     - [ ] Définir les contraintes de test
