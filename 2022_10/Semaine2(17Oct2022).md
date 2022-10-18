@@ -363,7 +363,8 @@
                     controllers: [ExteriorContactsController],
             ```
             - [ ] Tests unitaires
-                - [ ] Essai de retour findAll() des ExteriorContacts
+                - [x] Assurer que le retour findAll() des ExteriorContacts soit Defined
+                - [x] Essai de retour findAll() des ExteriorContacts
             - [ ] Tests fonctionnels
             - [ ] Tests e2e
             - [ ] S'assurer que les données arrivent en base
