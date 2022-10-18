@@ -365,6 +365,9 @@
             - [ ] Tests unitaires
                 - [x] Assurer que le retour findAll() des ExteriorContacts soit Defined
                 - [x] Essai de retour findAll() des ExteriorContacts
+                - [x] Check de (https://dev.to/walrusai/testing-database-interactions-with-jest-519n) 
+                - [ ] Tester le type de données retourné par le form (ou voir validator ?)
+                - [ ] Tester les accès à la db
             - [ ] Tests fonctionnels
             - [ ] Tests e2e
             - [ ] S'assurer que les données arrivent en base

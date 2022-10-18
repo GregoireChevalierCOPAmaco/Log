@@ -43,3 +43,5 @@ https://geekflare.com/fr/javascript-unit-testing/
 https://www.techtarget.com/searchaws/definition/AWS-bucket (bucket)
 https://levelup.gitconnected.com/upload-files-to-s3-using-angular-and-nestjs-64721d815d18 (integration s3 angular nest)
 https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-bucket.html (création bucket)
+**JEST**
+(https://dev.to/walrusai/testing-database-interactions-with-jest-519n)
