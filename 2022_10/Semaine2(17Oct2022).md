@@ -263,9 +263,105 @@
             - Démarrage rapide et faible en ressources
             - Syntaxe simplifiée
             - Usage de snapshots pour tester plus facilement les gros objets
-    - [ ] Documentation : aller voir (https://jestjs.io/docs/getting-started) & (https://docs.nestjs.com/fundamentals/testing#testing)
+    - [x] Documentation : aller voir (https://jestjs.io/docs/getting-started) & (https://docs.nestjs.com/fundamentals/testing#testing)
     - [ ] Réaliser des essais de tests
+        - [x] Setup de Jest dans le projet
+            - [x] Lancement à la racine du projet de : 
+            ```
+            npm i --save-dev @nestjs/testing
+            ```
+        - [x] Run de ```npm test```, retour console : 
+        ```
+        Test Suites: 17 failed, 3 passed, 20 total
+        Tests:       17 failed, 4 passed, 21 total
+        Snapshots:   0 total
+        Time:        18.544 s
+        Ran all test suites.
+        ```
         - [ ] Tester l'entité template exterior-contacts
+            - [x] Run de ```npm test 'exterior-contacts'```, retour console : 
+            ```
+            FAIL  src/exterior-contacts/exterior-contacts.service.spec.ts (5.384 s)
+            ● ExteriorContactsService › should be defined
+            Nest can't resolve dependencies of the ExteriorContactsService (?). Please make sure that the argument ExteriorContactRepository at index [0] is available in the RootTestModule context.                 
+            Potential solutions:  
+            - If ExteriorContactRepository is a provider, is it part of the current RootTestModule?   
+            - If ExteriorContactRepository is exported from a separate @Module, is that module imported within RootTestModule?                                            @Module({imports: [ /* the Module containing ExteriorContactRepository */ ]})
+
+            FAIL  src/exterior-contacts/exterior-contacts.controller.spec.ts (5.529 s)
+            ● ExteriorContactsController › should be defined
+
+            Nest can't resolve dependencies of the ExteriorContactsService (?). Please make sure that the argument ExteriorContactRepository at index [0] is available in the RootTestModule context.
+
+            Potential solutions:
+            - If ExteriorContactRepository is a provider, is it part of the current RootTestModule?
+            - If ExteriorContactRepository is exported from a separate @Module, is that module imported within RootTestModule?
+            @Module({
+                imports: [ /* the Module containing ExteriorContactRepository */ ]
+            })
+
+            Test Suites: 2 failed, 2 total
+            Tests:       2 failed, 2 total
+            Snapshots:   0 total
+            Time:        6.18 s, estimated 16 s
+            Ran all test suites matching /exterior-contacts/i.
+            ```  
+            - [x] Identification du problème : 
+                - il faut ajouter les providers au RootTestModule, car Nest n'inclut pas automatiquement les services dans le test.
+                - il faut s'assurer que l'argument ExteriorContactRepository at index [0] est accessible dans le contexte RootTestModule.  
+                - [x] Passage de : 
+                ```
+                beforeEach(async () => {
+                    const module: TestingModule = await Test.createTestingModule({
+                    providers: [ExteriorContactsService],
+                }).compile();
+                ```
+                à :
+                ```
+                beforeEach(async () => {
+                    const module: TestingModule = await Test.createTestingModule({
+                    providers: [
+                        ExteriorContactsService,
+                        {
+                        provide: getRepository(ExteriorContact)
+                        }
+                    ],
+                }).compile();
+                ```
+                - Retour d'erreur : 
+                ```
+                Type 'Repository<ExteriorContact>' is not assignable to type 'InjectionToken'.
+                ```
+                - [x] Check de (https://github.com/nestjs/nest/issues/363), (https://stackoverflow.com/questions/62942112/nest-cant-resolve-dependencies-in-the-roottestmodule-context-when-i-use-bazel-t), & (https://stackoverflow.com/questions/64716494/please-make-sure-that-the-argument-contactrepository-at-index-0-is-available-i) avec application des suggestions sans succès
+                - [x] Résolution pour le fichier .service.spec.ts en changeant :
+                ```
+                beforeEach(async () => {
+                    const module: TestingModule = await Test.createTestingModule({
+                    providers: [ExteriorContactsService, 
+                        { provide: getRepositoryToken(ExteriorContact), useValue: jest.fn()}
+                    ],
+                    }).compile();
+
+                    service = module.get<ExteriorContactsService>(ExteriorContactsService);
+                });
+                ```
+            - [x] Résolution pour le fichier .controller.spec.ts de l'erreur : 
+            ```
+            Nest could not find ExteriorContactsController element (this provider does not exist in the current context)
+            ```
+            L'erreur venait de la typo : 
+            ```
+            beforeEach(async () => {
+                const module: TestingModule = await Test.createTestingModule({
+                controllers: [ExteriorContactsService],
+                ...
+            ```
+            Résolu en rectifiant par :
+            ```
+            beforeEach(async () => {
+                const module: TestingModule = await Test.createTestingModule({
+                    controllers: [ExteriorContactsController],
+            ```
             - [ ] Tests unitaires
             - [ ] Tests fonctionnels
             - [ ] Tests e2e
