@@ -255,6 +255,20 @@
     - [ ] LightSail
     - [ ] EC2
 - [ ] Testing du projet
-    - [ ] Aller voir (https://jestjs.io/docs/getting-started)
+    - [x] Définir les contraintes de test
+    - [x] Rechercher le framework de test le plus adapté aux problématiques du projet  
+        - [x] Check de (https://geekflare.com/fr/javascript-unit-testing/)
+        - [x] JEST semble le plus approprié : 
+            - Natif pour les projets Angular & Nest
+            - Démarrage rapide et faible en ressources
+            - Syntaxe simplifiée
+            - Usage de snapshots pour tester plus facilement les gros objets
+    - [ ] Documentation : aller voir (https://jestjs.io/docs/getting-started) & (https://docs.nestjs.com/fundamentals/testing#testing)
     - [ ] Réaliser des essais de tests
+        - [ ] Tester l'entité template exterior-contacts
+            - [ ] Tests unitaires
+            - [ ] Tests fonctionnels
+            - [ ] Tests e2e
+            - [ ] S'assurer que les données arrivent en base
+        - [ ] **Tester l'entité Reports**
 - [ ] Checker Obsidian pour la mise en oeuvre des logs en .md
