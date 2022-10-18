@@ -368,6 +368,7 @@
                 - [x] Check de (https://dev.to/walrusai/testing-database-interactions-with-jest-519n) 
                 - [ ] Tester le type de données retourné par le form (ou voir validator ?)
                 - [ ] Tester les accès à la db
+            - [ ] Voir les capacités de mock offertes par jest/nest
             - [ ] Tests fonctionnels
             - [ ] Tests e2e
             - [ ] S'assurer que les données arrivent en base
