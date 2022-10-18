@@ -244,3 +244,17 @@
     - [ ] Rechercher le framework de test le plus adapté aux problématiques du projet  
         - [x] Check de (https://geekflare.com/fr/javascript-unit-testing/)
     - [ ] Réaliser des essais de tests
+  
+**18 Octobre**
+- [x] Réunion de projet 
+    - [x] Récap dans le fichier de synthèse de réunion
+    - [x] Assignation des premières tâches
+- [ ] Voir les interactions avec les services aws
+    - [ ] S3
+        - [ ] Poursuite de documentation
+    - [ ] LightSail
+    - [ ] EC2
+- [ ] Testing du projet
+    - [ ] Aller voir (https://jestjs.io/docs/getting-started)
+    - [ ] Réaliser des essais de tests
+- [ ] Checker Obsidian pour la mise en oeuvre des logs en .md
