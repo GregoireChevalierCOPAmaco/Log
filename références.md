@@ -54,3 +54,5 @@ https://stackoverflow.com/questions/52551035/tobeinstanceofnumber-does-not-work-
 https://jestjs.io/docs/asynchronous (test de code async)
 https://jestjs.io/docs/expect#tomatchregexp--string (match string - regex)
 https://jestjs.io/docs/api#methods (méthodes)
+https://stackoverflow.com/questions/45778192/what-is-the-difference-between-it-and-test-in-jest (it = test)
+https://jestjs.io/fr/docs/api#testfailingname-fn-timeout (fails à vocation de levée d'exception)

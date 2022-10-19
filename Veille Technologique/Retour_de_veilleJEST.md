@@ -53,9 +53,26 @@ https://jestjs.io/docs/tutorial-async#error-handling (gestion d'erreur)
 
 https://jestjs.io/docs/expect#tomatchregexp--string (match string - regex)
 
+https://jestjs.io/fr/docs/api#testfailingname-fn-timeout (tests sensés fail, à vocation de levée d'exception par exemple)
+
 =======  
 Méthodes  
   
+it() et test() sont des alias et ont strictement le même fonctionnement. Ils existent les deux pour permettre plus de lattitudes dans l'écriture en anglais des tests. Par exemple : 
+```
+describe('yourModule', () => {
+  test('if it does this thing', () => {});
+  test('if it does the other thing', () => {});
+});
+
+&
+
+describe('yourModule', () => {
+  it('should do this thing', () => {});
+  it('should do the other thing', () => {});
+});
+```
+
 beforeEach(fn, timeout)  
 Exécute la fonction avant chaque test, utile pour réinitialiser un état global. Dans le cas d'appel à une db, permet de retourner à l'état initial de la db avant d'y insérer/récupérer des données via test.  
   

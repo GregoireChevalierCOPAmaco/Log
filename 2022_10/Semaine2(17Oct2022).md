@@ -428,8 +428,9 @@
                     - [ ] Lier le test au retour de donnée du form
                 - [ ] Check de (https://jestjs.io/docs/asynchronous)
         - [x] Documentation sur les méthodes jest (https://jestjs.io/docs/api#methods)
-            - [ ] Voir quelle forme conviendrait mieux que les if{}else{} actuellement dans mes tests
-        - [ ] Exécution de séries d'un même test avec des jeux de données différents suivant le describe.each()
+            - [x] Voir quelle forme conviendrait mieux que les if{}else{} actuellement dans mes tests
+            - [x] Utiliser test.fail() pour les tests à vocation de fail qui lèveront les exceptions. Remplace les if else disgracieux (https://jestjs.io/fr/docs/api#testfailingname-fn-timeout)
+        - [x] Exécution de séries d'un même test avec des jeux de données différents suivant le describe.each()
         - [ ] Tester les accès à la db
         - [ ] Voir les capacités de mock offertes par jest/nest
     - [ ] Tests fonctionnels
