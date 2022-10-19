@@ -392,4 +392,3 @@
     - [ ] EC2
 - [ ] Checker Obsidian pour la mise en oeuvre des logs en .md
 
-https://jestjs.io/docs/api
