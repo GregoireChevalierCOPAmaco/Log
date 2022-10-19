@@ -378,7 +378,31 @@
 **19 Octobre**
 - [ ] Testing du projet
     - [ ] Tests unitaires
-        - [ ] Tester le type de données retourné par le form (ou voir validator ?)
+        - [x] Tester le type de données retourné par le form
+            - [x] Survol des validators du front
+                - [x] Check du fichier KMO_WEB\COP-SAV\src\app\pages\cop\user\user.component.ts . Les validateurs utilisés sont basiques et ne demandent qu'une valeur en retour, sauf pour email qui doit avoir le format mail :
+                ```
+                  initUser() {
+                    this.userForm = this.fb.group({
+                    firstname: ['', Validators.required],
+                    lastname: ['', Validators.required],
+                    email: ['', [Validators.required, Validators.email]],
+                    password: ['', Validators.required],
+                    roles: ['', Validators.required],
+                    phoneNumber: ['', Validators.required],
+                    vehicleRegistration:[null]
+
+                    })
+                }
+                ```
+                - [x] Check du fichier similaire sur branche à jour : code similaire
+                - [x] Conclusion : il va falloir détailler les Validators ou faire des tests sur le retour du type de donnée. À voir avec l'équipe
+        - [ ] Voir avec l'équipe le cas des validators/test de retour de données
+        - [ ] Faire un essai de test de retour de type de donnée
+            - [ ] Tester le champ firstname
+                - [ ] Tester le cas nb de char insuffisant
+                    - [ ] Produire une exception
+                        - [ ] Se documenter sur les exceptions jest
         - [ ] Tester les accès à la db
         - [ ] Voir les capacités de mock offertes par jest/nest
     - [ ] Tests fonctionnels
