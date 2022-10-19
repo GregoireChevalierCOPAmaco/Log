@@ -52,3 +52,16 @@ https://github.com/facebook/jest/issues/8279 (Création d'erreur custom)
 https://jestjs.io/docs/tutorial-async#error-handling (gestion d'erreur)
 
 https://jestjs.io/docs/expect#tomatchregexp--string (match string - regex)
+
+=======  
+Méthodes  
+  
+beforeEach(fn, timeout)  
+Exécute la fonction avant chaque test, utile pour réinitialiser un état global. Dans le cas d'appel à une db, permet de retourner à l'état initial de la db avant d'y insérer/récupérer des données via test.  
+  
+describe(name, fn)  
+Crée un bloc qui regroupe plusieurs tests liés. Imbriquer les describe() est possible pour créer une hiérarchie dans le fichier de test.  
+  
+describe.each(table)(name, fn, timeout)  
+Utiliser describe.each permet de dupliquer les mêmes suites de tests avec des données différentes. describe.each permet d'écrire la suite de tests une fois et de lui passer les données.  
+  

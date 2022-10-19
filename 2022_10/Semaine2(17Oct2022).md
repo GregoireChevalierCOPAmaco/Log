@@ -414,11 +414,22 @@
                     - [x] Produire une exception
                         - [x] Création d'une class StringTypeError.ts & appel de l'error dans le test
                     - [x] Produire le cas PASS
-                        - [x] Se documenter sur les exceptions jest
                     - [ ] Lier le test au retour de donnée du form
                 - [ ] Tester le cas type-regex
                     - [x] Documentation (https://jestjs.io/docs/expect#tomatchregexp--string)
+                    - [x] Petit tips pour déclarer une regex en ts : 
+                    ```
+                    const regex:RegExp = new RegExp(/[A-Za-zÀ-ÖØ-öø-ÿ]/) ;
+                    ```
+                    - [x] Produire le cas FAIL
+                    - [x] Produire une exception
+                        - [x] Création d'une class UnallowedCharactersError.ts & appel de l'error dans le test
+                    - [x] Produire le cas PASS
+                    - [ ] Lier le test au retour de donnée du form
                 - [ ] Check de (https://jestjs.io/docs/asynchronous)
+        - [x] Documentation sur les méthodes jest (https://jestjs.io/docs/api#methods)
+            - [ ] Voir quelle forme conviendrait mieux que les if{}else{} actuellement dans mes tests
+        - [ ] Exécution de séries d'un même test avec des jeux de données différents suivant le describe.each()
         - [ ] Tester les accès à la db
         - [ ] Voir les capacités de mock offertes par jest/nest
     - [ ] Tests fonctionnels
