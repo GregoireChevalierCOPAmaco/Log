@@ -16,7 +16,8 @@ FAIL  src/exterior-contacts/exterior-contacts.service.spec.ts (5.384 s)
 Nest can't resolve dependencies of the ExteriorContactsService (?). Please make sure that the argument ExteriorContactRepository at index [0] is available in the RootTestModule context.                 
 Potential solutions:  
 - If ExteriorContactRepository is a provider, is it part of the current RootTestModule?   
-- If ExteriorContactRepository is exported from a separate @Module, is that module imported within RootTestModule?                                            @Module({imports: [ /* the Module containing ExteriorContactRepository */ ]})
+- If ExteriorContactRepository is exported from a separate @Module, is that module imported within RootTestModule?
+@Module({imports: [ /* the Module containing ExteriorContactRepository */ ]})
 ```
 - [x] Identification du problème : 
     - il faut ajouter les providers au RootTestModule, car Nest n'inclut pas automatiquement les services dans le test.

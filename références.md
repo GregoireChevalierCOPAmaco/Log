@@ -50,3 +50,4 @@ https://jestjs.io/docs/api
 https://stackoverflow.com/questions/46042613/how-to-test-the-type-of-a-thrown-exception-in-jest (gestion exceptions 1)
 https://stackoverflow.com/questions/62564800/how-to-assert-data-type-with-jest (test data type)
 https://github.com/facebook/jest/issues/8279 (Création d'erreur custom)
+https://stackoverflow.com/questions/52551035/tobeinstanceofnumber-does-not-work-in-jest (subtilité pour le type de valeur)
