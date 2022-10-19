@@ -407,8 +407,9 @@
                         - [x] Création d'une class StringLengthError.ts & appel de l'error dans le test
                     - [x] Produire le cas PASS
                         - [x] Se documenter sur les exceptions jest
-                - [ ] Lier le test au retour de donnée du form
+                    - [ ] Lier le test au retour de donnée du form
                 - [ ] Tester le cas mauvais type de donnée
+                    - [ ] Documentation
                 - [ ] Tester le cas type-regex
         - [ ] Tester les accès à la db
         - [ ] Voir les capacités de mock offertes par jest/nest
