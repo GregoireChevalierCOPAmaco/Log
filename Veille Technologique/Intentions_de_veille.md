@@ -24,3 +24,5 @@
 - [ ] Se documenter / faire de la veille sur le ci cd
 - [ ] Se documenter / faire de la veille sur les github actions
 - [ ] Se documenter / faire de la veille sur eslint
+- [ ] Se documenter / faire de la veille sur le BDD, ou Behavior-driven development
+- [ ] Se documenter / faire de la veille sur firebase

@@ -55,6 +55,8 @@ https://jestjs.io/docs/expect#tomatchregexp--string (match string - regex)
 
 https://jestjs.io/fr/docs/api#testfailingname-fn-timeout (tests sensés fail, à vocation de levée d'exception par exemple)
 
+https://jestjs.io/docs/mongodb (test de la co à la db)
+
 =======  
 Méthodes  
   
@@ -82,3 +84,7 @@ Crée un bloc qui regroupe plusieurs tests liés. Imbriquer les describe() est p
 describe.each(table)(name, fn, timeout)  
 Utiliser describe.each permet de dupliquer les mêmes suites de tests avec des données différentes. describe.each permet d'écrire la suite de tests une fois et de lui passer les données.  
   
+test.failing(name, fn, timeout)
+test.fail est utile lors de l'écriture d'un test destiné à échouer. Ces tests se comporteront de la même manière que les tests normaux. Si le test failing lève n'importe quelle erreur, il passe. S'il n'en lève pas, il échouera.
+C'est dans ces tests que l'on est apparemment sensé lever les exceptions
+!! Disponible uniquement avec jest-circus !!

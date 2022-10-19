@@ -430,17 +430,27 @@
         - [x] Documentation sur les méthodes jest (https://jestjs.io/docs/api#methods)
             - [x] Voir quelle forme conviendrait mieux que les if{}else{} actuellement dans mes tests
             - [x] Utiliser test.fail() pour les tests à vocation de fail qui lèveront les exceptions. Remplace les if else disgracieux (https://jestjs.io/fr/docs/api#testfailingname-fn-timeout)
+            - [x] Retour d'erreur : 
+            ```
+            Property 'failing' does not exist on type 'It'.
+            ```
+            Car .failing n'est disponible qu'avec jest-circus
+            - [x] Check de (https://github.com/facebook/jest/tree/main/packages/jest-circus)
         - [x] Exécution de séries d'un même test avec des jeux de données différents suivant le describe.each()
         - [ ] Tester les accès à la db
+            - [x] Check de (https://jestjs.io/docs/mongodb)
+            - [x] Check de (https://github.com/shelfio/jest-mongodb)
+            - [x] Check de (https://betterprogramming.pub/database-testing-made-easy-with-jest-db96ad5f1f46)
+            - [x] Check de (https://dev.to/walrusai/testing-database-interactions-with-jest-519n)
         - [ ] Voir les capacités de mock offertes par jest/nest
     - [ ] Tests fonctionnels
     - [ ] Tests e2e
     - [ ] S'assurer que les données arrivent en base
     - [ ] **Tester l'entité Reports**
+- [x] Réunion followup jira #2
 - [ ] Voir les interactions avec les services aws
     - [ ] S3
         - [ ] Poursuite de documentation
     - [ ] LightSail
     - [ ] EC2
 - [ ] Checker Obsidian pour la mise en oeuvre des logs en .md
-
