@@ -374,3 +374,22 @@
             - [ ] S'assurer que les données arrivent en base
         - [ ] **Tester l'entité Reports**
 - [ ] Checker Obsidian pour la mise en oeuvre des logs en .md
+
+**19 Octobre**
+- [ ] Testing du projet
+    - [ ] Tests unitaires
+        - [ ] Tester le type de données retourné par le form (ou voir validator ?)
+        - [ ] Tester les accès à la db
+        - [ ] Voir les capacités de mock offertes par jest/nest
+    - [ ] Tests fonctionnels
+    - [ ] Tests e2e
+    - [ ] S'assurer que les données arrivent en base
+    - [ ] **Tester l'entité Reports**
+- [ ] Voir les interactions avec les services aws
+    - [ ] S3
+        - [ ] Poursuite de documentation
+    - [ ] LightSail
+    - [ ] EC2
+- [ ] Checker Obsidian pour la mise en oeuvre des logs en .md
+
+https://jestjs.io/docs/api
