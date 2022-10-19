@@ -45,6 +45,10 @@ beforeEach(async () => {
 Documentation : 
 https://jestjs.io/docs/api
 
+https://jestjs.io/docs/asynchronous (test de données async)
+
 https://github.com/facebook/jest/issues/8279 (Création d'erreur custom)
 
 https://jestjs.io/docs/tutorial-async#error-handling (gestion d'erreur)
+
+https://jestjs.io/docs/expect#tomatchregexp--string (match string - regex)

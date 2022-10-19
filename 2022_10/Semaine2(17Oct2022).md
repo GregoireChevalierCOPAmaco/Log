@@ -417,6 +417,8 @@
                         - [x] Se documenter sur les exceptions jest
                     - [ ] Lier le test au retour de donnée du form
                 - [ ] Tester le cas type-regex
+                    - [x] Documentation (https://jestjs.io/docs/expect#tomatchregexp--string)
+                - [ ] Check de (https://jestjs.io/docs/asynchronous)
         - [ ] Tester les accès à la db
         - [ ] Voir les capacités de mock offertes par jest/nest
     - [ ] Tests fonctionnels

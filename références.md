@@ -51,3 +51,5 @@ https://stackoverflow.com/questions/46042613/how-to-test-the-type-of-a-thrown-ex
 https://stackoverflow.com/questions/62564800/how-to-assert-data-type-with-jest (test data type)
 https://github.com/facebook/jest/issues/8279 (Création d'erreur custom)
 https://stackoverflow.com/questions/52551035/tobeinstanceofnumber-does-not-work-in-jest (subtilité pour le type de valeur)
+https://jestjs.io/docs/asynchronous (test de code async)
+https://jestjs.io/docs/expect#tomatchregexp--string (match string - regex)
