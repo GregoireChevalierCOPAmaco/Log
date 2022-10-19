@@ -400,9 +400,16 @@
         - [ ] Voir avec l'équipe le cas des validators/test de retour de données
         - [ ] Faire un essai de test de retour de type de donnée
             - [ ] Tester le champ firstname
-                - [ ] Tester le cas nb de char insuffisant
+                - [x] Tester le cas nb de char insuffisant
+                    - [x] Produire le cas FAIL
                     - [ ] Produire une exception
-                        - [ ] Se documenter sur les exceptions jest
+                        - [x] Check de (https://github.com/facebook/jest/issues/8279)
+                        - [x] Création d'une class StringLengthError.ts & appel de l'error dans le test
+                    - [x] Produire le cas PASS
+                        - [x] Se documenter sur les exceptions jest
+                - [ ] Lier le test au retour de donnée du form
+                - [ ] Tester le cas mauvais type de donnée
+                - [ ] Tester le cas type-regex
         - [ ] Tester les accès à la db
         - [ ] Voir les capacités de mock offertes par jest/nest
     - [ ] Tests fonctionnels

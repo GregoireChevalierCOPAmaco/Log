@@ -13,3 +13,5 @@ Résolution de l'erreur
 
 Documentation : 
 https://jestjs.io/docs/api
+
+https://github.com/facebook/jest/issues/8279 (Création d'erreur custom)

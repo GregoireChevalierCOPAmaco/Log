@@ -47,3 +47,6 @@ https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-bucket.html (cré
 (https://dev.to/walrusai/testing-database-interactions-with-jest-519n)
 https://stackoverflow.com/questions/55717089/test-nestjs-service-against-actual-database
 https://jestjs.io/docs/api
+https://stackoverflow.com/questions/46042613/how-to-test-the-type-of-a-thrown-exception-in-jest (gestion exceptions 1)
+https://stackoverflow.com/questions/62564800/how-to-assert-data-type-with-jest (test data type)
+https://github.com/facebook/jest/issues/8279 (Création d'erreur custom)
