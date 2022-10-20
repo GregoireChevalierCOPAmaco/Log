@@ -540,6 +540,34 @@
                 ```
                 Error: Jest: Got error running globalSetup - C:\Users\gchevalier\KMO_WEB\kmo-back\node_modules\jest-mysql\setup.js, reason: Unable to find and import testing database config
                 ```
+                - [x] Check du fichier kmo-back\node_modules\jest-mysql\setup.js
+                - [x] Déplacement des fichiers jest-mysql-config.js & setupHooks.js à la racine de kmo-back, replacement dans src, cela ne change rien 
+                - [x] Lien en dur vers le fichier jest-mysql-config.js dans ``` const databaseOptions = require("../../src/jest-mysql-config");``` du fichier setup.js de jest-mysql
+                &&
+                Reprise du code non suggéré par vscode : 
+                ```
+                module.exports = {
+                    databaseOptions: {
+                    host: "localhost",
+                    port: 3306,
+                    user: "root",
+                    password: "",
+                    database: "test"
+                    },
+                    createDatabase: true,
+                    dbSchema: "DB_creation.sql",
+                    truncateDatabase: false
+                };
+                ```
+                Ceci génère l'erreur suivante : 
+                ```
+                Error: ER_ACCESS_DENIED_ERROR: Access denied for user 'root'@'172.18.0.1' (using password: NO)
+                ```
+                ce qui est un progrès.
+                - [ ] Résolution de l'erreur : 
+                ```
+                Error: ER_ACCESS_DENIED_ERROR: Access denied for user 'root'@'172.18.0.1' (using password: NO)
+                ```
             - [ ] Tester la persistance des données
         - [ ] Appliquer les tests à l'entité Reports
     - [ ] Tests fonctionnels
