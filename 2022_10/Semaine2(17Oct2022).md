@@ -564,10 +564,21 @@
                 Error: ER_ACCESS_DENIED_ERROR: Access denied for user 'root'@'172.18.0.1' (using password: NO)
                 ```
                 ce qui est un progrès.
-                - [ ] Résolution de l'erreur : 
+                - [x] Résolution de l'erreur : 
                 ```
                 Error: ER_ACCESS_DENIED_ERROR: Access denied for user 'root'@'172.18.0.1' (using password: NO)
                 ```
+                Résolution en remplissant les champs avec les bonnes infos, créée l'erreur suivante :
+                - [x] Résolution de l'erreur : 
+                ```
+                Error: getaddrinfo ENOTFOUND KMO-mysql
+                ```
+                en changeant KMO-mysql par localhost dans les databaseOptions de jest-mysql-config.js, créée l'erreur suivante :
+                - [x] Résolution de l'erreur : 
+                ```
+                Error: Jest: Got error running globalSetup - C:\Users\gchevalier\KMO_WEB\kmo-back\node_modules\jest-mysql\setup.js, reason: Unable to find schema location. please check path:
+                ```
+                En regardant la doc (https://www.npmjs.com/package/jest-mysql), le DB_schema renseigné dans les databaseOptions n'est pas required mais optional. Donc je l'ai commenté, ce qui a résolu l'erreur
             - [ ] Tester la persistance des données
         - [ ] Appliquer les tests à l'entité Reports
     - [ ] Tests fonctionnels
