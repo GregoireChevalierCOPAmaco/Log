@@ -474,7 +474,7 @@
             - [ ] Résolution des erreurs 
             - [x] Arrêt d'utilisation du test.failing et du circus : trop de problèmes de dépendances, je mets ça sous le tapis et j'utilise les if{}else{} disgracieux qui reviennent au même.
         - [ ] Finaliser les tests sur exterior contacts
-            - [ ] Tester la connexion à la base
+            - [x] Mettre en place les dépencances pour tester la connexion à la base
                 - [x] Suivi de doc (https://www.npmjs.com/package/jest-mysql)
                 - [x] Installation de ```npm i jest-mysql --legacy-peer-deps```
                 - [x] Ajout de :
@@ -555,7 +555,7 @@
                     database: "test"
                     },
                     createDatabase: true,
-                    dbSchema: "DB_creation.sql",
+                    dbSchema: "DB_creation.sql", //non nécessaire, provoque une erreur
                     truncateDatabase: false
                 };
                 ```
@@ -579,6 +579,13 @@
                 Error: Jest: Got error running globalSetup - C:\Users\gchevalier\KMO_WEB\kmo-back\node_modules\jest-mysql\setup.js, reason: Unable to find schema location. please check path:
                 ```
                 En regardant la doc (https://www.npmjs.com/package/jest-mysql), le DB_schema renseigné dans les databaseOptions n'est pas required mais optional. Donc je l'ai commenté, ce qui a résolu l'erreur
+            - [ ] Tester la connexion à la base
+                - [ ] Résoudre le problème de global.db = undefined.
+                ```
+                Make sure jest and mysql are installed as well in the project, as they are required as peer dependencies.
+                ```
+                -> installation de mysql
+                -> reinstallation de jest-mysql
             - [ ] Tester la persistance des données
         - [ ] Appliquer les tests à l'entité Reports
     - [ ] Tests fonctionnels
@@ -591,3 +598,8 @@
     - [ ] LightSail
     - [ ] EC2
 - [ ] Checker Obsidian pour la mise en oeuvre des logs en .md
+- [ ] Objectifs pour bypass les problemes de connexion a la db :
+    - [ ] Re cloner le projet branche develop
+    - [ ] Installer dans kmo-back jest-mysql
+    - [ ] Configurer proprement le tout
+    - [ ] Accéder à global.db
