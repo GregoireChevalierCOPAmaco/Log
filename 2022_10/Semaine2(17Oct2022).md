@@ -397,8 +397,8 @@
                 ```
                 - [x] Check du fichier similaire sur branche à jour : code similaire
                 - [x] Conclusion : il va falloir détailler les Validators ou faire des tests sur le retour du type de donnée. À voir avec l'équipe
-        - [ ] Voir avec l'équipe le cas des validators/test de retour de données
-        - [ ] Faire un essai de test de retour de type de donnée
+        - [x] Voir avec l'équipe le cas des validators/test de retour de données
+        - [x] Faire un essai de test de retour de type de donnée
             - [ ] Tester le champ firstname
                 - [x] Tester le cas nb de char insuffisant
                     - [x] Produire le cas FAIL
@@ -408,14 +408,14 @@
                     - [x] Produire le cas PASS
                         - [x] Se documenter sur les exceptions jest
                     - [ ] Lier le test au retour de donnée du form
-                - [ ] Tester le cas mauvais type de donnée
+                - [x] Tester le cas mauvais type de donnée
                     - [x] Documentation
                     - [x] Produire le cas FAIL
                     - [x] Produire une exception
                         - [x] Création d'une class StringTypeError.ts & appel de l'error dans le test
                     - [x] Produire le cas PASS
                     - [ ] Lier le test au retour de donnée du form
-                - [ ] Tester le cas type-regex
+                - [x] Tester le cas type-regex
                     - [x] Documentation (https://jestjs.io/docs/expect#tomatchregexp--string)
                     - [x] Petit tips pour déclarer une regex en ts : 
                     ```
@@ -448,6 +448,19 @@
     - [ ] S'assurer que les données arrivent en base
     - [ ] **Tester l'entité Reports**
 - [x] Réunion followup jira #2
+  
+**20 Octobre**
+- [ ] Testing du projet
+    - [ ] Tests unitaires
+        - [ ] Passer sur jest circus
+        - [ ] Finaliser les tests sur exterior contacts
+            - [ ] Tester la connexion à la base
+            - [ ] Tester la persistance des données
+        - [ ] Appliquer les tests à l'entité Reports
+    - [ ] Tests fonctionnels
+    - [ ] Tests e2e
+    - [ ] S'assurer que les données arrivent en base
+    - [ ] **Tester l'entité Reports**
 - [ ] Voir les interactions avec les services aws
     - [ ] S3
         - [ ] Poursuite de documentation
