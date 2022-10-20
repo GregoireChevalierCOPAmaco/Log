@@ -452,9 +452,30 @@
 **20 Octobre**
 - [ ] Testing du projet
     - [ ] Tests unitaires
-        - [ ] Passer sur jest circus
+        - [ ] Passer sur jest circus (abandon)
+            - [x]   
+                ```
+                npm install --save-dev jest-circus
+                ```
+                Renvoie les erreurs :
+                ```
+                npm ERR! code ERESOLVE
+                npm ERR! ERESOLVE could not resolve
+                npm ERR!
+                npm ERR! While resolving: @nestjs/typeorm@9.0.1
+                npm ERR! Found: typeorm@0.2.45
+                npm ERR! node_modules/typeorm
+                npm ERR!   typeorm@"^0.2.41" from the root project
+                npm ERR!
+                npm ERR! Could not resolve dependency:
+                npm ERR! peer typeorm@"^0.3.0" from @nestjs/typeorm@9.0.1
+                npm ERR! Fix the upstream dependency conflict, or retry
+                ```
+            - [ ] Résolution des erreurs 
+            - [x] Arrêt d'utilisation du test.failing et du circus : trop de problèmes de dépendances, je mets ça sous le tapis et j'utilise les if{}else{} disgracieux qui reviennent au même.
         - [ ] Finaliser les tests sur exterior contacts
             - [ ] Tester la connexion à la base
+                - [x] Installation de ```npm i jest-mysql --legacy-peer-deps```
             - [ ] Tester la persistance des données
         - [ ] Appliquer les tests à l'entité Reports
     - [ ] Tests fonctionnels
