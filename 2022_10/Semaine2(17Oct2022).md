@@ -475,7 +475,71 @@
             - [x] Arrêt d'utilisation du test.failing et du circus : trop de problèmes de dépendances, je mets ça sous le tapis et j'utilise les if{}else{} disgracieux qui reviennent au même.
         - [ ] Finaliser les tests sur exterior contacts
             - [ ] Tester la connexion à la base
+                - [x] Suivi de doc (https://www.npmjs.com/package/jest-mysql)
                 - [x] Installation de ```npm i jest-mysql --legacy-peer-deps```
+                - [x] Ajout de :
+                ```
+                "preset": "jest-mysql",
+                ```
+                dans le "jest" : { du package.json, ligne ~ 80
+                - [x] Création du fichier jest.config.js à la racine de kmo-back, et ajout du code :
+                ```
+                module.exports = {
+                preset: "jest-mysql"
+                //any other configuration
+                };
+                ```
+                et refacto sur suggestion de vscode en :
+                ```
+                export const preset = "jest-mysql";
+                ```
+                - [x] Création du fichier jest-mysql-config.js dans le dossier src (working directory), et configuration avec les informations de la base de l'environnement de test présents dans ids présents dans le fichier /kmo-back/environements/mysql/local.env : 
+                ```
+                module.exports = {
+                databaseOptions: {
+                host: "KMO-mysql",
+                port: 3306,
+                user: "KMO",
+                password: "KMO15022022",
+                database: "KMO"
+                },
+                createDatabase: true,
+                dbSchema: "DB_creation.sql",
+                truncateDatabase: false
+                };
+                ```
+                et refacto sur suggestion de vscode en :
+                ```
+                export const databaseOptions = {
+                    host: "KMO-mysql",
+                    port: 3306,
+                    user: "KMO",
+                    password: "KMO15022022",
+                    database: "KMO"
+                };
+                export const createDatabase = true;
+                export const dbSchema = "DB_creation.sql";
+                export const truncateDatabase = false;
+                ```
+                Notice d'information : 
+                For utility purposes, the connection to the database has been made available within the global context and it can be accessed as follows:
+                ```
+                global.db;
+                ```
+                - [x] Résolution du conflit créé :
+                ```
+                ● Multiple configurations found:
+                    * C:/Users/gchevalier/KMO_WEB/kmo-back/jest.config.js
+                    * `jest` key in C:/Users/gchevalier/KMO_WEB/kmo-back/package.json
+
+                Implicit config resolution does not allow multiple configuration files.
+                Either remove unused config files or select one explicitly with `--config`.
+                ```
+                Résolution en supprimant le fichier jest.config.js à la racine de kmo-back (le code relatif est déjà présent dans le package.json)
+                - [ ] Résolution de l'erreur : 
+                ```
+                Error: Jest: Got error running globalSetup - C:\Users\gchevalier\KMO_WEB\kmo-back\node_modules\jest-mysql\setup.js, reason: Unable to find and import testing database config
+                ```
             - [ ] Tester la persistance des données
         - [ ] Appliquer les tests à l'entité Reports
     - [ ] Tests fonctionnels
