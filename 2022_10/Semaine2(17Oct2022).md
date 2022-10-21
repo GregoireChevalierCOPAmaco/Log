@@ -598,8 +598,12 @@
     - [ ] LightSail
     - [ ] EC2
 - [ ] Checker Obsidian pour la mise en oeuvre des logs en .md
-- [ ] Objectifs pour bypass les problemes de connexion a la db :
-    - [ ] Re cloner le projet branche develop
-    - [ ] Installer dans kmo-back jest-mysql
-    - [ ] Configurer proprement le tout
-    - [ ] Accéder à global.db
+  
+**21 Octobre**
+- [ ] Testing du projet
+    - [ ] Tests unitaires
+    - [ ] Objectifs pour bypass les problemes de connexion a la db :
+        - [ ] Re cloner le projet branche develop
+        - [ ] Installer dans kmo-back (working dir) jest-mysql
+        - [ ] Configurer proprement le tout
+        - [ ] Accéder à global.db  
