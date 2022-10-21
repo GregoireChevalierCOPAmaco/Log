@@ -645,21 +645,23 @@
                                 service = module.get<VehiclesService>(VehiclesService);
                             });
                             ```
-                    - [x] Résolution du problème pour rc/vehicles/vehicles.controller.spec.ts
+                    - [ ] Résolution du problème pour rc/vehicles/vehicles.controller.spec.ts
                         - [x] Imbrication avec relations : déclaration des providers nécessaires (Auth, pieces & piecevehicl)
-                        - [x] Documentation sur la résolution de dépendances (https://stackoverflow.com/questions/61851543/nest-cant-resolve-dependencies-of-the-mailerservice)
-                    - [ ] Résolution du problème pour src/pieces/pieces.service.spec.ts
+                        - [x] Documentation sur la résolution de dépendances (https://stackoverflow.com/questions/61851543/nest-cant-resolve-dependencies-of-the-mailerservice) & (https://github.com/nest-modules/mailer/pull/23)
+                        - [ ] Résolution du problème de dépendances de VehiclesService (?, PieceRepo, PieceVehicRepo)
+                    - [x] Résolution du problème pour src/statistics/statistics.service.spec.ts
+                    - [ ] Résolution du problème pour src/statistics/statistics.controller.spec.ts 
+                    - [x] Résolution du problème pour src/pieces/pieces.service.spec.ts
+                    - [ ] Résolution du problème pour src/users/users.service.spec.ts
+                        - [x] Check de (https://docs.nestjs.com/faq/common-errors), (https://docs.nestjs.com/fundamentals/custom-providers#di-fundamentals) & (https://docs.nestjs.com/providers)
                     - [ ] Résolution du problème pour src/pieces/pieces.controller.spec.ts
                     - [ ] Résolution du problème pour src/tickets/ticket-history/ticket-history.service.spec.ts
                     - [ ] Résolution du problème pour src/tickets/ticket-history/ticket-history.controller.spec.ts
-                    - [ ] Résolution du problème pour src/users/users.service.spec.ts
                     - [ ] Résolution du problème pour src/tickets/tickets.service.spec.ts
                     - [ ] Résolution du problème pour src/stores/stores.service.spec.ts
                     - [ ] Résolution du problème pour src/stores/stores.controller.spec.ts
                     - [ ] Résolution du problème pour src/reports/reports.controller.spec.ts
-                    - [ ] Résolution du problème pour src/statistics/statistics.controller.spec.ts 
                     - [ ] Résolution du problème pour src/tickets/tickets.controller.spec.ts
-                    - [ ] Résolution du problème pour src/statistics/statistics.service.spec.ts
                     - [ ] Résolution du problème pour src/regionals-managements/regionals-managements.controller.spec.ts 
         - [ ] Installer dans kmo-back (working dir) jest-mysql
             - [x] Suivi de (https://github.com/Daniel-Yonkov/jest-mysql#readme)
