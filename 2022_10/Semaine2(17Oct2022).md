@@ -654,11 +654,12 @@
                     - [x] Résolution du problème pour src/pieces/pieces.service.spec.ts
                     - [ ] Résolution du problème pour src/users/users.service.spec.ts
                         - [x] Check de (https://docs.nestjs.com/faq/common-errors), (https://docs.nestjs.com/fundamentals/custom-providers#di-fundamentals) & (https://docs.nestjs.com/providers)
+                        - [x] Il semblerait que les dépendances sont appelées plusieurs fois : "Often times, providers are duplicated in a "Feature Module" and a "Root Module" which means Nest will try to instantiate the provider twice. More than likely, the module containing the < provider> being duplicated should be added in the "Root Module"'s imports array instead."
                     - [ ] Résolution du problème pour src/pieces/pieces.controller.spec.ts
-                    - [ ] Résolution du problème pour src/tickets/ticket-history/ticket-history.service.spec.ts
+                    - [x] Résolution du problème pour src/tickets/ticket-history/ticket-history.service.spec.ts
                     - [ ] Résolution du problème pour src/tickets/ticket-history/ticket-history.controller.spec.ts
                     - [ ] Résolution du problème pour src/tickets/tickets.service.spec.ts
-                    - [ ] Résolution du problème pour src/stores/stores.service.spec.ts
+                    - [x] Résolution du problème pour src/stores/stores.service.spec.ts
                     - [ ] Résolution du problème pour src/stores/stores.controller.spec.ts
                     - [ ] Résolution du problème pour src/reports/reports.controller.spec.ts
                     - [ ] Résolution du problème pour src/tickets/tickets.controller.spec.ts
