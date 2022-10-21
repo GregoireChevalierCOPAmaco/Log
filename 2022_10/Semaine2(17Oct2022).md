@@ -603,7 +603,44 @@
 - [ ] Testing du projet
     - [ ] Tests unitaires
     - [ ] Objectifs pour bypass les problemes de connexion a la db :
-        - [ ] Re cloner le projet branche develop
+        - [x] Re cloner le projet branche develop
+            - [x] npm i :
+            ```
+            found 0 vulnerabilities
+            husky - Git hooks installed
+
+            added 1100 packages, and audited 1101 packages in 23s
+
+            160 packages are looking for funding
+            run `npm fund` for details
+
+            1 moderate severity vulnerability
+            ```
+            - [x] Création et checkout sur la branche KW-297_tests_database
+            - [ ] Résolution de tous les problèmes de ```Nest can't resolve dependencies of...```
+                - [ ] Résolution de l'erreur :
+                ```
+                A worker process has failed to exit gracefully and has been force exited. This is likely caused by tests leaking due to improper teardown. Try running with --detectOpenHandles to find leaks. Active timers can also cause this, ensure that .unref() was called on them.
+                ```
+                - [x] Lancement de npm tests pour identifier les fichiers dans lesquels l'erreur se répète
+                    - [ ] Résolution du problème pour src/checkouts/checkouts.service.spec.ts
+                    - [ ] Résolution du problème pour src/vehicles/vehicles.service.spec.ts
+                    - [ ] Résolution du problème pour src/tickets/ticket-history/ticket-history.service.spec.ts
+                    - [ ] Résolution du problème pour src/tickets/ticket-history/ticket-history.controller.spec.ts
+                    - [ ] Résolution du problème pour src/checkouts/checkouts.controller.spec.ts
+                    - [ ] Résolution du problème pour src/users/users.service.spec.ts
+                    - [ ] Résolution du problème pour src/tickets/tickets.service.spec.ts
+                    - [ ] Résolution du problème pour src/stores/stores.service.spec.ts
+                    - [ ] Résolution du problème pour src/pieces/pieces.service.spec.ts
+                    - [ ] Résolution du problème pour src/stores/stores.controller.spec.ts
+                    - [ ] Résolution du problème pour src/reports/reports.controller.spec.ts
+                    - [ ] Résolution du problème pour src/statistics/statistics.controller.spec.ts 
+                    - [ ] Résolution du problème pour src/tickets/tickets.controller.spec.ts
+                    - [ ] Résolution du problème pour rc/vehicles/vehicles.controller.spec.ts
+                    - [ ] Résolution du problème pour src/pieces/pieces.controller.spec.ts
+                    - [ ] Résolution du problème pour src/statistics/statistics.service.spec.ts
+                    - [ ] Résolution du problème pour src/regionals-managements/regionals-managements.controller.spec.ts 
         - [ ] Installer dans kmo-back (working dir) jest-mysql
+            - [x] Suivi de (https://github.com/Daniel-Yonkov/jest-mysql#readme)
         - [ ] Configurer proprement le tout
         - [ ] Accéder à global.db  
