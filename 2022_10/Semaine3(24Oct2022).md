@@ -4,7 +4,7 @@
 - [x] Redémarrage et application des màjs windows/docker vscode
 - [ ] Testing du projet
     - [ ] Tests unitaires
-        - [ ] Résolution de tous les problèmes de ```Nest can't resolve dependencies of...```
+        - [x] Résolution de tous les problèmes de ```Nest can't resolve dependencies of...```
             - [x] Reprsise de doc (https://docs.nestjs.com/faq/common-errors#cannot-resolve-dependency-error), (https://docs.nestjs.com/fundamentals/custom-providers#di-fundamentals), (https://docs.nestjs.com/providers) & (https://docs.nestjs.com/modules)
             - [x] Résolution du problème pour src/pieces/pieces.controller.spec.ts
                 - [x] Ajout de AssJwtAuthGuard dans les providers du module pieces.module.ts, *sans changement de message d'erreur*
@@ -85,6 +85,11 @@
         - [x] Résolution du problème pour src/users/users.service.spec.ts
         - [x] Résolution du problème pour src/reports/reports.controller.spec.ts
     - [x] Push et merge sur git
+- [x] Réunion followup
+    - [ ] Définir les cas de tests qui nécessiteraient de lever des erreurs explicites
+    - [ ] Définir le niveau de détail des retours d'erreurs lors des fails
+    - [ ] Renommer le kw297 du jira "test unitaires" et assigner des sous-tâches si nécessaire
+- [ ] Testing du projet
     - [ ] Installer dans kmo-back (working dir) jest-mysql
         - [x] Installation de jest-mysql
             ```
@@ -124,13 +129,11 @@
                 truncateDatabase: false
             };
             ```
-- [x] Réunion followup
-    - [ ] Définir les cas de tests qui nécessiteraient de lever des erreurs explicites
-    - [ ] Définir le niveau de détail des retours d'erreurs lors des fails
-    - [ ] Renommer le kw297 du jira "test unitaires" et assigner des sous-tâches si nécessaire
+    - [ ] Tests unitaires
         - [ ] Accéder à global.db  
         - [ ] Tester la connexion à la base
             - [ ] Résoudre le problème de global.db = undefined.
+        - [ ] Dégager jest-mysql pour autre chose ? 
         - [ ] Tester la persistance des données
     - [ ] Appliquer les tests à l'entité Reports
     - [ ] Tests fonctionnels
