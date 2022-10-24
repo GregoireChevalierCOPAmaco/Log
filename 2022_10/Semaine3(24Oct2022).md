@@ -39,21 +39,48 @@
 					}},
 				},
                 ```
-            - [ ] Résolution du problème pour rc/vehicles/vehicles.controller.spec.ts
+            - [x] Résolution du problème pour rc/vehicles/vehicles.controller.spec.ts
                 - [x] Ajout des lignes provide: getRepoToken/usevalue jest.fn() pour les valeurs Piece, PieceVehicle & Vehicle, AssJwtAuthService, AuthService, JwtService, UsersService, MailerService, MAILER_OPTIONS
                 - [x] Retour d'erreur : 
                 ```
                 A circular dependency has been detected inside RootTestModule. Please, make sure that each side of a bidirectional relationships are decorated with "forwardRef()".
                 ```
-            - [ ] Résolution du problème de dépendances de VehiclesService (?, PieceRepo, PieceVehicRepo)
-            - [ ] Résolution du problème pour src/statistics/statistics.controller.spec.ts 
-            - [ ] Résolution du problème pour src/users/users.service.spec.ts
-            - [ ] Résolution du problème pour src/tickets/ticket-history/ticket-history.controller.spec.ts
-            - [ ] Résolution du problème pour src/tickets/tickets.service.spec.ts
-            - [ ] Résolution du problème pour src/stores/stores.controller.spec.ts
-            - [ ] Résolution du problème pour src/reports/reports.controller.spec.ts
-            - [ ] Résolution du problème pour src/tickets/tickets.controller.spec.ts
-            - [ ] Résolution du problème pour src/regionals-managements/regionals-managements.controller.spec.ts 
+            - [x] Résolution du problème de dépendances de VehiclesService (?, PieceRepo, PieceVehicRepo) : Clear de la , en trop, c'était une typo
+        - [x] Résolution du problème pour src/stores/stores.controller.spec.ts
+            - [x] Ajout dans les providers du getRepoToken(Store), retour d'erreur : Nest can't resolve dependencies of the AdminJwtAuthGuard
+            - [x] Ajout dans le provider : [] de : 
+            ```
+            AdminJwtAuthGuard,
+				AssJwtAuthGuard,
+				MailerService,
+				UsersService,
+				AuthService,
+				JwtService,
+				{ provide: getRepositoryToken(Store), useValue: jest.fn() },
+				{ provide: getRepositoryToken(User), useValue: jest.fn() },
+				{ provide: MAILER_OPTIONS, useValue: {
+					message: {
+						from: process.env.MAIL_USER
+					},
+					transport: {
+						host: process.env.MAIL_HOST,
+						port: process.env.MAIL_PORT,
+						secure: process.env.MAIL_SECURE,
+						auth: {
+							user: process.env.MAIL_USER,
+							pass: process.env.MAIL_PASS
+						}
+					}},
+				}
+            ```
+            POUR REFERENCE : les valeurs insérées dans le provider [], seront référées au **Bundle provide:**
+        - [ ] Résolution du problème pour src/statistics/statistics.controller.spec.ts 
+        - [ ] Résolution du problème pour src/users/users.service.spec.ts
+        - [ ] Résolution du problème pour src/tickets/ticket-history/ticket-history.controller.spec.ts
+        - [ ] Résolution du problème pour src/tickets/tickets.service.spec.ts
+        - [ ] Résolution du problème pour src/reports/reports.controller.spec.ts
+        - [ ] Résolution du problème pour src/tickets/tickets.controller.spec.ts
+        - [ ] Résolution du problème pour src/regionals-managements/regionals-managements.controller.spec.ts 
     - [ ] Installer dans kmo-back (working dir) jest-mysql
         - [ ] Configurer proprement le tout
         - [ ] Accéder à global.db  
