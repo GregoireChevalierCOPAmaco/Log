@@ -5,17 +5,32 @@
 - [ ] Testing du projet
     - [ ] Tests unitaires
         - [ ] Résolution de tous les problèmes de ```Nest can't resolve dependencies of...```
+            - [x] Reprsise de doc (https://docs.nestjs.com/faq/common-errors#cannot-resolve-dependency-error), (https://docs.nestjs.com/fundamentals/custom-providers#di-fundamentals), (https://docs.nestjs.com/providers) & (https://docs.nestjs.com/modules)
+            - [ ] Résolution du problème pour src/pieces/pieces.controller.spec.ts
+                - [x] Ajout de AssJwtAuthGuard dans les providers du module pieces.module.ts, *sans changement de message d'erreur*
+                - [x] Mise en commentaire des lignes provide/usevalue jest.fn() pour les valeurs Piece, PieceVehicle & Vehicle. Retour au message d'erreur initial : Nest can't resolve dependencies of the PiecesService
+                    - [x] changement dans le provide: de getRepoToken en getRepo. Obtention de l'erreur : Type 'Repository< Piece>' is not assignable to type 'InjectionToken'. Pas de changements
+                - [x] Retrait du commentaire de provide/usevalue jest.fn() pour Piece. Retour d'erreur : Nest can't resolve dependencies of the PiecesService pour l'argument PieceVehicleRepository at index [1]
+                - [x] Mise en commentaires des @imports dnas pieces.module.ts : Pas de changement d'erreur. Conclusion, l'erreur ne vient pas du fichier module
+                - [x] Décommentaire des lignes provide/usevalue jest.fn() pour les valeurs Piece, PieceVehicle & Vehicle. Message d'erreur reçu : Nest can't resolve dependencies of the AssJwtAuthGuard (Reflector, authService)
+                - [x] Ajout dans le provider[] des services AssJwtAuth, Auth, Jwt, User, Mailer
+                - [x] Erreur reçue : Nest can't resolve dependencies of the MailerService (?, MAILER_TRANSPORT_FACTORY). Please make sure that the argument MAILER_OPTIONS,
+                - [x] Check de (https://stackoverflow.com/questions/61733060/unit-testing-nestjs-controller-with-injection) et ajout des lignes dans provider : 
+                ```
+                MailerService,
+				{ provide: MAILER_OPTIONS, useValue: jest.fn()},
+                ``` 
+                - [x] Erreur reçue : Make sure to provide a nodemailer transport configuration object, connection url or a transport plugin instance.
             - [ ] Résolution du problème pour rc/vehicles/vehicles.controller.spec.ts
-                - [ ] Résolution du problème de dépendances de VehiclesService (?, PieceRepo, PieceVehicRepo)
-                - [ ] Résolution du problème pour src/statistics/statistics.controller.spec.ts 
-                - [ ] Résolution du problème pour src/users/users.service.spec.ts
-                - [ ] Résolution du problème pour src/tickets/ticket-history/ticket-history.controller.spec.ts
-                - [ ] Résolution du problème pour src/tickets/tickets.service.spec.ts
-                - [ ] Résolution du problème pour src/pieces/pieces.controller.spec.ts
-                - [ ] Résolution du problème pour src/stores/stores.controller.spec.ts
-                - [ ] Résolution du problème pour src/reports/reports.controller.spec.ts
-                - [ ] Résolution du problème pour src/tickets/tickets.controller.spec.ts
-                - [ ] Résolution du problème pour src/regionals-managements/regionals-managements.controller.spec.ts 
+            - [ ] Résolution du problème de dépendances de VehiclesService (?, PieceRepo, PieceVehicRepo)
+            - [ ] Résolution du problème pour src/statistics/statistics.controller.spec.ts 
+            - [ ] Résolution du problème pour src/users/users.service.spec.ts
+            - [ ] Résolution du problème pour src/tickets/ticket-history/ticket-history.controller.spec.ts
+            - [ ] Résolution du problème pour src/tickets/tickets.service.spec.ts
+            - [ ] Résolution du problème pour src/stores/stores.controller.spec.ts
+            - [ ] Résolution du problème pour src/reports/reports.controller.spec.ts
+            - [ ] Résolution du problème pour src/tickets/tickets.controller.spec.ts
+            - [ ] Résolution du problème pour src/regionals-managements/regionals-managements.controller.spec.ts 
     - [ ] Installer dans kmo-back (working dir) jest-mysql
         - [ ] Configurer proprement le tout
         - [ ] Accéder à global.db  
