@@ -81,9 +81,10 @@
         - [x] Résolution du problème pour src/tickets/ticket-history/ticket-history.controller.spec.ts
         - [x] Résolution du problème pour src/statistics/statistics.service.spec.ts 
         - [x] Résolution du problème pour src/statistics/statistics.controller.spec.ts 
-        - [ ] Résolution du problème pour src/regionals-managements/regionals-managements.controller.spec.ts 
-        - [ ] Résolution du problème pour src/users/users.service.spec.ts
-        - [ ] Résolution du problème pour src/reports/reports.controller.spec.ts
+        - [x] Résolution du problème pour src/regionals-managements/regionals-managements.controller.spec.ts 
+        - [x] Résolution du problème pour src/users/users.service.spec.ts
+        - [x] Résolution du problème pour src/reports/reports.controller.spec.ts
+    - [ ] Push et merge sur git
     - [ ] Installer dans kmo-back (working dir) jest-mysql
         - [ ] Configurer proprement le tout
         - [ ] Accéder à global.db  
