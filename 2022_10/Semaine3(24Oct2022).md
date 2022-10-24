@@ -1,6 +1,7 @@
 *** LOG Gregoire Chevalier ***
 
 **24 Octobre**
+- [x] Redémarrage et application des màjs windows/docker vscode
 - [ ] Testing du projet
     - [ ] Tests unitaires
         - [ ] Résolution de tous les problèmes de ```Nest can't resolve dependencies of...```
