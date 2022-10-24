@@ -6,7 +6,7 @@
     - [ ] Tests unitaires
         - [ ] Résolution de tous les problèmes de ```Nest can't resolve dependencies of...```
             - [x] Reprsise de doc (https://docs.nestjs.com/faq/common-errors#cannot-resolve-dependency-error), (https://docs.nestjs.com/fundamentals/custom-providers#di-fundamentals), (https://docs.nestjs.com/providers) & (https://docs.nestjs.com/modules)
-            - [ ] Résolution du problème pour src/pieces/pieces.controller.spec.ts
+            - [x] Résolution du problème pour src/pieces/pieces.controller.spec.ts
                 - [x] Ajout de AssJwtAuthGuard dans les providers du module pieces.module.ts, *sans changement de message d'erreur*
                 - [x] Mise en commentaire des lignes provide/usevalue jest.fn() pour les valeurs Piece, PieceVehicle & Vehicle. Retour au message d'erreur initial : Nest can't resolve dependencies of the PiecesService
                     - [x] changement dans le provide: de getRepoToken en getRepo. Obtention de l'erreur : Type 'Repository< Piece>' is not assignable to type 'InjectionToken'. Pas de changements
@@ -21,6 +21,24 @@
 				{ provide: MAILER_OPTIONS, useValue: jest.fn()},
                 ``` 
                 - [x] Erreur reçue : Make sure to provide a nodemailer transport configuration object, connection url or a transport plugin instance.
+                - [x] Fournir les infos relatives au mail dans le useValue : 
+                ```
+                MailerService,
+				{ provide: MAILER_OPTIONS, useValue: {
+					message: {
+						from: process.env.MAIL_USER
+					},
+					transport: {
+						host: process.env.MAIL_HOST,
+						port: process.env.MAIL_PORT,
+						secure: process.env.MAIL_SECURE,
+						auth: {
+							user: process.env.MAIL_USER,
+							pass: process.env.MAIL_PASS
+						}
+					}},
+				},
+                ```
             - [ ] Résolution du problème pour rc/vehicles/vehicles.controller.spec.ts
             - [ ] Résolution du problème de dépendances de VehiclesService (?, PieceRepo, PieceVehicRepo)
             - [ ] Résolution du problème pour src/statistics/statistics.controller.spec.ts 
