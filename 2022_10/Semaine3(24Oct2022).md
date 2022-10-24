@@ -40,6 +40,11 @@
 				},
                 ```
             - [ ] Résolution du problème pour rc/vehicles/vehicles.controller.spec.ts
+                - [x] Ajout des lignes provide: getRepoToken/usevalue jest.fn() pour les valeurs Piece, PieceVehicle & Vehicle, AssJwtAuthService, AuthService, JwtService, UsersService, MailerService, MAILER_OPTIONS
+                - [x] Retour d'erreur : 
+                ```
+                A circular dependency has been detected inside RootTestModule. Please, make sure that each side of a bidirectional relationships are decorated with "forwardRef()".
+                ```
             - [ ] Résolution du problème de dépendances de VehiclesService (?, PieceRepo, PieceVehicRepo)
             - [ ] Résolution du problème pour src/statistics/statistics.controller.spec.ts 
             - [ ] Résolution du problème pour src/users/users.service.spec.ts
