@@ -74,13 +74,16 @@
 				}
             ```
             POUR REFERENCE : les valeurs insérées dans le provider [], seront référées au **Bundle provide:**
-        - [ ] Résolution du problème pour src/statistics/statistics.controller.spec.ts 
-        - [ ] Résolution du problème pour src/users/users.service.spec.ts
-        - [ ] Résolution du problème pour src/tickets/ticket-history/ticket-history.controller.spec.ts
-        - [ ] Résolution du problème pour src/tickets/tickets.service.spec.ts
-        - [ ] Résolution du problème pour src/reports/reports.controller.spec.ts
-        - [ ] Résolution du problème pour src/tickets/tickets.controller.spec.ts
+        - [x] Résolution du problème pour src/tickets/tickets.service.spec.ts
+        - [x] Résolution du problème pour src/tickets/tickets.controller.spec.ts
+            - [x] Retour d'erreur : Nest can't resolve dependencies of the HttpService (?). Please make sure that the argument AXIOS_INSTANCE_TOKEN
+            - [x] Résolution en commentant ```private readonly httpService: HttpService``` dans l'export class de tickets.controller
+        - [x] Résolution du problème pour src/tickets/ticket-history/ticket-history.controller.spec.ts
+        - [x] Résolution du problème pour src/statistics/statistics.service.spec.ts 
+        - [x] Résolution du problème pour src/statistics/statistics.controller.spec.ts 
         - [ ] Résolution du problème pour src/regionals-managements/regionals-managements.controller.spec.ts 
+        - [ ] Résolution du problème pour src/users/users.service.spec.ts
+        - [ ] Résolution du problème pour src/reports/reports.controller.spec.ts
     - [ ] Installer dans kmo-back (working dir) jest-mysql
         - [ ] Configurer proprement le tout
         - [ ] Accéder à global.db  
