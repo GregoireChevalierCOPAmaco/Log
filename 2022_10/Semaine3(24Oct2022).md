@@ -124,6 +124,10 @@
                 truncateDatabase: false
             };
             ```
+- [x] Réunion followup
+    - [ ] Définir les cas de tests qui nécessiteraient de lever des erreurs explicites
+    - [ ] Définir le niveau de détail des retours d'erreurs lors des fails
+    - [ ] Renommer le kw297 du jira "test unitaires" et assigner des sous-tâches si nécessaire
         - [ ] Accéder à global.db  
         - [ ] Tester la connexion à la base
             - [ ] Résoudre le problème de global.db = undefined.
