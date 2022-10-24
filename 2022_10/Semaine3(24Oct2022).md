@@ -86,15 +86,47 @@
         - [x] Résolution du problème pour src/reports/reports.controller.spec.ts
     - [x] Push et merge sur git
     - [ ] Installer dans kmo-back (working dir) jest-mysql
-        - [ ] Configurer proprement le tout
-        - [ ] Accéder à global.db  
-        - [ ] Tester la connexion à la base
-            - [ ] Résoudre le problème de global.db = undefined.
+        - [x] Installation de jest-mysql
             ```
             Make sure jest and mysql are installed as well in the project, as they are required as peer dependencies.
             ```
             -> installation de mysql
             -> reinstallation de jest-mysql
+            Lancement des commandes :
+            ```
+            npm install jest-mysql --force
+            npm audit fix --force
+            ```
+        - [ ] Configurer proprement le tout
+            - [x] Dans package.json, ajout de la ligne : "```preset": "jest-mysql"``` dans la config jest. Lancer les tests retourne maintenant l'erreur : 
+            ```
+            Jest: Got error running globalSetup - C:\Users\gchevalier\cleankmo\KMO_WEB\kmo-back\node_modules\jest-mysql\setup.js, reason: Unable to find and import testing database config
+            ```
+            - [x] Création du fichier jest.config.js dans le dossier src rempli comme suit :
+            ```
+            module.exports = {
+                preset: "jest-mysql"
+                //any other configuration
+            };
+            ```
+            - [x] Création du fichier jest-mysql-config.js dans le dossier src rempli comme suit :
+            ```
+            module.exports = {
+                databaseOptions: {
+                host: "kmo-mysql",
+                port: 3306,
+                user: "KMO",
+                password: "KMO15022022",
+                database: "KMO"
+                },
+                createDatabase: true,
+                // dbSchema: "DB_creation.sql",
+                truncateDatabase: false
+            };
+            ```
+        - [ ] Accéder à global.db  
+        - [ ] Tester la connexion à la base
+            - [ ] Résoudre le problème de global.db = undefined.
         - [ ] Tester la persistance des données
     - [ ] Appliquer les tests à l'entité Reports
     - [ ] Tests fonctionnels
