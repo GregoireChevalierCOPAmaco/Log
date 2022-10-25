@@ -259,6 +259,7 @@
         - [x] Création du fichier de test de ReportsService car non existant atm
     - [x] Màj du jira
     - [ ] Étude de la façon de tester le crud en bdd
+        - [x] Check de (https://dev.to/walrusai/testing-database-interactions-with-jest-519n) & (https://deviq.com/design-patterns/repository-pattern)
     - [ ] Survol des fichiers de test de Reports
     - [ ] Appliquer les tests à l'entité Reports
     - [ ] Tester la persistance des données
