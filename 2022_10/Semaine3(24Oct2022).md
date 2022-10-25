@@ -255,7 +255,8 @@
             ]
             ```
             dans le fichier ormconfig.json . 
-        - [ ] Trouver pourquoi le retour de ```db.getRepository(Piece).count();``` est une  Promise { < pending> }   et non un number
+        - [x] Trouver pourquoi le retour de ```db.getRepository(Piece).count();``` est une  Promise { < pending> }   et non un number -> manquait un await devant . Modification du test pour tester le retour du nombre d'instance du repo : ```expect(typeof value).toBe('number')```
+        - [x] Création du fichier de test de ReportsService car non existant atm
     - [ ] Créer un fichier de test db d'où importer le test db ? -> ne pas le réécrire à chaque fois
     - [ ] Tester la persistance des données
     - [ ] Appliquer les tests à l'entité Reports
