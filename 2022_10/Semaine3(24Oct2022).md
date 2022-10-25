@@ -172,8 +172,8 @@
             ```
             "preset": "jest-mysql",
             ``` à jest du package.json . Les tests passent maintenant
-    - [ ] Tests unitaires
-        - [ ] Accéder à la db
+    - [x] Tests unitaires
+        - [x] Accéder à la db
             - [x] Création d'un fichier ormconfig.json rempli comme suit : 
             ```
             [
@@ -257,9 +257,11 @@
             dans le fichier ormconfig.json . 
         - [x] Trouver pourquoi le retour de ```db.getRepository(Piece).count();``` est une  Promise { < pending> }   et non un number -> manquait un await devant . Modification du test pour tester le retour du nombre d'instance du repo : ```expect(typeof value).toBe('number')```
         - [x] Création du fichier de test de ReportsService car non existant atm
-    - [ ] Créer un fichier de test db d'où importer le test db ? -> ne pas le réécrire à chaque fois
-    - [ ] Tester la persistance des données
+    - [x] Màj du jira
+    - [ ] Étude de la façon de tester le crud en bdd
+    - [ ] Survol des fichiers de test de Reports
     - [ ] Appliquer les tests à l'entité Reports
+    - [ ] Tester la persistance des données
     - [ ] Tests fonctionnels
     - [ ] Tests e2e
     - [ ] S'assurer que les données arrivent en base  
