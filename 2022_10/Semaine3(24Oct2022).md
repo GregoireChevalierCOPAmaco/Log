@@ -143,7 +143,7 @@
 **25 Octobre**
 - [ ] Testing du projet
     - [x] Installer dans kmo-back (working dir) jest-mysql
-        - [ ] Configurer proprement le tout
+        - [x] Configurer proprement le tout
             - [x] Déplacement des fichiers jest.config.js & jest-mysql-config.js dans kmo-back depuis src
             - [x] Retour console : 
             ```
@@ -160,6 +160,18 @@
             at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:109:26)
             ```
             - [x] Check de (https://jestjs.io/docs/next/configuration) & (https://jestjs.io/docs/next/configuration#preset-string)
+            - [x] Suppression de :
+            ```
+		    "preset": "jest-mysql",
+            ```
+            du fichier package.json
+            - [x] Résolution de l'erreur getaddrinfo ENOTFOUND : remplacement de "kmo-mysql" (nom du conteneur docker) par localhost. Wtf mais ça marche donc bon....
+        - [x] Résolution des erreurs : ```TypeError: Class extends value undefined is not a constructor or null``` liées à la configuration de la db
+            - [x] Check de (https://jestjs.io/docs/es6-class-mocks#calling-jestmockdocsenjest-objectjestmockmodulename-factory-options-with-the-module-factory-parameter), (https://github.com/kulshekhar/ts-jest/issues/1070)
+            - [x] Suppression du fichier jest.config.js, et ajout de la ligne : 
+            ```
+            "preset": "jest-mysql",
+            ``` à jest du package.json . Les tests passent maintenant
     - [ ] Tests unitaires
         - [ ] Accéder à global.db  
         - [ ] Tester la connexion à la base
