@@ -173,7 +173,46 @@
             "preset": "jest-mysql",
             ``` à jest du package.json . Les tests passent maintenant
     - [ ] Tests unitaires
-        - [ ] Accéder à global.db  
+        - [ ] Accéder à la db
+            - [x] Création d'un fichier ormconfig.json rempli comme suit : 
+            ```
+            [
+                {
+                    "type": "mysql",
+                    "host": "localhost",
+                    "port": 3306,
+                    "user": "KMO",
+                    "password": "KMO15022022",
+                    "database": "KMO"
+                }
+            ]
+            ```
+            - [x] Création d'un fichier dbco.ts dans le dossier des .spec rempli comme suit : 
+            ```
+            import process from "process";
+            import { getConnectionOptions, createConnection } from "typeorm"
+
+            export const dbco = async () => {
+                const createConnectionOptions = await getConnectionOptions();
+                console.log(createConnectionOptions);
+                return createConnection({...createConnectionOptions});
+            }
+            ```
+            - [x] Création d'un test d'accès à la db dans pieces.service.spec.ts : 
+            ```
+            	it('should return a positive number', async () => {
+                jest.setTimeout(10000);
+                const connection = dbco();
+                const count = (await connection).getRepository(Piece).count();
+                console.log(count);
+                expect(count).toBeGreaterThanOrEqual(1);
+                (await dbco()).close();
+            });	
+            ```
+            - [x] Résolution de l'erreur: ER_ACCESS_DENIED_ERROR: Access denied for user ''@'172.18.0.1' (using password: YES) : changement du paramètre user en username dans le ormconfig.json. Retour d'erreur : 
+            ```
+            RepositoryNotFoundError: No repository for "Piece" was found. Looks like this entity is not registered in current "default" connection?   
+            ```  
         - [ ] Tester la connexion à la base
             - [ ] Résoudre le problème de global.db = undefined.
         - [ ] Dégager jest-mysql pour autre chose ? 
