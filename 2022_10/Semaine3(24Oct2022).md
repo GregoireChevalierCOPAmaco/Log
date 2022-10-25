@@ -213,9 +213,35 @@
             ```
             RepositoryNotFoundError: No repository for "Piece" was found. Looks like this entity is not registered in current "default" connection?   
             ```  
-        - [ ] Tester la connexion à la base
-            - [ ] Résoudre le problème de global.db = undefined.
-        - [ ] Dégager jest-mysql pour autre chose ? 
+        - [x] Tester la connexion à la base
+            - [x] Résoudre le problème de global.db = undefined.
+            - [x] Création des tests de connexion en important dbco.ts comme suit : 
+            ```
+            describe('Connection to db', () => {
+                let dbconnection: Promise<Connection>;
+                let db: Connection;
+
+                beforeAll(async () => {
+                    dbconnection = dbco();
+                    db = (await dbconnection);
+                })
+
+                jest.setTimeout(10000);
+                it('should be defined', async () => {
+                    expect(dbconnection).toBeDefined();
+                });	
+
+                it('should return a connexion object', async () => {
+                    expect(db).toBeInstanceOf(Connection);
+                });	
+
+                afterAll(async () => {
+                    (await dbconnection).close();
+                })
+            });
+            ```
+        - [x] Dégager jest-mysql pour autre chose ? 
+            - [x] Ecriture des tests de connexion avec typeOrm en définissant un ormconfig.json
         - [ ] Tester la persistance des données
     - [ ] Appliquer les tests à l'entité Reports
     - [ ] Tests fonctionnels
