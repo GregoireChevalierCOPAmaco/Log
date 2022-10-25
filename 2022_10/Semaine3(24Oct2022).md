@@ -138,5 +138,35 @@
     - [ ] Appliquer les tests à l'entité Reports
     - [ ] Tests fonctionnels
     - [ ] Tests e2e
-    - [ ] S'assurer que les données arrivent en base
+    - [ ] S'assurer que les données arrivent en base  
+  
+**25 Octobre**
+- [ ] Testing du projet
+    - [x] Installer dans kmo-back (working dir) jest-mysql
+        - [ ] Configurer proprement le tout
+            - [x] Déplacement des fichiers jest.config.js & jest-mysql-config.js dans kmo-back depuis src
+            - [x] Retour console : 
+            ```
+            Multiple configurations found:
+                * C:/Users/gchevalier/cleankmo/KMO_WEB/kmo-back/jest.config.js
+                * `jest` key in C:/Users/gchevalier/cleankmo/KMO_WEB/kmo-back/package.json
 
+            Implicit config resolution does not allow multiple configuration files.
+            Either remove unused config files or select one explicitly with `--config`.
+            ```
+            - [x] Retour d'erreur : 
+            ```
+            Error: getaddrinfo ENOTFOUND kmo-mysql
+            at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:109:26)
+            ```
+            - [x] Check de (https://jestjs.io/docs/next/configuration) & (https://jestjs.io/docs/next/configuration#preset-string)
+    - [ ] Tests unitaires
+        - [ ] Accéder à global.db  
+        - [ ] Tester la connexion à la base
+            - [ ] Résoudre le problème de global.db = undefined.
+        - [ ] Dégager jest-mysql pour autre chose ? 
+        - [ ] Tester la persistance des données
+    - [ ] Appliquer les tests à l'entité Reports
+    - [ ] Tests fonctionnels
+    - [ ] Tests e2e
+    - [ ] S'assurer que les données arrivent en base  
