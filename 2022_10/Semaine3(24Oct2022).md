@@ -242,7 +242,22 @@
             ```
         - [x] Dégager jest-mysql pour autre chose ? 
             - [x] Ecriture des tests de connexion avec typeOrm en définissant un ormconfig.json
-        - [ ] Tester la persistance des données
+            - [x] Penser à réécrire le ormconfig.json pour chaque nouvel environnement
+            - [x] Résolution d'erreur : 
+            ```
+            RepositoryNotFoundError: No repository for "Piece" was found. Looks like this entity is not registered in current "default" connection?   
+            ```  
+            en intégrant la ligne :
+            ```
+            ,
+            "entities": [
+            "./src/**/entities/*.ts"
+            ]
+            ```
+            dans le fichier ormconfig.json . 
+        - [ ] Trouver pourquoi le retour de ```db.getRepository(Piece).count();``` est une  Promise { < pending> }   et non un number
+    - [ ] Créer un fichier de test db d'où importer le test db ? -> ne pas le réécrire à chaque fois
+    - [ ] Tester la persistance des données
     - [ ] Appliquer les tests à l'entité Reports
     - [ ] Tests fonctionnels
     - [ ] Tests e2e
