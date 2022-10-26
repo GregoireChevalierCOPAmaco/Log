@@ -270,7 +270,10 @@
             - [x] Création du mock pour le Read
             - [x] Création du mock pour l'Update
             - [x] Création du mock pour le Delete
+            - [x] Déplacement de tous les mocks dans le fichier pieces.service.spec.ts car c'est le service qui interagit avec la db et non le controller.
         - [ ] Création des tests réels
+            - [x] Imbrication dans un describe avec beforeAll() qui initialise la co à la db et un afterAll() qui la ferme 
+            - [ ] Création du test pour le Create
     - [ ] S'assurer que les données arrivent en base  
     - [ ] Survol des fichiers de test de Reports
     - [ ] Appliquer les tests à l'entité Reports
