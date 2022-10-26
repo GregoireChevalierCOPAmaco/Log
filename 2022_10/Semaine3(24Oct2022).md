@@ -265,6 +265,8 @@
     - [ ] Étude de la façon de tester le crud en bdd
         - [x] Check de (https://dev.to/walrusai/testing-database-interactions-with-jest-519n) & (https://deviq.com/design-patterns/repository-pattern)
     - [ ] Tester le crud pour l'entité pieces
+        - [ ] Création des tests de mock 
+            - [x] Création du mock pour l'Update
     - [ ] S'assurer que les données arrivent en base  
     - [ ] Survol des fichiers de test de Reports
     - [ ] Appliquer les tests à l'entité Reports
