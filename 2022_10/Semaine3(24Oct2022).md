@@ -276,13 +276,20 @@
             - [ ] Création du test pour le Create
                 - [x] Résolution du problème : AlreadyHasActiveConnectionError: Cannot create a new connection named "default", because connection with such name already exist and it now has an active connection session. -> lancer une connexion dans plusieurs describe au sein du même fichier cause le problème ; tout regrouper sous le même describe.
                 - [x] Solution alternative, ajouter le flag ```--runInBand``` pour effectuer les tests non pas en parallèle mais séparément. ! Ralentit grandement l'exécution de la suite de tests
+                - [ ] Résolution de l'erreur : ReferenceError: You are trying to `import` a file after the Jest environment has been torn down
+                    - [x] Check de (https://stackoverflow.com/questions/50793885/referenceerror-you-are-trying-to-import-a-file-after-the-jest-environment-has)
+                    - [x] Ajout de : 
+                    ```
+		            jest.setTimeout(10000);
+                    ```
+                    dans les BeforeAll() & AfterAll() pour voir. Ne semble pas résoudre quoi que ce soit
             - [x] Création du test pour le Read
                 - [x] Avec la connexion à la db, read le repo Piece et findOne(id: "").toBeTruthy() . Le console log du retour renvoie bien l'objet piece inscrit en base
             - [ ] Création du test pour l'Update
             - [ ] Création du test pour le Delete
+    - [x] Tester la persistance des données
     - [ ] S'assurer que les données arrivent en base  
     - [ ] Survol des fichiers de test de Reports
     - [ ] Appliquer les tests à l'entité Reports
-    - [ ] Tester la persistance des données
     - [ ] Tests fonctionnels
     - [ ] Tests e2e
