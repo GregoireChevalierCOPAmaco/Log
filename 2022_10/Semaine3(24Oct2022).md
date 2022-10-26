@@ -258,11 +258,16 @@
         - [x] Trouver pourquoi le retour de ```db.getRepository(Piece).count();``` est une  Promise { < pending> }   et non un number -> manquait un await devant . Modification du test pour tester le retour du nombre d'instance du repo : ```expect(typeof value).toBe('number')```
         - [x] Création du fichier de test de ReportsService car non existant atm
     - [x] Màj du jira
+  
+  
+  **26 Octobre**
+    - [x] MàJs Windows
     - [ ] Étude de la façon de tester le crud en bdd
         - [x] Check de (https://dev.to/walrusai/testing-database-interactions-with-jest-519n) & (https://deviq.com/design-patterns/repository-pattern)
+    - [ ] Tester le crud pour l'entité pieces
+    - [ ] S'assurer que les données arrivent en base  
     - [ ] Survol des fichiers de test de Reports
     - [ ] Appliquer les tests à l'entité Reports
     - [ ] Tester la persistance des données
     - [ ] Tests fonctionnels
     - [ ] Tests e2e
-    - [ ] S'assurer que les données arrivent en base  
