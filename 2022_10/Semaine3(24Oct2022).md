@@ -274,6 +274,12 @@
         - [ ] Création des tests réels
             - [x] Imbrication dans un describe avec beforeAll() qui initialise la co à la db et un afterAll() qui la ferme 
             - [ ] Création du test pour le Create
+                - [x] Résolution du problème : AlreadyHasActiveConnectionError: Cannot create a new connection named "default", because connection with such name already exist and it now has an active connection session. -> lancer une connexion dans plusieurs describe au sein du même fichier cause le problème ; tout regrouper sous le même describe.
+                - [x] Solution alternative, ajouter le flag ```--runInBand``` pour effectuer les tests non pas en parallèle mais séparément. ! Ralentit grandement l'exécution de la suite de tests
+            - [x] Création du test pour le Read
+                - [x] Avec la connexion à la db, read le repo Piece et findOne(id: "").toBeTruthy() . Le console log du retour renvoie bien l'objet piece inscrit en base
+            - [ ] Création du test pour l'Update
+            - [ ] Création du test pour le Delete
     - [ ] S'assurer que les données arrivent en base  
     - [ ] Survol des fichiers de test de Reports
     - [ ] Appliquer les tests à l'entité Reports
