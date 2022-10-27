@@ -308,7 +308,8 @@
                 - [x] Ajout du await devant le create résoud le problème
         - [ ] Création du test pour l'Update
         - [ ] Création du test pour le Delete
-    - [ ] S'assurer que les données arrivent en base  
+    - [x] S'assurer que les données arrivent en base  
+    - [ ] Formation avec Théo sur la maintenance des versions tablettes KMO, & androir studio
     - [ ] Survol des fichiers de test de Reports
     - [ ] Appliquer les tests à l'entité Reports
     - [ ] Tests fonctionnels
