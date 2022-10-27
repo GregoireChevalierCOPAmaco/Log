@@ -315,6 +315,15 @@
                 - [x] Déplacement du sujet de test de name à id à ref. Ne semble pas changer quoi que ce soit
                 - [x] Mise en comm et passage au delete
         - [ ] Création du test pour le Delete
+            - [ ] Résolution de l'erreur :
+            ```                                 
+            HttpException: Pool is closed.                                                                                             
+                at C:\Users\gchevalier\cleankmo\KMO_WEB\kmo-back\test\dbco.ts:92:19                                                                                                                                  
+                at processTicksAndRejections (node:internal/process/task_queues:96:5) {
+            response: { message: 'Pool is closed.' },
+            status: 400
+            }  
+            ```
     - [x] S'assurer que les données arrivent en base  
 - [x] Formation avec Théo sur la maintenance des versions tablettes KMO, & android studio
     - [x] Se positionner dans ./kmo-app et lancer : 
