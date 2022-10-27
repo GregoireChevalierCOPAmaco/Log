@@ -308,6 +308,10 @@
                 - [x] Ajout du await devant le create résoud le problème
         - [ ] Création du test pour l'Update
             - [ ] Écriture du test en cours
+                - [ ] Résolution de l'erreur :
+                ```
+                HttpException: ER_TRUNCATED_WRONG_VALUE: Truncated incorrect DOUBLE value: 'piece1'       
+                ```
         - [ ] Création du test pour le Delete
     - [x] S'assurer que les données arrivent en base  
 - [x] Formation avec Théo sur la maintenance des versions tablettes KMO, & android studio
