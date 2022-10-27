@@ -293,8 +293,19 @@
   **27 Octobre**
 - [ ] Tester le crud pour l'entité pieces
     - [ ] Création des tests réels
-        - [ ] Création du test pour le Create
-            - [ ] Résolution de l'erreur : ReferenceError: You are trying to `import` a file after the Jest environment has been torn down
+        - [x] Création du test pour le Create
+            - [x] Résolution de l'erreur : ReferenceError: You are trying to `import` a file after the Jest environment has been torn down 
+                - [x] Le console log de create(rempli avec infos) renvoie : Promise { < pending> }
+                - [x] Ajouter await renvoie : 
+                ```
+                 Piece {
+                    name: 'testpiecename',
+                    reference: 'reftest',
+                    quantity: 5,
+                    id: '36117477-bf6f-4f1a-9d4b-35625ef6a9be'
+                }
+                ``` 
+                - [x] Ajout du await devant le create résoud le problème
         - [ ] Création du test pour l'Update
         - [ ] Création du test pour le Delete
     - [ ] S'assurer que les données arrivent en base  
