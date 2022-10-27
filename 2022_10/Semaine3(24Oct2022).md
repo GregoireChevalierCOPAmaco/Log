@@ -312,6 +312,8 @@
                 ```
                 HttpException: ER_TRUNCATED_WRONG_VALUE: Truncated incorrect DOUBLE value: 'piece1'       
                 ```
+                - [x] Déplacement du sujet de test de name à id à ref. Ne semble pas changer quoi que ce soit
+                - [x] Mise en comm et passage au delete
         - [ ] Création du test pour le Delete
     - [x] S'assurer que les données arrivent en base  
 - [x] Formation avec Théo sur la maintenance des versions tablettes KMO, & android studio
