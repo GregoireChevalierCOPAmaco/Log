@@ -288,6 +288,15 @@
             - [ ] Création du test pour l'Update
             - [ ] Création du test pour le Delete
     - [x] Tester la persistance des données
+
+  
+  **27 Octobre**
+- [ ] Tester le crud pour l'entité pieces
+    - [ ] Création des tests réels
+        - [ ] Création du test pour le Create
+            - [ ] Résolution de l'erreur : ReferenceError: You are trying to `import` a file after the Jest environment has been torn down
+        - [ ] Création du test pour l'Update
+        - [ ] Création du test pour le Delete
     - [ ] S'assurer que les données arrivent en base  
     - [ ] Survol des fichiers de test de Reports
     - [ ] Appliquer les tests à l'entité Reports
