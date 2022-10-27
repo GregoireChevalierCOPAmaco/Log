@@ -315,7 +315,7 @@
                 - [x] Déplacement du sujet de test de name à id à ref. Ne semble pas changer quoi que ce soit
                 - [x] Mise en comm et passage au delete
         - [ ] Création du test pour le Delete
-            - [ ] Résolution de l'erreur :
+            - [x] Résolution de l'erreur :
             ```                                 
             HttpException: Pool is closed.                                                                                             
                 at C:\Users\gchevalier\cleankmo\KMO_WEB\kmo-back\test\dbco.ts:92:19                                                                                                                                  
@@ -324,6 +324,7 @@
             status: 400
             }  
             ```
+            - [ ] L'erreur vient de la fonction .delete() qui ne supprime pas l'instance de pieces. essayer d'appeler ```Repository< Piece>.delete()``` plutôt que delete() simple ?
     - [x] S'assurer que les données arrivent en base  
 - [x] Formation avec Théo sur la maintenance des versions tablettes KMO, & android studio
     - [x] Se positionner dans ./kmo-app et lancer : 
