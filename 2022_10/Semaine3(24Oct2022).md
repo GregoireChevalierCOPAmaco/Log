@@ -309,7 +309,43 @@
         - [ ] Création du test pour l'Update
         - [ ] Création du test pour le Delete
     - [x] S'assurer que les données arrivent en base  
-    - [ ] Formation avec Théo sur la maintenance des versions tablettes KMO, & androir studio
+    - [ ] Formation avec Théo sur la maintenance des versions tablettes KMO, & android studio
+        - [x] Se positionner dans ./kmo-app et lancer : 
+        ```
+        npm i
+        npx cap add android
+        npm i -g cordova-res
+        cordova-res android --skip-config --copy
+        npm run build --prod
+        ionic cap build
+        ionic cap sync
+        ```
+        - [x] Résolution de l'erreur : 
+        ```
+        [error] Could not find the web assets directory: .\www.
+        ```
+        en faisant npm run build
+        - [ ] Android studio
+            - [x] Ouverture du projet : C:\Users\gchevalier\cleankmo\KMO_WEB\kmo-app\android
+            - [x] Installation d'Atom material icons (settings)
+            - [ ] Configuration de firebase
+                - [x] Dans android studio, (project/android/app) créer le fichier google-services.json et le remplir avec les données présentes dans kmo-app/google-services.json
+                - [x] Ajout des lignes ```mavenCentral()``` à : repositories
+                - [x] Dans android studio, (project/android/build.gradle) &(project/android/app/build.gradle) ajouter les lignes renseignées dans le readme sur github
+                - [x] Dans le fichier android\app\src\main\java\io\cop\kmo\MainActivity.java, ajouter le code renseigné dans le github
+                - [x] Dans l'ide android, cliquer sur SyncNow
+                - [x] Synchro avec tablette : menu déroulant du haut, pair deviceover wifi / usb selon la methode
+                    - [x] Activer les options de dev sur le device : spammer reglages/a propos du device/ infos logiciel/ numéro de version
+                    - [x] Aller dans les options de développement et scanner le qrcode
+            - [x] Au build de l'app, résoudre à la main les erreurs dans les fichiers ImagePicker & MultiImageChoserActivity : Virer les déclarations d'import qui posent problème, et se positionner sur le code qui génère les erreurs et appliquer les quick fix suggérer (import & extend)
+            - [x] Build successful, rentrer sur la tablette avec mdp 1739
+            - [x] Ne pas oublier de cliquer sur syncNow pour apply les changements
+            - [x] Config de l'icone de l'app (https://developer.android.com/studio/write/image-asset-studio), clic droit res/new/image asset, renseigner le path et next. Puis sync et run app
+        - [x] Installation de l'app-tester
+            - [x] Récupérer le fichier app-tester.apk
+            - [x] Dans l'explorateur de fichiers, copier le fichier et le coller dans Ce PC\Galaxy Tab A\Tablet\Download
+            - [x] Sur la tablette, dans mes fichiers/app-tester.apk installer
+        - [x] Ouvrir l'app-tester, puis se connecter avec : Compte gmail monteur : monteur.cop@gmail.com/COPkmo67. D'où on peut choisir la version de l'appli à mettre au monteur
     - [ ] Survol des fichiers de test de Reports
     - [ ] Appliquer les tests à l'entité Reports
     - [ ] Tests fonctionnels
