@@ -419,6 +419,9 @@
                 );
                 ```
                 pour les methods update() & delete123() de dbco.ts
+- [x] Mise à jour du jira
+- [ ] Voir comment s'organisent les relations via les methodes de CRUD pour les entités
+- [ ] Voir comment s'organisent les relations entre les Reports et les entités reliées
 - [ ] Survol des fichiers de test de Reports
 - [ ] Appliquer les tests à l'entité Reports
 - [ ] Tests fonctionnels
