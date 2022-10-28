@@ -421,6 +421,8 @@
                 pour les methods update() & delete123() de dbco.ts
 - [x] Mise à jour du jira
 - [ ] Voir comment s'organisent les relations via les methodes de CRUD pour les entités
+    - [x] Check du fichier create-piece.dto.ts utilisé dans dbco.ts
+        - [x] Check de pieceVehicle.entity.ts pour voir le type de relations utilisées avec les autres entités
 - [ ] Voir comment s'organisent les relations entre les Reports et les entités reliées
 - [ ] Survol des fichiers de test de Reports
 - [ ] Appliquer les tests à l'entité Reports
