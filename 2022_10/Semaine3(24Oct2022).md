@@ -370,8 +370,8 @@
   
   
 **28 Octobre**
-- [ ] Tester le crud pour l'entité pieces
-    - [ ] Création des tests réels
+- [x] Tester le crud pour l'entité pieces
+    - [x] Création des tests réels
         - [x] Création du test pour le Delete
             - [x] Résolution de l'erreur :
             ```                                 
@@ -400,11 +400,26 @@
             const deleted = await db.getRepository(Piece).findOne({name: "test2"});
             ```
             *après* l'appel à la fonction delete123() de dcbo.
-        - [ ] Création du test pour l'Update
-            - [ ] Reprise de l'écriture du test
+        - [x] Création du test pour l'Update
+            - [x] Reprise de l'écriture du test
                 - [x] Résolution de l'erreur :
                 ```
                 HttpException: ER_TRUNCATED_WRONG_VALUE: Truncated incorrect DOUBLE value: 'piece1'       
                 ```
                 - [x] Renseignement de CreatePieceDto dans le update et utilisation du save()
-                - [ ] La requête semble bonne, trouver pourquoi elle ne s'applique pas
+                - [x] La requête semble bonne, trouver pourquoi elle ne s'applique pas : manquait ```.execute();``` à la fin de la modification.
+                - [x] La modification de l'instance en base se fait bien, mais retour d'erreur : ```HttpException: ER_NO_DEFAULT_FOR_FIELD``` dans la console
+                - [x] Mise en commentaire de la gestion d'erreur : 
+                ```
+                throw new HttpException(
+                    {
+                        message: err.message,
+                    },
+                    HttpStatus.BAD_REQUEST
+                );
+                ```
+                pour les methods update() & delete123() de dbco.ts
+- [ ] Survol des fichiers de test de Reports
+- [ ] Appliquer les tests à l'entité Reports
+- [ ] Tests fonctionnels
+- [ ] Tests e2e
