@@ -367,3 +367,27 @@
 - [ ] Appliquer les tests à l'entité Reports
 - [ ] Tests fonctionnels
 - [ ] Tests e2e
+  
+  
+**28 Octobre**
+- [ ] Tester le crud pour l'entité pieces
+    - [ ] Création des tests réels
+        - [ ] Création du test pour l'Update
+            - [ ] Écriture du test en cours
+                - [ ] Résolution de l'erreur :
+                ```
+                HttpException: ER_TRUNCATED_WRONG_VALUE: Truncated incorrect DOUBLE value: 'piece1'       
+                ```
+                - [x] Déplacement du sujet de test de name à id à ref. Ne semble pas changer quoi que ce soit
+                - [x] Mise en comm et passage au delete
+        - [ ] Création du test pour le Delete
+            - [x] Résolution de l'erreur :
+            ```                                 
+            HttpException: Pool is closed.                                                                                             
+                at C:\Users\gchevalier\cleankmo\KMO_WEB\kmo-back\test\dbco.ts:92:19                                                                               
+                at processTicksAndRejections (node:internal/process/task_queues:96:5) {
+            response: { message: 'Pool is closed.' },
+            status: 400
+            }  
+            ```
+            - [ ] L'erreur vient de la fonction .delete() qui ne supprime pas l'instance de pieces. essayer d'appeler ```Repository< Piece>.delete()``` plutôt que delete() simple ?
