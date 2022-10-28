@@ -372,15 +372,7 @@
 **28 Octobre**
 - [ ] Tester le crud pour l'entité pieces
     - [ ] Création des tests réels
-        - [ ] Création du test pour l'Update
-            - [ ] Écriture du test en cours
-                - [ ] Résolution de l'erreur :
-                ```
-                HttpException: ER_TRUNCATED_WRONG_VALUE: Truncated incorrect DOUBLE value: 'piece1'       
-                ```
-                - [x] Déplacement du sujet de test de name à id à ref. Ne semble pas changer quoi que ce soit
-                - [x] Mise en comm et passage au delete
-        - [ ] Création du test pour le Delete
+        - [x] Création du test pour le Delete
             - [x] Résolution de l'erreur :
             ```                                 
             HttpException: Pool is closed.                                                                                             
@@ -408,3 +400,11 @@
             const deleted = await db.getRepository(Piece).findOne({name: "test2"});
             ```
             *après* l'appel à la fonction delete123() de dcbo.
+        - [ ] Création du test pour l'Update
+            - [ ] Reprise de l'écriture du test
+                - [x] Résolution de l'erreur :
+                ```
+                HttpException: ER_TRUNCATED_WRONG_VALUE: Truncated incorrect DOUBLE value: 'piece1'       
+                ```
+                - [x] Renseignement de CreatePieceDto dans le update et utilisation du save()
+                - [ ] La requête semble bonne, trouver pourquoi elle ne s'applique pas
