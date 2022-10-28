@@ -390,4 +390,21 @@
             status: 400
             }  
             ```
-            - [ ] L'erreur vient de la fonction .delete() qui ne supprime pas l'instance de pieces. essayer d'appeler ```Repository< Piece>.delete()``` plutôt que delete() simple ?
+            - [x] L'erreur vient de la fonction .delete() qui ne supprime pas l'instance de pieces. essayer d'appeler ```Repository< Piece>.delete()``` plutôt que delete() simple ?
+                - [x] Import forcé de la fonction delete de kmo-back\node_modules\typeorm\repository\Repository.d.ts avec : 
+                ```
+                import { Repository } from 'typeorm';
+                ```
+                - [x] Déclarer this. ... is possibly undefined et créée des erreurs. 
+                - [x] Renseignement de CreatePieceDto dans le delete et utilisation du save()
+                - [x] La suppression de l'instance en base se fait bien, mais retour d'erreur : ```HttpException: ER_NO_DEFAULT_FOR_FIELD``` dans la console. Check de (https://stackoverflow.com/questions/29068463/er-no-default-for-field-in-mysql-nodejs-rest-request) & (https://stackoverflow.com/questions/68722371/typeorm-evokes-error-in-findone-query-queryfailederror-er-no-default-for-fiel)
+                - [x] Résolution : enlever le await du 
+                ```
+                pieceRepository.save(deletePiece).catch
+                ```
+                dans la boucle if de delete dans le fichier dcbo permet de se débarrasser de l'erreur no_default_field
+            - [x] Le test passe maintenant que j'ai déclaré
+            ```
+            const deleted = await db.getRepository(Piece).findOne({name: "test2"});
+            ```
+            *après* l'appel à la fonction delete123() de dcbo.
