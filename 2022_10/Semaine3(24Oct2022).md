@@ -428,3 +428,4 @@
 - [ ] Appliquer les tests à l'entité Reports
 - [ ] Tests fonctionnels
 - [ ] Tests e2e
+- [x] Réunion followup
