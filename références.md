@@ -58,6 +58,7 @@ https://stackoverflow.com/questions/45778192/what-is-the-difference-between-it-a
 https://jestjs.io/fr/docs/api#testfailingname-fn-timeout (fails à vocation de levée d'exception)
 https://github.com/facebook/jest/tree/main/packages/jest-circus (jest-circus)
 https://jestjs.io/docs/mongodb (test de connexion bdd)
+https://stackoverflow.com/questions/70092175/mocking-relationships-in-typeorm-nestjs (mock relations)
 **BDD**
 What is BDD programming?
 Behavior-driven development (BDD) is an Agile software development methodology in which an application is documented and designed around the behavior a user expects to experience when interacting with it.
