@@ -28,6 +28,11 @@
 - [x] Reprise du testing
 - [x] Survol des fichiers de test de Reports
 - [ ] Appliquer les tests à l'entité Reports
+    - [x] Mock du CRUD
+    - [ ] Test du Create
+    - [ ] Test du Read
+    - [ ] Test de l'Update
+    - [ ] Test du Delete
 - [ ] Tests fonctionnels
 - [ ] Tests e2e
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
