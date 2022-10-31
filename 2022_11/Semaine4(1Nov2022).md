@@ -1,7 +1,10 @@
 *** LOG Gregoire Chevalier ***
 
 **31 Octobre**
-- [ ] Cleanup des fichiers de test
+- [x] Cleanup des fichiers de test
+    - [x] Suppression des commentaires
+    - [x] Suppression des console.log()
+    - [x] Run des tests pour s'assurer de leur passage
 - [ ] Push sur KM-297_testsGreg
     - [ ] Merge
 - [ ] Reprise du testing
