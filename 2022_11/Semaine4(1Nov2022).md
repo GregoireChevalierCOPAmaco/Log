@@ -31,8 +31,9 @@
     - [x] Mock du CRUD
     - [x] Test du Create
     - [ ] Test de l'envoi du mail lors du create
-    - [ ] Test du Read
+    - [x] Test du Read
     - [ ] Test de l'Update
+        - [ ] Résolution des erreurs créées
     - [ ] Test du Delete
         - [ ] Test du  CRUD avec relation à un store, un ticket
 - [ ] Tests e2e
