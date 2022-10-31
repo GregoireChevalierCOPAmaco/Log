@@ -29,10 +29,11 @@
 - [x] Survol des fichiers de test de Reports
 - [ ] Appliquer les tests à l'entité Reports
     - [x] Mock du CRUD
-    - [ ] Test du Create
+    - [x] Test du Create
+    - [ ] Test de l'envoi du mail lors du create
     - [ ] Test du Read
     - [ ] Test de l'Update
     - [ ] Test du Delete
-- [ ] Tests fonctionnels
+        - [ ] Test du  CRUD avec relation à un store, un ticket
 - [ ] Tests e2e
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
