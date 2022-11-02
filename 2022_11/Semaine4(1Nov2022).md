@@ -43,7 +43,6 @@
 **2 Novembre**
 - [x] Reprise du testing 
 - [ ] Appliquer les tests à l'entité Reports 
-    - [ ] Test de l'envoi du mail lors du create
     - [x] Test du Read
     - [x] Test de l'Update
         - [x] Résolution des erreurs créées
@@ -64,8 +63,13 @@
 - [x] Redémarrage pour résolution des problèmes de push du log
 - [x] Passage sur le log sous windows != wsl
 - [x] git pull & màj
-    - [ ] Test du Delete
-    - [ ] Répondre à la question : est-ce normal de pouvoir créer des rerports de même noms ? -> unique sur le champ reference ?
+    - [x] Test du Delete
+    - [ ] Répondre à la question : est-ce normal de pouvoir créer des reports de même noms ? -> unique sur le champ reference ?
+    - [ ] Test de l'envoi du mail lors du create
     - [ ] Test du  CRUD avec relation à un store, un ticket
+        - [ ] Test du Create
+        - [ ] Test du Read
+        - [ ] Test de l'Update
+        - [ ] Test du Delete
 - [ ] Tests e2e
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
