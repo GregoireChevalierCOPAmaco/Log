@@ -121,6 +121,9 @@
             - [x] Lien avec store
             - [x] Lien avec ticket
         - [ ] Test de l'Update
-        - [ ] Test du Delete
+        - [x] Test du Delete
+            - [x] Lien avec store
+            - [x] Lien avec ticket
+            - [x] Fonctionnel même si peu de sens à delete en itérant sur le ticket associé
 - [ ] Tests e2e
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
