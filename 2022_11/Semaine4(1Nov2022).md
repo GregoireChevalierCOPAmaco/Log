@@ -66,7 +66,47 @@
     - [x] Test du Delete
     - [ ] Répondre à la question : est-ce normal de pouvoir créer des reports de même noms ? -> unique sur le champ reference ?
     - [ ] Test de l'envoi du mail lors du create
+        - [x] Check de (https://www.npmjs.com/package/jest-smtp) & (https://github.com/tglink/jest-email-reporter)
+        - [x] Survol des fonctions relevant de l'envoi de mail 
+        - [x] Check des fichiers relevant de mailer.service.ts
+        - [x] En gros : si l'objet createReportDto == true dans la requête de création, on passe dans la boucle d'envoi de mail :
+        ```
+        const store = await this.StoreRepository.findOne(createReportDto.store);
+			this.mailerService
+				.sendMail({
+					to: 'g.chevalier@cop-amaco.com',
+					from: 'copdevbot@gmail.com',
+					subject:
+						'Le rapport ' +
+						createReportDto.reference +
+						" à besoin d'un second rendez-vous",
+					html:
+						'<h1>Bonjour</h1>\n' +
+						'<p>Le rapport </strong>' +
+						createReportDto.reference +
+                        .....
+						createReportDto.observationProblem,
+				})
+				.then((success) => {
+					console.log(success);
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+        ```
+        - [x] Résolution de l'erreur : 
+            ```
+            TypeError: Cannot read properties of undefined (reading 'sendMail')
+            ```
+            - [x] Check de (https://stackoverflow.com/questions/70737323/jest-error-typeerror-cannot-read-properties-of-undefined-reading-send), (https://salesforce.stackexchange.com/questions/372425/uncaught-in-promise-typeerror-cannot-read-properties-of-undefined-reading-b) & (https://github.com/nest-modules/mailer/blob/master/lib/mailer.service.spec.ts)
+            - [x] Uilisation des tests en snapshot comme renseigné dans (https://github.com/nest-modules/mailer/blob/master/lib/mailer.service.spec.ts) 
+            - [x] Check de (https://jestjs.io/docs/snapshot-testing) pour référence
+        - [x] Mail service mock-testé
+        - [ ] Tester en réel le mailing ? Pas sûir que ce soit nécessaire...
     - [ ] Test du  CRUD avec relation à un store, un ticket
+        - [ ] Création d'un store
+        - [ ] Création d'un ticket
+        - [ ] Création des liens report-ticket-store
         - [ ] Test du Create
         - [ ] Test du Read
         - [ ] Test de l'Update
