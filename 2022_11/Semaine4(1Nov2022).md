@@ -117,7 +117,9 @@
         - [x] Test du Create
             - [x] Lien avec store
             - [x] Lien avec ticket
-        - [ ] Test du Read
+        - [x] Test du Read
+            - [x] Lien avec store
+            - [x] Lien avec ticket
         - [ ] Test de l'Update
         - [ ] Test du Delete
 - [ ] Tests e2e
