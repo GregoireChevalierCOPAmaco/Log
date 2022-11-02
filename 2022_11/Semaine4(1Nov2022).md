@@ -106,16 +106,17 @@
     - [ ] Test du  CRUD avec relation à un store, un ticket
         - [x] Création d'un store
         - [x] Création d'un ticket
-        - [ ] Création des liens report-ticket-store
-            - [ ] Le lien se fait entre report & store mais pas entre report & ticket... -> insérer :
+        - [x] Création des liens report-ticket-store
+            - [x] Le lien se fait entre report & store mais pas entre report & ticket... -> insérer :
             ```
             @ManyToOne(() => Ticket, (ticket) => ticket.id, { onDelete: 'CASCADE' })
 	        ticket: Ticket;
             ```
             au create-report.dto.ts ??? ou voir s'il est logique ou non d'assigner le ticket à la création du report.... ?
-        - [ ] Test du Create
+            - [x] Insertion du ticket comme many to one dans le CreateReportDTO
+        - [x] Test du Create
             - [x] Lien avec store
-            - [ ] Lien avec ticket
+            - [x] Lien avec ticket
         - [ ] Test du Read
         - [ ] Test de l'Update
         - [ ] Test du Delete
