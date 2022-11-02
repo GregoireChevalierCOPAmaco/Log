@@ -38,3 +38,34 @@
         - [ ] Test du  CRUD avec relation à un store, un ticket
 - [ ] Tests e2e
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
+  
+  
+**2 Novembre**
+- [x] Reprise du testing 
+- [ ] Appliquer les tests à l'entité Reports 
+    - [ ] Test de l'envoi du mail lors du create
+    - [x] Test du Read
+    - [x] Test de l'Update
+        - [x] Résolution des erreurs créées
+            - [x] Résolution de : 
+            ```
+            No overload matches this call.
+            Overload 1 of 4, '(entities: { id?: string; reference?: string; clipperRef?: string; date?: ........... }
+        - [x] Console log de report & updateReport. Retour de log :
+        ```
+        undefined
+        at update (reports/reports.service.spec.ts:387:12)
+
+        UpdateResult { generatedMaps: [], raw: [], affected: 2 }
+        ```
+        - [x] Récupérer le report au lieu d'un undefined
+        at update (reports/reports.service.spec.ts:388:12) : 
+        changement du paramètre fourni dans le findOne(), passage de new report reference à report reference. Cela retourne le report
+- [x] Redémarrage pour résolution des problèmes de push du log
+- [x] Passage sur le log sous windows != wsl
+- [x] git pull & màj
+    - [ ] Test du Delete
+    - [ ] Répondre à la question : est-ce normal de pouvoir créer des rerports de même noms ? -> unique sur le champ reference ?
+    - [ ] Test du  CRUD avec relation à un store, un ticket
+- [ ] Tests e2e
+- [ ] Penser à donner un justificatif de nouveau domicile à hubert
