@@ -102,12 +102,20 @@
             - [x] Uilisation des tests en snapshot comme renseigné dans (https://github.com/nest-modules/mailer/blob/master/lib/mailer.service.spec.ts) 
             - [x] Check de (https://jestjs.io/docs/snapshot-testing) pour référence
         - [x] Mail service mock-testé
-        - [ ] Tester en réel le mailing ? Pas sûir que ce soit nécessaire...
+        - [ ] Tester en réel le mailing ? Pas sûr que ce soit nécessaire...
     - [ ] Test du  CRUD avec relation à un store, un ticket
-        - [ ] Création d'un store
-        - [ ] Création d'un ticket
+        - [x] Création d'un store
+        - [x] Création d'un ticket
         - [ ] Création des liens report-ticket-store
+            - [ ] Le lien se fait entre report & store mais pas entre report & ticket... -> insérer :
+            ```
+            @ManyToOne(() => Ticket, (ticket) => ticket.id, { onDelete: 'CASCADE' })
+	        ticket: Ticket;
+            ```
+            au create-report.dto.ts ??? ou voir s'il est logique ou non d'assigner le ticket à la création du report.... ?
         - [ ] Test du Create
+            - [x] Lien avec store
+            - [ ] Lien avec ticket
         - [ ] Test du Read
         - [ ] Test de l'Update
         - [ ] Test du Delete
