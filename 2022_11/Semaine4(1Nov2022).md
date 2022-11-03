@@ -167,6 +167,7 @@
     - [ ] Essais d'envoi de mail à la création du report
         - [ ] Résolution de l'erreur consécutive :
         TypeError: Cannot read properties of undefined (reading 'mailerService')  -> dûe au this ? à voir
+        - [x] Mise en commentaire du code et remise à plus tard
 - [ ] Appliquer les tests à l'entité Reports 
     - [ ] Test du  CRUD avec relation à un store, un ticket
         - [ ] Test de l'Update
