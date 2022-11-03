@@ -168,9 +168,13 @@
         - [ ] Résolution de l'erreur consécutive :
         TypeError: Cannot read properties of undefined (reading 'mailerService')  -> dûe au this ? à voir
         - [x] Mise en commentaire du code et remise à plus tard
-- [ ] Appliquer les tests à l'entité Reports 
-    - [ ] Test du  CRUD avec relation à un store, un ticket
-        - [ ] Test de l'Update
+- [x] Appliquer les tests à l'entité Reports 
+    - [x] Test du  CRUD avec relation à un store, un ticket
+        - [x] Test de l'Update
+            - [x] Update d'un ticket à un autre
+                - [x] Résolution des problèmes liés au non update des paramètres de la fonction async update()
+                - [x] Tests ok
+            - [x] Update d'un store à un autre
 - [ ] Tests e2e
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
   
