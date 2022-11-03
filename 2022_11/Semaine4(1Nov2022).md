@@ -182,8 +182,14 @@
         TypeError: Cannot read properties of undefined (reading 'mailerService')  -> dûe au this ? à voir
         - [x] Check de (https://notiz.dev/blog/send-emails-with-nestjs) & (https://nest-modules.github.io/mailer/docs/mailer#configuration)
         - [x] Check des variables d'environnement
+        - [x] déclaration du service ```let service: MailerService;``` *dans* le describe concerné pour faire appel à la fonction sendMail() 
         - [x] Mise en comms et mise de coté du test de mail réel
 - [ ] Tests e2e
+    - [x] Reprise de documentation : (https://docs.nestjs.com/fundamentals/testing#end-to-end-testing)
+    - [x] Check de (https://github.com/visionmedia/supertest), module supertest utilisé nativement dans les e2e nest pour simuler les requetes http
+    - [x] Check de (https://docs.nestjs.com/fundamentals/testing#overriding-globally-registered-enhancers) pour contournement du/des guard
+    - [x] Création du fichier reports.e2e.spec.ts et remplissage du beforeAll dans le describe()
+    - [ ] Premier test : it(`/GET reports`, () => {
     - [ ] Tester le front
         - [ ] Tester le formulaire
         - [ ] Tester la réception des données
