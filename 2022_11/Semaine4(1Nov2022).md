@@ -162,7 +162,7 @@
   
   
 **3 Novembre**
-- [ ] Répondre à la question : est-ce normal de pouvoir créer des reports de même noms ? -> unique sur le champ reference ?
+- [x] Répondre à la question : est-ce normal de pouvoir créer des reports de même noms ? -> unique sur le champ reference ? : pas la peine car les reports sont liés au ticket associé et sont différenciés par l'id
 - [x] Appliquer les tests à l'entité Reports 
     - [x] Test du  CRUD avec relation à un store, un ticket
         - [x] Test de l'Update
