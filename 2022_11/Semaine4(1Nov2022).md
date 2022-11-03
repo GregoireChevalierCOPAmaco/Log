@@ -189,7 +189,11 @@
     - [x] Check de (https://github.com/visionmedia/supertest), module supertest utilisé nativement dans les e2e nest pour simuler les requetes http
     - [x] Check de (https://docs.nestjs.com/fundamentals/testing#overriding-globally-registered-enhancers) pour contournement du/des guard
     - [x] Création du fichier reports.e2e.spec.ts et remplissage du beforeAll dans le describe()
-    - [ ] Premier test : it(`/GET reports`, () => {
+    - [x] Accès au dossier COP-SAV et npm install
+    - [x] ng serve et accès au front
+    - [ ] Premier test : it(`/GET login`)  
+            - [ ] Résolution des erreurs de gestion de dépendance  
+                - [ ] ``` Nest can't resolve dependencies of the StoreRepository (?). Please make sure that the argument Connection at index [0] is available in the TypeOrmModule context.```
     - [ ] Tester le front
         - [ ] Tester le formulaire
         - [ ] Tester la réception des données
