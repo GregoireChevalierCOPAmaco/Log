@@ -174,7 +174,6 @@
     - [ ] Essais d'envoi de mail à la création du report
         - [ ] Résolution de l'erreur consécutive :
         TypeError: Cannot read properties of undefined (reading 'mailerService')  -> dûe au this ? à voir
-        - [x] Mise en commentaire du code et remise à plus tard
 - [ ] Tests e2e
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
   
