@@ -125,5 +125,51 @@
             - [x] Lien avec store
             - [x] Lien avec ticket
             - [x] Fonctionnel même si peu de sens à delete en itérant sur le ticket associé
+    - [ ] Essais d'envoi de mail à la création du report
+        - [ ] Résolution de l'erreur : 
+        ```
+        Cannot query across one-to-many for property checkout
+        ```
+        - [x] Check de (https://stackoverflow.com/questions/69471840/cannot-query-across-one-to-many-for-property-nestjs-and-typeorm)
+        - [x] Console log du target store pour voir si c'est lui qui fout la merde. En effet c'est de là que vient la propriété checkout :
+        ```
+        Store {
+        id: '1',
+        idStore: '42',
+        brand: 'MonMagasin',
+        address: "12 rue de l'industrie des cornemuses",
+        zipCode: 67123,
+        city: 'Villageheim',
+        phoneNumber: '0123456789',
+        checkout: [],
+        report: [
+          Report {
+            id: '1efa01f9-035d-4e07-bf79-62562e991dba',
+            reference: 'report test magasin ticket 1',
+        ```
+        -> solution : changer le parametre du findOne de :
+        ```
+        .findOne(createReportDto.store);
+        ```
+        à
+        ```
+        .findOne({id: "2"});
+        ```
+        - [ ] Résolution de l'erreur consécutive :
+        TypeError: Cannot read properties of undefined (reading 'mailerService')  -> dûe au this ? à voir
 - [ ] Tests e2e
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
+  
+  
+**3 Novembre**
+- [ ] Répondre à la question : est-ce normal de pouvoir créer des reports de même noms ? -> unique sur le champ reference ?
+- [ ] Test de l'envoi du mail lors du create
+    - [ ] Essais d'envoi de mail à la création du report
+        - [ ] Résolution de l'erreur consécutive :
+        TypeError: Cannot read properties of undefined (reading 'mailerService')  -> dûe au this ? à voir
+- [ ] Appliquer les tests à l'entité Reports 
+    - [ ] Test du  CRUD avec relation à un store, un ticket
+        - [ ] Test de l'Update
+- [ ] Tests e2e
+- [ ] Penser à donner un justificatif de nouveau domicile à hubert
+  
