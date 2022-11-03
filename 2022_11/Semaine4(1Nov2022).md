@@ -155,8 +155,13 @@
         ```
         .findOne({id: "2"});
         ```
+        - [x] Résolution de l'erreur consécutive :
+        TypeError: Cannot read properties of undefined (reading 'mailerService')  -> dûe au this ? -> solution : remplacer le this par un new Mailer() auquel on assigne les options et transport factory
         - [ ] Résolution de l'erreur consécutive :
-        TypeError: Cannot read properties of undefined (reading 'mailerService')  -> dûe au this ? à voir
+        ```
+        Type '"MAILER_OPTIONS"' has no properties in common with type 'MailerOptions'.
+        ```
+        - [x] Check des fichiers KMO_WEB\kmo-back\node_modules\@nestjs-modules\mailer\dist\mailer.service.d.ts & KMO_WEB\kmo-back\node_modules\@nestjs-modules\mailer\dist\interfaces\mailer-options.interface.d.ts
 - [ ] Tests e2e
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
   
@@ -170,10 +175,25 @@
                 - [x] Résolution des problèmes liés au non update des paramètres de la fonction async update()
                 - [x] Tests ok
             - [x] Update d'un store à un autre
+- [x] Exercice alarme incendie : Important de noter qu'il doit être réalisé de bout en bout pour satisfaire les exigences des commanditaires tels que decathlon etc...
 - [ ] Test de l'envoi du mail lors du create
     - [ ] Essais d'envoi de mail à la création du report
         - [ ] Résolution de l'erreur consécutive :
         TypeError: Cannot read properties of undefined (reading 'mailerService')  -> dûe au this ? à voir
+        - [x] Check de (https://notiz.dev/blog/send-emails-with-nestjs) & (https://nest-modules.github.io/mailer/docs/mailer#configuration)
+        - [x] Check des variables d'environnement
+        - [x] Mise en comms et mise de coté du test de mail réel
 - [ ] Tests e2e
+    - [ ] Tester le front
+        - [ ] Tester le formulaire
+        - [ ] Tester la réception des données
+        - [ ] Tester les données retournées
+        - [ ] Tester l’envoi des données retournées au back
+    - [ ] Tester le back
+        - [ ] Tester la bonne réception des données
+        - [ ] Tester la connexion à la db
+        - [ ] Tester la bonne forme des données à envoyer
+        - [ ] Tester le crud des données en base
+        - [ ] S’assurer de la persistance des données en base
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
   
