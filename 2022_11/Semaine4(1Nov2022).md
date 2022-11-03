@@ -163,11 +163,6 @@
   
 **3 Novembre**
 - [ ] Répondre à la question : est-ce normal de pouvoir créer des reports de même noms ? -> unique sur le champ reference ?
-- [ ] Test de l'envoi du mail lors du create
-    - [ ] Essais d'envoi de mail à la création du report
-        - [ ] Résolution de l'erreur consécutive :
-        TypeError: Cannot read properties of undefined (reading 'mailerService')  -> dûe au this ? à voir
-        - [x] Mise en commentaire du code et remise à plus tard
 - [x] Appliquer les tests à l'entité Reports 
     - [x] Test du  CRUD avec relation à un store, un ticket
         - [x] Test de l'Update
@@ -175,6 +170,11 @@
                 - [x] Résolution des problèmes liés au non update des paramètres de la fonction async update()
                 - [x] Tests ok
             - [x] Update d'un store à un autre
+- [ ] Test de l'envoi du mail lors du create
+    - [ ] Essais d'envoi de mail à la création du report
+        - [ ] Résolution de l'erreur consécutive :
+        TypeError: Cannot read properties of undefined (reading 'mailerService')  -> dûe au this ? à voir
+        - [x] Mise en commentaire du code et remise à plus tard
 - [ ] Tests e2e
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
   
