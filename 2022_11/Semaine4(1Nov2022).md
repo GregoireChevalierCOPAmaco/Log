@@ -205,8 +205,27 @@
     - [ ] Premier test : it(`/GET login`)  
             - [ ] Résolution des erreurs de gestion de dépendance  
                 - [x] Déclaration de Connection dans un provider
-                - [x] Reprise de doc (https://docs.nestjs.com/fundamentals/custom-providers) et check de (https://stackoverflow.com/questions/69000993/nestjs-overrideprovider-vs-provider-in-unit-testing)
+                - [x] Reprise de doc (https://docs.nestjs.com/fundamentals/custom-providers) et check de (https://stackoverflow.com/questions/69000993/nestjs-overrideprovider-vs-provider-in-unit-testing) & (https://firxworx.com/blog/coding/nestjs-integration-and-e2e-tests-with-typeorm-postgres-and-jwt/)
                 - [ ] Faut-il renseigner tous les paramètres de l'objet Connction déclaré en provider ou ai-je ommis quelque chose dans la configuration ?
+                - [x] Survol du fichier App.module.ts
+                - [x] Renseignement de la connexion en dur dans l'import : 
+                ```
+                TypeOrmModule.forRoot(
+                    {
+                        "type": "mysql",
+                        "host": "localhost",
+                        "port": 3306,
+                        "username": "KMO",
+                        "password": "KMO15022022",
+                        "database": "KMO"
+                    }
+                )
+                ```  
+                - [x] Résolution des problèmes de dépendances plus familiers  
+                - [ ] Trouver pourquoi renseigner AuhtService dans les providers ne résout pas :   
+                ```
+                Nest can't resolve dependencies of the TechnicianJwtGuard (Reflector, ?). Please make sure that the argument AuthService at index [1] is available in the ReportsModule context
+                ```
     - [ ] Tester le front
         - [ ] Tester le formulaire
         - [ ] Tester la réception des données
