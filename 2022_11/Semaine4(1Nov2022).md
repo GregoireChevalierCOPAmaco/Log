@@ -193,7 +193,17 @@
     - [x] ng serve et accès au front
     - [ ] Premier test : it(`/GET login`)  
             - [ ] Résolution des erreurs de gestion de dépendance  
-                - [ ] ``` Nest can't resolve dependencies of the StoreRepository (?). Please make sure that the argument Connection at index [0] is available in the TypeOrmModule context.```
+                - [x] ``` Nest can't resolve dependencies of the StoreRepository (?). Please make sure that the argument Connection at index [0] is available in the TypeOrmModule context.``` -> Déclarer Connection dans un provider: [] renvoie l'erreur suivante :
+                ```
+                TypeError: Cannot read properties of undefined (reading 'name')
+                ```
+                Voir lien avec KMO_WEB\kmo-back\node_modules\typeorm\connection\Connection.d.ts
+  
+
+**4 Novembre**
+- [ ] Tests e2e
+    - [ ] Premier test : it(`/GET login`)  
+            - [ ] Résolution des erreurs de gestion de dépendance  
     - [ ] Tester le front
         - [ ] Tester le formulaire
         - [ ] Tester la réception des données
@@ -206,4 +216,3 @@
         - [ ] Tester le crud des données en base
         - [ ] S’assurer de la persistance des données en base
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
-  
