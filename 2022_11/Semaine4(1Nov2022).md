@@ -262,6 +262,15 @@
         expected 200 "OK", got 404 "Not Found"
         ```
         - [ ] Ré-écriture du test/des variables/methodes pour accéder à la connexion au kmo
+            - [x] Décommentage de :
+            ```
+            await app.init();
+            ```
+            qui créée l'erreur : 
+            ```
+            TypeError: this.userRepository.findOne is not a function
+            ```
+            - [x] L'erreur vient du UserService qui crée l'user admin de base lors de l'initialisation de l'application. Conflit de temporalité entre l'initialisation de l'app et l'exécution du test ?
 - [ ] Tests e2e
     - [ ] Tester le front
         - [ ] Tester le formulaire
