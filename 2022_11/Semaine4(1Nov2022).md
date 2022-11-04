@@ -233,13 +233,36 @@
             ```  
             - [x] Ajout dans le report.modules.ts des services nécessaires à la résolution des problemes de dépendances ; UserService, AuthService,
             JwtService, {getRepoToken(User)}, MailerService et conf asssociée
-        - [ ] Nouvelle erreur :  
+- [x] Réunion de fin de semaine
+- [x] Reprise de la construction de test unitaire
+    - [x] Check de (https://stackoverflow.com/questions/45989574/repositorynotfounderror-typeorm) & (https://github.com/typeorm/typeorm/issues/3017)
+        - [x] Voir si la structure du test e2e est correcte ?
+            - [x] Lecture de doc : (https://www.synbioz.com/blog/tech/tests-e2e-avec-jest-et-puppeteer), (https://blog.logrocket.com/end-end-testing-nestjs-typeorm/#what-end-to-end-tests), & (https://medium.com/@exfabrica/nestjs-unit-and-e2e-tests-with-jest-825ba5033c6)
+        - [x] Comme indiqué dans la doc, ```Keep your e2e test files inside the test directory. The testing files should have a .e2e-spec suffix.```
+        - [x] Essai de run du test natif App.e2e-spec.ts : No tests found, exiting with code 1
+            - [x] Check de (https://stackoverflow.com/questions/54493998/do-not-pass-e2e-tests-in-framework-nestjs), ()
+            - [x] Trouver pourquoi jest ne lance pas les tests e2e-spec.ts : -> Résolution en incluant :
+            ```
+            "testRegex": [
+			".*\\.spec\\.ts$",
+			".e2e-spec.ts$"  <---------
+		    ]
+            ```
+            dans la config jest du package.json
+        - [x] Nouvelle erreur :  
         ```
         RepositoryNotFoundError: No repository for "Report" was found. Looks like this entity is not registered in current "default" connection?
+        ```  
+         -> Résolution en incluant :
         ```
-        - [x] Check de (https://stackoverflow.com/questions/45989574/repositorynotfounderror-typeorm) & (https://github.com/typeorm/typeorm/issues/3017)
-- [x] Réunion de fin de semaine
-- [ ] Utiliser jira en parallèle du log pour communiquer sur ce qui est fait
+        "entities": ["./src/**/entities/*.ts"]
+        ```
+        dans la variable co en dur. Le test est maintenant exécuté et renvoie :
+        ```
+        expected 200 "OK", got 404 "Not Found"
+        ```
+        - [ ] Ré-écriture du test/des variables/methodes pour accéder à la connexion au kmo
+- [ ] Tests e2e
     - [ ] Tester le front
         - [ ] Tester le formulaire
         - [ ] Tester la réception des données
@@ -251,4 +274,5 @@
         - [ ] Tester la bonne forme des données à envoyer
         - [ ] Tester le crud des données en base
         - [ ] S’assurer de la persistance des données en base
+- [ ] Utiliser jira en parallèle du log pour communiquer sur ce qui est fait
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
