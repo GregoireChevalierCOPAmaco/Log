@@ -237,7 +237,9 @@
         ```
         RepositoryNotFoundError: No repository for "Report" was found. Looks like this entity is not registered in current "default" connection?
         ```
-            - [x] Check de (https://stackoverflow.com/questions/45989574/repositorynotfounderror-typeorm) & (https://github.com/typeorm/typeorm/issues/3017)
+        - [x] Check de (https://stackoverflow.com/questions/45989574/repositorynotfounderror-typeorm) & (https://github.com/typeorm/typeorm/issues/3017)
+- [x] Réunion de fin de semaine
+- [ ] Utiliser jira en parallèle du log pour communiquer sur ce qui est fait
     - [ ] Tester le front
         - [ ] Tester le formulaire
         - [ ] Tester la réception des données
