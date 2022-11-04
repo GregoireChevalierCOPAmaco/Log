@@ -204,6 +204,9 @@
 - [ ] Tests e2e
     - [ ] Premier test : it(`/GET login`)  
             - [ ] Résolution des erreurs de gestion de dépendance  
+                - [x] Déclaration de Connection dans un provider
+                - [x] Reprise de doc (https://docs.nestjs.com/fundamentals/custom-providers) et check de (https://stackoverflow.com/questions/69000993/nestjs-overrideprovider-vs-provider-in-unit-testing)
+                - [ ] Faut-il renseigner tous les paramètres de l'objet Connction déclaré en provider ou ai-je ommis quelque chose dans la configuration ?
     - [ ] Tester le front
         - [ ] Tester le formulaire
         - [ ] Tester la réception des données
