@@ -191,41 +191,53 @@
     - [x] Création du fichier reports.e2e.spec.ts et remplissage du beforeAll dans le describe()
     - [x] Accès au dossier COP-SAV et npm install
     - [x] ng serve et accès au front
-    - [ ] Premier test : it(`/GET login`)  
-            - [ ] Résolution des erreurs de gestion de dépendance  
-                - [x] ``` Nest can't resolve dependencies of the StoreRepository (?). Please make sure that the argument Connection at index [0] is available in the TypeOrmModule context.``` -> Déclarer Connection dans un provider: [] renvoie l'erreur suivante :
-                ```
-                TypeError: Cannot read properties of undefined (reading 'name')
-                ```
-                Voir lien avec KMO_WEB\kmo-back\node_modules\typeorm\connection\Connection.d.ts
+    - [ ] Premier test : it(/GET login)
+        - [ ] Résolution des erreurs de gestion de dépendance  
+            - [x] erreur : 
+            ```
+            Nest can't resolve dependencies of the StoreRepository (?). Please make sure that the argument Connection at index [0] is available in the TypeOrmModule context.
+            ``` 
+            -> Déclarer Connection dans un provider: 
+            renvoie l'erreur suivante :
+            ```
+            TypeError: Cannot read properties of undefined (reading 'name')
+            ```
+            Voir lien avec KMO_WEB\kmo-back\node_modules\typeorm\connection\Connection.d.ts
   
 
 **4 Novembre**
 - [ ] Tests e2e
-    - [ ] Premier test : it(`/GET login`)  
-            - [ ] Résolution des erreurs de gestion de dépendance  
-                - [x] Déclaration de Connection dans un provider
-                - [x] Reprise de doc (https://docs.nestjs.com/fundamentals/custom-providers) et check de (https://stackoverflow.com/questions/69000993/nestjs-overrideprovider-vs-provider-in-unit-testing) & (https://firxworx.com/blog/coding/nestjs-integration-and-e2e-tests-with-typeorm-postgres-and-jwt/)
-                - [ ] Faut-il renseigner tous les paramètres de l'objet Connction déclaré en provider ou ai-je ommis quelque chose dans la configuration ?
-                - [x] Survol du fichier App.module.ts
-                - [x] Renseignement de la connexion en dur dans l'import : 
-                ```
-                TypeOrmModule.forRoot(
-                    {
-                        "type": "mysql",
-                        "host": "localhost",
-                        "port": 3306,
-                        "username": "KMO",
-                        "password": "KMO15022022",
-                        "database": "KMO"
-                    }
-                )
-                ```  
-                - [x] Résolution des problèmes de dépendances plus familiers  
-                - [ ] Trouver pourquoi renseigner AuhtService dans les providers ne résout pas :   
-                ```
-                Nest can't resolve dependencies of the TechnicianJwtGuard (Reflector, ?). Please make sure that the argument AuthService at index [1] is available in the ReportsModule context
-                ```
+    - [ ] Premier test : it(/GET login`)  
+        - [x] Résolution des erreurs de gestion de dépendance  
+            - [x] Déclaration de Connection dans un provider
+            - [x] Reprise de doc (https://docs.nestjs.com/fundamentals/custom-providers) et check de (https://stackoverflow.com/questions/69000993/nestjs-overrideprovider-vs-provider-in-unit-testing) & (https://firxworx.com/blog/coding/nestjs-integration-and-e2e-tests-with-typeorm-postgres-and-jwt/)
+            - [ ] Faut-il renseigner tous les paramètres de l'objet Connction déclaré en provider ou ai-je ommis quelque chose dans la configuration ?
+            - [x] Survol du fichier App.module.ts
+            - [x] Renseignement de la connexion en dur dans l'import : 
+            ```
+            TypeOrmModule.forRoot(
+                {
+                    "type": "mysql",
+                    "host": "localhost",
+                    "port": 3306,
+                    "username": "KMO",
+                    "password": "KMO15022022",
+                    "database": "KMO"
+                }
+            )
+            ```  
+            - [x] Résolution des problèmes de dépendances plus familiers  
+            - [ ] Trouver pourquoi renseigner AuhtService dans les providers ne résout pas :   
+            ```
+            Nest can't resolve dependencies of the TechnicianJwtGuard (Reflector, ?). Please make sure that the argument AuthService at index [1] is available in the ReportsModule context
+            ```  
+            - [x] Ajout dans le report.modules.ts des services nécessaires à la résolution des problemes de dépendances ; UserService, AuthService,
+            JwtService, {getRepoToken(User)}, MailerService et conf asssociée
+        - [ ] Nouvelle erreur :  
+        ```
+        RepositoryNotFoundError: No repository for "Report" was found. Looks like this entity is not registered in current "default" connection?
+        ```
+            - [x] Check de (https://stackoverflow.com/questions/45989574/repositorynotfounderror-typeorm) & (https://github.com/typeorm/typeorm/issues/3017)
     - [ ] Tester le front
         - [ ] Tester le formulaire
         - [ ] Tester la réception des données
