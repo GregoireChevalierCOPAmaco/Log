@@ -30,6 +30,7 @@ https://www.codemag.com/Article/2005051/NestJS-Step-by-Step-Connecting-NestJS-wi
 https://docs.nestjs.com/recipes/crud-generator (générer entités/crud)
 https://wanago.io/2022/07/25/api-nestjs-database-migrations-typeorm/ & https://docs.nestjs.com/migration-guide (migration db)
 https://docs.nestjs.com/fundamentals/testing#testing
+https://docs.nestjs.com/fundamentals/lifecycle-events
 **TypeORM**
 https://docs.nestjs.com/techniques/database 
 https://typeorm.io/entities

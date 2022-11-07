@@ -271,6 +271,31 @@
             TypeError: this.userRepository.findOne is not a function
             ```
             - [x] L'erreur vient du UserService qui crée l'user admin de base lors de l'initialisation de l'application. Conflit de temporalité entre l'initialisation de l'app et l'exécution du test ?
+            - [ ] Check de (https://docs.nestjs.com/fundamentals/lifecycle-events) et étude du cycle de vie d'une application nest.
+            - [x] Console log de this.userRepository renvoie un mock : 
+            ```
+            [Function: mockConstructor] {
+            _isMockFunction: true,
+            getMockImplementation: [Function (anonymous)],
+            mock: [Getter/Setter],
+            mockClear: [Function (anonymous)],
+            mockReset: [Function (anonymous)],
+            mockRestore: [Function (anonymous)],
+            mockReturnValueOnce: [Function (anonymous)],
+            mockResolvedValueOnce: [Function (anonymous)],
+            mockRejectedValueOnce: [Function (anonymous)],
+            mockReturnValue: [Function (anonymous)],
+            mockResolvedValue: [Function (anonymous)],
+            mockRejectedValue: [Function (anonymous)],
+            mockImplementationOnce: [Function (anonymous)],
+            mockImplementation: [Function (anonymous)],
+            mockReturnThis: [Function (anonymous)],
+            mockName: [Function (anonymous)],
+            getMockName: [Function (anonymous)]
+            }
+            ```
+            - [x] Check de l'erreur retournée : typeError, .. is not a function (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Not_a_function)
+            - [x] Commenter le contenu de : async onApplicationBootstrap() dans le user.service.ts permet de passer outre ....
 - [ ] Tests e2e
     - [ ] Tester le front
         - [ ] Tester le formulaire
