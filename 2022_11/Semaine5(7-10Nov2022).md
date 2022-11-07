@@ -3,11 +3,15 @@
 **4 Novembre**
 - [ ] Tests e2e
     - [ ] Premier test : it(/GET login`).
+        - [x] Résolution de l'erreur :
+        ```
+        TypeError: this.userRepository.findOne is not a function
+        ```
+        -> Mise en commentaire de ```await app.init();``` dans le fichier de test e2e vu que l'application est déjà démarrée à un autre moment.
         - [ ] Résolution de l'erreur :
         ```
         expected 200 "OK", got 404 "Not Found"
         ```
-
     - [ ] Tester le front
         - [ ] Tester le formulaire
         - [ ] Tester la réception des données
