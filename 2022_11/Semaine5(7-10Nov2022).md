@@ -25,7 +25,18 @@
         - [x] Mise en commentaire  de la fonction de création de 1er user dans user.service.ts pour faire avancer les tests.  
         !! PENSER À LE DÉCOMMENTER AVANT DE COMMIT !!
         - [x] Les routes (endpoints) doivent aller taper dans le swagger, et non dans l'application front (swagger =/= localhost !!)
-        - [ ] Résolution de l'erreur : expected 200 "OK", got 500 "Internal Server Error"
+        - [x] Résolution de l'erreur : expected 200 "OK", got 500 "Internal Server Error"
+            - [x] Check de (https://stackoverflow.com/questions/52840873/getting-500-internal-server-error-while-using-supertest). L'erreur viendrait du faity qu'on est pas authentifié : 
+            ```
+            [Nest] 27052  - 07/11/2022 11:15:46   ERROR [ExceptionsHandler] Unknown authentication strategy "jwt"
+            Error: Unknown authentication strategy "jwt" 
+            ```  
+            - [x] Import de l'AuthModule qui renvoie l'erreur suivante :
+            ```
+            Nest can't resolve dependencies of the UsersService (UserRepository, JwtService, ?). Please make sure that the argument MailerService at index [2] is available in the AuthModule context.
+            ```
+            - [x] Ajout du MailerService et de son porvide: dans les providers[] -> Renvoie une 401
+        - [ ] Résolution de l'erreur :  expected 200 "OK", got 401 "Unauthorized"
     - [ ] Tester le front
         - [ ] Tester le formulaire
         - [ ] Tester la réception des données
