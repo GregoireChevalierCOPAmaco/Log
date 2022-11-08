@@ -37,6 +37,35 @@
             ```
             - [x] Ajout du MailerService et de son porvide: dans les providers[] -> Renvoie une 401
         - [ ] Résolution de l'erreur :  expected 200 "OK", got 401 "Unauthorized"
+            - [x] Ajout après la ligne .get(/reports) de : .set('Authorization', `Bearer .... + token), qui renvoie une erreur 500 due à : ERROR [ExceptionsHandler] this.reportService.findReportByGroup is not a function
+            - [x] Essai avec un ```.overrideGuard(AuthGuard())```, sans succès
+            - [x] Changement de la ligne en supprimant Bearer :
+            ```
+            .set('Authorization', `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk5ZmI0MmJhLTY4MGMtNGM1Ny05YTU2LThmNWY3ODU0ZjI2ZiIsImVtYWlsIjoiYWRtaW4uYWRtaW5AYWRtaW4uY29tIiwicm9sZSI6ImFkbWluIiwiZmlyc3RuYW1lIjoiYWRtaW4iLCJsYXN0bmFtZSI6ImFkbWluIiwiaWF0IjoxNjY1NDk2NDUyLCJleHAiOjE2NjU1OTE0NTJ9.lprur-fGrGAUUJ9wxpW0klL2P2wyho1TH_pMf06Y7Ao`)
+            ```
+            Ceci renvoie une erreur 500 due à :  ERROR [ExceptionsHandler] Cannot read properties of null (reading 'role'). Avec la stack commençant par : 
+            ```
+             at TechnicianJwtGuard.handleRequest (C:\Users\gchevalier\cleankmo\KMO_WEB\kmo-back\src\authentification\guards\technician-jwt-guard.ts:43:11)
+            at C:\Users\gchevalier\cleankmo\KMO_WEB\kmo-back\node_modules\@nestjs\passport\dist\auth.guard.js:49:128
+            ```
+            - [x] Survol des fichiers auth.guard.ts & technician-jwt-guard.ts : Apparemment, le token est décodé pour trouver Id & Role, et il manquerait role dans le token fourni...
+            - [x] Changement de la ligne en remettant Bearer comme dans postman :
+            ```
+            .set('Authorization', `Bearer eyJhbGciOiJIUzI1NiIsInR...`)
+            ```
+            Ceci a pour effet de renvoyer l'erreur : TypeError: this.userRepository.findOne is not a function depuis le users.service.ts  
+            L'erreur se recoupe avec celle de la création du 1er user. Essayer de rcupérer en réel les données
+        - [x] Tentative de récupérer les données en réel avec dbco : se solde par un echec avec l'erreur :
+        ```
+        AlreadyHasActiveConnectionError: Cannot create a new connection named "default", because connection with such name already exist and it now has an active connection session.
+        ```
+        - [ ] Résolution de ERROR [ExceptionsHandler] this.reportService.findReportByGroup is not a function depuis le fichier reports.controller
+  
+
+**8 Novembre**
+- [ ] Mise de côté du test bloquant et passage sur le reste de l'end-to-end
+    - [ ] Documentation de la méthode à suivre
+- [ ] Tests e2e
     - [ ] Tester le front
         - [ ] Tester le formulaire
         - [ ] Tester la réception des données
