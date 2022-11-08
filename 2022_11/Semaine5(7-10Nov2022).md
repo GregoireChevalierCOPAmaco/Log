@@ -84,7 +84,9 @@ en :
 	}
 ```
 On obtient un status code 200, mais toujours avec l'erreur TypeError  this.userRepository.findOne is not a function
-- [ ] Mise de côté du test bloquant et passage sur le reste de l'end-to-end
+- [ ] Application de la méthode trouvée sur (https://github.com/nestjs/typeorm/issues/405) : Rajouter une connection dans le constructor du users.service
+    - [ ] Résolution du problème de gestion de dépendance : Nest can't resolve dependencies of the UsersService. Please make sure that the argument Connection is available
+- [ ] Passage sur le reste de l'end-to-end
     - [ ] Documentation de la méthode à suivre
 - [ ] Tests e2e
     - [ ] Tester le front
