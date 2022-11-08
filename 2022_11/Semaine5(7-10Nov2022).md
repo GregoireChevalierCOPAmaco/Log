@@ -63,6 +63,27 @@
   
 
 **8 Novembre**
+- [x] Refacto du test avec de la response en await, pour le même résultat
+- [x] Check de (https://medium.com/@exfabrica/nestjs-unit-and-e2e-tests-with-jest-825ba5033c6), (https://www.pluralsight.com/guides/test-asynchronous-code-jest)
+- [x] Après modification du fichier reports.controller.ts de :
+```
+	@Get()
+	@UseGuards(TechnicianJwtGuard)
+	findByGroup() {
+		return this.reportService.findReportByGroup();
+	}
+```
+en : 
+```
+	@Get()
+	@UseGuards(TechnicianJwtGuard)
+	findByGroup() {
+		async () => {
+			await this.reportService.findReportByGroup();
+		}
+	}
+```
+On obtient un status code 200, mais toujours avec l'erreur TypeError  this.userRepository.findOne is not a function
 - [ ] Mise de côté du test bloquant et passage sur le reste de l'end-to-end
     - [ ] Documentation de la méthode à suivre
 - [ ] Tests e2e
