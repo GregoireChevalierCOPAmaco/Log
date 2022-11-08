@@ -91,10 +91,14 @@ On obtient un status code 200, mais toujours avec l'erreur TypeError  this.userR
 - [ ] Passage sur le reste de l'end-to-end
     - [ ] Documentation de la méthode à suivre
         - [ ] Check de (https://stackoverflow.com/questions/70494827/testing-an-angular-form-with-jest-fill-and-query-form-fields), (https://www.devcurry.com/2020/09/testing-angular-component-using-jest.html), (https://thymikee.github.io/jest-preset-angular/)
-        - [ ] Découverte du flow de test jest-angular (https://www.xfive.co/blog/testing-angular-faster-jest/), 
+        - [ ] Découverte du flow de test jest-angular (https://www.xfive.co/blog/testing-angular-faster-jest/), (https://thymikee.github.io/jest-preset-angular/docs/guides/angular-13+)
 - [ ] Tests e2e
     - [ ] Tester le front
         - [ ] Tester le formulaire
+            - [ ] Utilisation de Jest-preset-angular
+            - [ ] Installation de Jest-preset-angular
+            - [ ] Configuration de Jest-preset-angular
+            - [x] Check de la verion d'angular : 13.2.6, ok (>13 pour le preset)
         - [ ] Tester la réception des données
         - [ ] Tester les données retournées
         - [ ] Tester l’envoi des données retournées au back
