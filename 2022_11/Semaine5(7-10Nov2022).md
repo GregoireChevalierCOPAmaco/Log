@@ -86,8 +86,12 @@ en :
 On obtient un status code 200, mais toujours avec l'erreur TypeError  this.userRepository.findOne is not a function
 - [ ] Application de la méthode trouvée sur (https://github.com/nestjs/typeorm/issues/405) : Rajouter une connection dans le constructor du users.service
     - [ ] Résolution du problème de gestion de dépendance : Nest can't resolve dependencies of the UsersService. Please make sure that the argument Connection is available
+        - [x] Check de (https://github.com/nestjs/nest/issues/9416), il semblerait qu'il y ait un import circulaire de TypeOrm/Connection ? dans plusieurs fichiers
+        - [x] Documentation sur la résolution d'import circulaire : (https://blog.logrocket.com/avoid-circular-dependencies-nestjs/")
 - [ ] Passage sur le reste de l'end-to-end
     - [ ] Documentation de la méthode à suivre
+        - [ ] Check de (https://stackoverflow.com/questions/70494827/testing-an-angular-form-with-jest-fill-and-query-form-fields), (https://www.devcurry.com/2020/09/testing-angular-component-using-jest.html), (https://thymikee.github.io/jest-preset-angular/)
+        - [ ] Découverte du flow de test jest-angular (https://www.xfive.co/blog/testing-angular-faster-jest/), 
 - [ ] Tests e2e
     - [ ] Tester le front
         - [ ] Tester le formulaire
@@ -96,9 +100,9 @@ On obtient un status code 200, mais toujours avec l'erreur TypeError  this.userR
         - [ ] Tester l’envoi des données retournées au back
     - [ ] Tester le back
         - [ ] Tester la bonne réception des données
-        - [ ] Tester la connexion à la db
+        - [x] Tester la connexion à la db
         - [ ] Tester la bonne forme des données à envoyer
-        - [ ] Tester le crud des données en base
-        - [ ] S’assurer de la persistance des données en base
+        - [x] Tester le crud des données en base
+        - [x] S’assurer de la persistance des données en base
 - [ ] Utiliser jira en parallèle du log pour communiquer sur ce qui est fait
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
