@@ -117,7 +117,7 @@ On obtient un status code 200, mais toujours avec l'erreur TypeError  this.userR
     - [ ] Tester le front
         - [ ] Tester le formulaire
             - [ ] Utilisation de Jest-preset-angular
-            - [ ] Installation de Jest-preset-angular
+            - [x] Installation de Jest-preset-angular
                 - [x] Suivi de doc : (https://thymikee.github.io/jest-preset-angular/docs/getting-started/installation)
                 - [x] À la racine du projet (KMO_WEB\kmo-app), installation de toutes les dépendances avec : 
                 ```
@@ -159,9 +159,45 @@ On obtient un status code 200, mais toujours avec l'erreur TypeError  this.userR
                 ```
                 npm audit fix --force
                 ```
-                À l'heure actuelle, la commande ```npm test``` lance le testeur karma
             - [ ] Configuration de Jest-preset-angular preset
                 - [x] Création du fichier setup-jest.ts à la racine de COP-SAV
+                - [x] Remplissage du fichier setup-jest.ts avec :
+                ```
+                import 'jest-preset-angular/setup-jest';
+                ```
+                - [x] Création du fichier jest.config.ts à la racine de COP-SAV
+                - [x] Remplissage du fichier avec :
+                ```
+                import type { Config } from 'jest';
+
+                const jestConfig: Config = {
+                preset: 'jest-preset-angular',
+                setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],
+                globalSetup: 'jest-preset-angular/global-setup',
+                };
+
+                export default jestConfig;
+                ```
+                - [x] Modification du fichier tsconfig.spec.json avec :
+                ```
+                {
+                    "extends": "./tsconfig.json",
+                    "compilerOptions": {
+                    "outDir": "./out-tsc/spec",
+                    "module": "CommonJs",
+                    "types": ["jest"]
+                    },
+                    "include": ["src/**/*.spec.ts", "src/**/*.d.ts"]
+                }
+                ```
+                !! Notice pour ES2016+ : !!
+                ```
+                INFO
+                Angular doesn't support native async/await in testing with target higher than ES2016, see https://github.com/angular/components/issues/21632#issuecomment-764975917
+                ```
+                À l'heure actuelle, la commande ```npm test``` lance le testeur karma
+                - [x] Rename du fichier ./src/test.ts en karmaTest.ts, sans succès.
+                - [x] Création et configuration du fichier jest-global-mocks.ts comme précaunisé ici (https://thymikee.github.io/jest-preset-angular/docs/getting-started/installation)
         - [ ] Tester la réception des données
         - [ ] Tester les données retournées
         - [ ] Tester l’envoi des données retournées au back
