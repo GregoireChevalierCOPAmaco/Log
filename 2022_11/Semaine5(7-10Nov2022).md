@@ -116,7 +116,7 @@ On obtient un status code 200, mais toujours avec l'erreur TypeError  this.userR
 - [ ] Tests e2e
     - [ ] Tester le front
         - [ ] Tester le formulaire
-            - [ ] Utilisation de Jest-preset-angular
+            - [x] Utilisation de Jest-preset-angular
             - [x] Installation de Jest-preset-angular
                 - [x] Suivi de doc : (https://thymikee.github.io/jest-preset-angular/docs/getting-started/installation)
                 - [x] À la racine du projet (KMO_WEB\kmo-app), installation de toutes les dépendances avec : 
@@ -159,7 +159,7 @@ On obtient un status code 200, mais toujours avec l'erreur TypeError  this.userR
                 ```
                 npm audit fix --force
                 ```
-            - [ ] Configuration de Jest-preset-angular preset
+            - [x] Configuration de Jest-preset-angular preset
                 - [x] Création du fichier setup-jest.ts à la racine de COP-SAV
                 - [x] Remplissage du fichier setup-jest.ts avec :
                 ```
@@ -220,10 +220,14 @@ On obtient un status code 200, mais toujours avec l'erreur TypeError  this.userR
                     ```
                     - [x] utilisation de ```npm i @angular-builders/jest --force``` ce qui permet de lancer les tests ave ng test
                 - [x] Création et configuration du fichier jest-global-mocks.ts comme précaunisé ici (https://thymikee.github.io/jest-preset-angular/docs/getting-started/installation)
-                - [ ] Résolution du warning : 
+                - [x] Résolution du warning : 
                 ```
                 warning: unable to locate custom jest configuration file at path "C:\Users\gchevalier\cleankmo\KMO_WEB\COP-SAV\jest.config.js"
                 ```
+                -> conversion du fichier .ts au format js et suivi du remplissage comme conseillé (https://thymikee.github.io/jest-preset-angular/docs/getting-started/installation)
+            - [ ] Ignorage des tests auto générés dans la commande
+                - [ ] Trouver comment ne tester qu'un seul fichier
+                    - [x] Check de (https://www.cloudhadoop.com/angular-run-single-testfile/)  & (https://stackoverflow.com/questions/40683673/how-to-execute-only-one-test-spec-with-angular-cli)
         - [ ] Tester la réception des données
         - [ ] Tester les données retournées
         - [ ] Tester l’envoi des données retournées au back
