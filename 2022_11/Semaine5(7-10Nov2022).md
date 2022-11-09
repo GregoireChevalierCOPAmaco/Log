@@ -115,119 +115,125 @@ On obtient un status code 200, mais toujours avec l'erreur TypeError  this.userR
 **9 Novembre**
 - [ ] Tests e2e
     - [ ] Tester le front
-        - [ ] Tester le formulaire
-            - [x] Utilisation de Jest-preset-angular
-            - [x] Installation de Jest-preset-angular
-                - [x] Suivi de doc : (https://thymikee.github.io/jest-preset-angular/docs/getting-started/installation)
-                - [x] À la racine du projet (KMO_WEB\kmo-app), installation de toutes les dépendances avec : 
-                ```
-                npm install -D jest jest-preset-angular @types/jest
-                ```
-                Retour : 
-                ```
-                7 vulnerabilities (5 high, 2 critical)
-                ```
-                - [x] Run de :
-                ```
-                npm audit fix
-                ```
-                Retour : 
-                ```
-                # npm audit report
+        - [x] Utilisation de Jest-preset-angular
+        - [x] Installation de Jest-preset-angular
+            - [x] Suivi de doc : (https://thymikee.github.io/jest-preset-angular/docs/getting-started/installation)
+            - [x] À la racine du projet (KMO_WEB\kmo-app), installation de toutes les dépendances avec : 
+            ```
+            npm install -D jest jest-preset-angular @types/jest
+            ```
+            Retour : 
+            ```
+            7 vulnerabilities (5 high, 2 critical)
+            ```
+            - [x] Run de :
+            ```
+            npm audit fix
+            ```
+            Retour : 
+            ```
+            # npm audit report
 
-                minimatch  <3.0.5
-                Severity: high
-                minimatch ReDoS vulnerability - https://github.com/advisories/GHSA-f8q6-p94x-37v3
-                fix available via `npm audit fix --force`
-                Will install @angular-devkit/build-angular@13.3.9, which is outside the stated dependency range
-                node_modules/minimatch
-                @angular-devkit/build-angular  0.8.8 - 13.3.8 || 14.0.0-next.0 - 14.1.0-rc.3
-                Depends on vulnerable versions of minimatch
-                Depends on vulnerable versions of terser
-                node_modules/@angular-devkit/build-angular
+            minimatch  <3.0.5
+            Severity: high
+            minimatch ReDoS vulnerability - https://github.com/advisories/GHSA-f8q6-p94x-37v3
+            fix available via `npm audit fix --force`
+            Will install @angular-devkit/build-angular@13.3.9, which is outside the stated dependency range
+            node_modules/minimatch
+            @angular-devkit/build-angular  0.8.8 - 13.3.8 || 14.0.0-next.0 - 14.1.0-rc.3
+            Depends on vulnerable versions of minimatch
+            Depends on vulnerable versions of terser
+            node_modules/@angular-devkit/build-angular
 
-                terser  5.0.0 - 5.14.1
-                Severity: high
-                Terser insecure use of regular expressions before v4.8.1 and v5.14.2 leads to ReDoS - https://github.com/advisories/GHSA-4wf5-vphf-c2xc
-                fix available via `npm audit fix --force`
-                Will install @angular-devkit/build-angular@13.3.9, which is outside the stated dependency range
-                node_modules/terser
+            terser  5.0.0 - 5.14.1
+            Severity: high
+            Terser insecure use of regular expressions before v4.8.1 and v5.14.2 leads to ReDoS - https://github.com/advisories/GHSA-4wf5-vphf-c2xc
+            fix available via `npm audit fix --force`
+            Will install @angular-devkit/build-angular@13.3.9, which is outside the stated dependency range
+            node_modules/terser
 
-                3 high severity vulnerabilities
-                ```
-                - [x] Run de :
-                ```
-                npm audit fix --force
-                ```
-            - [x] Configuration de Jest-preset-angular preset
-                - [x] Création du fichier setup-jest.ts à la racine de COP-SAV
-                - [x] Remplissage du fichier setup-jest.ts avec :
-                ```
-                import 'jest-preset-angular/setup-jest';
-                ```
-                - [x] Création du fichier jest.config.ts à la racine de COP-SAV
-                - [x] Remplissage du fichier avec :
-                ```
-                import type { Config } from 'jest';
+            3 high severity vulnerabilities
+            ```
+            - [x] Run de :
+            ```
+            npm audit fix --force
+            ```
+        - [x] Configuration de Jest-preset-angular preset
+            - [x] Création du fichier setup-jest.ts à la racine de COP-SAV
+            - [x] Remplissage du fichier setup-jest.ts avec :
+            ```
+            import 'jest-preset-angular/setup-jest';
+            ```
+            - [x] Création du fichier jest.config.ts à la racine de COP-SAV
+            - [x] Remplissage du fichier avec :
+            ```
+            import type { Config } from 'jest';
 
-                const jestConfig: Config = {
-                preset: 'jest-preset-angular',
-                setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],
-                globalSetup: 'jest-preset-angular/global-setup',
-                };
+            const jestConfig: Config = {
+            preset: 'jest-preset-angular',
+            setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],
+            globalSetup: 'jest-preset-angular/global-setup',
+            };
 
-                export default jestConfig;
-                ```
-                - [x] Modification du fichier tsconfig.spec.json avec :
-                ```
-                {
-                    "extends": "./tsconfig.json",
-                    "compilerOptions": {
-                    "outDir": "./out-tsc/spec",
-                    "module": "CommonJs",
-                    "types": ["jest"]
-                    },
-                    "include": ["src/**/*.spec.ts", "src/**/*.d.ts"]
-                }
-                ```
-                !! Notice pour ES2016+ : !!
-                ```
-                INFO
-                Angular doesn't support native async/await in testing with target higher than ES2016, see https://github.com/angular/components/issues/21632#issuecomment-764975917
-                ```
-                À l'heure actuelle, la commande ```npm test``` lance le testeur karma
-                - [x] Rename du fichier ./src/test.ts en karmaTest.ts, sans succès.
-                - [x] Ajout de :
-                ```
+            export default jestConfig;
+            ```
+            - [x] Modification du fichier tsconfig.spec.json avec :
+            ```
+            {
+                "extends": "./tsconfig.json",
+                "compilerOptions": {
+                "outDir": "./out-tsc/spec",
+                "module": "CommonJs",
                 "types": ["jest"]
+                },
+                "include": ["src/**/*.spec.ts", "src/**/*.d.ts"]
+            }
+            ```
+            !! Notice pour ES2016+ : !!
+            ```
+            INFO
+            Angular doesn't support native async/await in testing with target higher than ES2016, see https://github.com/angular/components/issues/21632#issuecomment-764975917
+            ```
+            À l'heure actuelle, la commande ```npm test``` lance le testeur karma
+            - [x] Rename du fichier ./src/test.ts en karmaTest.ts, sans succès.
+            - [x] Ajout de :
+            ```
+            "types": ["jest"]
+            ```
+            dans le fichier tsconfig.ts
+            - [x] Dans le fichier angular.json, changement de builder:karma par :
+            ```
+            "builder": "@angular-devkit/build-angular:jest"
+            ```
+            ligne 89, et suppression des 11 lignes "options" liées à karma. Retour d'erreur : An unhandled exception occurred: Cannot find builder "@angular-devkit/build-angular:jest" au lancement de ```ng test```
+            - [x] Résolution de l'erreur : An unhandled exception occurred: Cannot find builder "@angular-devkit/build-angular:jest"
+                - [x] Suivi de (https://medium.com/angular-in-depth/angular-cli-ng-test-with-jest-in-3-minutes-v2-1060ddd7908d)
+                - [x] Suppression de karma avec la commande : 
                 ```
-                dans le fichier tsconfig.ts
-                - [x] Dans le fichier angular.json, changement de builder:karma par :
+                npm remove karma karma-chrome-launcher karma-coverage karma-jasmine karma-jasmine-html-reporter
                 ```
-                "builder": "@angular-devkit/build-angular:jest"
+                - [x] Suppression de karmarelated fichiers avec commande : 
                 ```
-                ligne 89, et suppression des 11 lignes "options" liées à karma. Retour d'erreur : An unhandled exception occurred: Cannot find builder "@angular-devkit/build-angular:jest" au lancement de ```ng test```
-                - [x] Résolution de l'erreur : An unhandled exception occurred: Cannot find builder "@angular-devkit/build-angular:jest"
-                    - [x] Suivi de (https://medium.com/angular-in-depth/angular-cli-ng-test-with-jest-in-3-minutes-v2-1060ddd7908d)
-                    - [x] Suppression de karma avec la commande : 
-                    ```
-                    npm remove karma karma-chrome-launcher karma-coverage karma-jasmine karma-jasmine-html-reporter
-                    ```
-                    - [x] Suppression de karmarelated fichiers avec commande : 
-                    ```
-                    rm ./karma.conf.js              
-                    rm ./src/test.ts  
-                    ```
-                    - [x] utilisation de ```npm i @angular-builders/jest --force``` ce qui permet de lancer les tests ave ng test
-                - [x] Création et configuration du fichier jest-global-mocks.ts comme précaunisé ici (https://thymikee.github.io/jest-preset-angular/docs/getting-started/installation)
-                - [x] Résolution du warning : 
+                rm ./karma.conf.js              
+                rm ./src/test.ts  
                 ```
-                warning: unable to locate custom jest configuration file at path "C:\Users\gchevalier\cleankmo\KMO_WEB\COP-SAV\jest.config.js"
-                ```
-                -> conversion du fichier .ts au format js et suivi du remplissage comme conseillé (https://thymikee.github.io/jest-preset-angular/docs/getting-started/installation)
-            - [ ] Ignorage des tests auto générés dans la commande
-                - [ ] Trouver comment ne tester qu'un seul fichier
-                    - [x] Check de (https://www.cloudhadoop.com/angular-run-single-testfile/)  & (https://stackoverflow.com/questions/40683673/how-to-execute-only-one-test-spec-with-angular-cli)
+                - [x] utilisation de ```npm i @angular-builders/jest --force``` ce qui permet de lancer les tests ave ng test
+            - [x] Création et configuration du fichier jest-global-mocks.ts comme précaunisé ici (https://thymikee.github.io/jest-preset-angular/docs/getting-started/installation)
+            - [x] Résolution du warning : 
+            ```
+            warning: unable to locate custom jest configuration file at path "C:\Users\gchevalier\cleankmo\KMO_WEB\COP-SAV\jest.config.js"
+            ```
+            -> conversion du fichier .ts au format js et suivi du remplissage comme conseillé (https://thymikee.github.io/jest-preset-angular/docs/getting-started/installation)
+        - [x] Ignorage des tests auto générés dans la commande
+            - [x] Trouver comment ne tester qu'un seul fichier
+                - [x] Check de (https://www.cloudhadoop.com/angular-run-single-testfile/) , (https://stackoverflow.com/questions/40683673/how-to-execute-only-one-test-spec-with-angular-cli) & (https://github.com/just-jeb/angular-builders/tree/master/packages/jest#builder-options)
+            Il faut préciser le nom donné dans le describe que l'on veut atteindre, exemple avec app.component.spec.ts :
+            ```
+            ng test --test-name-pattern="AppComponent"
+            ```
+        - [ ] Tester le formulaire
+            - [ ] Résolution des tests auto-générés foireux
+            - [ ] Établissement des tests pertinents dans le contexte
         - [ ] Tester la réception des données
         - [ ] Tester les données retournées
         - [ ] Tester l’envoi des données retournées au back
