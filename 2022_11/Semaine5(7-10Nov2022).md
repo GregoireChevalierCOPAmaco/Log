@@ -197,7 +197,33 @@ On obtient un status code 200, mais toujours avec l'erreur TypeError  this.userR
                 ```
                 À l'heure actuelle, la commande ```npm test``` lance le testeur karma
                 - [x] Rename du fichier ./src/test.ts en karmaTest.ts, sans succès.
+                - [x] Ajout de :
+                ```
+                "types": ["jest"]
+                ```
+                dans le fichier tsconfig.ts
+                - [x] Dans le fichier angular.json, changement de builder:karma par :
+                ```
+                "builder": "@angular-devkit/build-angular:jest"
+                ```
+                ligne 89, et suppression des 11 lignes "options" liées à karma. Retour d'erreur : An unhandled exception occurred: Cannot find builder "@angular-devkit/build-angular:jest" au lancement de ```ng test```
+                - [x] Résolution de l'erreur : An unhandled exception occurred: Cannot find builder "@angular-devkit/build-angular:jest"
+                    - [x] Suivi de (https://medium.com/angular-in-depth/angular-cli-ng-test-with-jest-in-3-minutes-v2-1060ddd7908d)
+                    - [x] Suppression de karma avec la commande : 
+                    ```
+                    npm remove karma karma-chrome-launcher karma-coverage karma-jasmine karma-jasmine-html-reporter
+                    ```
+                    - [x] Suppression de karmarelated fichiers avec commande : 
+                    ```
+                    rm ./karma.conf.js              
+                    rm ./src/test.ts  
+                    ```
+                    - [x] utilisation de ```npm i @angular-builders/jest --force``` ce qui permet de lancer les tests ave ng test
                 - [x] Création et configuration du fichier jest-global-mocks.ts comme précaunisé ici (https://thymikee.github.io/jest-preset-angular/docs/getting-started/installation)
+                - [ ] Résolution du warning : 
+                ```
+                warning: unable to locate custom jest configuration file at path "C:\Users\gchevalier\cleankmo\KMO_WEB\COP-SAV\jest.config.js"
+                ```
         - [ ] Tester la réception des données
         - [ ] Tester les données retournées
         - [ ] Tester l’envoi des données retournées au back
