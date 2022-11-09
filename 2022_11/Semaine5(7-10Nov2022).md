@@ -118,7 +118,50 @@ On obtient un status code 200, mais toujours avec l'erreur TypeError  this.userR
         - [ ] Tester le formulaire
             - [ ] Utilisation de Jest-preset-angular
             - [ ] Installation de Jest-preset-angular
-            - [ ] Configuration de Jest-preset-angular preset)
+                - [x] Suivi de doc : (https://thymikee.github.io/jest-preset-angular/docs/getting-started/installation)
+                - [x] À la racine du projet (KMO_WEB\kmo-app), installation de toutes les dépendances avec : 
+                ```
+                npm install -D jest jest-preset-angular @types/jest
+                ```
+                Retour : 
+                ```
+                7 vulnerabilities (5 high, 2 critical)
+                ```
+                - [x] Run de :
+                ```
+                npm audit fix
+                ```
+                Retour : 
+                ```
+                # npm audit report
+
+                minimatch  <3.0.5
+                Severity: high
+                minimatch ReDoS vulnerability - https://github.com/advisories/GHSA-f8q6-p94x-37v3
+                fix available via `npm audit fix --force`
+                Will install @angular-devkit/build-angular@13.3.9, which is outside the stated dependency range
+                node_modules/minimatch
+                @angular-devkit/build-angular  0.8.8 - 13.3.8 || 14.0.0-next.0 - 14.1.0-rc.3
+                Depends on vulnerable versions of minimatch
+                Depends on vulnerable versions of terser
+                node_modules/@angular-devkit/build-angular
+
+                terser  5.0.0 - 5.14.1
+                Severity: high
+                Terser insecure use of regular expressions before v4.8.1 and v5.14.2 leads to ReDoS - https://github.com/advisories/GHSA-4wf5-vphf-c2xc
+                fix available via `npm audit fix --force`
+                Will install @angular-devkit/build-angular@13.3.9, which is outside the stated dependency range
+                node_modules/terser
+
+                3 high severity vulnerabilities
+                ```
+                - [x] Run de :
+                ```
+                npm audit fix --force
+                ```
+                À l'heure actuelle, la commande ```npm test``` lance le testeur karma
+            - [ ] Configuration de Jest-preset-angular preset
+                - [x] Création du fichier setup-jest.ts à la racine de COP-SAV
         - [ ] Tester la réception des données
         - [ ] Tester les données retournées
         - [ ] Tester l’envoi des données retournées au back
