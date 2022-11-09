@@ -110,3 +110,15 @@ On obtient un status code 200, mais toujours avec l'erreur TypeError  this.userR
         - [x] S’assurer de la persistance des données en base
 - [ ] Utiliser jira en parallèle du log pour communiquer sur ce qui est fait
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
+  
+
+**9 Novembre**
+- [ ] Tests e2e
+    - [ ] Tester le front
+        - [ ] Tester le formulaire
+            - [ ] Utilisation de Jest-preset-angular
+            - [ ] Installation de Jest-preset-angular
+            - [ ] Configuration de Jest-preset-angular preset)
+        - [ ] Tester la réception des données
+        - [ ] Tester les données retournées
+        - [ ] Tester l’envoi des données retournées au back
