@@ -232,7 +232,38 @@ On obtient un status code 200, mais toujours avec l'erreur TypeError  this.userR
             ng test --test-name-pattern="AppComponent"
             ```
         - [ ] Tester le formulaire
+            - [x] Recherche du fichier concerné : KMO_WEB\COP-SAV\src\app\pages\dashboard-ass\list-store\reports\reports.component.spec.ts
             - [ ] Résolution des tests auto-générés foireux
+                - [x] Résolution de l'erreur : 
+                ```
+                NullInjectorError: R3InjectorError(DynamicTestModule)[StoreService -> HttpClient -> HttpClient]: NullInjectorError: No provider for HttpClient!
+                ```
+                en ajoutant imports: [HttpClientModule], au TestBed.configureTestingModule({}). -> Retour d'erreur :
+                - [x] Résolution de l'erreur : 
+                ```
+                NullInjectorError: R3InjectorError(DynamicTestModule)[ActivatedRoute -> ActivatedRoute]:
+                NullInjectorError: No provider for ActivatedRoute!
+                ```
+                en ajoutant imports: [RouterTestingModule]Retour d'erreur :
+                - [ ] Résolution de l'erreur : 
+                ```
+                NG0302: The pipe 'filter' could not be found in the 'ReportsComponent' component!. Find more at https://angular.io/errors/NG0302
+                ```
+                - [x] Check de (https://angular.io/errors/NG0302) & (https://www.youtube.com/watch?v=maI2u6Sxk9M)
+                - [x] Ajout de FilterStorePipe dans app.module.ts declaration:[] & imports: [] ++ dans le fichier reports.components.spec.ts, declaration:[] & imports: []. Puis, relocate du pipe dans sa déclaration d'import depuis ./src/../pathTo/pipe à ./../../pathTo/pipe & modification du template html ligne 46 de :
+                ```
+                ngFor="let report of stores?.report | filter: filterString">
+                ```
+                à :
+                ```
+                ngFor="let report of stores?.report | filterStore: filterString">
+                ```
+                -> Retour d'erreur :
+                ```
+                NullInjectorError: R3InjectorError(DynamicTestModule)[ToastService -> ToastrService -> InjectionToken ToastConfig -> InjectionToken ToastConfig]:           
+                NullInjectorError: No provider for InjectionToken ToastConfig!   
+                ```          
+                - [ ] Résolution de l'erreur NullInjectionError ci dessus
             - [ ] Établissement des tests pertinents dans le contexte
         - [ ] Tester la réception des données
         - [ ] Tester les données retournées
