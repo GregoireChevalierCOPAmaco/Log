@@ -294,6 +294,7 @@ On obtient un status code 200, mais toujours avec l'erreur TypeError  this.userR
                     ```
                     - [x] Check de (https://javascript.plainenglish.io/how-to-choose-between-constructor-and-ngoninit-in-your-angular-apps-f16987627312)
                     - [ ] Documentation sur les components angular (https://angular.io/guide/architecture-components)
+                    - [ ] Documentation sur la manière de tester les components (https://angular.io/guide/testing-components-scenarios)
                     - [ ] Décomposition du flow de test du reports.component : 
                         - reports.components.spec.ts
                             - Le test spec attend de la variable (component).toBeTruthy.
@@ -314,7 +315,13 @@ On obtient un status code 200, mais toujours avec l'erreur TypeError  this.userR
                                 thrownError: null,
                                 _value: {}
                             }
+                        - [ ] Utiliser un stub ? voir doc (https://angular.io/guide/testing-components-scenarios#component-with-a-dependency)
+                            - [x] Test de réso avec un service stub, sans succès pour l'instant
             - [ ] Établissement des tests pertinents dans le contexte
+                - [ ] Tester la présence d'un component form
+                - [ ] Tester les paramètres attendus du form
+                - [ ] Tester si l'évènement appelé à la submission est le bon & si les données pointent vers le bon endroit ?
+                - [ ] Tester le format retourné ?
         - [ ] Tester la réception des données
         - [ ] Tester les données retournées
         - [ ] Tester l’envoi des données retournées au back

@@ -23,6 +23,8 @@ https://docs.angularjs.org/guide/controller (Controller)
 https://angular.io/tutorial/toh-pt5 (routing)
 https://angular.io/guide/reactive-forms
 https://angular.io/guide/form-validation
+https://angular.io/guide/architecture-components
+https://angular.io/guide/testing-components-scenarios
 **Nest**
 https://docs.nestjs.com/first-steps#platform
 https://stackoverflow.com/questions/63872093/accept-form-data-in-nest-js
