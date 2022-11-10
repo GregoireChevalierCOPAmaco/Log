@@ -277,8 +277,20 @@ On obtient un status code 200, mais toujours avec l'erreur TypeError  this.userR
         - [ ] Tester le formulaire
             - [x] Recherche du fichier concerné : KMO_WEB\COP-SAV\src\app\pages\dashboard-ass\list-store\reports\reports.component.spec.ts
             - [ ] Résolution des tests auto-générés foireux
-                - [ ] Résolution de l'erreur NullInjectionError ci dessus
-                    - [x] Check de (https://stackoverflow.com/questions/69111109/angular-unit-testing-nullinjectorerror-r3injectorerrordynamictestmodulematsn)
+                - [x] Résolution de l'erreur NullInjectionError ci dessus
+                    - [x] Check de (https://www.codegrepper.com/code-examples/typescript/NullInjectorError%3A+R3InjectorError%28DynamicTestModule%29%5BAdminTestCentersComponent+-%3E+ToastrService+-%3E+InjectionToken+ToastConfig+-%3E+InjectionToken+ToastConfig%5D%3A+NullInjectorError%3A+No+provider+for+InjectionToken+ToastConfig%21), à priori il faut rajouter le module toast avec forRoot.
+                    - [x] Ajout de ```ToastrModule.forRoot()```dans les imports du beforeEach. Erreur résolue, passage à la suivante
+                - [ ] Résolution de l'erreur : 
+                ```
+                TypeError: Cannot read properties of null (reading 'length')
+                ```
+                - [x] Recherche du code qui pose problème : ligne 14 du fichier  KMO_WEB\COP-SAV\src\app\shared\pipes\filter-store.pipe.ts
+                - [x] Résolution de l'erreur : 
+                ```
+                NG0303: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+                ```
+                -> ajout de FormsModule dans les imports du fichier reports.component.spec.ts vu qu'il était déjà présent dans l'app.module.ts
+                - [x] Résolution de l'erreur : Cannot find module 'src/app/core/services/login-service/login.service' from 'src/app/pages/authentification/reset-password/reset-password.component.ts' fichier appelé dans la stack. -> rectification de l'import, passage de ./src/... au chemin réel en dur
             - [ ] Établissement des tests pertinents dans le contexte
         - [ ] Tester la réception des données
         - [ ] Tester les données retournées
