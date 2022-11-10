@@ -280,17 +280,28 @@ On obtient un status code 200, mais toujours avec l'erreur TypeError  this.userR
                 - [x] Résolution de l'erreur NullInjectionError ci dessus
                     - [x] Check de (https://www.codegrepper.com/code-examples/typescript/NullInjectorError%3A+R3InjectorError%28DynamicTestModule%29%5BAdminTestCentersComponent+-%3E+ToastrService+-%3E+InjectionToken+ToastConfig+-%3E+InjectionToken+ToastConfig%5D%3A+NullInjectorError%3A+No+provider+for+InjectionToken+ToastConfig%21), à priori il faut rajouter le module toast avec forRoot.
                     - [x] Ajout de ```ToastrModule.forRoot()```dans les imports du beforeEach. Erreur résolue, passage à la suivante
-                - [ ] Résolution de l'erreur : 
-                ```
-                TypeError: Cannot read properties of null (reading 'length')
-                ```
-                - [x] Recherche du code qui pose problème : ligne 14 du fichier  KMO_WEB\COP-SAV\src\app\shared\pipes\filter-store.pipe.ts
                 - [x] Résolution de l'erreur : 
                 ```
                 NG0303: Can't bind to 'ngModel' since it isn't a known property of 'input'.
                 ```
                 -> ajout de FormsModule dans les imports du fichier reports.component.spec.ts vu qu'il était déjà présent dans l'app.module.ts
+                - [x] Résolution de l'erreur : Function not implemented. du fichier edit-ticket.component.spec.ts en faisant un test it() sur la base du create 
+                - [x] Recherche du code qui pose problème : ligne 14 du fichier  KMO_WEB\COP-SAV\src\app\shared\pipes\filter-store.pipe.ts
                 - [x] Résolution de l'erreur : Cannot find module 'src/app/core/services/login-service/login.service' from 'src/app/pages/authentification/reset-password/reset-password.component.ts' fichier appelé dans la stack. -> rectification de l'import, passage de ./src/... au chemin réel en dur
+                - [ ] Résolution de l'erreur : 
+                    ```
+                    TypeError: Cannot read properties of null (reading 'length')
+                    ```
+                    - [x] Check de (https://javascript.plainenglish.io/how-to-choose-between-constructor-and-ngoninit-in-your-angular-apps-f16987627312)
+                    - [ ] Décomposition du flow de test du reports.component : 
+                        - reports.components.spec.ts
+                            - Le test spec attend de la variable (component).toBeTruthy.
+                            - La variable component importe le classe ReportComponent
+                        - reports.component.ts
+                            - À l'initialisation du component via ngOnInit() ligne23, on récupère le champ ['référence'] fourni par le template html,
+                            - on refresh la liste des Stores pour qu'elle soit à jour
+                            - puis on utilise this.route.queryParams.subscribe(res =>) 
+                            - problème : res renvoie un {} vide, du coup ce dont on a besoin par la suite à savoir this.filterString = res['reference']; devient undefined. Pourquoi ?
             - [ ] Établissement des tests pertinents dans le contexte
         - [ ] Tester la réception des données
         - [ ] Tester les données retournées
