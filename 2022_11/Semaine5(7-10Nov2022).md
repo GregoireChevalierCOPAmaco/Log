@@ -245,7 +245,7 @@ On obtient un status code 200, mais toujours avec l'erreur TypeError  this.userR
                 NullInjectorError: No provider for ActivatedRoute!
                 ```
                 en ajoutant imports: [RouterTestingModule]Retour d'erreur :
-                - [ ] Résolution de l'erreur : 
+                - [x] Résolution de l'erreur : 
                 ```
                 NG0302: The pipe 'filter' could not be found in the 'ReportsComponent' component!. Find more at https://angular.io/errors/NG0302
                 ```
@@ -264,6 +264,21 @@ On obtient un status code 200, mais toujours avec l'erreur TypeError  this.userR
                 NullInjectorError: No provider for InjectionToken ToastConfig!   
                 ```          
                 - [ ] Résolution de l'erreur NullInjectionError ci dessus
+                    - [x] Check de (https://stackoverflow.com/questions/69111109/angular-unit-testing-nullinjectorerror-r3injectorerrordynamictestmodulematsn)
+            - [ ] Établissement des tests pertinents dans le contexte
+        - [ ] Tester la réception des données
+        - [ ] Tester les données retournées
+        - [ ] Tester l’envoi des données retournées au back
+        
+
+**10 Novembre**
+- [ ] Tests e2e
+    - [ ] Tester le front      
+        - [ ] Tester le formulaire
+            - [x] Recherche du fichier concerné : KMO_WEB\COP-SAV\src\app\pages\dashboard-ass\list-store\reports\reports.component.spec.ts
+            - [ ] Résolution des tests auto-générés foireux
+                - [ ] Résolution de l'erreur NullInjectionError ci dessus
+                    - [x] Check de (https://stackoverflow.com/questions/69111109/angular-unit-testing-nullinjectorerror-r3injectorerrordynamictestmodulematsn)
             - [ ] Établissement des tests pertinents dans le contexte
         - [ ] Tester la réception des données
         - [ ] Tester les données retournées
