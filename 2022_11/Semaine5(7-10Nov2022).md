@@ -293,6 +293,7 @@ On obtient un status code 200, mais toujours avec l'erreur TypeError  this.userR
                     TypeError: Cannot read properties of null (reading 'length')
                     ```
                     - [x] Check de (https://javascript.plainenglish.io/how-to-choose-between-constructor-and-ngoninit-in-your-angular-apps-f16987627312)
+                    - [ ] Documentation sur les components angular (https://angular.io/guide/architecture-components)
                     - [ ] Décomposition du flow de test du reports.component : 
                         - reports.components.spec.ts
                             - Le test spec attend de la variable (component).toBeTruthy.
@@ -301,7 +302,18 @@ On obtient un status code 200, mais toujours avec l'erreur TypeError  this.userR
                             - À l'initialisation du component via ngOnInit() ligne23, on récupère le champ ['référence'] fourni par le template html,
                             - on refresh la liste des Stores pour qu'elle soit à jour
                             - puis on utilise this.route.queryParams.subscribe(res =>) 
-                            - problème : res renvoie un {} vide, du coup ce dont on a besoin par la suite à savoir this.filterString = res['reference']; devient undefined. Pourquoi ?
+                            - problème : res renvoie un {} vide, du coup ce dont on a besoin par la suite à savoir this.filterString = res['reference']; devient undefined.
+                            Sachant que this.route renvoie bien une réponse correcte (<ref *1> ActivatedRoute {url: BehaviorSubject {...}...),
+                            et que this.route.queryParams renvoie : 
+                            BehaviorSubject {
+                                closed: false,
+                                currentObservers: null,
+                                observers: [],
+                                isStopped: false,
+                                hasError: false,
+                                thrownError: null,
+                                _value: {}
+                            }
             - [ ] Établissement des tests pertinents dans le contexte
         - [ ] Tester la réception des données
         - [ ] Tester les données retournées
