@@ -63,13 +63,13 @@
                         - [x] Class
                         - [x] Placeholder
                         - [ ] ngModel
-                    - [ ] Table
-                        - [ ] Date de création
-                        - [ ] IMS
-                        - [ ] Ref clipper
-                        - [ ] Monteurs
-                        - [ ] 2nd rdv
-                        - [ ] Facturé 
+                    - [x] TableHead
+                        - [x] Date de création
+                        - [x] IMS
+                        - [x] Ref clipper
+                        - [x] Monteurs
+                        - [x] 2nd rdv
+                        - [x] Facturé 
                     - [ ] Body
                         - [ ] Date de création
                         - [ ] IMS
