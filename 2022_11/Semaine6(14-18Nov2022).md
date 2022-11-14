@@ -26,6 +26,18 @@
                 }
                 ``` ligne 15 du fichier KMO_WEB\COP-SAV\src\app\shared\pipes\filter-store.pipe.ts , ce qui a pour effet de faire passer les test de component isTruthy && isDefined
             - [ ] Établissement des tests pertinents dans le contexte
+                - [x] Tester la création du component
+                - [x] Tester si le component est défini
+                - [x] Tester si l'accès à l'url se fait bien
+                - [ ] Tester si le component contient bien les champs requis && qu'ils retournent la valuer attendue
+                    - [ ] Table
+                        - [ ] Date de création
+                        - [ ] IMS
+                        - [ ] Ref clipper
+                        - [ ] Monteurs
+                        - [ ] 2nd rdv
+                        - [ ] Facturé ?
+                    - [ ] Body
             - [ ] Tester la présence d'un component form
             - [ ] Tester les paramètres attendus du form
             - [ ] Tester si l'évènement appelé à la submission est le bon & si les données pointent vers le bon endroit ?
