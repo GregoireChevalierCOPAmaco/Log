@@ -70,7 +70,7 @@
                         - [x] Monteurs
                         - [x] 2nd rdv
                         - [x] Facturé 
-                    - [ ] Body
+                    - [ ] TableBodyBody
                         - [ ] Date de création
                         - [ ] IMS
                         - [ ] Ref clipper
