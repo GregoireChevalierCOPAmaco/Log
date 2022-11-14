@@ -55,11 +55,13 @@
                     });
                     ```
                     suivi de (https://www.devcurry.com/2020/09/testing-angular-component-using-jest.html)
-                    - [ ] Input
+                    - [x] Input
                         - [x] Trouvé ici comment accéder à l'attribut voulu : (https://indepth.dev/tutorials/angular/get-attribute-value)
-                        - [ ] Type
-                        - [ ] Class
-                        - [ ] Placeholder
+                        - [x] Résolution de l'erreur : TypeError: Converting circular structure to JSON
+                            - [x] Check de  (https://stackoverflow.com/questions/63895685/unhandledpromiserejectionwarning-typeerror-converting-circular-structure-to-js) et ajout de --detect-opn-handles dans la cli avant la recherche par nom
+                        - [x] Type
+                        - [x] Class
+                        - [x] Placeholder
                         - [ ] ngModel
                     - [ ] Table
                         - [ ] Date de création
