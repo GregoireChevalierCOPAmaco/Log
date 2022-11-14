@@ -30,14 +30,51 @@
                 - [x] Tester si le component est défini
                 - [x] Tester si l'accès à l'url se fait bien
                 - [ ] Tester si le component contient bien les champs requis && qu'ils retournent la valuer attendue
+                    - [x] Création d'un fichier /src/windows-mock.ts rempli comme suit :
+                    ```
+                    import 'jest-preset-angular'; 
+                    Object.defineProperty(document, 'doctype', {
+
+                    value: '<!DOCTYPE html>'
+
+                    });
+
+                    Object.defineProperty(document.body.style, 'transform', {
+
+                    value: () => {
+
+                        return {
+
+                        enumerable: true,
+
+                        configurable: true
+
+                        };
+
+                    }
+                    });
+                    ```
+                    suivi de (https://www.devcurry.com/2020/09/testing-angular-component-using-jest.html)
+                    - [ ] Input
+                        - [x] Trouvé ici comment accéder à l'attribut voulu : (https://indepth.dev/tutorials/angular/get-attribute-value)
+                        - [ ] Type
+                        - [ ] Class
+                        - [ ] Placeholder
+                        - [ ] ngModel
                     - [ ] Table
                         - [ ] Date de création
                         - [ ] IMS
                         - [ ] Ref clipper
                         - [ ] Monteurs
                         - [ ] 2nd rdv
-                        - [ ] Facturé ?
+                        - [ ] Facturé 
                     - [ ] Body
+                        - [ ] Date de création
+                        - [ ] IMS
+                        - [ ] Ref clipper
+                        - [ ] Monteurs
+                        - [ ] 2nd rdv
+                        - [ ] Facturé 
             - [ ] Tester la présence d'un component form
             - [ ] Tester les paramètres attendus du form
             - [ ] Tester si l'évènement appelé à la submission est le bon & si les données pointent vers le bon endroit ?
