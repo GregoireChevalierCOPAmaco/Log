@@ -314,6 +314,7 @@ On obtient un status code 200, mais toujours avec l'erreur TypeError  this.userR
                                 hasError: false,
                                 thrownError: null,
                                 _value: {}
+                                value is null !! ??
                             }
                         - [ ] Utiliser un stub ? voir doc (https://angular.io/guide/testing-components-scenarios#component-with-a-dependency)
                             - [x] Test de réso avec un service stub, sans succès pour l'instant
