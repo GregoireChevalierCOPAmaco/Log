@@ -134,7 +134,7 @@
                         Check de (https://stackoverflow.com/questions/52116993/jasmin-karma-error-unexpected-value-httpclient-imported-by-the-module-dy) et remplacement de HttpClient par **HttpClientModule**
                     - [x] Test du Read
                         - [x] Documentation à (https://angular.io/guide/testing-services)
-                        - [x] Appel de la fonciton getById & mock
+                        - [x] Appel de la fonction getById & mock
                     - [ ] Test de l’Update
                     - [ ] Test du Create
                     - [ ] Teste du Delete
