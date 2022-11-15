@@ -81,6 +81,7 @@
 
   
 **14 Novembre**
+- [x] Prise en main avancée de Jira et consigne du travail en cours/effectué
 - [ ] Tests e2e
     - [ ] Tester le front      
         - [ ] Tester le formulaire
@@ -92,7 +93,7 @@
                         - [ ] Ref clipper
                         - [ ] Monteurs
                         - [ ] 2nd rdv
-                        - [ ] Facturé requis && qu'ils retournent la valuer attendue
+                        - [ ] Facturé requis && qu'ils retournent la valeur attendue
             - [ ] Tester l'entité Reports sur l'application
                 - [ ] Tester la présence d'un component form
                 - [ ] Tester les paramètres attendus du form
