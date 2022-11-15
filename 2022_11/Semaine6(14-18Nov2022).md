@@ -80,27 +80,44 @@
                         - [ ] Facturé 
 
   
-**14 Novembre**
+**15 Novembre**
 - [x] Prise en main avancée de Jira et consigne du travail en cours/effectué
 - [ ] Tests e2e
     - [ ] Tester le front      
-        - [ ] Tester le formulaire
-            - [ ] Tester le front de l'entité Reports
-                - [ ] Tester si le component contient bien les champs 
-                    - [ ] TableBodyBody
-                        - [ ] Date de création
-                        - [ ] IMS
-                        - [ ] Ref clipper
-                        - [ ] Monteurs
-                        - [ ] 2nd rdv
-                        - [ ] Facturé requis && qu'ils retournent la valeur attendue
-            - [ ] Tester l'entité Reports sur l'application
-                - [ ] Tester la présence d'un component form
-                - [ ] Tester les paramètres attendus du form
-                - [ ] Tester si l'évènement appelé à la submission est le bon & si les données pointent vers le bon endroit ?
-                - [ ] Tester le format retourné ?
-            - [ ] Tester la réception des données
-            - [ ] Tester les données retournées
-            - [ ] Tester l’envoi des données retournées au back
+        - [ ] Tester le front de l'entité Reports
+            - [ ] Tester si le component contient bien les champs 
+                - [ ] TableBody
+                    - [x] Champ Date de création
+                    - [x] Champ IMS
+                    - [x] Champ Ref clipper
+                    - [x] Champ Monteurs
+                    - [x] Champ 2nd rdv
+                    - [x] Champ Facturé 
+                    - [ ] S'assurer qu'ils retournent la valeur attendue
+                        - [x] Check de (https://stackoverflow.com/questions/53544913/angular-6-let-item-of-itens-from-database)
+                - [x] TableRow
+            - [x] Il faudra revenir sur l'affichage des reports quand je saurai accéder aux données de la base depuis angular. Pour l'instant, je mets ça de côté car pas spécialement primordial
+            - [x] Tester le dialogue entre angular et l'api
+                - [x] Check de (https://stackoverflow.com/questions/72566904/test-angular-http-service-with-jest)
+                - [x] Déclaration de : ```let report: ReportService;``` 
+                - [x] Ajout dans le premier beforeEach() de ```report = TestBed.inject(ReportService);``` 
+                - [x] Ajout du test  :
+                ```
+		        type apiUrl = keyof typeof report;
+                const linkToReportsInAPI = 'apiUrl' as apiUrl;
+                expect(report).toBeDefined();
+                expect(report[linkToReportsInAPI]).toBeDefined();
+                expect(report).toBeTruthy();
+                expect(report[linkToReportsInAPI]).toBeTruthy();
+                expect(report[linkToReportsInAPI]).toEqual('http://localhost:3000/reports/');
+                ```
+        - [ ] Tester l'entité Reports sur l'application
+            - [ ] Tester la présence d'un component form
+            - [ ] Tester les paramètres attendus du form
+            - [ ] Tester si l'évènement appelé à la submission est le bon & si les données pointent vers le bon endroit ?
+            - [ ] Tester le format retourné ?
+        - [ ] Tester la réception des données
+        - [ ] Tester les données retournées
+        - [ ] Tester l’envoi des données retournées au back
 - [ ] Utiliser jira en parallèle du log pour communiquer sur ce qui est fait
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
