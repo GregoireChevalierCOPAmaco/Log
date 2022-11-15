@@ -4,7 +4,7 @@
 - [ ] Tests e2e
     - [ ] Tester le front      
         - [ ] Tester le formulaire
-            - [ ] Résolution de l'erreur : 
+            - [x] Résolution de l'erreur : 
                 ```
                 TypeError: Cannot read properties of null (reading 'length')
                 ```
@@ -71,18 +71,35 @@
                         - [x] 2nd rdv
                         - [x] Facturé 
                     - [ ] TableBodyBody
+                    - [ ] Dépend du *ngFor qui itère sur le nombre de Reports créés en base : checke de (https://stackoverflow.com/questions/44521254/get-length-of-array-in-ngfor-after-pipes-transformation) & ajout de ```; let l = count``` ligne 46 de KMO_WEB\COP-SAV\src\app\pages\dashboard-ass\list-store\reports\reports.component.html
                         - [ ] Date de création
                         - [ ] IMS
                         - [ ] Ref clipper
                         - [ ] Monteurs
                         - [ ] 2nd rdv
                         - [ ] Facturé 
-            - [ ] Tester la présence d'un component form
-            - [ ] Tester les paramètres attendus du form
-            - [ ] Tester si l'évènement appelé à la submission est le bon & si les données pointent vers le bon endroit ?
-            - [ ] Tester le format retourné ?
-        - [ ] Tester la réception des données
-        - [ ] Tester les données retournées
-        - [ ] Tester l’envoi des données retournées au back
+
+  
+**14 Novembre**
+- [ ] Tests e2e
+    - [ ] Tester le front      
+        - [ ] Tester le formulaire
+            - [ ] Tester le front de l'entité Reports
+                - [ ] Tester si le component contient bien les champs 
+                    - [ ] TableBodyBody
+                        - [ ] Date de création
+                        - [ ] IMS
+                        - [ ] Ref clipper
+                        - [ ] Monteurs
+                        - [ ] 2nd rdv
+                        - [ ] Facturé requis && qu'ils retournent la valuer attendue
+            - [ ] Tester l'entité Reports sur l'application
+                - [ ] Tester la présence d'un component form
+                - [ ] Tester les paramètres attendus du form
+                - [ ] Tester si l'évènement appelé à la submission est le bon & si les données pointent vers le bon endroit ?
+                - [ ] Tester le format retourné ?
+            - [ ] Tester la réception des données
+            - [ ] Tester les données retournées
+            - [ ] Tester l’envoi des données retournées au back
 - [ ] Utiliser jira en parallèle du log pour communiquer sur ce qui est fait
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
