@@ -112,7 +112,7 @@
                 expect(report[linkToReportsInAPI]).toEqual('http://localhost:3000/reports/');
                 ```
                 - [ ] Tester le CRUD Angular/API/Db via le ReportService
-                    - [ ] Résolution des problèmes au lancement du fichier de tests KMO_WEB\COP-SAV\src\app\core\services\report-service\report.service.spec.ts
+                    - [x] Résolution des problèmes au lancement du fichier de tests KMO_WEB\COP-SAV\src\app\core\services\report-service\report.service.spec.ts
                         - [x] Résolution de : 
                         ```
                         NullInjectorError: R3InjectorError(DynamicTestModule)[ReportService -> HttpClient -> HttpClient]:
@@ -132,7 +132,9 @@
                         Unexpected value 'HttpClient' imported by the module 'DynamicTestModule'. Please add an @NgModule annotation. 
                         ```
                         Check de (https://stackoverflow.com/questions/52116993/jasmin-karma-error-unexpected-value-httpclient-imported-by-the-module-dy) et remplacement de HttpClient par **HttpClientModule**
-                    - [ ] Test du Read
+                    - [x] Test du Read
+                        - [x] Documentation à (https://angular.io/guide/testing-services)
+                        - [x] Appel de la fonciton getById & mock
                     - [ ] Test de l’Update
                     - [ ] Test du Create
                     - [ ] Teste du Delete
