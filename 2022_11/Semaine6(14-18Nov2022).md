@@ -111,6 +111,11 @@
                 expect(report[linkToReportsInAPI]).toBeTruthy();
                 expect(report[linkToReportsInAPI]).toEqual('http://localhost:3000/reports/');
                 ```
+                - [ ] Tester le CRUD Angular/API/Db via le ReportService
+                    - [ ] Test du Read
+                    - [ ] Test de l’Update
+                    - [ ] Test du Create
+                    - [ ] Teste du Delete
         - [ ] Tester l'entité Reports sur l'application
             - [ ] Tester la présence d'un component form
             - [ ] Tester les paramètres attendus du form
