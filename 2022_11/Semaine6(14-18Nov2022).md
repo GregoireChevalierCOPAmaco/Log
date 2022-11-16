@@ -139,8 +139,8 @@
   
 **16 Novembre** 
 - [ ] Tests e2e
-    - [ ] Tester le front      
-        - [ ] Tester le front de l'entité Reports
+    - [x] Tester le front      
+        - [x] Tester le front de l'entité Reports
             - [x] Tester le CRUD Angular/API/Db via le ReportService
                 - [x] Test de l’Update
                     - [x] Appel de la fonction updateReport & mock
@@ -148,8 +148,22 @@
                     - [x] Appel de la fonction createReport & mock
                 - [x] Test du Delete
                     - [x] Appel de la fonction deleteReport & mock
-                - [ ] S'assurer que l'APIurl visée est atteignable
-                - [ ] S'assurer que l'APIurl visée est la bonne 
+                - [x] S'assurer que l'APIurl visée est atteignable
+                - [x] S'assurer que l'APIurl visée est la bonne
+            - [ ] Tester l’existence de la page Reports
+                - [x] Installation de npm http
+                - [x] Résolution des erreurs d'installation (peer-deps)
+                - [x] Installation de npm supertest
+                - [x] Résolution des erreurs d'installation (audit fix force)
+                - [x] Revert des installs qui causent le crash de tous les tests 
+                - [x] Résolution des problèmes de configuration créés
+                    - [x] npm update --force
+                    - [x] Suppression de package-lock.json & node modules
+                    - [x] ng update 
+                    - [x] npm i
+                        - [x] Résolution des erreurs npm ERR! ERESOLVE unable to resolve dependency tree : npm update --legacy-peer-deps
+                - [x] Check de (https://www.beyondjava.net/jest-testing-an-angular-service) 
+            - [ ] Y a-t-il un intérêt à tester les valeus en réel depuis le front ? Je ne pense pas ... 
         - [ ] Tester l'entité Reports sur l'application
             - [ ] Tester la présence d'un component form
             - [ ] Tester les paramètres attendus du form
