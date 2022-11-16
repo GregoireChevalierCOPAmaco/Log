@@ -143,8 +143,9 @@
         - [ ] Tester le front de l'entité Reports
             - [ ] Tester le CRUD Angular/API/Db via le ReportService
                 - [ ] Test de l’Update
-                - [ ] Test du Create
-                - [ ] Teste du Delete
+                - [x] Test du Create
+                    - [x] Appel de la fonction createReport & mock
+                - [ ] Test du Delete
         - [ ] Tester l'entité Reports sur l'application
             - [ ] Tester la présence d'un component form
             - [ ] Tester les paramètres attendus du form
