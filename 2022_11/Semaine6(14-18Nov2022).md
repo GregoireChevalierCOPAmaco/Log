@@ -141,11 +141,15 @@
 - [ ] Tests e2e
     - [ ] Tester le front      
         - [ ] Tester le front de l'entité Reports
-            - [ ] Tester le CRUD Angular/API/Db via le ReportService
-                - [ ] Test de l’Update
+            - [x] Tester le CRUD Angular/API/Db via le ReportService
+                - [x] Test de l’Update
+                    - [x] Appel de la fonction updateReport & mock
                 - [x] Test du Create
                     - [x] Appel de la fonction createReport & mock
-                - [ ] Test du Delete
+                - [x] Test du Delete
+                    - [x] Appel de la fonction deleteReport & mock
+                - [ ] S'assurer que l'APIurl visée est atteignable
+                - [ ] S'assurer que l'APIurl visée est la bonne 
         - [ ] Tester l'entité Reports sur l'application
             - [ ] Tester la présence d'un component form
             - [ ] Tester les paramètres attendus du form
