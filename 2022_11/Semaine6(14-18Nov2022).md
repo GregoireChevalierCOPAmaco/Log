@@ -135,9 +135,16 @@
                     - [x] Test du Read
                         - [x] Documentation à (https://angular.io/guide/testing-services)
                         - [x] Appel de la fonction getById & mock
-                    - [ ] Test de l’Update
-                    - [ ] Test du Create
-                    - [ ] Teste du Delete
+                        
+  
+**16 Novembre** 
+- [ ] Tests e2e
+    - [ ] Tester le front      
+        - [ ] Tester le front de l'entité Reports
+            - [ ] Tester le CRUD Angular/API/Db via le ReportService
+                - [ ] Test de l’Update
+                - [ ] Test du Create
+                - [ ] Teste du Delete
         - [ ] Tester l'entité Reports sur l'application
             - [ ] Tester la présence d'un component form
             - [ ] Tester les paramètres attendus du form
