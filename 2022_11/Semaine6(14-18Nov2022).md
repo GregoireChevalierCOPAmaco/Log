@@ -197,6 +197,8 @@
         this.filterString = res['reference'];
         ```
         est undefined est que : res correspond à ce qui est renseigné dans le champ de recherche, d'où l'undefined si rien n'est renseigné
+        - [ ] Passe sur les feedbacks
+        - [ ] Passe sur l'orthographe
     - [ ] Tester la présence d'un component form
     - [ ] Tester les paramètres attendus du form
     - [ ] Tester si l'évènement appelé à la submission est le bon & si les données pointent vers le bon endroit ?
