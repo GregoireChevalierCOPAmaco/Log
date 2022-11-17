@@ -192,6 +192,11 @@
         - [x] Aucun feedback à l'erreur d'ids/pw. Normal ?
         - [ ] Trouver les ids & pw nécessaires
     - [ ] Prendre en main l'application
+        - [x] La raison pour laquelle : 
+        ```
+        this.filterString = res['reference'];
+        ```
+        est undefined est que : res correspond à ce qui est renseigné dans le champ de recherche, d'où l'undefined si rien n'est renseigné
     - [ ] Tester la présence d'un component form
     - [ ] Tester les paramètres attendus du form
     - [ ] Tester si l'évènement appelé à la submission est le bon & si les données pointent vers le bon endroit ?
