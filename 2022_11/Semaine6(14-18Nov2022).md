@@ -166,20 +166,38 @@
             - [ ] Y a-t-il un intérêt à tester les valeus en réel depuis le front ? Je ne pense pas ... 
             - [x] Documentation (https://angular.io/guide/http)
 - [x] Utiliser jira en parallèle du log pour communiquer sur ce qui est fait
-- [ ] Penser à donner un justificatif de nouveau domicile à hubert
 
   
 **17 Novembre** 
 - [ ] Tests e2e
     - [ ] Tester l'entité Reports sur l'application
-        - [ ] Préambule aux tests
-            - [ ] Se connecter en tant que technicien sur l'appli via tablette
-                - [ ] Trouver les ids & pw nécessaires
-            - [ ] Prendre en main l'application
-        - [ ] Tester la présence d'un component form
-        - [ ] Tester les paramètres attendus du form
-        - [ ] Tester si l'évènement appelé à la submission est le bon & si les données pointent vers le bon endroit ?
-        - [ ] Tester le format retourné ?
-    - [ ] Tester la réception des données
-    - [ ] Tester les données retournées
-    - [ ] Tester l’envoi des données retournées au back
+    - [ ] Essai d'accès à l'application sur localhost:4200  : erreur Cannot GET. Retour d'erreur console :
+    ```
+    Error: src/app/pages/authentification/authentification.component.ts:4:34 - error TS7016: Could not find a declaration file for module 'chart.js/helpers'. 'C:/Users/gchevalier/cleankmo/KMO_WEB/COP-SAV/node_modules/chart.js/helpers/helpers.js' implicitly has an 'any' type.
+
+    4 import { resolveObjectKey } from 'chart.js/helpers';
+                                    ~~~~~~~~~~~~~~~~~~
+    × Failed to compile
+    ```
+    - [x] Résolution de l'erreur ci-dessus
+        - [x] Check de (https://stackoverflow.com/questions/41292559/could-not-find-a-declaration-file-for-module-module-name-path-to-module-nam) 
+    - [ ] Préambule aux tests
+        - [x] Mise en commentaires de :
+        ```
+        import { resolveObjectKey } from 'chart.js/helpers';
+
+        ```
+    - [x] Restart & update du Docker Desktop
+    - [ ] Se connecter en tant que technicien sur l'appli via tablette
+        - [x] Aucun feedback à l'erreur d'ids/pw. Normal ?
+        - [ ] Trouver les ids & pw nécessaires
+    - [ ] Prendre en main l'application
+    - [ ] Tester la présence d'un component form
+    - [ ] Tester les paramètres attendus du form
+    - [ ] Tester si l'évènement appelé à la submission est le bon & si les données pointent vers le bon endroit ?
+    - [ ] Tester le format retourné ?
+- [ ] Tester la réception des données
+- [ ] Tester les données retournées
+- [ ] Tester l’envoi des données retournées au back
+- [x] Utiliser jira en parallèle du log pour communiquer sur ce qui est fait
+- [ ] Penser à donner un justificatif de nouveau domicile à hubert
