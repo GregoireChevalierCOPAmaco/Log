@@ -165,17 +165,21 @@
                 - [x] Check de (https://www.beyondjava.net/jest-testing-an-angular-service) 
             - [ ] Y a-t-il un intérêt à tester les valeus en réel depuis le front ? Je ne pense pas ... 
             - [x] Documentation (https://angular.io/guide/http)
-        - [ ] Tester l'entité Reports sur l'application
-            - [ ] Préambule aux tests
-                - [ ] Se connecter en tant que technicien sur l'appli via tablette
-                    - [ ] Trouver les ids & pw nécessaires
-                - [ ] Prendre en main l'application
-            - [ ] Tester la présence d'un component form
-            - [ ] Tester les paramètres attendus du form
-            - [ ] Tester si l'évènement appelé à la submission est le bon & si les données pointent vers le bon endroit ?
-            - [ ] Tester le format retourné ?
-        - [ ] Tester la réception des données
-        - [ ] Tester les données retournées
-        - [ ] Tester l’envoi des données retournées au back
-- [ ] Utiliser jira en parallèle du log pour communiquer sur ce qui est fait
+- [x] Utiliser jira en parallèle du log pour communiquer sur ce qui est fait
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
+
+  
+**17 Novembre** 
+- [ ] Tests e2e
+    - [ ] Tester l'entité Reports sur l'application
+        - [ ] Préambule aux tests
+            - [ ] Se connecter en tant que technicien sur l'appli via tablette
+                - [ ] Trouver les ids & pw nécessaires
+            - [ ] Prendre en main l'application
+        - [ ] Tester la présence d'un component form
+        - [ ] Tester les paramètres attendus du form
+        - [ ] Tester si l'évènement appelé à la submission est le bon & si les données pointent vers le bon endroit ?
+        - [ ] Tester le format retourné ?
+    - [ ] Tester la réception des données
+    - [ ] Tester les données retournées
+    - [ ] Tester l’envoi des données retournées au back
