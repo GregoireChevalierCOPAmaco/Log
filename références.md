@@ -64,6 +64,7 @@ https://github.com/facebook/jest/tree/main/packages/jest-circus (jest-circus)
 https://jestjs.io/docs/mongodb (test de connexion bdd)
 https://stackoverflow.com/questions/70092175/mocking-relationships-in-typeorm-nestjs (mock relations)
 https://jestjs.io/docs/snapshot-testing snapshot testing
+https://medium.com/@menloinnovations/testing-asynchronous-operations-in-angular-components-45d1ebad3864#:~:text=fixture.,-detectChanges()&text=detectChanges()%20tells%20Angular%20to,first%20time%20it%20is%20called. (TestBed &ComponentFixture)
 **BDD**
 What is BDD programming?
 Behavior-driven development (BDD) is an Agile software development methodology in which an application is documented and designed around the behavior a user expects to experience when interacting with it.

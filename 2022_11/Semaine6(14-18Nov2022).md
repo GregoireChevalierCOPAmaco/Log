@@ -248,15 +248,51 @@
   
 **18 Novembre** 
 - [ ] Tests e2e
+    - [ ] Tester le fichier report-cop-view.component.spec.ts
+        - [ ] Résolution des erreurs existantes
+            - [x] Résolution de :
+            ```
+            NullInjectorError: R3InjectorError(DynamicTestModule)[ReportService -> HttpClient -> HttpClient]:
+            NullInjectorError: No provider for HttpClient!
+            ```
+            Ajout dans le beforeEach() de :
+            ```
+            imports: [HttpClientModule],
+			providers: [ { provide: HttpClientModule, useValue: {} }]
+            ```
+            Qui amène l'erreur suivante: 
+            - [x] Résolution de :
+            ```
+            NullInjectorError: R3InjectorError(DynamicTestModule)[ActivatedRoute -> ActivatedRoute]:
+            NullInjectorError: No provider for ActivatedRoute!
+            ```
+            Ajout dans le provider du beforeEach() de : { provide: ActivatedRoute, useValue: {} } qui amène l'erreur suivante :
+            - [x] Résolution de :
+            ```
+            NullInjectorError: R3InjectorError(DynamicTestModule)[ToastService -> ToastrService -> InjectionToken ToastConfig -> InjectionToken ToastConfig]:
+            NullInjectorError: No provider for InjectionToken ToastConfig!
+            ```
+            Check de (https://stackoverflow.com/questions/59190786/nullinjectorerror-staticinjectorerrordynamictestmoduletoastrservice-injec) et application en ajoutant : ToastrModule.forRoot() dans les *imports* du beforeEach(), ce qui renvoie l'erreur suivante :
+            - [x] Résolution de :
+            ```
+            TypeError: Cannot read properties of undefined (reading 'paramMap')
+            ```
+            -> La ligne qui cause le problème est : this.route.snapshot.paramMap.get('id'), qui a pour but de récupérer l'id du report. Mocker avec une valeur en dur permet de passer outre et renvoie l'erreur suivante :
+            - [x] Résolution de :
+            ```
+            TypeError: Cannot read properties of undefined (reading 'store')
+            ```
+            qui provient de la ligne 26 : fixture.detectChanges();
+            - [x] Documentation à propos de fixtures.detectChanges() (https://medium.com/@menloinnovations/testing-asynchronous-operations-in-angular-components-45d1ebad3864#:~:text=fixture.,-detectChanges()&text=detectChanges()%20tells%20Angular%20to,first%20time%20it%20is%20called.) & (https://stackoverflow.com/questions/50137734/detectchanges-not-working-within-angular-test)
+            - [x] Commenter le detectChanges() fait passer le test mais n'est pas une solution car on ne passe plus alors dans le ngOnInit() du component.
+        - [ ] Tester la présence d'un component form
+        - [ ] Tester les paramètres attendus du form
+        - [ ] Tester si l'évènement appelé à la submission est le bon & si les données pointent vers le bon endroit ?
     - [ ] Tester le fichier aldi-new-report.page.ts
         - [ ] Tester la présence d'un component form
         - [ ] Tester les paramètres attendus du form
         - [ ] Tester si l'évènement appelé à la submission est le bon & si les données pointent vers le bon endroit ?
     - [ ] Tester le fichier lidl-new-report.page.ts
-        - [ ] Tester la présence d'un component form
-        - [ ] Tester les paramètres attendus du form
-        - [ ] Tester si l'évènement appelé à la submission est le bon & si les données pointent vers le bon endroit ?
-    - [ ] Tester le fichier report-cop-view.component.spec.ts
         - [ ] Tester la présence d'un component form
         - [ ] Tester les paramètres attendus du form
         - [ ] Tester si l'évènement appelé à la submission est le bon & si les données pointent vers le bon endroit ?
