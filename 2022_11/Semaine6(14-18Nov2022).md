@@ -239,9 +239,6 @@
     - [ ] Tester les paramètres attendus du form
     - [ ] Tester si l'évènement appelé à la submission est le bon & si les données pointent vers le bon endroit ?
     - [x] Tester le format retourné -> pas la peine, le validator est sensé le faire
-- [ ] Tester la réception des données
-- [ ] Tester les données retournées
-- [ ] Tester l’envoi des données retournées au back
 - [x] Utiliser jira en parallèle du log pour communiquer sur ce qui est fait
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
 
