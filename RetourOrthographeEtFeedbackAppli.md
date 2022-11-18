@@ -1,4 +1,4 @@
-**Retour de typos dans l'application**
+**Retour de typos & feedbacks dans l'application**
   
 L'élément button [>>] qui ouvre et ferme la sidebar est décollé de la sidebar quand la page n'est pas responsive
 

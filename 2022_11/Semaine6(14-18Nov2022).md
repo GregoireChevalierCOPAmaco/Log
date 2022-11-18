@@ -171,7 +171,7 @@
 **17 Novembre** 
 - [ ] Tests e2e
     - [ ] Tester l'entité Reports sur l'application
-    - [ ] Essai d'accès à l'application sur localhost:4200  : erreur Cannot GET. Retour d'erreur console :
+    - [x] Essai d'accès à l'application sur localhost:4200  : erreur Cannot GET. Retour d'erreur console :
     ```
     Error: src/app/pages/authentification/authentification.component.ts:4:34 - error TS7016: Could not find a declaration file for module 'chart.js/helpers'. 'C:/Users/gchevalier/cleankmo/KMO_WEB/COP-SAV/node_modules/chart.js/helpers/helpers.js' implicitly has an 'any' type.
 
@@ -191,20 +191,73 @@
     - [ ] Se connecter en tant que technicien sur l'appli via tablette
         - [x] Aucun feedback à l'erreur d'ids/pw. Normal ?
         - [ ] Trouver les ids & pw nécessaires
-    - [ ] Prendre en main l'application
+    - [x] Prendre en main l'application
         - [x] La raison pour laquelle : 
         ```
         this.filterString = res['reference'];
         ```
         est undefined est que : res correspond à ce qui est renseigné dans le champ de recherche, d'où l'undefined si rien n'est renseigné
         - [x] Passe sur les feedbacks
+            -> voir RetourOrthographeEtFeedbackAppli.md
         - [x] Passe sur l'orthographe
+            -> voir RetourOrthographeEtFeedbackAppli.md
+    - [x] Créer un magasin brand=Aldi
+    - [x] Créer un ticket pour ce magasin Aldi
+        - [x] Trouver pourquoi le ticket ne se créée pas : ("Le magasin choisi n'existe pas") -> le idstore qui va etre cherché dans la Db est défini comme nom de l'enseigne + id du magasin (new-ticket.component.ts ligne 73), mise en commentaires de : /* this.ticketForm.value.brand + */
+    - [ ] Trouver comment créer un report
+        - [x] Survol de KMO_WEB\kmo-app\src\app\pages\reports\aldi-new-report\aldi-new-report.page.html
+        - [x] Correction des erreurs d'orthographe de KMO_WEB\kmo-app\src\app\pages\reports\aldi-new-report\aldi-new-report.page.html
+        - [x] Trouver où est le déclencheur qui mène à l'interface de création de report - > appelé dans openTicket() dans le fichier ticket.page.ts, avec le code suivant :
+        ```
+         if (data.store.brand === 'Aldi') {
+            const modal: HTMLIonModalElement =
+                await this.modalController.create({
+                component: AldiNewReportPage,
+                cssClass: 'fullscreen',
+                componentProps: {
+                    data,
+                }
+                });
+            modal.onDidDismiss().then(() => {
+                this.refreshTicket()
+                this.getReportReturnUncompleted()
+            });
+            await modal.present();
+            }
+        }
+        ```
+        && comme attendu, le store.data.brand === 'Aldi', alors pourquoi cela ne trigger pas :
+        ```
+        create({
+          component: AldiNewReportPage
+          ...
+          })
+        ``` 
+        ?????
+        Pas forcément nécessaire de créer un report depuis l'pp front SI les fichiers lidl-report/lidl-report.component.spec.ts, report-cop-view.component.spec.ts && aldi-report/aldi-report.component.spec.ts sont testés
     - [ ] Tester la présence d'un component form
     - [ ] Tester les paramètres attendus du form
     - [ ] Tester si l'évènement appelé à la submission est le bon & si les données pointent vers le bon endroit ?
-    - [ ] Tester le format retourné ?
+    - [x] Tester le format retourné -> pas la peine, le validator est sensé le faire
 - [ ] Tester la réception des données
 - [ ] Tester les données retournées
 - [ ] Tester l’envoi des données retournées au back
 - [x] Utiliser jira en parallèle du log pour communiquer sur ce qui est fait
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
+
+  
+**18 Novembre** 
+- [ ] Tests e2e
+    - [ ] Tester le fichier aldi-new-report.page.ts
+        - [ ] Tester la présence d'un component form
+        - [ ] Tester les paramètres attendus du form
+        - [ ] Tester si l'évènement appelé à la submission est le bon & si les données pointent vers le bon endroit ?
+    - [ ] Tester le fichier lidl-new-report.page.ts
+        - [ ] Tester la présence d'un component form
+        - [ ] Tester les paramètres attendus du form
+        - [ ] Tester si l'évènement appelé à la submission est le bon & si les données pointent vers le bon endroit ?
+    - [ ] Tester le fichier report-cop-view.component.spec.ts
+        - [ ] Tester la présence d'un component form
+        - [ ] Tester les paramètres attendus du form
+        - [ ] Tester si l'évènement appelé à la submission est le bon & si les données pointent vers le bon endroit ?
+        
