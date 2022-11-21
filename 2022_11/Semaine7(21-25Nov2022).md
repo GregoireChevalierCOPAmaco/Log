@@ -1,14 +1,16 @@
 **18 Novembre** 
 - [ ] Tests e2e
+    - [x] Manipulation de l'application en local pour comprendre les interactions vues en Db
     - [ ] Tester le fichier report-cop-view.component.spec.ts
         - [ ] Poursuite de résolution d'erreurs
-            - [ ] Trouver pourquoi le store renseigné via l'id en dur est undefined, trouver comment atteindre res :
+            - [x] On ne passe pas dans la boucle .subscribe(res...)
+            - [ ] Trouver pourquoi le store associé au report renseigné via l'id en dur est undefined, trouver comment atteindre res :
             ```
             this.reportService.getReportById(this.idReport).subscribe(res => {
 			this.report = res;
             ...
             ```
-            - [ ] Tester la présence d'un component form
+        - [ ] Tester la présence d'un component form
         - [ ] Tester les paramètres attendus du form
         - [ ] Tester si l'évènement appelé à la submission est le bon & si les données pointent vers le bon endroit ?
     - [ ] Tester le fichier aldi-new-report.page.ts
