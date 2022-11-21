@@ -2,7 +2,7 @@
 - [ ] Tests e2e
     - [x] Manipulation de l'application en local pour comprendre les interactions vues en Db
     - [ ] Tester le fichier report-cop-view.component.spec.ts
-        - [ ] Poursuite de résolution d'erreurs
+        - [x] Poursuite de résolution d'erreurs
             - [x] On ne passe pas dans la boucle .subscribe(res...)
             - [ ] Trouver pourquoi le store associé au report renseigné via l'id en dur est undefined, trouver comment atteindre res :
             ```
@@ -10,15 +10,21 @@
 			this.report = res;
             ...
             ```
-        - [ ] Tester la présence d'un component form
-        - [ ] Tester les paramètres attendus du form
-        - [ ] Tester si l'évènement appelé à la submission est le bon & si les données pointent vers le bon endroit ?
+            - [x] Mise en commentaire du detectChanges() pour progression. Voir (https://codecraft.tv/courses/angular/unit-testing/change-detection/) le moment venu
+        - [ ] Écriture du test de component defined
+        - [ ] Écriture du test de type de retour attendu
+        - [ ] Écriture du test de connexion à l'API
+        - [x] Tester la présence d'un component form -> pas à faire sur le front, mais éventuellement à tester sur l'app java
+        - [x] Tester les paramètres attendus du form -> pas à faire sur le front, mais éventuellement à tester sur l'app java
+        - [x] Tester si l'évènement appelé à la submission est le bon & si les données pointent vers le bon endroit ? -> pas à faire sur le front, mais éventuellement à tester sur l'app java
+        -> résonnement applicable aux duex autres fichiers à tester ci-dessous ↓
     - [ ] Tester le fichier aldi-new-report.page.ts
-        - [ ] Tester la présence d'un component form
-        - [ ] Tester les paramètres attendus du form
-        - [ ] Tester si l'évènement appelé à la submission est le bon & si les données pointent vers le bon endroit ?
+        - [ ] Écriture du test de component truthy
+        - [ ] Écriture du test de component defined
+        - [ ] Écriture du test de type de retour attendu
+        - [ ] Écriture du test de connexion à l'API        
     - [ ] Tester le fichier lidl-new-report.page.ts
-        - [ ] Tester la présence d'un component form
-        - [ ] Tester les paramètres attendus du form
-        - [ ] Tester si l'évènement appelé à la submission est le bon & si les données pointent vers le bon endroit ?
-        
+        - [ ] Écriture du test de component truthy
+        - [ ] Écriture du test de component defined
+        - [ ] Écriture du test de type de retour attendu
+        - [ ] Écriture du test de connexion à l'API
