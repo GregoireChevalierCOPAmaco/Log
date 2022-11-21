@@ -65,4 +65,7 @@
         - [ ] Écriture du test de component defined
         - [ ] Écriture du test de type de retour attendu
         - [ ] Écriture du test de connexion à l'API
-    - [ ] Tester les use case lors de la création d'un rapport à la main sur la tablette
+    - [ ] Résolution des 2 tests qui Fail quand on ne les appelle pas .... 
+        - [ ] src/app/shared/pipes/filter-store.pipe.spec.ts
+        - [ ] src/app/shared/directives/sortable-table.directive.ts
+- [ ] Tester les use case lors de la création d'un rapport à la main sur la tablette
