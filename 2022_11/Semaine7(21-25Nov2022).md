@@ -60,12 +60,31 @@
         - [x] Écriture du test de component truthy
         - [x] Écriture du test de component defined
         - [x] Écriture du test de type de retour attendu  
+        - [x] Augmentation du code coverage en testant plus de fonctions
+        - [x] Mise en commentaire de la méthode copyToClipBoard() {} vide pour augmentation code coverage & cleaning
     - [ ] Tester le fichier lidl-new-report.page.ts
-        - [ ] Écriture du test de component truthy
-        - [ ] Écriture du test de component defined
-        - [ ] Écriture du test de type de retour attendu
-        - [ ] Écriture du test de connexion à l'API
+        - [x] Résolution des erreurs existantes
+            - [x] Résolution de :
+            ```
+            NullInjectorError: R3InjectorError(DynamicTestModule)[ReportService -> HttpClient -> HttpClient]:
+            NullInjectorError: No provider for HttpClient!
+            ```
+            - [x] Résolution de :
+            ```
+            NullInjectorError: R3InjectorError(DynamicTestModule)[ActivatedRoute -> ActivatedRoute]:
+            NullInjectorError: No provider for ActivatedRoute!
+            ```
+            - [x] Résolution de l'erreur : 
+            ```
+            TypeError: Cannot read properties of undefined (reading 'paramMap')
+            ```
+            - [x] Mise en commentaire du detectChanges()
+        - [x] Écriture du test de component truthy
+        - [x] Écriture du test de component defined
+        - [x] Écriture du test de type de retour attendu
+        - [x] Augmentation du code coverage en testant plus de fonctions
     - [ ] Résolution des 2 tests qui Fail quand on ne les appelle pas .... 
         - [ ] src/app/shared/pipes/filter-store.pipe.spec.ts
         - [ ] src/app/shared/directives/sortable-table.directive.ts
+- [x] Check de (https://stackoverflow.com/questions/24825860/how-to-get-the-code-coverage-report-using-jest) pour le coverage
 - [ ] Tester les use case lors de la création d'un rapport à la main sur la tablette
