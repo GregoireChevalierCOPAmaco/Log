@@ -121,7 +121,9 @@
                 dep.refreshStore();
                 expect(dep.refreshStore).toHaveBeenCalled();
                 ```
-        - [ ] Report.service.ts, augmenter la cover de 44%
+        - [x] Report.service.ts, augmenter la cover de 44%
+            - [x] Passage de la couverture à 84% en testant getReportById(), getReportsByBilling() && updateReportBilling()
+        - [ ]lidl-report.component.ts, augmenter la cover de 20%
     - [ ] Utilisation du code coverage sur le back pour voir ce qu'il reste à tester
     - [ ] Résolution des 2 tests qui Fail quand on ne les appelle pas .... 
 - [ ] Tester les use case lors de la création d'un rapport à la main sur la tablette
