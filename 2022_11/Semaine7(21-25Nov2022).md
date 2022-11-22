@@ -133,7 +133,9 @@
         - [x] Aldi-report.component.ts, augmenter la cover de 26%
             - [x] Résolution des erreurs NullInjector & toHaveBeenCalled
             - [x] Passage de la couverture à 73% en testant toutes les méthodes du fichier
-        - [ ] report-cop-view.component.ts, augmenter la cover de 56%
+        - [x] report-cop-view.component.ts, augmenter la cover de 56%
+            - [x] Passage de la couverture à 76% en testant getReportById(), getReportsByBilling() && updateReportBilling()
+            - [x] Mise en commentaire de la fonction vide copyToClipBoard() 
     - [ ] Utilisation du code coverage sur le back pour voir ce qu'il reste à tester
     - [ ] Résolution des 2 tests qui Fail quand on ne les appelle pas .... 
 - [ ] Tester les use case lors de la création d'un rapport à la main sur la tablette
