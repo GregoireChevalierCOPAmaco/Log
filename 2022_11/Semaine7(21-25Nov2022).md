@@ -100,7 +100,28 @@
 **22 Novembre** 
 - [ ] Tests e2e
     - [ ] Utilisation du code coverage sur le front pour voir ce qu'il reste à tester
-        - [ ] Report.component.ts,
+        - [x] Report.component.ts
+            - [x] Passage de la couverture à 81% en testant refreshStore()
+            - [x] Écriture du test & résolution d’erreurs
+                - [x] Check de (https://stackoverflow.com/questions/43186533/unit-test-error-cannot-call-promise-then-from-within-a-sync-test) & ajout de :
+                ```
+                const dep = TestBed.inject(ReportsComponent);
+                jest.spyOn(dep, 'refreshStore').mockReturnValue();
+                expect(dep.refreshStore()).toHaveBeenCalled();
+                ```
+                pour test de la méthode. Ceci mène à l'erreur :
+                ```
+                NullInjectorError: R3InjectorError(CompilerModule)[ReportsComponent -> ReportsComponent]:
+                NullInjectorError: No provider for ReportsComponent!
+                ```
+                - [x] Résolution avec l'appel au component via testbed.inject() :
+                ```
+                const dep = TestBed.inject(ReportsComponent);
+                jest.spyOn(dep, 'refreshStore').mockReturnValue();
+                dep.refreshStore();
+                expect(dep.refreshStore).toHaveBeenCalled();
+                ```
+        - [ ] Report.service.ts, augmenter la cover de 44%
     - [ ] Utilisation du code coverage sur le back pour voir ce qu'il reste à tester
     - [ ] Résolution des 2 tests qui Fail quand on ne les appelle pas .... 
 - [ ] Tester les use case lors de la création d'un rapport à la main sur la tablette
