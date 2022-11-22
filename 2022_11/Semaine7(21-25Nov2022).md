@@ -123,9 +123,18 @@
                 ```
         - [x] Report.service.ts, augmenter la cover de 44%
             - [x] Passage de la couverture à 84% en testant getReportById(), getReportsByBilling() && updateReportBilling()
-        - [ ]lidl-report.component.ts, augmenter la cover de 20%
+        - [x]lidl-report.component.ts, augmenter la cover de 20%
+            - [x] Résolutions des erreurs NullInjector & toHaveBeencAlled
+            - [x] Mock de la fonction loadRps()
+            - [x] Mock de la fonction loadEpi()
+            - [x] Mock de la fonction loadSign()
+            - [x] Mise en commentaire de la fonction vide copyToClipBoard() 
+            - [x] Passage de la couverture à 61% total
+        - [ ] Aldi-report.component.ts, augmenter la cover de 26%
     - [ ] Utilisation du code coverage sur le back pour voir ce qu'il reste à tester
     - [ ] Résolution des 2 tests qui Fail quand on ne les appelle pas .... 
 - [ ] Tester les use case lors de la création d'un rapport à la main sur la tablette
     - [x] Test de connexion avec les ids fournis par théo, echec.
     - [ ] Retour dans les notes prises lors de la formation tablette le 27 octobre
+
+- [ ] Penser à donner un justificatif de nouveau domicile à hubert
