@@ -62,7 +62,7 @@
         - [x] Écriture du test de type de retour attendu  
         - [x] Augmentation du code coverage en testant plus de fonctions
         - [x] Mise en commentaire de la méthode copyToClipBoard() {} vide pour augmentation code coverage & cleaning
-    - [ ] Tester le fichier lidl-new-report.page.ts
+    - [x] Tester le fichier lidl-new-report.page.ts
         - [x] Résolution des erreurs existantes
             - [x] Résolution de :
             ```
@@ -87,4 +87,22 @@
         - [ ] src/app/shared/pipes/filter-store.pipe.spec.ts
         - [ ] src/app/shared/directives/sortable-table.directive.ts
 - [x] Check de (https://stackoverflow.com/questions/24825860/how-to-get-the-code-coverage-report-using-jest) pour le coverage
+- [x] Repasse orthographe sur les Toasts
+    - [x] Correction orth fichier : regionals-management.component.ts
+- [x] Veille techno (https://jestjs.io/docs/manual-mocks#mocking-methods-which-are-not-implemented-in-jsdom)
+- [x] Tests non successful de refreshStore() dans reports.component.ts :  Cannot call Promise.then from within a sync test (syncTestZone for jest.describe).
+    - [x] Check de (https://stackoverflow.com/questions/43186533/unit-test-error-cannot-call-promise-then-from-within-a-sync-test)
 - [ ] Tester les use case lors de la création d'un rapport à la main sur la tablette
+    - [x] Test de connexion avec les ids fournis par théo, echec.
+    - [ ] Retour dans les notes prises lors de la formation tablette le 27 octobre
+
+  
+**22 Novembre** 
+- [ ] Tests e2e
+    - [ ] Utilisation du code coverage sur le front pour voir ce qu'il reste à tester
+        - [ ] Report.component.ts,
+    - [ ] Utilisation du code coverage sur le back pour voir ce qu'il reste à tester
+    - [ ] Résolution des 2 tests qui Fail quand on ne les appelle pas .... 
+- [ ] Tester les use case lors de la création d'un rapport à la main sur la tablette
+    - [x] Test de connexion avec les ids fournis par théo, echec.
+    - [ ] Retour dans les notes prises lors de la formation tablette le 27 octobre
