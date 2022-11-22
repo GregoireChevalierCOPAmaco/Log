@@ -130,7 +130,7 @@
             - [x] Mock de la fonction loadSign()
             - [x] Mise en commentaire de la fonction vide copyToClipBoard() 
             - [x] Passage de la couverture à 61% total
-        - [ ] Aldi-report.component.ts, augmenter la cover de 26%
+        - [x] Aldi-report.component.ts, augmenter la cover de 26%
             - [x] Résolution des erreurs NullInjector & toHaveBeenCalled
             - [x] Passage de la couverture à 73% en testant toutes les méthodes du fichier
         - [ ] report-cop-view.component.ts, augmenter la cover de 56%
