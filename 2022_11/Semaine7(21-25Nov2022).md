@@ -99,7 +99,7 @@
   
 **22 Novembre** 
 - [ ] Tests e2e
-    - [ ] Utilisation du code coverage sur le front pour voir ce qu'il reste à tester
+    - [x] Utilisation du code coverage sur le front pour voir ce qu'il reste à tester
         - [x] Report.component.ts
             - [x] Passage de la couverture à 81% en testant refreshStore()
             - [x] Écriture du test & résolution d’erreurs
@@ -137,9 +137,36 @@
             - [x] Passage de la couverture à 76% en testant getReportById(), getReportsByBilling() && updateReportBilling()
             - [x] Mise en commentaire de la fonction vide copyToClipBoard() 
     - [ ] Utilisation du code coverage sur le back pour voir ce qu'il reste à tester
+        - [ ] Trouver pourquoi le code coverage ne se fait pas sur le back
+            - [x] Re-run de npm test --coverage pour voir les choses en l'état : 
+            ```
+            Test Suites: 2 failed, 21 passed, 23 total
+            Tests:       4 failed, 52 passed, 56 total
+            ```
+            - [ ] Résolution des erreurs
+                - [x] ajout d'un :
+                ```
+                jest.setTimeout(10000);
+                ```
+                dans le fichier e2e pour laisser le temps à la connexion de se faire
+                - [ ] Résolution de l'erreur : 
+                ```
+                End to end Reports › should return the reports endpoint using /GET                      
+                TypeError: this.userRepository.findOne is not a function 
+                ```
     - [ ] Résolution des 2 tests qui Fail quand on ne les appelle pas .... 
 - [ ] Tester les use case lors de la création d'un rapport à la main sur la tablette
     - [x] Test de connexion avec les ids fournis par théo, echec.
     - [ ] Retour dans les notes prises lors de la formation tablette le 27 octobre
+
+
+  
+**23 Novembre** 
+- [ ] Tests e2e
+    - [ ] Utilisation du code coverage sur le back pour voir ce qu'il reste à tester
+        - [ ] Trouver pourquoi le coverage ne s'affiche pas
+        - [x] Checkk de (https://jestjs.io/docs/cli) et utilisation de collect-coverage plutôt que coverage, sans succès
+        - [x] Check de (https://stackoverflow.com/questions/65292413/jest-coverage-ignores-nest-js-controller-and-service-files), 
+        - [ ] Essai de suppression de package-lock.json, dist & node-modules et réinstallation avec yarn
 
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
