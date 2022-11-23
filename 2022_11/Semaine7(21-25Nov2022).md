@@ -164,9 +164,20 @@
 **23 Novembre** 
 - [ ] Tests e2e
     - [ ] Utilisation du code coverage sur le back pour voir ce qu'il reste à tester
-        - [ ] Trouver pourquoi le coverage ne s'affiche pas
+        - [x] Trouver pourquoi le coverage ne s'affiche pas
         - [x] Checkk de (https://jestjs.io/docs/cli) et utilisation de collect-coverage plutôt que coverage, sans succès
         - [x] Check de (https://stackoverflow.com/questions/65292413/jest-coverage-ignores-nest-js-controller-and-service-files), 
-        - [ ] Essai de suppression de package-lock.json, dist & node-modules et réinstallation avec yarn
+        - [ ] Essai de suppression de package-lock.json, dist & node-modules et réinstallation avec yarn en cours
+        - [x] Check de (https://jestjs.io/docs/configuration#collectcoveragefrom-array) et modification du package.json
+        - [x] Check de (https://www.valentinog.com/blog/jest-coverage/). **Solution : rajouter un double --** :
+        ```
+        npm test -- --coverage
+        ```
+    - [x] Le fichier e2e test retourne tous les résultats attendus, mais le dernier test Fail à cause de :
+        ```
+        user/users.service.ts
+        TypeError: this.userRepository.findOne is not a function  
+        ```
+        alors que le status code est 200 comme attendu. Penser à le commenter au besoin
 
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
