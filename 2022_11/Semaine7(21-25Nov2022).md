@@ -181,7 +181,25 @@
     ```
     - [ ] Dossier /src/reports, 38.68% des lignes couvertes, repasse sur les fichiers de test
         - [ ] report.service.ts, augmenter la cover de 19%
+        - [ ] trouver pourquoi les tests & mocks de methodes n'augmentent pas le %age de code testé ...
 
+    - [x] Changement dans le package.json de :
+    ```
+    "scripts": {
+		...
+		"test": "jest",
+		"test:watch": "jest --watch",
+		"test:cov": "jest"
+    ```
+    à :
+    ```
+    "scripts": {
+		...
+		"test": "jest --detectOpenHandles",
+		"test:watch": "jest --watch",
+		"test:cov": "jest --coverage"
+    ```
+    && reprise des fichiers de config jest pour inclusion coverage & openhandles
     - [x] Le fichier e2e test retourne tous les résultats attendus, mais le dernier test Fail à cause de :
         ```
         user/users.service.ts
