@@ -200,6 +200,12 @@
 		"test:cov": "jest --coverage"
     ```
     && reprise des fichiers de config jest pour inclusion coverage & openhandles
+    - [x] Suppression des 
+    ```
+    jest.setTimeout(15000);
+    ```
+    dans les fichiers reports.e2e-spec.ts & report.service.ts pour réduction du temps moyen d'exécution des tests back de ~120s à ~75s
+
     - [x] Le fichier e2e test retourne tous les résultats attendus, mais le dernier test Fail à cause de :
         ```
         user/users.service.ts
