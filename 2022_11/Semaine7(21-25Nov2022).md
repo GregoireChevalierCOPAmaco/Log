@@ -213,4 +213,9 @@
         ```
         alors que le status code est 200 comme attendu. Penser à le commenter au besoin
 
+  
+**24 Novembre** 
+- [ ] Tests e2e
+    - [ ] Survol du code backend pour voir si le coverage peut être amélioré
+
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
