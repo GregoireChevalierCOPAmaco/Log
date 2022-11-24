@@ -239,11 +239,17 @@
                 - [x] Listing monteurs : ajout ligne 32 : Nicolas Drudi
                 - [ ] Listing monteurs : demander à Nicolas ses coordonnées
                 - [x] Listing monteurs : ajouter colonnes pour rang monteur, attribution tablette, possession tablette atm & marque+version de tablette
-                - [ ] Listing monteurs : Mise à jour des colones
+                - [x] Passage pour infos chez Evelyne
+                - [x] Passage pour infos chez Jean-Miche 
+                - [ ] Listing monteurs : Mise à jour des colonnes
                 - [ ] Listing monteurs : Mise à jour des informations tablettes
             - [ ] Combien de tablettes ont été achetées
+                - [x] Extraction du dossier Orange de Jean-Michel / Le fichier COP-Contrat signé fait mention d'un accord signé au 3 Avril 2018 pour 19 tablettes Samsung galaxy A10 32Go à 59.90HT
+                - [x] Un bon de commande en juin 2020 a été émis pour 10 tablettes de plus, mais pas de document signé ? Les 10 tabs n'ont pas été achetées ? 
             - [ ] Combien de tablettes sont en circulation
+                - [ ] 19 ou 29 ? Trouver si la relance de 10 a été faite ou pas ?
             - [ ] Qui à une tablette
+                - [ ] Check du fichier tablette-cop _11_2020.xls
             - [ ] Où est chaque tablette
             - [ ] Récupérer les contrats orange en cours
             - [ ] Gérer les tablettes
