@@ -217,24 +217,27 @@
 **24 Novembre** 
 - [x] Tests e2e
     - [x] Survol du code backend pour voir si le coverage peut être amélioré
-    - [x] Fin des tests dans l'état. Pour augmenter le coverage, je vais avoir besoin de passer plus de temps pour mieux comprendre, et ça va pas drastiquement augmenter la qualité du projet, donc je stoppe pour le moment.  
+    - [x] Fin des tests dans l'état. Pour augmenter le coverage, je vais avoir besoin de passer plus de temps pour mieux comprendre, et ça va pas drastiquement augmenter la qualité du projet, donc je stoppe pour le moment. Commandes CLI à retenir :  
+    back :  
+    ```
+    npm test --detectOpenHandles -- --coverage 
+    ```
+    Résultat attendu : 55 tests passed, 0 fail & ~ 50% des lines covered
+    front :
+    ```  
+    ng test --detect-open-handles --coverage --test-name-pattern="Report"    
+    ```
 
 **Projet Lidl-Sav & tablettes** (fait partie de cop-sav)
 - [ ] Objectif général : Structurer les infos & donner de la visibilité
     - [ ] Créer un dossier local où ranger les infos
-    - [ ] Partie Users accès & droits
-        - [ ] Accéder à la bdd
-            - [ ] Lister les users & leurs droits
-        - [ ] Accéder au déploiement
-            - [ ] Lister les users & leurs droits
+    - [ ] Partie tablettes & monteurs
         - [ ] Structurer les infos
             - [ ] Mettre à jour les documents excel
                 - [ ] Listing monteurs : supprimer les lignes obsolètes
                 - [ ] Listing monteurs : ajouter colonnes pour rang monteur, attribution tablette, possession tablette atm & marque+version de tablette
                 - [ ] Listing monteurs : Mise à jour des colones
                 - [ ] Listing monteurs : Mise à jour des informations tablettes
-    - [ ] Partie tablettes & monteurs
-        - [ ] Structurer les infos
             - [ ] Combien de tablettes ont été achetées
             - [ ] Combien de tablettes sont en circulation
             - [ ] Qui à une tablette
@@ -246,6 +249,13 @@
                 - [ ] Renseigner l'état de la tablette 
                 - [ ] Renseigner les pinID
                 - [ ] Renseigner les codes de verrouillage
+    - [ ] Partie Users accès & droits
+        - [ ] Accéder à la bdd
+            - [ ] Lister les users & leurs droits
+        - [ ] Accéder au déploiement
+            - [ ] Lister les users & leurs droits
+        - [ ] Structurer les infos
+            - [ ] Mettre à jour les documents excel
     - [ ] Faire un récap quotidien à frank par mail
 
 - [ ] Parler avec Guillaume de la structure/architecture portail saas (keycloak) des projets pour uniformisation & harmonisation des projets en cours & à venir
