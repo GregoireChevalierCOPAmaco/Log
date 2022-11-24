@@ -230,12 +230,15 @@
 
 **Projet Lidl-Sav & tablettes** (fait partie de cop-sav)
 - [ ] Objectif général : Structurer les infos & donner de la visibilité
-    - [ ] Créer un dossier local où ranger les infos
+    - [x] Créer un dossier local où ranger les infos
+        - [x] Enregistrement des fichiers excel
     - [ ] Partie tablettes & monteurs
         - [ ] Structurer les infos
             - [ ] Mettre à jour les documents excel
-                - [ ] Listing monteurs : supprimer les lignes obsolètes
-                - [ ] Listing monteurs : ajouter colonnes pour rang monteur, attribution tablette, possession tablette atm & marque+version de tablette
+                - [x] Listing monteurs : supprimer les lignes obsolètes. Lignes 5,8,19,23 & 33 supprimées (Deparis, Sardet, Devos, Yvai & Aielo)
+                - [x] Listing monteurs : ajout ligne 32 : Nicolas Drudi
+                - [ ] Listing monteurs : demander à Nicolas ses coordonnées
+                - [x] Listing monteurs : ajouter colonnes pour rang monteur, attribution tablette, possession tablette atm & marque+version de tablette
                 - [ ] Listing monteurs : Mise à jour des colones
                 - [ ] Listing monteurs : Mise à jour des informations tablettes
             - [ ] Combien de tablettes ont été achetées
