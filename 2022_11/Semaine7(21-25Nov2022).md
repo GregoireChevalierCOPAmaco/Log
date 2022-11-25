@@ -267,7 +267,7 @@
             - [ ] Mettre à jour les documents excel
 
   
-**24 Novembre** 
+**25 Novembre** 
 - [ ] Projet lidl sav tablettes : Structurer les infos & donner de la visibilité
     - [ ] Partie tablettes & monteurs
         - [ ] Structurer les infos
