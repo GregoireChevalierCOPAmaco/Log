@@ -1,4 +1,16 @@
 **28 Novembre** 
+- [x] Résolution du conflit pour merge COP-sav sur develop
+    - [x] Fichier kmo-app/src/app/pages/settings/settings.page.ts, conflit sur deux lignes identiques ?? :
+    ```
+        changeVehicleUsed($event) {
+    <<<<<<< KW-297_tests_database
+        this.toastService.toast('Vous utilisez maintenant le véhicule ' + $event.target.value, 'success', "top");
+    =======
+        this.toastService.toast('Vous utilisez maintenant le véhicule ' + $event.target.value, 'success', 'top');
+    >>>>>>> develop
+        this.localStorageService.set('vehicle', $event.target.value);
+    }
+    ```
 - [ ] Projet lidl sav tablettes : Structurer les infos & donner de la visibilité
     - [ ] Partie tablettes & monteurs
         - [ ] Structurer les infos
