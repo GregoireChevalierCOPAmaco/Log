@@ -16,22 +16,36 @@
         - [ ] Structurer les infos
             - [ ] Mettre à jour les documents excel
                 - [ ] Listing monteurs : demander à Nicolas ses coordonnées
-                    - [ ] Récupérer n°téléphone de Behili/Zmiri/Guillet/Amejoud/Lajon
+                - [ ] Fichier ListingUsers.xls
+                    - [x] Création d'un fichier snapshot backup
+                    - [x] Suppression des 4 monteurs partis de la liste
+                    - [x] Mise en bleu des monteurs dont l'adresse mail est valide et utilisée
+                    - [x] Récupérer n°téléphone de Behili/Zmiri/Guillet/Amejoud/Lajon. Récupéré & rensigné
             - [ ] Téléphoner à chaque monteur ayant potentiellement une tablette pour savoir ce qu'ils en ont fait ?
+                - [ ] Pour les monteurs de rang 1, s'assurer qu'ils ont une adresse cop valide && leur dire de les utiliser le cas échéant.
+                - [ ] Préparation de la liste des monteurs à appeler
+            - [x] Prise de connaissance du doc C:/Users/gchevalier/Desktop/Lidl-sav-tablettes/docs%20mail/TUTO-mail-monteur.pdf
             - [ ] Combien de tablettes ont été achetées
             - [ ] Combien de tablettes sont en circulation
                 - [ ] 19 ou 29 ? Trouver si la relance de 10 a été faite ou pas ?
-            - [ ] Qui à une tablette
-                - [ ] Check du fichier tablette-cop _11_2020.xls
+            - [x] Qui à une tablette
+                - [x] Check du fichier tablette-cop _11_2020.xls
+                - [x] Au 12/11/2020, à priori 29 tablettes ont été données
             - [ ] Où est chaque tablette
             - [ ] Récupérer les contrats orange en cours
             - [ ] Récupérer les attestations de récupération de tablettes
             - [ ] Gérer les tablettes
-                - [ ] Créer un excel
-                - [ ] Renseigner le modèle de tablette
-                - [ ] Renseigner l'état de la tablette 
-                - [ ] Renseigner les pinID
-                - [ ] Renseigner les codes de verrouillage
+                - [x] Créer un excel
+                - [x] Identifier les tablettes du bureau
+                    - [x] Renseigner le modèle de tablette 
+                    - [x] Renseigner l'état de la tablette 
+                    - [x] Renseigner les pinID 
+                    - [x] Renseigner les codes de verrouillage 
+                - [ ] Gérer les tablettes dans la nature
+                    - [ ] Renseigner le modèle de tablette 
+                    - [ ] Renseigner l'état de la tablette 
+                    - [ ] Renseigner les pinID 
+                    - [ ] Renseigner les codes de verrouillage 
     - [ ] Partie Users accès & droits
         - [ ] Accéder à la bdd
             - [ ] Lister les users & leurs droits
