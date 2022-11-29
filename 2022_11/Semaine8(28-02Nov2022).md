@@ -107,7 +107,7 @@
                     - S.Zrirak
             - [ ] Combien de tablettes ont été achetées
             - [ ] Combien de tablettes sont en circulation
-                - [ ] 19 ou 29 ? Trouver si la relance de 10 a été faite ou pas ?
+                - [ ] 19, 29, 34, 36 ? Trouver si la relance de 10 a été faite ou pas ?
             - [ ] Qui à une tablette
                 - [x] MàJ du fichier listing monteurs.xls
                 - [x] MàJ du fichier suivi tablettes.xls
