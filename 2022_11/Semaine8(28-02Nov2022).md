@@ -68,6 +68,16 @@
                 - [ ] Fichier Copie ListingMonteurs.xls
                     - [ ] Numéro F.Loriot non attibué, trouver le num de remplacement
                     - [ ] Trouver numéro de T.Diess
+                    - [ ] Trouver numéro de JM.Ackermann
+                    - [ ] Trouver numéro de A.Avenel
+                    - [ ] Trouver numéro de JS.Baugue
+                    - [ ] Trouver numéro de D.Bedel
+                    - [ ] Trouver numéro de F.Bardera
+                    - [ ] Trouver numéro de S.Chocron
+                    - [ ] Trouver numéro de M.Ferroudj
+                    - [ ] Trouver numéro de D.Jonchere
+                    - [ ] Trouver numéro de D.Lentiez
+                    - [ ] Trouver numéro de J.Vienne
             - [x] Téléphoner à chaque monteur ayant potentiellement une tablette pour savoir ce qu'ils en ont fait ?
                 - [x] Pour les monteurs de rang 1, s'assurer qu'ils ont une adresse cop valide && leur dire de les utiliser le cas échéant.
                 - [x] Préparation de la liste des monteurs à appeler
@@ -91,7 +101,7 @@
                     - F.Ritter
                     - G.Guillet
                     - J.Ivanoff
-                    - L.Amejoud
+                    - L.Amejoud / Répondu au mail envoyé
                     - N.Bordron
                     - R.Leroy
                     - S.Zrirak
@@ -126,9 +136,6 @@
     - [x] Echange de mail pour récupération pjs
     - [ ] Voir pourquoi pw incorrect ?
         - [x] Renvoi de mail pour essai avec mdp 123Cop@67, attente de réponse
-- [ ] Démarche obtention contrat 4G Orange : L'objectif est de se faire présenter des offres de formules pour connecter du matériel en magasin à internet (via clé 4G par exmple)
-    - [ ] Rendez vous Mévin Govinda, réunion teams 14h30
-        - [x] Préparation de l'entretien
     - [ ] Partie Users accès & droits
         - [ ] Accéder à la bdd
             - [ ] Lister les users & leurs droits
@@ -136,6 +143,14 @@
             - [ ] Lister les users & leurs droits
         - [ ] Structurer les infos
             - [ ] Mettre à jour les documents excel
-
+- [ ] Démarche obtention contrat 4G Orange : L'objectif est de se faire présenter des offres de formules pour connecter du matériel en magasin à internet (via clé 4G par exmple)
+    - [x] Rendez vous Mévin Govinda, réunion teams 14h30
+        - [x] Préparation de l'entretien
+        - [x] Retour rdv :
+            - 36 Lignes mobiles réparties sur 2 comptes de facturation 34 (626 82 518)/ 2 (612 44 027)
+            - Connexion internet par clé 4G : forfait 5Go 4G bloqué ou 100 Go flex 5G puis débit réduit
+            - Délai de livraison 72h après passage commande
+            - Voir doc technique de la ou les solutions
+    - [ ] Chercher et démarcher pour offre clé 4G concurrence afin de négocier
 - [ ] Parler avec Guillaume de la structure/architecture portail saas (keycloak) des projets pour uniformisation & harmonisation des projets en cours & à venir
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
