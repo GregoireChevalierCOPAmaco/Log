@@ -68,16 +68,16 @@
                 - [ ] Fichier Copie ListingMonteurs.xls
                     - [ ] Numéro F.Loriot non attibué, trouver le num de remplacement
                     - [ ] Trouver numéro de T.Diess
-                    - [ ] Trouver numéro de JM.Ackermann
-                    - [ ] Trouver numéro de A.Avenel
-                    - [ ] Trouver numéro de JS.Baugue
-                    - [ ] Trouver numéro de D.Bedel
-                    - [ ] Trouver numéro de F.Bardera
-                    - [ ] Trouver numéro de S.Chocron
-                    - [ ] Trouver numéro de M.Ferroudj
-                    - [ ] Trouver numéro de D.Jonchere
-                    - [ ] Trouver numéro de D.Lentiez
-                    - [ ] Trouver numéro de J.Vienne
+                    - [x] Trouver numéro de JM.Ackermann pas la peine, ne fait plus partie de l'effectif
+                    - [x] Trouver numéro de A.Avenel pas la peine, ne fait plus partie de l'effectif
+                    - [x] Trouver numéro de JS.Baugue pas la peine, ne fait plus partie de l'effectif
+                    - [x] Trouver numéro de D.Bedel pas la peine, ne fait plus partie de l'effectif
+                    - [x] Trouver numéro de F.Bardera pas la peine, ne fait plus partie de l'effectif
+                    - [x] Trouver numéro de S.Chocron pas la peine, ne fait plus partie de l'effectif
+                    - [x] Trouver numéro de M.Ferroudj. Pas la peine, décédé.
+                    - [x] Trouver numéro de D.Jonchere pas la peine, ne fait plus partie de l'effectif
+                    - [x] Trouver numéro de D.Lentiez pas la peine, ne fait plus partie de l'effectif
+                    - [x] Trouver numéro de J.Vienne pas la peine, ne fait plus partie de l'effectif
             - [x] Téléphoner à chaque monteur ayant potentiellement une tablette pour savoir ce qu'ils en ont fait ?
                 - [x] Pour les monteurs de rang 1, s'assurer qu'ils ont une adresse cop valide && leur dire de les utiliser le cas échéant.
                 - [x] Préparation de la liste des monteurs à appeler
