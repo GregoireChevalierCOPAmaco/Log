@@ -61,9 +61,13 @@
 - [ ] Projet lidl sav tablettes : Structurer les infos & donner de la visibilité
     - [ ] Partie tablettes & monteurs
         - [ ] Structurer les infos
+            - [x] Check des informations des 4 tablettes du bureau
             - [ ] Mettre à jour les documents excel
                 - [ ] Listing monteurs : demander à Nicolas ses coordonnées
                 - [ ] Fichier ListingUsers.xls
+                - [ ] Fichier Copie ListingMonteurs.xls
+                    - [ ] Numéro F.Loriot non attibué, trouver le num de remplacement
+                    - [ ] Trouver numéro de T.Diess
             - [x] Téléphoner à chaque monteur ayant potentiellement une tablette pour savoir ce qu'ils en ont fait ?
                 - [x] Pour les monteurs de rang 1, s'assurer qu'ils ont une adresse cop valide && leur dire de les utiliser le cas échéant.
                 - [x] Préparation de la liste des monteurs à appeler
@@ -97,6 +101,11 @@
             - [ ] Qui à une tablette
                 - [x] MàJ du fichier listing monteurs.xls
                 - [x] MàJ du fichier suivi tablettes.xls
+                - [x] Retour mail de Lachene Amejoud qui l'aurait transmise à Arnaud Charles por retour à Nordhouse
+                    - [ ] Lien entre les monteurs & numéro de tablette pour état du matériel
+                    - [ ] Téléphoner à WANDRES pour numéro imei tablette (anciennement celle de SUHR ?)
+                    - [ ] Téléphoner à LIGER pour numéro imei tablette
+                    - [ ] Téléphoner à RUXER pour numéro imei tablette
             - [ ] Où est chaque tablette
                 - [ ] Màj du fichier tablette-cop.xls
             - [ ] Récupérer les contrats orange en cours
@@ -116,8 +125,10 @@
 - [ ] Résolution du problème de mail pro R.Privat
     - [x] Echange de mail pour récupération pjs
     - [ ] Voir pourquoi pw incorrect ?
+        - [x] Renvoi de mail pour essai avec mdp 123Cop@67, attente de réponse
 - [ ] Démarche obtention contrat 4G Orange : L'objectif est de se faire présenter des offres de formules pour connecter du matériel en magasin à internet (via clé 4G par exmple)
     - [ ] Rendez vous Mévin Govinda, réunion teams 14h30
+        - [x] Préparation de l'entretien
     - [ ] Partie Users accès & droits
         - [ ] Accéder à la bdd
             - [ ] Lister les users & leurs droits
