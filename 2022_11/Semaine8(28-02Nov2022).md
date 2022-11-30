@@ -188,6 +188,8 @@
             - [ ] Qui à une tablette
                     - [ ] Lien entre les monteurs & numéro de tablette pour état du matériel
                     - [ ] Téléphoner à WANDRES pour numéro imei tablette (anciennement celle de SUHR ?)
+                        - [x] Récupération numéro complet ; celui renseigné dans le excel a 9 chiffres
+                            - [x] Mail aux RH & rectification dans le excel liste users
                     - [ ] Téléphoner à LIGER pour numéro imei tablette
                     - [ ] Téléphoner à RUXER pour numéro imei tablette
             - [ ] Où est chaque tablette
@@ -213,6 +215,7 @@
     - [x] Mail envoyé sur adresse perso
     - [x] Traitement en cours
         - [ ] Trouver la cause du problème : ne peut pas dissocier mail de sa tablette/ ne peut se déconnecter
+        - [ ] Voir avec Camille Rossi à ce sujet
 - [ ] Partie Users accès & droits
     - [ ] Accéder à la bdd
         - [ ] Lister les users & leurs droits
@@ -221,8 +224,10 @@
     - [ ] Structurer les infos
         - [ ] Mettre à jour les documents excel
 - [x] Récupération de la tablette 352 807 082 442 874 de la main de bonetto.
-- [ ] Démarche obtention contrat 4G Orange : L'objectif est de se faire présenter des offres de formules pour connecter du matériel en magasin à internet (via clé 4G par exmple)
-    - [ ] Chercher et démarcher pour offre clé 4G concurrence afin de négocier
+- [x] Démarche obtention contrat 4G Orange : L'objectif est de se faire présenter des offres de formules pour connecter du matériel en magasin à internet (via clé 4G par exmple)
+    - [x] Chercher et démarcher pour offre clé 4G concurrence afin de négocier
+    - [x] Relancer Mevin a 16h pour réponses devis & ids plateforme
+
 - [ ] Parler avec Guillaume de la structure/architecture portail saas (keycloak) des projets pour uniformisation & harmonisation des projets en cours & à venir
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
 
