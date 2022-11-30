@@ -152,5 +152,67 @@
             - Délai de livraison 72h après passage commande
             - Voir doc technique de la ou les solutions
     - [ ] Chercher et démarcher pour offre clé 4G concurrence afin de négocier
+
+**30 Novembre** 
+- [ ] Projet lidl sav tablettes : Structurer les infos & donner de la visibilité
+    - [ ] Partie tablettes & monteurs
+        - [ ] Structurer les infos
+            - [ ] Mettre à jour les documents excel
+                - [ ] Listing monteurs : demander à Nicolas ses coordonnées
+                - [ ] Fichier ListingUsers.xls
+                - [ ] Fichier Copie ListingMonteurs.xls
+                    - [ ] Numéro F.Loriot non attibué, trouver le num de remplacement
+                    - [ ] Trouver numéro de T.Diess
+            - [ ] Repasse téléphoner à chaque monteur ayant potentiellement une tablette pour savoir ce qu'ils en ont fait ?
+                - [ ] Préparation de la liste des monteurs à appeler
+                - [x] Ont répondu :
+                    - F.Ritter, tablette cassée lors de chantier, amenée pour check à un samsung point service, puis jetée car irrécupérable
+                    - G.Guillet, all ok
+                    - C.Carabeau, pas de tablette, 1 pour 2 avec N.Bordron
+                    - N.Bordron, ok tablette, faire mail sur perso pour résolution mail pro
+                - [ ] N'ont pas répondu  :
+                    - A.Sy, messagerie vocale immdt.
+                    - C.Daibissaram, messagerie vocale immdt.
+                    - C.Deschamps, bon numéro ? vraiment ?
+                    - J.Ivanoff
+                    - R.Leroy, messagerie vocale immdt
+                    - S.Zrirak
+            - [ ] Voir quoi faire pour le cas F.Ritter
+            - [ ] Combien de tablettes ont été achetées
+            - [ ] Combien de tablettes sont en circulation
+                - [ ] 19, 29, 34, 36 ? Trouver si la relance de 10 a été faite ou pas ?
+            - [ ] Qui à une tablette
+                    - [ ] Lien entre les monteurs & numéro de tablette pour état du matériel
+                    - [ ] Téléphoner à WANDRES pour numéro imei tablette (anciennement celle de SUHR ?)
+                    - [ ] Téléphoner à LIGER pour numéro imei tablette
+                    - [ ] Téléphoner à RUXER pour numéro imei tablette
+            - [ ] Où est chaque tablette
+                - [ ] Màj du fichier tablette-cop.xls
+            - [ ] Récupérer les contrats orange en cours
+            - [ ] Récupérer les attestations de récupération de tablettes
+            - [ ] Gérer les tablettes
+                - [x] Créer un excel
+                - [x] Identifier les tablettes du bureau
+                    - [x] Renseigner le modèle de tablette 
+                    - [x] Renseigner l'état de la tablette 
+                    - [x] Renseigner les pinID 
+                    - [x] Renseigner les codes de verrouillage 
+                - [ ] Gérer les tablettes dans la nature
+                    - [ ] Renseigner le modèle de tablette 
+                    - [ ] Renseigner l'état de la tablette 
+                    - [ ] Renseigner les pinID 
+                    - [ ] Renseigner les codes de verrouillage 
+- [ ] Résolution du problème de mail pro R.Privat
+    - [x] Traitement en cours
+    - [ ] Partie Users accès & droits
+        - [ ] Accéder à la bdd
+            - [ ] Lister les users & leurs droits
+        - [ ] Accéder au déploiement
+            - [ ] Lister les users & leurs droits
+        - [ ] Structurer les infos
+            - [ ] Mettre à jour les documents excel
+- [ ] Démarche obtention contrat 4G Orange : L'objectif est de se faire présenter des offres de formules pour connecter du matériel en magasin à internet (via clé 4G par exmple)
+    - [ ] Chercher et démarcher pour offre clé 4G concurrence afin de négocier
 - [ ] Parler avec Guillaume de la structure/architecture portail saas (keycloak) des projets pour uniformisation & harmonisation des projets en cours & à venir
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
+
