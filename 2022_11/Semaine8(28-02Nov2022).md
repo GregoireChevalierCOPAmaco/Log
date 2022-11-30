@@ -162,22 +162,26 @@
                 - [ ] Fichier ListingUsers.xls
                 - [ ] Fichier Copie ListingMonteurs.xls
                     - [ ] Numéro F.Loriot non attibué, trouver le num de remplacement
+                    - [ ] Numéro S.Zrirak non attibué, trouver le num de remplacement
                     - [ ] Trouver numéro de T.Diess
-            - [ ] Repasse téléphoner à chaque monteur ayant potentiellement une tablette pour savoir ce qu'ils en ont fait ?
-                - [ ] Préparation de la liste des monteurs à appeler
+            - [x] Repasse téléphoner à chaque monteur ayant potentiellement une tablette pour savoir ce qu'ils en ont fait ?
+                - [x] Préparation de la liste des monteurs à appeler
                 - [x] Ont répondu :
                     - F.Ritter, tablette cassée lors de chantier, amenée pour check à un samsung point service, puis jetée car irrécupérable
                     - G.Guillet, all ok
                     - C.Carabeau, pas de tablette, 1 pour 2 avec N.Bordron
                     - N.Bordron, ok tablette, faire mail sur perso pour résolution mail pro
-                - [ ] N'ont pas répondu  :
+                - [x] N'ont pas répondu  :
                     - A.Sy, messagerie vocale immdt.
                     - C.Daibissaram, messagerie vocale immdt.
                     - C.Deschamps, bon numéro ? vraiment ?
                     - J.Ivanoff
                     - R.Leroy, messagerie vocale immdt
                     - S.Zrirak
+                - [x] Màj du fichier suivi tablettes.xls en conséquence
             - [ ] Voir quoi faire pour le cas F.Ritter
+                - [x] Envoyer mail à Pascal Bonetto avec Ritter en copie
+                - [ ] 
             - [ ] Combien de tablettes ont été achetées
             - [ ] Combien de tablettes sont en circulation
                 - [ ] 19, 29, 34, 36 ? Trouver si la relance de 10 a été faite ou pas ?
@@ -202,15 +206,21 @@
                     - [ ] Renseigner l'état de la tablette 
                     - [ ] Renseigner les pinID 
                     - [ ] Renseigner les codes de verrouillage 
-- [ ] Résolution du problème de mail pro R.Privat
+- [x] Résolution du problème de mail pro R.Privat
     - [x] Traitement en cours
-    - [ ] Partie Users accès & droits
-        - [ ] Accéder à la bdd
-            - [ ] Lister les users & leurs droits
-        - [ ] Accéder au déploiement
-            - [ ] Lister les users & leurs droits
-        - [ ] Structurer les infos
-            - [ ] Mettre à jour les documents excel
+    - [x] Frank a reset le pw à COP67
+- [ ] Résolution du problème de mail pro N.Bordron
+    - [x] Mail envoyé sur adresse perso
+    - [x] Traitement en cours
+        - [ ] Trouver la cause du problème : ne peut pas dissocier mail de sa tablette/ ne peut se déconnecter
+- [ ] Partie Users accès & droits
+    - [ ] Accéder à la bdd
+        - [ ] Lister les users & leurs droits
+    - [ ] Accéder au déploiement
+        - [ ] Lister les users & leurs droits
+    - [ ] Structurer les infos
+        - [ ] Mettre à jour les documents excel
+- [x] Récupération de la tablette 352 807 082 442 874 de la main de bonetto.
 - [ ] Démarche obtention contrat 4G Orange : L'objectif est de se faire présenter des offres de formules pour connecter du matériel en magasin à internet (via clé 4G par exmple)
     - [ ] Chercher et démarcher pour offre clé 4G concurrence afin de négocier
 - [ ] Parler avec Guillaume de la structure/architecture portail saas (keycloak) des projets pour uniformisation & harmonisation des projets en cours & à venir
