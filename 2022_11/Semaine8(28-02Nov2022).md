@@ -240,10 +240,38 @@
             - clé 4G
             - routeur + eth : airbox ou flybox ? besoin de manipulation, plug and play ? Configuration ?
         - [x] Doublage de l'appel par un mail, mise de frank en cc
+        - [x] Appel avec M.Govinda : bon de commande à venir dans la journée
+        - [ ] voir la question de la sécurité
+        - [ ] voir pour retour de la solution non acceptée ... à faire dans l'échange de mail
     - [ ] Est-ce que la clé 4G fournit internet via usb ou émet du wifi ??
 - [ ] Réunion catch up avec Théo
-
-
+    - [x] Mise à niveau du projet chez Théo
+    - [x] Test de reproduction des erreurs R3NullInjector (43 tests failed)
+        - [x] Utiliser npm test au lieu de ng test fait fail les tests à cause de httpclient
+        - [x] Suppression du projet en local et réinstallation complète
+        - [x] Git clone
+        - [x] Git Checkout
+        - [x] cd kmo-back
+            - [x] npm i --legacy-peer-deps
+            - [x] npm test --detectOpenHandles : erreur
+            - [x] Résolution de l'erreur : 
+            ```
+            Error: Jest: Got error running globalSetup - C:\Users\gchevalier\cleankmo2R3NI\KMO_WEB\kmo-back\node_modules\jest-mysql\setup.js, reason: Cannot find module 'mysql'
+            ```
+            - [x] Grosse install bien sale de ```npm install mysql --legacy-peer-deps``` dans le dossier back & les tests passent comme attendu
+        - [x] cd COP-sav
+            - [x] ng test --detect-open-handles --coverage --test-name-pattern="Report" résultat :
+            ```
+            Test Suites: 2 failed, 45 skipped, 4 passed, 6 of 51 total
+            Tests:       47 skipped, 26 passed, 73 total
+            ```        
+    - [x] Mise a jour du docker, rebuild
+        - [ ] Résolution des erreurs
+            - [x] Résolution de l'erreur jest is not defined. Suppression de 
+            ```
+            { provide: getRepositoryToken(User), useValue: jest.fn() },
+            ``` 
+            des providers du fichier report.module.ts && ajout de UsersModule dans les imports
 
     - [ ] Partie tablettes & monteurs
         - [ ] Structurer les infos
@@ -256,6 +284,7 @@
             - [ ] Repasse téléphoner à chaque monteur ayant potentiellement une tablette pour savoir ce qu'ils en ont fait ?
                 - [ ] Préparation de la liste des monteurs à appeler
                 - [ ] Ont répondu : 
+                    - Pascal Lajon, n'a jamais eu de tablette
                 - [ ] N'ont pas répondu  : 
                 - [ ] Màj du fichier suivi tablettes.xls en conséquence 
             - [ ] Combien de tablettes ont été achetées

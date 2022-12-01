@@ -35,7 +35,7 @@
             ```
             Nest can't resolve dependencies of the UsersService (UserRepository, JwtService, ?). Please make sure that the argument MailerService at index [2] is available in the AuthModule context.
             ```
-            - [x] Ajout du MailerService et de son porvide: dans les providers[] -> Renvoie une 401
+            - [x] Ajout du MailerService et de son provide: dans les providers[] -> Renvoie une 401
         - [ ] Résolution de l'erreur :  expected 200 "OK", got 401 "Unauthorized"
             - [x] Ajout après la ligne .get(/reports) de : .set('Authorization', `Bearer .... + token), qui renvoie une erreur 500 due à : ERROR [ExceptionsHandler] this.reportService.findReportByGroup is not a function
             - [x] Essai avec un ```.overrideGuard(AuthGuard())```, sans succès

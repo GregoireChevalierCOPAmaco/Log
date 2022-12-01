@@ -474,7 +474,7 @@
             - [ ] Résolution des erreurs 
             - [x] Arrêt d'utilisation du test.failing et du circus : trop de problèmes de dépendances, je mets ça sous le tapis et j'utilise les if{}else{} disgracieux qui reviennent au même.
         - [ ] Finaliser les tests sur exterior contacts
-            - [x] Mettre en place les dépencances pour tester la connexion à la base
+            - [x] Mettre en place les dépendances pour tester la connexion à la base
                 - [x] Suivi de doc (https://www.npmjs.com/package/jest-mysql)
                 - [x] Installation de ```npm i jest-mysql --legacy-peer-deps```
                 - [x] Ajout de :
