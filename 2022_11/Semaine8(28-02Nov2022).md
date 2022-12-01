@@ -232,6 +232,19 @@
 
 **1er Décembre** 
 - [ ] Projet lidl sav tablettes : Structurer les infos & donner de la visibilité
+- [ ] Démarche obtention contrat 4G Orange 
+    - [ ] Gestion d'équipement de test
+        - [ ] Objectif : obtenir un jeu d'un routeur et une clé usb pour tests en réel
+        - [ ] Communication avec M.Govinda pour obtention d'un jeu de test :
+            - forfait équilibre 4G 100 Go (5G pas nécessaire atm, voir plus tard)
+            - clé 4G
+            - routeur + eth : airbox ou flybox ? besoin de manipulation, plug and play ? Configuration ?
+        - [x] Doublage de l'appel par un mail, mise de frank en cc
+    - [ ] Est-ce que la clé 4G fournit internet via usb ou émet du wifi ??
+- [ ] Réunion catch up avec Théo
+
+
+
     - [ ] Partie tablettes & monteurs
         - [ ] Structurer les infos
             - [ ] Mettre à jour les documents excel
@@ -280,9 +293,6 @@
         - [ ] Lister les users & leurs droits
     - [ ] Structurer les infos
         - [ ] Mettre à jour les documents excel 
-- [ ] Démarche obtention contrat 4G Orange 
-    - [ ] Est-ce que la clé 4G fournit internet via usb ou émet du wifi ??
-
 - [ ] Parler avec Guillaume de la structure/architecture portail saas (keycloak) des projets pour uniformisation & harmonisation des projets en cours & à venir
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
 
