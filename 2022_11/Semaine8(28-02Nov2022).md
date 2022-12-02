@@ -328,7 +328,25 @@
             - routeur + eth : airbox ou flybox ? besoin de manipulation, plug and play ? Configuration ?
         - [ ] Retour à Mevin Govinda pour aspect test et demandes retour solution non retenue
             - [x] Rédaction du brouillon pour validation Frank
-    
+- [ ] Résolution des erreurs post update docker
+    - [ ] Résolution de l'erreur :
+    ```
+    [Nest] 22032  - 01/12/2022 16:23:34   ERROR [TypeOrmModule] Unable to connect to the database. Retrying (3)...
+    TypeError: this.mysql.createPool is not a function
+    ``` 
+    - [ ] Résolution de l'erreur :
+    ```
+    Nest can't resolve dependencies of the UsersService (UserRepository, JwtService, ?). Please make sure that the argument MailerService at index [2] is available in the UsersModule context.
+    ``` 
+    ``` 
+    - [ ] Résolution de l'erreur :
+    ```
+    ReportsService › Connection to db › should return the instance of Report which name is report reference
+
+    expect(received).toBeTruthy()
+
+    Received: undefined
+    ``` 
 
 - [ ] Parler avec Guillaume de la structure/architecture portail saas (keycloak) des projets pour uniformisation & harmonisation des projets en cours & à venir
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
