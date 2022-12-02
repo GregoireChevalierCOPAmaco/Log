@@ -326,14 +326,31 @@
             - forfait équilibre 4G 100 Go (5G pas nécessaire atm, voir plus tard)
             - clé 4G
             - routeur + eth : airbox ou flybox ? besoin de manipulation, plug and play ? Configuration ?
-        - [ ] Retour à Mevin Govinda pour aspect test et demandes retour solution non retenue
+        - [x] Retour à Mevin Govinda pour aspect test et demandes retour solution non retenue
             - [x] Rédaction du brouillon pour validation Frank
+            - [x] Confirmation et envoi du mail après retouches mineures
 - [ ] Résolution des erreurs post update docker
-    - [ ] Résolution de l'erreur :
+    - [x] Résolution de l'erreur :
     ```
     [Nest] 22032  - 01/12/2022 16:23:34   ERROR [TypeOrmModule] Unable to connect to the database. Retrying (3)...
     TypeError: this.mysql.createPool is not a function
     ``` 
+    Le message en complément de l'erreur (TypeORMError: Entity metadata for Vehicle#pieceVehicle was not found. Check if you specified a correct entity object and if it's connected in the connection options.) renseignait sur les entités à déclarer dans l'argument entities de la connexion co, ligne 29 de rapports.e2e-spec.ts  
+    Résoluition comme suit : 
+    ```
+    entities: [
+			Checkout, 
+			User, 
+			Store, 
+			Data, 
+			RegionalManagement,
+			Ticket,
+			TicketHistory,
+			Vehicle,
+			PieceVehicle,
+			Piece
+		]
+    ```
     - [ ] Résolution de l'erreur :
     ```
     Nest can't resolve dependencies of the UsersService (UserRepository, JwtService, ?). Please make sure that the argument MailerService at index [2] is available in the UsersModule context.
