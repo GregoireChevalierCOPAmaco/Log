@@ -351,18 +351,21 @@
 			Piece
 		]
     ```
-    - [ ] Résolution de l'erreur :
-    ```
-    Nest can't resolve dependencies of the UsersService (UserRepository, JwtService, ?). Please make sure that the argument MailerService at index [2] is available in the UsersModule context.
-    ``` 
-    ``` 
-    - [ ] Résolution de l'erreur :
+    - [x] Résolution de l'erreur :
     ```
     ReportsService › Connection to db › should return the instance of Report which name is report reference
 
     expect(received).toBeTruthy()
 
     Received: undefined
+    ``` 
+    Rectifictation du findOne ligne 529 : 
+    ```
+    .findOne({ reference: 'report test magasin ticket 2345' });
+    ```
+    - [ ] Résolution de l'erreur :
+    ```
+    Nest can't resolve dependencies of the UsersService (UserRepository, JwtService, ?). Please make sure that the argument MailerService at index [2] is available in the UsersModule context.
     ``` 
 
 - [ ] Parler avec Guillaume de la structure/architecture portail saas (keycloak) des projets pour uniformisation & harmonisation des projets en cours & à venir
