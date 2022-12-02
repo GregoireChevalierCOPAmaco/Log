@@ -244,7 +244,7 @@
         - [ ] voir la question de la sécurité
         - [ ] voir pour retour de la solution non acceptée ... à faire dans l'échange de mail
     - [ ] Est-ce que la clé 4G fournit internet via usb ou émet du wifi ??
-- [ ] Réunion catch up avec Théo
+- [x] Réunion catch up avec Théo
     - [x] Mise à niveau du projet chez Théo
     - [x] Test de reproduction des erreurs R3NullInjector (43 tests failed)
         - [x] Utiliser npm test au lieu de ng test fait fail les tests à cause de httpclient
@@ -265,13 +265,6 @@
             Test Suites: 2 failed, 45 skipped, 4 passed, 6 of 51 total
             Tests:       47 skipped, 26 passed, 73 total
             ```        
-    - [x] Mise a jour du docker, rebuild
-        - [ ] Résolution des erreurs
-            - [x] Résolution de l'erreur jest is not defined. Suppression de 
-            ```
-            { provide: getRepositoryToken(User), useValue: jest.fn() },
-            ``` 
-            des providers du fichier report.module.ts && ajout de UsersModule dans les imports
 
     - [ ] Partie tablettes & monteurs
         - [ ] Structurer les infos
@@ -322,6 +315,21 @@
         - [ ] Lister les users & leurs droits
     - [ ] Structurer les infos
         - [ ] Mettre à jour les documents excel 
+
+
+**2 Décembre** 
+- [ ] Projet lidl sav tablettes : Structurer les infos & donner de la visibilité
+- [ ] Démarche obtention contrat 4G Orange 
+    - [ ] Gestion d'équipement de test
+        - [ ] Objectif : obtenir un jeu d'un routeur et une clé usb pour tests en réel
+        - [x] Communication avec M.Govinda pour obtention d'un jeu de test :
+            - forfait équilibre 4G 100 Go (5G pas nécessaire atm, voir plus tard)
+            - clé 4G
+            - routeur + eth : airbox ou flybox ? besoin de manipulation, plug and play ? Configuration ?
+        - [ ] Retour à Mevin Govinda pour aspect test et demandes retour solution non retenue
+            - [x] Rédaction du brouillon pour validation Frank
+    
+
 - [ ] Parler avec Guillaume de la structure/architecture portail saas (keycloak) des projets pour uniformisation & harmonisation des projets en cours & à venir
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
 
