@@ -69,3 +69,6 @@ https://jestjs.io/docs/manual-mocks#mocking-methods-which-are-not-implemented-in
 **BDD**
 What is BDD programming?
 Behavior-driven development (BDD) is an Agile software development methodology in which an application is documented and designed around the behavior a user expects to experience when interacting with it.
+**commentaire du code**
+https://jsdoc.app/index.html
+https://jsdoc.app/tags-returns.html
