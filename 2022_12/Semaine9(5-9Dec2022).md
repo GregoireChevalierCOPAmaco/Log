@@ -38,15 +38,31 @@
 		    });
             ```
             - [x] Résolution du fail récurrent sur l'update : changement de la propriété à update de store à reference
-            - [ ] Résolution de l'erreur :
+            - [x] Résolution de l'erreur :
             ```
             TypeORMError: Empty criteria(s) are not allowed for the delete method.
             ```
-            la première fois *uniquement* que les tests sont lancés après l'initialisation du docker
+            la première fois *uniquement* que les tests sont lancés après l'initialisation du docker.  
+            Récap de l'erreur : le test ne fail que la première fois après avoir build le docker. En plus, le delete du rapport se fait via son ticket, et le code est correct, donc osef.
     - [ ] Résolution de l'erreur :
     ```
     Nest can't resolve dependencies of the UsersService (UserRepository, JwtService, ?). Please make sure that the argument MailerService at index [2] is available in the UsersModule context.
     ``` 
+- [ ] Faire une passe commentaire descriptif utile et clair du code
+    - [ ] Supprimer les commentaires de dev inutiles
+    - [ ] Checker les coventions jsdoc
+        - [ ] Voir (https://jsdoc.app/index.html, https://jsdoc.app/tags-returns.html)
+    - [ ] Définir dans un document commun avec Théo & Anthony la manière de commenter 
+    - [ ] Commenter le code
+
+  
+**6 Décembre** 
+- [ ] Projet lidl sav tablettes : Structurer les infos & donner de la visibilité
+- [ ] Résolution des erreurs post update docker
+    - [ ] e2e
+        - [x] copie du fichier et suppression pour reprise des e2e from scratch
+        - [ ] Reprise de documentation
+        - [ ] Refonte du fichier
 - [ ] Faire une passe commentaire descriptif utile et clair du code
     - [ ] Supprimer les commentaires de dev inutiles
     - [ ] Checker les coventions jsdoc
