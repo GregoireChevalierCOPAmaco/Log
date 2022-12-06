@@ -137,8 +137,24 @@
         - [x] Comportement des tests atm :
             - au 1er build docker, 2 tests FAIL
             - pour tous les autres itérations de tests, 100% de PASS
+    - [x] Update du readme avec comportement connu/attendu
+- [x] Push, merge develop
+- [x] Pull, & installation & lancement des tests sur la machine d'Anthony : effective matched expected.
 - [ ] Faire une passe commentaire descriptif utile et clair du code
     - [ ] Supprimer les commentaires de dev inutiles
+        - [x] Window-mocks.ts : suppression ligne blanche & rectification commentaire informatif
+        - [x] app.Module.ts : suppression du code mort :RouterModule.forRoot([], {enableTracing: true}), && suppression des imports non utilisés
+        - [x] report.service.spec.ts : suppression du code mort (12 lignes) && note ultérieure pour ɵisObservable && clean des imports non utilisés
+        - [x] authentification.component.ts : suppression  des imports non utilisés
+        - [x] regional-management.component.ts : suppression du code mort 
+        - [x] report.component.spec.ts : suppression du code mort & consoles log (24 lignes) && clean des imports non utilisés
+        - [x] report.component.ts : suppression du code mort (4 lignes)
+        - [x] report-cop-view.component.spec.ts : suppression du code mort & consoles log (6 lignes) && clean des imports non utilisés
+        - [x] report-cop-view.component.ts : suppression du code mort & consoles log  && clean des imports non utilisés
+        - [x] aldi-report.component.ts : suppression du code mort 
+        - [x] aldi-report.component.spec.ts : suppression du code mort 
+        - [x] lidl-report.component.ts : suppression du code mort 
+        - [x] lidl-report.component.spec.ts : suppression du code mort 
     - [ ] Checker les coventions jsdoc
         - [ ] Voir (https://jsdoc.app/index.html, https://jsdoc.app/tags-returns.html)
     - [ ] Définir dans un document commun avec Théo & Anthony la manière de commenter 

@@ -66,6 +66,7 @@ https://stackoverflow.com/questions/70092175/mocking-relationships-in-typeorm-ne
 https://jestjs.io/docs/snapshot-testing snapshot testing
 https://medium.com/@menloinnovations/testing-asynchronous-operations-in-angular-components-45d1ebad3864#:~:text=fixture.,-detectChanges()&text=detectChanges()%20tells%20Angular%20to,first%20time%20it%20is%20called. (TestBed &ComponentFixture)
 https://jestjs.io/docs/manual-mocks#mocking-methods-which-are-not-implemented-in-jsdom (mock test des foncitons de DOM non testables)
+https://github.com/nestjs/typescript-starter/issues/34 (connection db & hang after tests)
 **EndToEnd Testing**
 https://docs.nestjs.com/fundamentals/testing#end-to-end-testing
 https://gist.github.com/mjclemente/e13995c29376f0924eb2eacf98eaa5a6
