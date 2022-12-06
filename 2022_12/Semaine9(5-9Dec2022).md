@@ -58,11 +58,85 @@
   
 **6 Décembre** 
 - [ ] Projet lidl sav tablettes : Structurer les infos & donner de la visibilité
-- [ ] Résolution des erreurs post update docker
-    - [ ] e2e
+- [x] Résolution des erreurs post update docker
+    - [x] e2e
         - [x] copie du fichier et suppression pour reprise des e2e from scratch
-        - [ ] Reprise de documentation
-        - [ ] Refonte du fichier
+        - [x] Reprise de documentation
+        - [x] Refonte du fichier
+            - [x] Suppression de tout l'intérieur du describe sauf les declarations d'INestApp, de ReportService & de co
+            - [x] Suppression de l'import de MailerService dans les imports du fichier users.module.ts (ce qui crée une erreur au build du docker)
+            - [x] Réécriture des tests de base : 
+            ```
+            it('should be defined (app)', () => {
+                expect(app).toBeDefined();
+            });
+
+            it('should be defined (service)', () => {
+                expect(service).toBeDefined();
+            });
+            
+            it(`should refuse connection to endpoint using /GET due to user not being authentified`, async () => {
+                return request(app.getHttpServer()).get('/reports').expect(401);
+            });
+            ```
+            - [x] Résolution de l'erreur : 
+            ```
+            Nest can't resolve dependencies of the StoreRepository (?). Please make sure that the argument Connection at index [0] is available in the TypeOrmModule context.
+            ```
+            Quand ajout de TypeOrmModule.forRoot(co) aux imports, on retrouve l'erreur  
+            ```
+            Nest can't resolve dependencies of the UsersService (UserRepository, JwtService, ?). Please make sure that the argument MailerService at index [2] is available in the UsersModule context.
+            ```
+            - [x] Résolution de l'erreur MailerService : ajout de MailerService dans les *providers* de users.module.ts qui renvoie à l'erreur : 
+            - [x] Résolution de l'erreur : 
+            ```
+            Nest can't resolve dependencies of the MailerService (?, MAILER_TRANSPORT_FACTORY). Please make sure that the argument MAILER_OPTIONS at index [0] is available in the UsersModule context.
+            ```
+            l'ajout de :
+            ```
+            MailerService,
+                {
+                    provide: MAILER_OPTIONS,
+                    useValue: {
+                        message: {
+                            from: process.env.MAIL_USER,
+                        },
+                        transport: {
+                            host: process.env.MAIL_HOST,
+                            port: process.env.MAIL_PORT,
+                            secure: process.env.MAIL_SECURE,
+                            auth: {
+                                user: process.env.MAIL_USER,
+                                pass: process.env.MAIL_PASS,
+                            },
+                        },
+			    }
+            ```
+            dans les providers: [] résout le problème et renvoie l'erreur suivante :
+            - [x] Résolution de l'erreur : 
+            ```
+            Nest can't resolve dependencies of the AdminJwtAuthGuard (Reflector, ?). Please make sure that the argument AuthService at index [1] is available in the UsersModule context.
+            ```
+            fix en ajoutant authservice aux providers de users.module.ts
+            - [x] Rebuild du docker pour voir si les modifications ne perturbent pas le build up
+                - [x] Ok, mais phases 1/6 && 4/6 substantiellement plus longues (130s)
+            - [x] Résolution de l'erreur : 
+            ```
+            [Nest] 44648  - 06/12/2022 10:41:35   ERROR [ExceptionsHandler] Unknown authentication strategy "jwt"
+            Error: Unknown authentication strategy "jwt"
+            ```
+            check infructueux dans le log perso
+                - [x] Check de (https://stackoverflow.com/questions/60405308/nestjs-passport-jwt-unknown-strategy) & (https://github.com/nestjs/nest/issues/1868)*
+            Ajout de AuthModule dans les imports du e2e et le test de 401 passe.
+            Ajout du code pour tester le comportement de la route /reports. Test fonctionnel mais amène l'erreur suivante : 
+            - [x] Résolution de l'erreur : 
+            ```
+            ReferenceError: You are trying to `import` a file after the Jest environment has been torn down. From reports/reports.service.spec.ts.
+            ```
+            Mise en commentaire de la ligne 102 du fichier users.service.spec.ts
+        - [x] Comportement des tests atm :
+            - au 1er build docker, 2 tests FAIL
+            - pour tous les autres itérations de tests, 100% de PASS
 - [ ] Faire une passe commentaire descriptif utile et clair du code
     - [ ] Supprimer les commentaires de dev inutiles
     - [ ] Checker les coventions jsdoc
