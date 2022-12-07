@@ -154,12 +154,25 @@
         - [x] aldi-report.component.ts : suppression du code mort 
         - [x] aldi-report.component.spec.ts : suppression du code mort 
         - [x] lidl-report.component.ts : suppression du code mort 
-        - [x] lidl-report.component.spec.ts : suppression du code mort 
+        - [x] lidl-report.component.spec.ts : suppression du code mort
+        - [x] edit-ticket.component.spec.ts : suppression du code mort 
+        - [x] filter-store.pipe.ts : suppression du code mort & consoles log  && clean des imports non utilisés
     - [ ] Checker les coventions jsdoc
         - [ ] Voir (https://jsdoc.app/index.html, https://jsdoc.app/tags-returns.html)
     - [ ] Définir dans un document commun avec Théo & Anthony la manière de commenter 
     - [ ] Commenter le code 
+- [x] Veille polyfill (https://developer.mozilla.org/en-US/docs/Glossary/Polyfill)
+
+
+  
+**7 Décembre** 
+- [ ] Projet lidl sav tablettes : Structurer les infos & donner de la visibilité
+- [ ] Faire une passe commentaire descriptif utile et clair du code
+    - [ ] Commenter le code 
+    - [ ] Supprimer les commentaires de dev inutiles
+    - [ ] Checker les coventions jsdoc
+        - [ ] Voir (https://jsdoc.app/index.html, https://jsdoc.app/tags-returns.html)
+    - [ ] Définir dans un document commun avec Théo & Anthony la manière de commenter 
 
 - [ ] Parler avec Guillaume de la structure/architecture portail saas (keycloak) des projets pour uniformisation & harmonisation des projets en cours & à venir
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
-
