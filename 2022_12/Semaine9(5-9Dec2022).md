@@ -230,10 +230,11 @@
     - [x] Prise en main du serveur local
         - [x] Accès via l'explorer de fichier avec : H:\02_PROJETS\
         - [x] Stockage des éléments relatifs au suivi des tablettes dans : H:\02_PROJETS\01_KMO\60_SOFTWARE\00_WEB\Suivi tablettes
-        - [ ] Mettre à jour la tache correspondante sur jira
+        - [ ] Mettre à jour la tache correspondante à la getsion du parc tablettes sur jira
     - [ ] Checker les coventions jsdoc
         - [ ] Voir (https://jsdoc.app/index.html, https://jsdoc.app/tags-returns.html)
     - [ ] Définir dans un document commun avec Théo & Anthony la manière de commenter 
+- [ ] Prise en main de la tâche KW-293 mailing service
 
 - [ ] Parler avec Guillaume de la structure/architecture portail saas (keycloak) des projets pour uniformisation & harmonisation des projets en cours & à venir
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
