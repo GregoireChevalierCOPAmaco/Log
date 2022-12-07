@@ -241,6 +241,11 @@
     - [ ] Check des variables
     - [ ] Documentation
     - [x] Récupération du fichier smtp.old (enregistré dans Téléchargements)
+- [x] Réunion projet KMO vidéo
+- [x] Paramétrage du router asus
+    - id: AsusRouterAX56
+    - pw: !Cop@67?'
+
 
 - [ ] Parler avec Guillaume de la structure/architecture portail saas (keycloak) des projets pour uniformisation & harmonisation des projets en cours & à venir
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
