@@ -227,14 +227,20 @@
         // 	(await dbco()).close();
         // });
         ```
-    - [x] Prise en main du serveur local
-        - [x] Accès via l'explorer de fichier avec : H:\02_PROJETS\
-        - [x] Stockage des éléments relatifs au suivi des tablettes dans : H:\02_PROJETS\01_KMO\60_SOFTWARE\00_WEB\Suivi tablettes
-        - [ ] Mettre à jour la tache correspondante à la getsion du parc tablettes sur jira
     - [ ] Checker les coventions jsdoc
         - [ ] Voir (https://jsdoc.app/index.html, https://jsdoc.app/tags-returns.html)
     - [ ] Définir dans un document commun avec Théo & Anthony la manière de commenter 
+- [x] Reboot et install màjs windows
+- [x] Prise en main du serveur local
+    - [x] Accès via l'explorer de fichier avec : H:\02_PROJETS\
+    - [x] Stockage des éléments relatifs au suivi des tablettes dans : H:\02_PROJETS\01_KMO\60_SOFTWARE\00_WEB\Suivi tablettes
+    - [x] Mettre à jour la tache correspondant à la gestion du parc tablettes sur jira
+        - [x] Création des sous-tâches et remplissage du log
 - [ ] Prise en main de la tâche KW-293 mailing service
+    - [ ] Survol du code existant
+    - [ ] Check des variables
+    - [ ] Documentation
+    - [x] Récupération du fichier smtp.old (enregistré dans Téléchargements)
 
 - [ ] Parler avec Guillaume de la structure/architecture portail saas (keycloak) des projets pour uniformisation & harmonisation des projets en cours & à venir
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
