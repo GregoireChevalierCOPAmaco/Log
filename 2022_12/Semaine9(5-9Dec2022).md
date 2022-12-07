@@ -170,6 +170,67 @@
 - [ ] Faire une passe commentaire descriptif utile et clair du code
     - [ ] Commenter le code 
     - [ ] Supprimer les commentaires de dev inutiles
+        - [x] jwt.interceptor.ts : suppression du code mort
+        - [x] jest-mysql-config.js : suppression du code mort
+        - [x] pieces.controller.spec.ts : suppression du code mort
+        - [x] reports.controller.spec.ts : suppression de la fonction mock commentée :
+        ```
+        describe("Report.controller functions mocks", () => {
+            it('should call the create() function', async function () {
+                // const create = 
+                jest.spyOn(controller, 'create').mockReturnValue(Promise<Report>);
+                controller.create();
+                // const dto = 
+                // const result = await controller.create();
+                expect(controller.create).toHaveBeenCalled();
+            });
+        });
+        ```
+        - [x] reports.e2e-spec.ts : suppression du code mort && console logs
+        - [x] reports.module.ts : suppression du code mort 
+        - [x] reports.service.spec.ts : suppression du code mock service && suppression des imports non utilisés && des console logs
+        ```
+        // const spy = jest.spyOn(service, 'create');
+        // const rSpy = await service.create({
+        // 	reference: "1",
+        ...
+        ...
+        // 	ticket: undefined //targetTicket
+        // 	});
+        // expect(spy).toBeCalled();
+        ```
+        - [x] tickets.controller.spec.ts : suppression du code mort && suppression des imports non utilisés 
+        - [x] tickets.service.spec.ts : suppression des imports non utilisés 
+        - [x] users.service.spec.ts : suppression de console log
+        - [x] users.service.ts : suppression du code mort && suppression des imports non utilisés. Gardé en commentaire la throw error not found qui fait fail les tests au démarrage du docker
+        - [x] vehicles.controller.spec.ts : suppression du code mort && suppression des imports non utilisés 
+        - [x] dbco.spec.ts : suppression du code mort : 
+        ```
+        // it('should return a positive number', async () => {
+        // 	const connection = dbco();
+        // 	const count = (await connection).getRepository(Piece).count();
+        // 	console.log(count);
+        // 	expect(count).toBeGreaterThanOrEqual(1);
+        // 	(await dbco()).close();
+        // });
+
+        // it('should return a positive number', async () => {
+        // 	jest.setTimeout(10000);
+        // 	const dbco = async () => {
+        // 		const dbOptions = await getConnectionOptions(process.env.NODE_ENV);
+        // 		console.log(getConnectionOptions());
+        // 		return createConnection({...dbOptions});
+        // 	}
+        // 	const count = (await dbco()).getRepository(Piece).count();
+        // 	console.log(count);
+        // 	expect(count).toBeGreaterThanOrEqual(1);
+        // 	(await dbco()).close();
+        // });
+        ```
+    - [x] Prise en main du serveur local
+        - [x] Accès via l'explorer de fichier avec : H:\02_PROJETS\
+        - [x] Stockage des éléments relatifs au suivi des tablettes dans : H:\02_PROJETS\01_KMO\60_SOFTWARE\00_WEB\Suivi tablettes
+        - [ ] Mettre à jour la tache correspondante sur jira
     - [ ] Checker les coventions jsdoc
         - [ ] Voir (https://jsdoc.app/index.html, https://jsdoc.app/tags-returns.html)
     - [ ] Définir dans un document commun avec Théo & Anthony la manière de commenter 
