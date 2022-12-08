@@ -255,6 +255,11 @@
     - [ ] Survol du code existant
     - [ ] Check des variables
     - [ ] Documentation
+        - [ ] Check de (https://nest-modules.github.io/mailer/docs/mailer)
+        - [ ] Check de (https://notiz.dev/blog/send-emails-with-nestjs)
+        - [ ] Check de (https://www.learmoreseekmore.com/2022/05/part-1-email-sending-in-nestjs-app.html)
+        - [ ] Check de (https://github.com/nest-modules/mailer/issues/38)
+        - [ ] Check de (https://nodemailer.com/smtp/testing/)
     - [x] Récupération du fichier smtp.old (enregistré dans Téléchargements)
 
 - [ ] Parler avec Guillaume de la structure/architecture portail saas (keycloak) des projets pour uniformisation & harmonisation des projets en cours & à venir
