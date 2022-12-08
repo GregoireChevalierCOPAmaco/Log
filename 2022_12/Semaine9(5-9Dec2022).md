@@ -227,9 +227,6 @@
         // 	(await dbco()).close();
         // });
         ```
-    - [ ] Checker les coventions jsdoc
-        - [ ] Voir (https://jsdoc.app/index.html, https://jsdoc.app/tags-returns.html)
-    - [ ] Définir dans un document commun avec Théo & Anthony la manière de commenter 
 - [x] Reboot et install màjs windows
 - [x] Prise en main du serveur local
     - [x] Accès via l'explorer de fichier avec : H:\02_PROJETS\
@@ -246,6 +243,19 @@
     - id: AsusRouterAX56
     - pw: !Cop@67?'
 
+  
+**8 Décembre** 
+- [ ] Projet lidl sav tablettes : Structurer les infos & donner de la visibilité
+- [ ] Faire une passe commentaire descriptif utile et clair du code
+    - [ ] Commenter le code 
+    - [ ] Checker les coventions jsdoc
+        - [ ] Voir (https://jsdoc.app/index.html, https://jsdoc.app/tags-returns.html)
+    - [ ] Définir dans un document commun avec Théo & Anthony la manière de commenter 
+ [ ] Prise en main de la tâche KW-293 mailing service
+    - [ ] Survol du code existant
+    - [ ] Check des variables
+    - [ ] Documentation
+    - [x] Récupération du fichier smtp.old (enregistré dans Téléchargements)
 
 - [ ] Parler avec Guillaume de la structure/architecture portail saas (keycloak) des projets pour uniformisation & harmonisation des projets en cours & à venir
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
