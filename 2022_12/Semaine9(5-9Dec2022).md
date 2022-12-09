@@ -253,6 +253,7 @@
     - [ ] Définir dans un document commun avec Théo & Anthony la manière de commenter 
  [ ] Prise en main de la tâche KW-293 mailing service
     - [ ] Survol du code existant
+        - [x] Petite correction au passage du message lors de l'envoi de renouvellement de mdp
     - [ ] Check des variables
     - [ ] Documentation
         - [ ] Check de (https://nest-modules.github.io/mailer/docs/mailer)
@@ -261,6 +262,98 @@
         - [ ] Check de (https://github.com/nest-modules/mailer/issues/38)
         - [ ] Check de (https://nodemailer.com/smtp/testing/)
     - [x] Récupération du fichier smtp.old (enregistré dans Téléchargements)
+    controller, route, et fonction
+    - [x] Création d'un dossier et fichier ./src/mailtest/mailtest.service.tss
+    - [x] Écriture du code de base :
+    ```
+    import { MailerService } from "@nestjs-modules/mailer";
+    import { Injectable } from "@nestjs/common";
+    @Injectable()
+    export class MailtestService {
+        constructor(private readonly mailerService: MailerService){}
+    }
+    ```
+    - [x] Création de la méthode exampleMail() :
+    ```
+        public exampleMail(): void {
+        console.log(
+            "passage dans exampleMail();"
+        );
+        this.mailerService
+        .sendMail({
+        to: 'g.chevalier@cop-amaco.com', // list of receivers
+        from: 'copdevbot@gmail.com', // sender address
+        subject: 'Testing Nest MailerModule ✔', // Subject line
+        text: 'Hello mah boii', // plaintext body
+        html: '<b>Hello mah boii</b>', // HTML body content
+        })
+        .then(() => {})
+        .catch(() => {});
+    }
+    ```
+    - [x] Méthodologie infructueuse, retour au code existant
+        - [x] Création dans users.service.ts d'une méthode testMail() :
+        ```
+        testMail(): void {
+		console.log(
+			"Un email de test a été envoyé"
+		);
+		This.mailerService
+            .sendMail({
+                to: 'g.chevalier@cop-amaco.com',
+                from: 'copdevbot@gmail.com',
+                subject: 'Test mail',
+                html:
+                    '<h1>Bonjour</h1>\n' +
+                    '<p>Salut, ceci est un email de test. La bise.</p>'
+            })
+            .then((success) => {
+                console.log(success);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        }
+        ```
+        - [x] Appel de la méthode au moment du login
+        - [x] Rebuild du docker
+        - [x] Récupération des logs dans le docker back :
+        ```
+        test login
+        2022-12-08 15:34:41 kmo-api      | Un email de test a été envoyé
+        2022-12-08 15:35:02 kmo-api      | Error: connect ECONNREFUSED 64.233.184.109:465
+        2022-12-08 15:35:02 kmo-api      |     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1278:16) {
+        2022-12-08 15:35:02 kmo-api      |   errno: -111,
+        2022-12-08 15:35:02 kmo-api      |   code: 'ESOCKET',
+        2022-12-08 15:35:02 kmo-api      |   syscall: 'connect',
+        2022-12-08 15:35:02 kmo-api      |   address: '64.233.184.109',
+        2022-12-08 15:35:02 kmo-api      |   port: 465,
+        2022-12-08 15:35:02 kmo-api      |   command: 'CONN'
+        2022-12-08 15:35:02 kmo-api      | }
+        ``` 
+    - [ ] Recherches sur l'erreur retournée
+        - [x] Check de (https://stackoverflow.com/questions/71209582/error-connect-econnrefused-127-0-0-1587-nodemailer-gmail) && (https://gitter.im/nodemailer/nodemailer?at=5b82e9f79a32412e60a037bd) && (https://github.com/nodemailer/nodemailer/issues/889)
+- [x] Appel Mevin Govinda pour follow up sims
+- [x] Configuration routeur asus AX56 avec carte sim n° :2 826 202 551 681
+
+  
+**9 Décembre** 
+- [ ] Prise en main de la tâche KW-293 mailing service
+    - [ ] Survol du code existant 
+    - [ ] Check des variables
+    - [ ] Documentation
+        - [ ] Check de (https://nest-modules.github.io/mailer/docs/mailer)
+        - [ ] Check de (https://notiz.dev/blog/send-emails-with-nestjs)
+        - [ ] Check de (https://www.learmoreseekmore.com/2022/05/part-1-email-sending-in-nestjs-app.html)
+        - [ ] Check de (https://github.com/nest-modules/mailer/issues/38)
+        - [ ] Check de (https://nodemailer.com/smtp/testing/)
+- [ ] Création de la branche correspondante sur le git local
+    - [ ] Étude du retour console du kmo back dans le docker
+        - [ ] Recherches sur l'erreur retournée : 
+        ```
+
+        ```
+        - [x] Check de (https://stackoverflow.com/questions/71209582/error-connect-econnrefused-127-0-0-1587-nodemailer-gmail) && (https://gitter.im/nodemailer/nodemailer?at=5b82e9f79a32412e60a037bd) && (https://github.com/nodemailer/nodemailer/issues/889)
 
 - [ ] Parler avec Guillaume de la structure/architecture portail saas (keycloak) des projets pour uniformisation & harmonisation des projets en cours & à venir
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
