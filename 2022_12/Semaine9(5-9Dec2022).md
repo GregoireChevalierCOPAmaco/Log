@@ -347,22 +347,43 @@
     PS C:\Users\gchevalier\cleankmo2R3NI\KMO_WEB> node -v
     v18.12.1
     ```
-- [ ] Prise en main de la tâche KW-293 mailing service
-    - [ ] Survol du code existant 
-    - [ ] Check des variables
-    - [ ] Documentation
-        - [ ] Check de (https://nest-modules.github.io/mailer/docs/mailer)
-        - [ ] Check de (https://notiz.dev/blog/send-emails-with-nestjs)
-        - [ ] Check de (https://www.learmoreseekmore.com/2022/05/part-1-email-sending-in-nestjs-app.html)
-        - [ ] Check de (https://github.com/nest-modules/mailer/issues/38)
-        - [ ] Check de (https://nodemailer.com/smtp/testing/)
+- [x] Prise en main de la tâche KW-293 mailing service
+    - [x] Survol du code existant 
+    - [x] Check des variables
+    - [x] Documentation
+        - [x] Check de (https://nest-modules.github.io/mailer/docs/mailer)
+        - [x] Check de (https://notiz.dev/blog/send-emails-with-nestjs)
+        - [x] Check de (https://www.learmoreseekmore.com/2022/05/part-1-email-sending-in-nestjs-app.html)
+        - [x] Check de (https://github.com/nest-modules/mailer/issues/38)
+        - [x] Check de (https://nodemailer.com/smtp/testing/)
 - [x] Création de la branche correspondante sur le git local
-    - [ ] Étude du retour console du kmo back dans le docker
-        - [ ] Recherches sur l'erreur retournée : 
+    - [x] Étude du retour console du kmo back dans le docker
+        - [x] Recherches sur l'erreur retournée : 
         ```
-
+        | Error: connect ECONNREFUSED 173.194.76.108:465
+        2022-12-09 12:11:48 kmo-api      |     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1278:16) {
+        2022-12-09 12:11:48 kmo-api      |   errno: -111,
+        2022-12-09 12:11:48 kmo-api      |   code: 'ESOCKET',
+        2022-12-09 12:11:48 kmo-api      |   syscall: 'connect',
+        2022-12-09 12:11:48 kmo-api      |   address: '173.194.76.108',
+        2022-12-09 12:11:48 kmo-api      |   port: 465,
+        2022-12-09 12:11:48 kmo-api      |   command: 'CONN'
         ```
         - [x] Check de (https://stackoverflow.com/questions/71209582/error-connect-econnrefused-127-0-0-1587-nodemailer-gmail) && (https://gitter.im/nodemailer/nodemailer?at=5b82e9f79a32412e60a037bd) && (https://github.com/nodemailer/nodemailer/issues/889)
+        - [x] Manœuvre à effectuer : kill docker, changer de réseau wifi, relancer docker
+- [ ] Envoi d'email depuis @gmail vers @cop OK,  Objectif : envoyer un email depuis un @cop vers un autre @cop
+        - [x] Recherches sur l'erreur retournée : 
+        ```
+        kmo-api      | [Error: 140366816942016:error:1408F10B:SSL routines:ssl3_get_record:wrong version number:../deps/openssl/openssl/ssl/record/ssl3_record.c:332:
+        kmo-api      | ] {
+        kmo-api      |   library: 'SSL routines',
+        kmo-api      |   function: 'ssl3_get_record',
+        kmo-api      |   reason: 'wrong version number',
+        kmo-api      |   code: 'ESOCKET',
+        kmo-api      |   command: 'CONN'
+        kmo-api      | }
+        ```
+voir amazon service SES
 
 - [ ] Parler avec Guillaume de la structure/architecture portail saas (keycloak) des projets pour uniformisation & harmonisation des projets en cours & à venir
 - [ ] Penser à donner un justificatif de nouveau domicile à hubert
