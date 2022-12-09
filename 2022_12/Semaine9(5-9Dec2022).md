@@ -338,6 +338,15 @@
 
   
 **9 Décembre** 
+- [x] Échange avec Théo sur le verionnage des gestionnaires de dépendances
+- [x] Installation de nvm
+- [x] Mise à jour et harmonisation des versions node && npm :
+    ```
+    PS C:\Users\gchevalier\cleankmo2R3NI\KMO_WEB> npm -v
+    9.2.0
+    PS C:\Users\gchevalier\cleankmo2R3NI\KMO_WEB> node -v
+    v18.12.1
+    ```
 - [ ] Prise en main de la tâche KW-293 mailing service
     - [ ] Survol du code existant 
     - [ ] Check des variables
@@ -347,7 +356,7 @@
         - [ ] Check de (https://www.learmoreseekmore.com/2022/05/part-1-email-sending-in-nestjs-app.html)
         - [ ] Check de (https://github.com/nest-modules/mailer/issues/38)
         - [ ] Check de (https://nodemailer.com/smtp/testing/)
-- [ ] Création de la branche correspondante sur le git local
+- [x] Création de la branche correspondante sur le git local
     - [ ] Étude du retour console du kmo back dans le docker
         - [ ] Recherches sur l'erreur retournée : 
         ```
