@@ -1,0 +1,9 @@
+- À faire prochainement : plongée dans le code ATMOS
+- Créer une page MonMagasin pour ATMOS 
+- Créer une option silence pour le magasin / le device
+- Avoir une interface visuelle COP (côté dev/admin) pour tracker & DIAGNOSTIQUER les gateway, avec le display de leur 
+    - numéro de série
+    - localisation
+    - état de service
+    - datas diverses (etat de stockage, utilisation quoti/hebdo, infos système ...)
+- Voir avec Guillaume si possibilité de contacter chaque gateway pour récupération de data, ou si tout doit venir dee la part de la gateway
