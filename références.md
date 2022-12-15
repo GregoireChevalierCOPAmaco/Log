@@ -26,6 +26,8 @@ https://angular.io/guide/form-validation
 https://angular.io/guide/architecture-components
 https://angular.io/guide/testing-components-scenarios
 https://angular.io/guide/testing-services
+https://angular.io/guide/deployment (deploiement)
+https://webpack.js.org/guides/development/#webpack-dev-server
 **Nest**
 https://docs.nestjs.com/first-steps#platform
 https://stackoverflow.com/questions/63872093/accept-form-data-in-nest-js
