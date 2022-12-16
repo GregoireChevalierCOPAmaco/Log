@@ -28,6 +28,7 @@ https://angular.io/guide/testing-components-scenarios
 https://angular.io/guide/testing-services
 https://angular.io/guide/deployment (deploiement)
 https://webpack.js.org/guides/development/#webpack-dev-server
+https://wkrzywiec.medium.com/step-by-step-guide-how-integrate-keycloak-with-angular-application-d96b05f7dfdd (lien keycloak)
 **Nest**
 https://docs.nestjs.com/first-steps#platform
 https://stackoverflow.com/questions/63872093/accept-form-data-in-nest-js
