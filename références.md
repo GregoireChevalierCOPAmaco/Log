@@ -81,3 +81,5 @@ Behavior-driven development (BDD) is an Agile software development methodology i
 **commentaire du code**
 https://jsdoc.app/index.html
 https://jsdoc.app/tags-returns.html
+**CI & CD**
+https://medium.com/thelorry-product-tech-data/amazon-ec2-deployment-complete-ci-cd-pipeline-using-github-actions-and-aws-codedeploy-8a477123ff7e
