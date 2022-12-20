@@ -85,3 +85,7 @@ https://jsdoc.app/index.html
 https://jsdoc.app/tags-returns.html
 **CI & CD**
 https://medium.com/thelorry-product-tech-data/amazon-ec2-deployment-complete-ci-cd-pipeline-using-github-actions-and-aws-codedeploy-8a477123ff7e
+**Keycloak**
+https://www.keycloak.org/docs/latest/server_admin/index.html#proc-assigning-role-mappings_server_administration_guide
+**OAuth2.0_RFC**
+https://www.rfc-editor.org/rfc/rfc6749
