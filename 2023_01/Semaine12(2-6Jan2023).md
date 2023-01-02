@@ -1,0 +1,11 @@
+**2 Janvier**
+- [ ] Survol des tâches en cours 
+- [ ] Faire un mail à Mevin Govinda pour devis 8 tablettes
+- [ ] Récupérer les IMEI des 3 tablettes monteurs en utilisation
+    - [ ] Update de l'excel en conséquence
+- [ ] Kmo amazon SES service
+    - [ ] Méthode pret à facturer 
+    - [ ] Faire le template avec lien
+    - [ ] Trouver où appeler les méthodes
+- [ ] Rédaction du plan pour la semaine 1 2023
+- [ ] Rédaction du walkthrough atmos
