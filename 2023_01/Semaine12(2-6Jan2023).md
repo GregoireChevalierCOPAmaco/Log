@@ -1,11 +1,25 @@
 **2 Janvier**
+- [x] Réinstallation du poste de travail
+- [x] MàJ du système windows
 - [ ] Survol des tâches en cours 
-- [ ] Faire un mail à Mevin Govinda pour devis 8 tablettes
+- [x] Remise à jour sur les mails
+    - [x] Récupération des IMEI envoyés
+    - [x] Prise de connaissance des mails pascal
+    Réunion Kevin design ecran tft (UI/UX)
 - [ ] Récupérer les IMEI des 3 tablettes monteurs en utilisation
-    - [ ] Update de l'excel en conséquence
+    - [ ] Alexandre WANDRE
+    - [x] Frederic LIGER 
+    - [x] Nicolas RUXER
+    - [x] Update de l'excel en conséquence
+- [x] Purge des dockers
+- [x] Rebuild des dockers
+- [ ] Poursuite de l'inventaire des tablettes
+    - [ ] Nouvel arrivage de 3 tablettes
+        - [ ] Déterminer la provenance (utilisateur) de chaque tablette
+        - [ ] Identifier l'IMEI
+        - [ ] Faire l'état des lieux
 - [ ] Kmo amazon SES service
     - [ ] Méthode pret à facturer 
     - [ ] Faire le template avec lien
     - [ ] Trouver où appeler les méthodes
-- [ ] Rédaction du plan pour la semaine 1 2023
-- [ ] Rédaction du walkthrough atmos
+- [ ] Faire un mail à Mevin Govinda pour devis 8 tablettes
