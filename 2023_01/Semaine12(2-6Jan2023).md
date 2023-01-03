@@ -39,7 +39,12 @@
 - [ ] Kmo tentatives de connexion au localhost 4200 
     - [ ] Voir si les changements apportés aux routes n'interfèrent pas avec la connexion. 
         - Plongée dans le code
+    - [x] Check de (https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400#:~:text=The%20HyperText%20Transfer%20Protocol%20(HTTP,%2C%20or%20deceptive%20request%20routing).) & (https://stackoverflow.com/questions/56435467/how-to-fix-failed-to-load-resource-the-server-responded-with-a-status-of-400)
+    - [x] Application du correctif adapté
+    - [x] Echec, poursuite des recherches
+        - [ ]
 - [x] Gros rangement accueil & stockage bureau pour l'audit décathlon, de mercredi
+- [x] Repasse avec Kevin sur les textes en anglais du site
 - [x] Appel avec Mevin pour précisions devis & droits
 - [ ] Voir avec François Anthony pour activation du lien pour les drois d'accès au compte client orange
 - [ ] Kmo amazon SES service
