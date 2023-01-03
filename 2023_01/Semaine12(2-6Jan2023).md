@@ -13,13 +13,39 @@
     - [x] Update de l'excel en conséquence
 - [x] Purge des dockers
 - [x] Rebuild des dockers
-- [ ] Poursuite de l'inventaire des tablettes
-    - [ ] Nouvel arrivage de 3 tablettes
-        - [ ] Déterminer la provenance (utilisateur) de chaque tablette
-        - [ ] Identifier l'IMEI
-        - [ ] Faire l'état des lieux
+- [x] Poursuite de l'inventaire des tablettes
+    - [x] Nouvel arrivage de 3 tablettes
+        - [x] Déterminer la provenance (utilisateur) de chaque tablette
+        - [x] Identifier l'IMEI
+        - [x] Identifier le n° SIM
+        - [x] Faire l'état des lieux
+- [x] Faire un mail à Mevin Govinda pour devis 8 tablettes
+- [x] Rangement du bureau en prévision de l'audit décathlon, première passe
+- [ ] Kmo tentatives de connexion au localhost 4200
+    - [x] Connexion avec l'identifiant admin
+    - [ ] Connexion avec un user créé en base
+        - [ ] Renvoie Erreur du serveur. La console des outils de developpement browser affiche :
+        ```
+        Failed to load resource: the server responded with a status of 400 (Bad Request)
+        ```
 - [ ] Kmo amazon SES service
     - [ ] Méthode pret à facturer 
     - [ ] Faire le template avec lien
     - [ ] Trouver où appeler les méthodes
-- [ ] Faire un mail à Mevin Govinda pour devis 8 tablettes
+- [ ] Pesner à retester la tablette de Baugue
+
+
+**3 Janvier**
+- [ ] Kmo tentatives de connexion au localhost 4200 
+    - [ ] Voir si les changements apportés aux routes n'interfèrent pas avec la connexion. 
+        - Plongée dans le code
+    - [ ] Connexion avec un user créé en base
+        - [ ] Renvoie Erreur du serveur. La console des outils de developpement browser affiche :
+        ```
+        Failed to load resource: the server responded with a status of 400 (Bad Request)
+        ```
+- [ ] Kmo amazon SES service
+    - [ ] Méthode pret à facturer 
+    - [ ] Faire le template avec lien
+    - [ ] Trouver où appeler les méthodes
+- [ ] Pesner à retester la tablette de Baugue
