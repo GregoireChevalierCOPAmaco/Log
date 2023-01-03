@@ -39,11 +39,9 @@
 - [ ] Kmo tentatives de connexion au localhost 4200 
     - [ ] Voir si les changements apportés aux routes n'interfèrent pas avec la connexion. 
         - Plongée dans le code
-    - [ ] Connexion avec un user créé en base
-        - [ ] Renvoie Erreur du serveur. La console des outils de developpement browser affiche :
-        ```
-        Failed to load resource: the server responded with a status of 400 (Bad Request)
-        ```
+- [x] Gros rangement accueil & stockage bureau pour l'audit décathlon, de mercredi
+- [x] Appel avec Mevin pour précisions devis & droits
+- [ ] Voir avec François Anthony pour activation du lien pour les drois d'accès au compte client orange
 - [ ] Kmo amazon SES service
     - [ ] Méthode pret à facturer 
     - [ ] Faire le template avec lien
