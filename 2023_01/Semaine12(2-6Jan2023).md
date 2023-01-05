@@ -68,6 +68,8 @@
             - [x] Essais en environnement test
             - [ ] Essais en environnement dev
         - [x] Reprise de doc
+- [x] Prise de connaissance du document pour la projection à BPI
+    - [ ] Parcourir le fichier pptx de présentation
 - [ ] Kmo amazon SES service
     - [ ] Méthode pret à facturer
     - [ ] Faire un service de templates à appeler pour alléger le fichier
@@ -84,8 +86,42 @@
     - [ ] Faire le template avec lien
         - [ ] Refactoriser le code pour minimiser les lignes
     - [ ] Trouver où appeler les méthodes
-        - [ ] Appel de la fonction createSendPasswordEmailCommand
-        - [ ] Appel de la fonction createSendReportEmailCommand
+        - [x] Appel de la fonction createSendPasswordEmailCommand
+        - [x] Appel de la fonction createSendReportEmailCommand
+        - [ ] Appel de la fonction createSendTicketEmailCommand
+        - [ ] Appel de la fonction createSendModifiedTicketEmailCommand
+        - [ ] Appel de la fonction createSendDeletedTicketEmailCommand
+        - [ ] Appel de la fonction createSendUnassignedTicketEmailCommand
+        - [ ] Appel de la fonction méthode prêt à facturer
+
+**4 Janvier**
+- [ ] Trouver pourquoi c'est François ANTHONY à qui le mail de confirmation a été envoyé
+- [ ] Voir avec Pascal pour l'activation de la sim "clé 4G"
+- [ ] Reprise du passage sur l'observation d'atmos
+    - [x] Passage sur keycloak
+        - [x] Reprise du code
+            - [x] Essais en environnement test
+            - [ ] Essais en environnement dev
+        - [x] Reprise de doc
+    - [ ] Parcourir le fichier pptx de présentation
+- [ ] Kmo amazon SES service
+    - [ ] Méthode pret à facturer
+    - [ ] Faire un service de templates à appeler pour alléger le fichier
+        - [ ] Faire le template de la fonction createSendPasswordEmailCommand
+        - [ ] Faire le template de la fonction createSendReportEmailCommand
+        - [ ] Faire le template de la fonction createSendTicketEmailCommand
+        - [ ] Faire le template de la fonction createSendModifiedTicketEmailCommand
+        - [ ] Faire le template de la fonction createSendDeletedTicketEmailCommand
+        - [ ] Faire le template de la fonction createSendUnassignedTicketEmailCommand
+        - [ ] Faire le template de la fonction méthode prêt à facturer
+            - [ ] Trouver le lien à renseigner pour rediriger vers ...
+            - [ ] Intégrer le lien
+- Audit Décathlon & alarme incendie
+    - [ ] Faire le template avec lien
+        - [ ] Refactoriser le code pour minimiser les lignes
+    - [ ] Trouver où appeler les méthodes
+        - [x] Appel de la fonction createSendPasswordEmailCommand
+        - [x] Appel de la fonction createSendReportEmailCommand
         - [ ] Appel de la fonction createSendTicketEmailCommand
         - [ ] Appel de la fonction createSendModifiedTicketEmailCommand
         - [ ] Appel de la fonction createSendDeletedTicketEmailCommand
