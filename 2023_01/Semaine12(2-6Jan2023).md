@@ -94,7 +94,7 @@
         - [ ] Appel de la fonction createSendUnassignedTicketEmailCommand
         - [ ] Appel de la fonction méthode prêt à facturer
 
-**4 Janvier**
+**5 Janvier**
 - [ ] Trouver pourquoi c'est François ANTHONY à qui le mail de confirmation a été envoyé
 - [ ] Voir avec Pascal pour l'activation de la sim "clé 4G"
 - [ ] Reprise du passage sur l'observation d'atmos
@@ -104,26 +104,41 @@
             - [ ] Essais en environnement dev
         - [x] Reprise de doc
     - [ ] Parcourir le fichier pptx de présentation
-- [ ] Kmo amazon SES service
-    - [ ] Méthode pret à facturer
-    - [ ] Faire un service de templates à appeler pour alléger le fichier
-        - [ ] Faire le template de la fonction createSendPasswordEmailCommand
-        - [ ] Faire le template de la fonction createSendReportEmailCommand
-        - [ ] Faire le template de la fonction createSendTicketEmailCommand
-        - [ ] Faire le template de la fonction createSendModifiedTicketEmailCommand
-        - [ ] Faire le template de la fonction createSendDeletedTicketEmailCommand
-        - [ ] Faire le template de la fonction createSendUnassignedTicketEmailCommand
-        - [ ] Faire le template de la fonction méthode prêt à facturer
-            - [ ] Trouver le lien à renseigner pour rediriger vers ...
-            - [ ] Intégrer le lien
-- Audit Décathlon & alarme incendie
-    - [ ] Faire le template avec lien
-        - [ ] Refactoriser le code pour minimiser les lignes
-    - [ ] Trouver où appeler les méthodes
-        - [x] Appel de la fonction createSendPasswordEmailCommand
-        - [x] Appel de la fonction createSendReportEmailCommand
-        - [ ] Appel de la fonction createSendTicketEmailCommand
-        - [ ] Appel de la fonction createSendModifiedTicketEmailCommand
-        - [ ] Appel de la fonction createSendDeletedTicketEmailCommand
-        - [ ] Appel de la fonction createSendUnassignedTicketEmailCommand
-        - [ ] Appel de la fonction méthode prêt à facturer
+- [ ] Kmo amazon SES service : 
+    - [x] Méthode pret à facturer
+        - [x] Ajout des paramètres 
+        ```
+        fromAddress,
+        technicianAddress,
+        afterSalesAddress,
+        redirectionLink,
+        ticket,
+        bill
+        ```
+    - [x] Faire un service de templates à appeler pour alléger le fichier
+        - [x] Test d'import de fichier html, retour d'erreur :
+        ```
+        Cannot find module './test.hmtl' or its corresponding type declarations
+        ```
+        - [x] Suivi de doc (https://docs.nestjs.com/techniques/mvc#template-rendering)
+        - [x] Installation handlebars
+            - [X] Dans kmo-back, :
+            ```
+            npm install --save hbs
+            ```
+            - [x] Conflit entre NestExpressApplication (prôné pour hbs) et notre application INestApplication
+        - [x] Import du template de test
+            - [x] Abandon du templating
+    - [x] Mise en pause de la création de la méthode createReadyToBillEmailCommand() pour cause de : le prêt à facturer n a pas été codé
+    - [ ] Fichier ticket-service.ts
+        - [ ] Suppression des appels aux méthodes { MailerService } from '@nestjs-modules/mailer';
+        - [ ] Application des méthodes du service ses-mailing
+    - [ ] Fichier reports-service.ts
+        - [ ] Suppression des appels aux méthodes { MailerService } from '@nestjs-modules/mailer';
+        - [ ] Application des méthodes du service ses-mailing
+    - [ ] Fichier pieces-service.ts
+        - [ ] Suppression des appels aux méthodes { MailerService } from '@nestjs-modules/mailer';
+        - [ ] Application des méthodes du service ses-mailing
+    - [ ] Fichier users.controller.spec.ts
+        - [ ] Suppression des appels aux méthodes { MailerService } from '@nestjs-modules/mailer';
+        - [ ] Application des méthodes du service ses-mailing
