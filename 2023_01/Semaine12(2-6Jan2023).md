@@ -155,12 +155,46 @@
         ```
         && Suppression des déclarations et imports lignes 14 & 31
         - [x] Application des méthodes du service ses-mailing
-    - [ ] Fichier reports-service.ts
-        - [ ] Suppression des appels aux méthodes { MailerService } from '@nestjs-modules/mailer';
-        - [ ] Application des méthodes du service ses-mailing
-    - [ ] Fichier pieces-service.ts
-        - [ ] Suppression des appels aux méthodes { MailerService } from '@nestjs-modules/mailer';
-        - [ ] Application des méthodes du service ses-mailing
-    - [ ] Fichier users.controller.spec.ts
-        - [ ] Suppression des appels aux méthodes { MailerService } from '@nestjs-modules/mailer';
-        - [ ] Application des méthodes du service ses-mailing
+    - [x] Fichier reports-service.ts
+        - [x] Suppression des appels aux méthodes { MailerService } from '@nestjs-modules/mailer';
+        Lignes 14, 26 & m0 lignes de méthode lignes 40-73
+        - [x] Application des méthodes du service ses-mailing
+        - [x] Suppression des déclarations & imports dans le fichier reports.module.ts 
+        - [x] Suppression des MAILEROPTIONS, imports et paramètres dans le fichier reports.module.ts 
+        - [x] Suppression des MAILEROPTIONS, imports et paramètres dans le fichier reports.controller.spec.ts 
+    - [x] Fichier pieces.module.ts
+        - [x] Suppression des déclarations & imports dans le fichier 
+        - [x] Suppression des MAILEROPTIONS, imports et paramètres
+    - [x] Fichier pieces.controller.spec.ts
+        - [x] Suppression des déclarations & imports dans le fichier 
+        - [x] Suppression des MAILEROPTIONS, imports et paramètres
+    - [x] Fichier users.controller.spec.ts
+        - [x] Suppression des appels aux méthodes { MailerService } from '@nestjs-modules/mailer';
+    - [x] Cleaner les imports de MailerService
+        - [x] auth.module.ts
+            - [x] Suppression des MailerService, MAILEROPTIONS, imports et paramètres
+        - [x] regional-management.controller.spec.ts
+            - [x] Suppression des MailerService, MAILEROPTIONS, imports et paramètres
+        - [x] statistics.service.spec.ts
+            - [x] Suppression des MailerService, MAILEROPTIONS, imports et paramètres
+            - [x] Suppression de import { getRepository } from 'typeorm';
+        - [x] statistics.controller.spec.ts
+            - [x] Suppression des MailerService, MAILEROPTIONS, imports et paramètres & provide usevalue jest.fn()
+        - [x] stores.controller.spec.ts
+            - [x] Suppression des MailerService, MAILEROPTIONS, imports et paramètres
+        - [x] tickets.controller.spec.ts
+            - [x] Suppression des MailerService, MAILEROPTIONS, imports et paramètres
+        - [x] tickets.service.spec.ts
+            - [x] Suppression des MailerService, MAILEROPTIONS, imports et paramètres
+        - [x] users.module.ts
+            - [x] Suppression des MailerService, MAILEROPTIONS, imports et paramètres
+        - [x] users.service.spec.ts
+            - [x] Suppression des MailerService, MAILEROPTIONS, imports et paramètres
+        - [x] vehicles.controller.spec.ts
+            - [x] Suppression des MailerService, MAILEROPTIONS, imports et paramètres
+    - [ ] reports.service.spec.ts
+        - [ ] Refaire les tests avec les appels à amazonSES
+    - [ ] users.controller.spec.ts
+        - [ ] Refaire les tests avec les appels à amazonSES
+    - [ ] Lancement des tests back pour assurance que le tout fonctionne encore comme attendu
+    - [ ] Rebuild docker & relance des tests back pour assurance que le tout fonctionne encore comme attendu
