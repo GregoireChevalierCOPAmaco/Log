@@ -192,9 +192,25 @@
             - [x] Suppression des MailerService, MAILEROPTIONS, imports et paramètres
         - [x] vehicles.controller.spec.ts
             - [x] Suppression des MailerService, MAILEROPTIONS, imports et paramètres
+    - [ ] Lancement des tests back pour assurance que le tout fonctionne encore comme attendu
+        - [x] Résolution de l'erreur : 
+        ```
+        Nest can't resolve dependencies of the TicketsService (UserRepository, TicketRepository, ?). Please make sure that the argument AmazonSesService at index [2] is available in the TicketsModule context.
+        kmo-api        |
+        kmo-api        | Potential solutions:
+        kmo-api        | - If AmazonSesService is a provider, is it part of the current TicketsModule?
+        kmo-api        | - If AmazonSesService is exported from a separate @Module, is that module imported within TicketsModule? 
+        ```
+        Ajout de l'import et du provider d'AmazonSESService dans le fichier tickets.modules.ts
+        - [x] Résolution de l'erreur : 
+        ```
+        ERROR [TypeOrmModule] Unable to connect to the database. Retrying (4)...
+        Error: ER_ACCESS_DENIED_ERROR: Access denied for user ''@'172.19.0.1' (using password: NO)
+        ```
+    - [x] Docker prune -a -f
+    - [ ] Rebuild docker & relance des tests back pour assurance que le tout fonctionne encore comme attendu
     - [ ] reports.service.spec.ts
         - [ ] Refaire les tests avec les appels à amazonSES
     - [ ] users.controller.spec.ts
         - [ ] Refaire les tests avec les appels à amazonSES
-    - [ ] Lancement des tests back pour assurance que le tout fonctionne encore comme attendu
-    - [ ] Rebuild docker & relance des tests back pour assurance que le tout fonctionne encore comme attendu
+    - [ ] Virer le MailerModule de l'app.module.ts
