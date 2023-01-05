@@ -130,9 +130,31 @@
         - [x] Import du template de test
             - [x] Abandon du templating
     - [x] Mise en pause de la création de la méthode createReadyToBillEmailCommand() pour cause de : le prêt à facturer n a pas été codé
-    - [ ] Fichier ticket-service.ts
-        - [ ] Suppression des appels aux méthodes { MailerService } from '@nestjs-modules/mailer';
-        - [ ] Application des méthodes du service ses-mailing
+    - [x] Fichier ticket-service.ts
+        - [x] Import du service amazon ses et déclaration : 
+        ```
+		private readonly amazonSesService: AmazonSesService
+        ```
+        - [x] Suppression des appels aux méthodes { MailerService } from '@nestjs-modules/mailer';
+        ligne 266 : 
+        ```
+        this.mailerService
+        .sendMail({
+            to: user.email,
+            from: 'a.wilhelm@cop-amaco.com',
+            subject: 'Nouveau Ticket',
+            html:
+                '<p>Un nouveaux ticket vient de vous être assigné </strong></p>' +
+                '<p><strong>Pour le : </strong></p>' +
+                ticket.dateOfIntervention +
+                "<p><strong>A l'adresse :  </strong></p>" +
+                ticket.store.city +
+                ' ' +
+                ticket.store.address,
+        })
+        ```
+        && Suppression des déclarations et imports lignes 14 & 31
+        - [x] Application des méthodes du service ses-mailing
     - [ ] Fichier reports-service.ts
         - [ ] Suppression des appels aux méthodes { MailerService } from '@nestjs-modules/mailer';
         - [ ] Application des méthodes du service ses-mailing
