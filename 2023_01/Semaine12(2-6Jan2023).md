@@ -217,9 +217,11 @@
 
 
 **6 Janvier**
+- [x] Préparation à la réunion
+    - [x] Parcourir le fichier pptx de présentation
+- [x] Réunion 2h + avec BPI.
 - [ ] Trouver pourquoi c'est François ANTHONY à qui le mail de confirmation a été envoyé
 - [ ] Voir avec Pascal pour l'activation de la sim "clé 4G"
-- [ ] Parcourir le fichier pptx de présentation
 - [ ] Kmo amazon SES service : 
     - [ ] Lancement des tests back pour assurance que le tout fonctionne encore comme attendu
         - [ ] Résolution de l'erreur : 
@@ -227,7 +229,40 @@
         ERROR [TypeOrmModule] Unable to connect to the database. Retrying (4)...
         Error: ER_ACCESS_DENIED_ERROR: Access denied for user ''@'172.19.0.1' (using password: NO)
         ```
-    - [ ] Rebuild docker & relance des tests back pour assurance que le tout fonctionne encore comme attendu
+        - [x] Changement dans le fichier app.module.ts : renseignement des valeurs locales en dur :
+        ```
+        TypeOrmModule.forRoot({
+			type: 'mariadb',
+			host: 'KMO-mysql', //process.env.MYSQL_HOST,
+			port: 3306,
+			username: 'KMO',//process.env.MYSQL_USER, mettre les valeurs en dur ?
+			password: 'KMO15022022', //process.env.MYSQL_PASSWORD,
+			database: 'KMO', //process.env.MYSQL_DATABASE,
+			entities: [Checkout, User, Store, Data],
+			autoLoadEntities: true,
+			synchronize: false,
+		}),
+        ```
+        - [x] Rebuild du docker, et erreur :
+        ```
+         ERROR [TypeOrmModule] Unable to connect to the database. Retrying (1)...
+        Error: getaddrinfo ENOTFOUND KMO-mysql
+        ```
+        - [x] Modification du champ host en kmo-mysql au lieu de KMO-mysql
+    - [x] Rebuild docker & relance des tests back pour assurance que le tout fonctionne encore comme attendu
+        - [ ] Rapports d'erreur : 8 failed
+            - Huit erreurs de  Cannot find module 'src/ses-mailing/amazon-ses.service' from ... dû à la présence de src.
+        - [ ] Remplacement du chemin en dur de import { AmazonSesService } from 'src/ses-mailing/amazon-ses.service'; à ... ./../ses-mailing... sur les fichiers
+            - [ ] reports/reports.service.ts & fichiers associés
+            - [ ] tickets/tickets.service.ts & fichiers associés
+        - [ ] Résolution du test  users/users.controller.spec.ts
+            ```
+            ● Test suite failed to run
+
+                src/users/users.controller.spec.ts:18:78 - error TS2554: Expected 3 arguments, but got 4.
+
+                18   usersService = new UsersService(userRepository, jwtService, mailerService, amazonService);
+            ```
     - [ ] reports.service.spec.ts
         - [ ] Refaire les tests avec les appels à amazonSES
     - [ ] users.controller.spec.ts
