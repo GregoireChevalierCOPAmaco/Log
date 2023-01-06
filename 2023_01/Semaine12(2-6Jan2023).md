@@ -214,3 +214,22 @@
     - [ ] users.controller.spec.ts
         - [ ] Refaire les tests avec les appels à amazonSES
     - [ ] Virer le MailerModule de l'app.module.ts
+
+
+**6 Janvier**
+- [ ] Trouver pourquoi c'est François ANTHONY à qui le mail de confirmation a été envoyé
+- [ ] Voir avec Pascal pour l'activation de la sim "clé 4G"
+- [ ] Parcourir le fichier pptx de présentation
+- [ ] Kmo amazon SES service : 
+    - [ ] Lancement des tests back pour assurance que le tout fonctionne encore comme attendu
+        - [ ] Résolution de l'erreur : 
+        ```
+        ERROR [TypeOrmModule] Unable to connect to the database. Retrying (4)...
+        Error: ER_ACCESS_DENIED_ERROR: Access denied for user ''@'172.19.0.1' (using password: NO)
+        ```
+    - [ ] Rebuild docker & relance des tests back pour assurance que le tout fonctionne encore comme attendu
+    - [ ] reports.service.spec.ts
+        - [ ] Refaire les tests avec les appels à amazonSES
+    - [ ] users.controller.spec.ts
+        - [ ] Refaire les tests avec les appels à amazonSES
+    - [ ] Virer le MailerModule de l'app.module.ts
