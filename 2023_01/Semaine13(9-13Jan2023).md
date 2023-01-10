@@ -1,5 +1,4 @@
 **9 Janvier**
-
 - [x] Point rapide avec Frank : objectif prise en main du atmos pour changement image accueil
 - [x] Mise entre parenthèses du kmo pour se concentrer sur atmos
 - [ ] Reprise du projet atmos
@@ -34,7 +33,42 @@
             - [x] OK pour le placeholder resposive, on attendra d'avoir des visuels définitifs pour la suite.
     - [ ] Trouver comment déployer des modifications sur la beta d'atmos
         - [ ] Poursuite du survol de l'application
-        - [ ] Trouver la doc fournie par ITS
+        - [x] Trouver la doc fournie par ITS
+            - [x] Le readme ne fournit pas toutes les infos dont j'ai besoin
+            - [ ] Voir l'accès au EC2 AWS
+            - [ ] Essai de création d'image
+                - [x] Lancement de la commande : 
+                ```
+                docker buildx build --platform linux/amd64,linux/arm64 -t registry.prod.its-future.com/296-cop-amaco/projet/portail-client:latest-preprod --push -f Dockerfile.beta .
+                ```
+                Retour d'erreur :
+                ```
+                [+] Building 0.0s (0/0)
+                ERROR: multiple platforms feature is currently not supported for docker driver. Please switch to a different driver (eg. "docker buildx create --use")
+                ```
+                - [ ] Résolution en cours
+                    - [x] Check de (https://forums.docker.com/t/error-multiple-platforms-feature-is-currently-not-supported-for-docker-driver/124811/10) & 
+                    (https://github.com/docker/build-push-action/blob/e27bcee4eb9e7b4bc168418e3364c4482120393a/docs/advanced/cache.md) &
+                    (https://docs.docker.com/build/drivers/docker/)
+                    - [x] Documentation sur docker driver & concepts connexes (https://docs.docker.com/engine/reference/commandline/buildx_create/#driver)
 - [x] Appel Johan Zmiri
     - [x] Ré-activation du compte outlook monteur de johan via les active directories par Frank
     - [x] Mail à Johan pour linker le ppt cleemy, outlook & l'informer de la suite.
+
+
+**10 Janvier**
+- [ ] Reprise du projet atmos
+    - [ ] Trouver comment déployer des modifications sur la beta d'atmos
+        - [ ] Poursuite du survol de l'application
+            - [ ] Essai de création d'image
+                - [x] Lancement de la commande : 
+                ```
+                docker buildx build --platform linux/amd64,linux/arm64 -t registry.prod.its-future.com/296-cop-amaco/projet/portail-client:latest-preprod --push -f Dockerfile.beta .
+                ```
+                Retour d'erreur :
+                ```
+                [+] Building 0.0s (0/0)
+                ERROR: multiple platforms feature is currently not supported for docker driver. Please switch to a different driver (eg. "docker buildx create --use")
+                ```
+                - [ ] Résolution en cours
+            - [ ] Essais d'accès au EC2 AWS
