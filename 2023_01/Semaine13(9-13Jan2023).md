@@ -70,5 +70,32 @@
                 [+] Building 0.0s (0/0)
                 ERROR: multiple platforms feature is currently not supported for docker driver. Please switch to a different driver (eg. "docker buildx create --use")
                 ```
-                - [ ] Résolution en cours
+                - [x] Résolution en cours
+                    - [x] Check de (https://developer.broadleafcommerce.com/starter-projects/docker-configuration), rubrique : Understand existing sample Docker build configuration & (https://docs.docker.com/engine/reference/commandline/buildx_create/)
+                    - [x] Sur conseil de Guillaume, modification de la commande sans la partie amd : 
+                    ```
+                    docker buildx build --platform linux/arm64 -t registry.prod.its-future.com/296-cop-amaco/projet/portail-client:latest-prod -t registry.prod.its-future.com/296-cop-amaco/projet/portail-client:1.0.4 --push -f Dockerfile .
+                    ```
+                    au lieu de :
+                    ```
+                    docker buildx build --platform **linux/amd64,**linux/arm64 -t registry.prod.its-future.com/296-cop-amaco/projet/portail-client:latest-prod -t registry.prod.its-future.com/296-cop-amaco/projet/portail-client:1.0.4 --push -f Dockerfile .
+                    ```
+                - [ ] Retour d'erreur :
+                ```
+                ERROR: failed to solve: rpc error: code = Unknown desc = failed to solve with frontend dockerfile.v0: failed to read dockerfile: open /var/lib/docker/tmp/buildkit-mount3250200511/Dockerfile.beta: no such file or directory
+                ```
+                & résolution en cours
+                    - [ ] Installation des émulateurs pour la création d'images
+                    - [ ] Installation des dépendances 
             - [ ] Essais d'accès au EC2 AWS
+    - [ ] Application du code page d'accueil au projet keycloak github
+        - [ ] Cloner le projet keycloak
+        - [ ] Installer les dépendances
+        - [ ] Créer une nouvelle branche
+        - [ ] Refaire le code local dans ce projet
+        - [ ] Push sur le github
+        - [ ] Tenter de créer une image docker
+    - [ ] Mail à Olivier ITS pour infos sur
+        - comment mettre l'app en dev
+        - avoir une doc complète, pas juste un readme
+        - procédure à suivre pour la création d'image docker
