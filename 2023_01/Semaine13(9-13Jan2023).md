@@ -85,11 +85,34 @@
                 ERROR: failed to solve: rpc error: code = Unknown desc = failed to solve with frontend dockerfile.v0: failed to read dockerfile: open /var/lib/docker/tmp/buildkit-mount3250200511/Dockerfile.beta: no such file or directory
                 ```
                 & résolution en cours
-                    - [ ] Installation des émulateurs pour la création d'images
-                    - [ ] Installation des dépendances 
+                - [x] Check de (https://stackoverflow.com/questions/66839443/how-to-enable-disable-buildkit-in-docker) : mettre le 
+                ```
+                {
+                "builder": {
+                    "gc": {
+                    "defaultKeepStorage": "20GB",
+                    "enabled": true
+                    }
+                },
+                "experimental": false,
+                "features": {
+                    "buildkit": true <<----------------
+                }
+                ```
+                à false pourrait résoudre le problème
+                - [ ] Essai de la commande avec le buildkit à false
+                - [ ] Installation des émulateurs pour la création d'images
+                - [ ] Installation des dépendances 
             - [ ] Essais d'accès au EC2 AWS
     - [ ] Application du code page d'accueil au projet keycloak github
-        - [ ] Cloner le projet keycloak
+        - [x] Cloner le projet keycloak
+        - [ ] Installer les packages
+            - [ ] atmos-server
+                - [ ] Renvoie une erreur :
+                ```
+                Error response from daemon: Head "https://ghcr.io/v2/cop-amaco/atmos-server/manifests/latest": unauthorized
+                ```
+                Résolution en cours
         - [ ] Installer les dépendances
         - [ ] Créer une nouvelle branche
         - [ ] Refaire le code local dans ce projet
