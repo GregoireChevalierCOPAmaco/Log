@@ -155,4 +155,11 @@
     - comment mettre l'app en dev
     - avoir une doc complète, pas juste un readme
     - procédure à suivre pour la création d'image docker
-
+- [x] Retour discussion avec frank : l'objectif est de réussir à déployer sur nos serveurs aws le code ITS. Pour ce faire j'ai besoin de construire des images docker et donc de réaliser une CD adaptée à notre déploiement
+- [x] Changement d'approche : décision prise de réaliser une mini cd d'un projet simple pour apprendre à construire, utiliser et déployer des images docker à partir d'un code existant
+- [ ] Application :
+    - [ ] Créer une base keycloak
+    - [ ] Créer un front basique
+    - [ ] Créer un back basique
+    - [ ] Construire une image docker
+    - [ ] Tester son déploiement sur notre aws
