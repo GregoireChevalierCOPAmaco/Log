@@ -155,6 +155,7 @@
     - comment mettre l'app en dev
     - avoir une doc complète, pas juste un readme
     - procédure à suivre pour la création d'image docker
+- [x] Reprise du mail apres retour FRANK & envoi
 - [x] Retour discussion avec frank : l'objectif est de réussir à déployer sur nos serveurs aws le code ITS. Pour ce faire j'ai besoin de construire des images docker et donc de réaliser une CD adaptée à notre déploiement
 - [x] Changement d'approche : décision prise de réaliser une mini cd d'un projet simple pour apprendre à construire, utiliser et déployer des images docker à partir d'un code existant
 - [ ] Application :
@@ -162,4 +163,7 @@
     - [ ] Créer un front basique
     - [ ] Créer un back basique
     - [ ] Construire une image docker
-    - [ ] Tester son déploiement sur notre aws
+    - [ ] Tester son déploiement sur notre aws (architecture = arm)
+- [x] Re changement : Après retour mail d'olivier, il est possible d'adapter la ci cd existante. Selon lui il faut juste adapter les commandes CLI (cf portail-socle-1.0.4\README.md lignes 34 - 40)
+- [ ] Reprise de doc sur docker buildx build 
+    - [ ] Check de (https://docs.docker.com/engine/reference/commandline/buildx_build/)
