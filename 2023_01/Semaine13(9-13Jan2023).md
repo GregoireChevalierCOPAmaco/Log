@@ -127,33 +127,32 @@
 **11 Janvier**
 - [ ] Reprise du projet atmos
     - [ ] Application du code page d'accueil au projet keycloak github
-        - [ ] Commit de la nouvelle branche
+        - [x] Commit de la nouvelle branche
         - [ ] Push sur le github
+            - [x] Retour d'erreur : 
+            ```
+            ERROR: Write access to repository not granted.
+            fatal: Could not read from remote repository.
+
+            Please make sure you have the correct access rights
+            ```
+            - [ ] En attente que Théo me donne les droits
     - [ ] Trouver comment déployer des modifications sur la beta d'atmos 
         - [ ] Essai de création d'image
-                - [ ] Retour d'erreur :
+                - [x] Retour d'erreur :
                 ```
                 ERROR: failed to solve: rpc error: code = Unknown desc = failed to solve with frontend dockerfile.v0: failed to read dockerfile: open /var/lib/docker/tmp/buildkit-mount3250200511/Dockerfile.beta: no such file or directory
                 ```
                 & résolution en cours
-                    - [ ] Check de (https://stackoverflow.com/questions/66839443/how-to-enable-disable-buildkit-in-docker) : mettre le 
+                    - [x] La commande cherche le fichier Dockerfile.beta qui est dans le dossier portail-client, lancement de la même commande mais dans le dossier concerné
+                    - [x] Création de l'image
+                    - [x] Fail dans la procédure au niveau du :
                     ```
-                    {
-                    "builder": {
-                        "gc": {
-                        "defaultKeepStorage": "20GB",
-                        "enabled": true
-                        }
-                    },
-                    "experimental": false,
-                    "features": {
-                        "buildkit": true <<----------------
-                    }
+                    => ERROR pushing registry.prod.its-future.com/296-cop-a  7.9s
                     ```
-                    à false pourrait résoudre le problème
-                - [ ] Essai de la commande avec le buildkit à false
                 - [ ] Installation des émulateurs pour la création d'images
-- [ ] Mail à Olivier ITS pour infos sur
+- [x] Mail à Olivier ITS pour infos sur
     - comment mettre l'app en dev
     - avoir une doc complète, pas juste un readme
     - procédure à suivre pour la création d'image docker
+
