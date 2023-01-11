@@ -166,4 +166,27 @@
     - [ ] Tester son déploiement sur notre aws (architecture = arm)
 - [x] Re changement : Après retour mail d'olivier, il est possible d'adapter la ci cd existante. Selon lui il faut juste adapter les commandes CLI (cf portail-socle-1.0.4\README.md lignes 34 - 40)
 - [ ] Reprise de doc sur docker buildx build 
-    - [ ] Check de (https://docs.docker.com/engine/reference/commandline/buildx_build/)
+    - [x] Check de (https://docs.docker.com/engine/reference/commandline/buildx_build/)
+    - [x] Décomposition de la commande pour construire l'image front
+        - [x] buildx build
+        - [x] --platform (https://docs.docker.com/engine/reference/commandline/buildx_build/#platform)
+        - [x] -t  (https://docs.docker.com/engine/reference/commandline/build/#tag-an-image--t)  abrévation du --tag
+        - [x] --push
+        - [x] -f Dockerfile.beta  le flag -f est suivi du nom du dockerfile, tout simplement.
+    - [x] Essai avec une commande épurée : 
+    ```
+    docker buildx build --platform linux/arm64 -f Dockerfile.beta .
+    ```
+    Se placer dans le dossier portail-client. La commande passe, le build se fait, mais pour aterrir où ? Je ne le vois pas dans le docker desktop
+    - [ ] Trouver où arrive le build. 
+        - [x] Essai avec le flag output dans le dossier local :
+        ```
+        => ERROR exporting to client                                 0.0s
+        => => copying files 2.49kB                                   0.0s 
+        ------
+        > exporting to client:
+        ------
+        ERROR: failed to solve: error from receiver: failed to symlink local\bin\arch: symlink \bin\busybox loc
+        ```
+        Windows n'autorise pas d'écrire dans ses fichiers.
+        - [ ] Check de (https://stackoverflow.com/questions/41744551/where-does-the-output-for-docker-build-go#:~:text=They%20get%20stored%20as%20a,%2Fvar%2Flib%2Fdocker%20.)
