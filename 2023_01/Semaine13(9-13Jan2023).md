@@ -114,11 +114,46 @@
                 ```
                 Résolution en cours
         - [ ] Installer les dépendances
-        - [ ] Créer une nouvelle branche
-        - [ ] Refaire le code local dans ce projet
+        - [x] Créer une nouvelle branche
+        - [x] Refaire le code local dans ce projet
         - [ ] Push sur le github
         - [ ] Tenter de créer une image docker
     - [ ] Mail à Olivier ITS pour infos sur
         - comment mettre l'app en dev
         - avoir une doc complète, pas juste un readme
         - procédure à suivre pour la création d'image docker
+
+
+**11 Janvier**
+- [ ] Reprise du projet atmos
+    - [ ] Application du code page d'accueil au projet keycloak github
+        - [ ] Commit de la nouvelle branche
+        - [ ] Push sur le github
+    - [ ] Trouver comment déployer des modifications sur la beta d'atmos 
+        - [ ] Essai de création d'image
+                - [ ] Retour d'erreur :
+                ```
+                ERROR: failed to solve: rpc error: code = Unknown desc = failed to solve with frontend dockerfile.v0: failed to read dockerfile: open /var/lib/docker/tmp/buildkit-mount3250200511/Dockerfile.beta: no such file or directory
+                ```
+                & résolution en cours
+                    - [ ] Check de (https://stackoverflow.com/questions/66839443/how-to-enable-disable-buildkit-in-docker) : mettre le 
+                    ```
+                    {
+                    "builder": {
+                        "gc": {
+                        "defaultKeepStorage": "20GB",
+                        "enabled": true
+                        }
+                    },
+                    "experimental": false,
+                    "features": {
+                        "buildkit": true <<----------------
+                    }
+                    ```
+                    à false pourrait résoudre le problème
+                - [ ] Essai de la commande avec le buildkit à false
+                - [ ] Installation des émulateurs pour la création d'images
+- [ ] Mail à Olivier ITS pour infos sur
+    - comment mettre l'app en dev
+    - avoir une doc complète, pas juste un readme
+    - procédure à suivre pour la création d'image docker
