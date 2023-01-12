@@ -198,8 +198,8 @@
         - [x] Push sur le github
 - [ ] Objectif : Réaliser le déploiement du projet atmos 
     - [x] Récupérer le code keycloak de github
-    - [ ] Récupérer le code client de github
-        - [ ] Installation du package trouvé ici (https://github.com/COP-AMACO/kmo-keycloak/pkgs/container/atmos-client)
+    - [x] Récupérer le package client de github
+        - [x] Installation du package trouvé ici (https://github.com/COP-AMACO/kmo-keycloak/pkgs/container/atmos-client)
             - [x] Positionnement dans ./kmo-keycloak & lancement de :
             ```
             docker pull ghcr.io/cop-amaco/atmos-client:latest
@@ -208,7 +208,7 @@
             ```
             Error response from daemon: Head "https://ghcr.io/v2/cop-amaco/atmos-client/manifests/latest": unauthorized
             ```
-            - [ ] Résolution de l'unauthorized
+            - [x] Résolution de l'unauthorized
                 - [x] Création de personnal accesses sur github avc 1 an de due date : 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
                 - [x] Lancement de commande : 
                 ```
@@ -245,12 +245,25 @@
                     dckr_pat_SJhaZHcSDGaZyTVaS1R2GNhY0A0
                     ```
                     - [x] Reboot docker, reboot pc
-                - [ ] Nouvel essai de commande docker
-    - [ ] Récupérer le code serveur de github
-    - [ ] Recréer la CI sur github actions au lieu de gitlab
+                - [x] Nouvel essai de commande docker : 
+                ```
+                echo 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 | docker login ghcr.io -u gregoirechevaliercopamaco --password-stdin
+                ```
+                retour console : 
+                ```
+                Error response from daemon: Get "https://ghcr.io/v2/": denied: denied
+                ```
+                - [x] Nouvel essai de commande docker : 
+                ```
+                echo "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" | docker login ghcr.io -u "gregoirechevaliercopamaco" --password-stdin
+                ```
+                sans succès
+                - [x]Re-création d'un personal access token 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 & reprise de toute la procédure.
+    - [x] Récupérer le package serveur de github
     - [ ] Construire les images docker
         - [ ] Reprise de doc sur docker buildx build 
         - [ ] Construction image keycloak 
         - [ ] Construction image client 
         - [ ] Construction image serveur 
+    - [ ] Recréer la CI sur github actions au lieu de gitlab
     - [ ] Déploiement sur AWS
