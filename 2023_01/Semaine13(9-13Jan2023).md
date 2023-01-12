@@ -190,3 +190,20 @@
         ```
         Windows n'autorise pas d'écrire dans ses fichiers.
         - [ ] Check de (https://stackoverflow.com/questions/41744551/where-does-the-output-for-docker-build-go#:~:text=They%20get%20stored%20as%20a,%2Fvar%2Flib%2Fdocker%20.)
+
+
+**12 Janvier**
+- [ ] Reprise du projet atmos
+    - [x] Application du code page d'accueil au projet keycloak github
+        - [x] Push sur le github
+- [ ] Objectif : Réaliser le déploiement du projet atmos 
+    - [ ] Récupérer le code keycloak de github
+    - [ ] Récupérer le code client de github
+    - [ ] Récupérer le code serveur de github
+    - [ ] Recréer la CI sur github actions au lieu de gitlab
+    - [ ] Construire les images docker
+        - [ ] Reprise de doc sur docker buildx build 
+        - [ ] Construction image keycloak 
+        - [ ] Construction image client 
+        - [ ] Construction image serveur 
+    - [ ] Déploiement sur AWS
