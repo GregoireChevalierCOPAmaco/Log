@@ -197,8 +197,55 @@
     - [x] Application du code page d'accueil au projet keycloak github
         - [x] Push sur le github
 - [ ] Objectif : Réaliser le déploiement du projet atmos 
-    - [ ] Récupérer le code keycloak de github
+    - [x] Récupérer le code keycloak de github
     - [ ] Récupérer le code client de github
+        - [ ] Installation du package trouvé ici (https://github.com/COP-AMACO/kmo-keycloak/pkgs/container/atmos-client)
+            - [x] Positionnement dans ./kmo-keycloak & lancement de :
+            ```
+            docker pull ghcr.io/cop-amaco/atmos-client:latest
+            ```
+            et retour console : 
+            ```
+            Error response from daemon: Head "https://ghcr.io/v2/cop-amaco/atmos-client/manifests/latest": unauthorized
+            ```
+            - [ ] Résolution de l'unauthorized
+                - [x] Création de personnal accesses sur github avc 1 an de due date : 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
+                - [x] Lancement de commande : 
+                ```
+                echo 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 | docker login ghcr.io -u GregoireChevalierCOPAmaco --password-stdin
+                 ```
+                 dans le dossier ./kmo-keycloak
+                Retour d'erreur : 
+                ```
+                Error saving credentials: error storing credentials - err: exit status 1, out: `Post "http://ipc/registry/credstore-updated": context deadline exceeded (Client.Timeout exceeded while awaiting headers)`
+                ```
+                - [x] Recherches sur l'erreur
+                    - [x] Essai de ```docker login``` avec retour : 
+                    ```
+                    Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
+                    ```
+                    - [x] Création de profil user sur https://hub.docker.com/ :
+                    username :GregoireChevalierCOPAmaco
+                    mail : g.chevalier@cop-amaco.com
+                    pw : procédure habituelle
+                    - [x] Essai de ```docker login``` avec retour : 
+                    ```
+                    Error response from daemon: Get "https://registry-1.docker.io/v2/": unauthorized: incorrect username or password
+                    ```
+                    - [x] Reboot docker
+                    - [x] il s'avère que mon nom d'user docker est passé en lowercase. Username = gregoirechevaliercopamaco
+                    - [x] Essai de ```docker login``` avec retour : 
+                    ```
+                    Error saving credentials: error storing credentials - err: exit status 1, out: `Post "http://ipc/registry/credstore-updated": context deadline exceeded (Client.Timeout exceeded while awaiting headers)`
+                    ```
+                    - [x] Suivi de (https://www.techrepublic.com/article/resolve-docker-timeout-headers-error/)
+                    - [x] Dans le docker hub sur inernet, account settings/security/access token, création d'un access token nommé Default token all accesses. Puis lancement des commandes :
+                    ```
+                    docker login -u gregoirechevaliercopamaco
+                    dckr_pat_SJhaZHcSDGaZyTVaS1R2GNhY0A0
+                    ```
+                    - [x] Reboot docker, reboot pc
+                - [ ] Nouvel essai de commande docker
     - [ ] Récupérer le code serveur de github
     - [ ] Recréer la CI sur github actions au lieu de gitlab
     - [ ] Construire les images docker
