@@ -20,6 +20,10 @@ Avoir un portail d'accès général sous forme de point d'entrée login qui donn
 Reste à voir si le keycloak servira à supporter toute la partie administration, gestion des rôles, utilisateurs, mailing & automatisation, ou s'il ne servira qu'à assurer la partie connexion & utilisateurs
 Penser à définir une convention de nommage dans le cas où tous les utilisateurs (& rôles associés) de toutes les applications seraient gérables via keycloak
 
+Tableau ci-dessous **obsolète**.
+Il faut penser le service global comme "**à la carte**". Un utilisateur pourra accéder à différentes **permissions** selon son nombre/niveau de **souscriptions**.
+Le projet a pour but d'assurer la mise à jour à distance automatiquement et proposer un genre de newsletter à sous souscripteurs
+
 | Utilisateur       | Description                  | Accès Portail Admin COP | Modifs Portail Admin COP | Accès ATMOS | Accès Mon magasin ATMOS | Modifs Admin ATMOS | Accès KMO Assist | Modifs Admin KMO Assist | Accès FLEG |
 | ----------------- | ---------------------------- | ----------------------- | ------------------------ | ----------- | ----------------------- | ------------------ | ---------------- | ----------------------- | ---------- | 
 | Superadmin        | Équipe digitale COP          | Oui                     | Oui                      | Oui         | Oui                     | Oui                | Oui              | Oui                     | Oui        |
