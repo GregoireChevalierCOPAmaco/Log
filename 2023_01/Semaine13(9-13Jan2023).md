@@ -276,10 +276,23 @@
 
 
 
-**12 Janvier**
+**13 Janvier**
 - [ ] Reprise du projet atmos
 - [ ] Objectif : Réaliser le déploiement du projet atmos 
     - [ ] Recréer la CI sur github actions au lieu de gitlab
+        - [x] Créer un repo
+        - [x] Cloner le repo en local
+        - [x] Ajouter le code
+        - [ ] Voir si ça marche
+            - [x] Le docker-compose renvoie 
+            ```
+            Error response from daemon: Head "https://ghcr.io/v2/cop-amaco/atmos-client/manifests/latest": denied: denied
+            ```
+        - [ ] Commit & push
+            - [ ] Création de la CI
+                - [ ] Décortiquage de la CI gitlab présente
+                    - [ ]
+- [x] Réunion avec Frank sur la vision d'ensemble du projet global : avoir un portail d'accès à tous les services & applications. Voir Synthèse de réunion 13Janvier
     - [ ] Déploiement sur AWS
     - [ ] Construire les images docker
         - [ ] Reprise de doc sur docker buildx build 
