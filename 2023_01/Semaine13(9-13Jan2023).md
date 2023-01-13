@@ -261,9 +261,28 @@
                 - [x]Re-création d'un personal access token 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 & reprise de toute la procédure.
     - [x] Récupérer le package serveur de github
     - [ ] Construire les images docker
+        - [x] Docker system prune -a -f pour repartir d'une base saine sans image parasite
+        - [x] Suppression de tous les volumes
         - [ ] Reprise de doc sur docker buildx build 
         - [ ] Construction image keycloak 
         - [ ] Construction image client 
         - [ ] Construction image serveur 
     - [ ] Recréer la CI sur github actions au lieu de gitlab
     - [ ] Déploiement sur AWS
+- [x] Refactorer le code css keycloak accueil pour une image simple +s logo cop
+    - [x] Faire en sorte que l'image soit responsive
+    - [x] Faire disparaître l'image au dela d'un certain zoom
+    - [x] Ajouter le logo COP sur l'image en vp horizontal et au dessus des forms en vp vertical
+
+
+
+**12 Janvier**
+- [ ] Reprise du projet atmos
+- [ ] Objectif : Réaliser le déploiement du projet atmos 
+    - [ ] Recréer la CI sur github actions au lieu de gitlab
+    - [ ] Déploiement sur AWS
+    - [ ] Construire les images docker
+        - [ ] Reprise de doc sur docker buildx build 
+        - [ ] Construction image keycloak 
+        - [ ] Construction image client 
+        - [ ] Construction image serveur 

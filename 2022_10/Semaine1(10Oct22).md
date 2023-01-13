@@ -547,7 +547,7 @@ kmo-mysql    | '/usr/bin/mysql_secure_installation'
             Démarrage ok mais erreur de co à la db :
             ```
             [Nest] 3896 
-            ERROR [TypeOrmModule] Unable to connect to the database. Retrying (1)...
+             Retrying (1)...
             Error: getaddrinfo ENOTFOUND KMO-mysql
             ```
             **Pas la peine de lancer Nest vu qu'il est lancé (API) depuis le docker**  
