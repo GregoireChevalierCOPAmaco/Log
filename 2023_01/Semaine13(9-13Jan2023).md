@@ -279,6 +279,11 @@
 **13 Janvier**
 - [ ] Reprise du projet atmos
 - [ ] Objectif : Réaliser le déploiement du projet atmos 
+    - [ ] Renseignement sur la CI CD
+        - [x] Check de (https://docs.github.com/fr/actions/learn-github-actions/understanding-github-actions) & (https://docs.github.com/en/actions/quickstart)
+        - [x] Création d'un repo test pour les actions
+        - [x] Création d'une github action template
+        - [ ] Poursuite de recherches sur la CI (https://docs.github.com/fr/actions/automating-builds-and-tests/about-continuous-integration)
     - [ ] Recréer la CI sur github actions au lieu de gitlab
         - [x] Créer un repo
         - [x] Cloner le repo en local
@@ -291,8 +296,11 @@
         - [ ] Commit & push
             - [ ] Création de la CI
                 - [ ] Décortiquage de la CI gitlab présente
-                    - [ ]
-- [x] Réunion avec Frank sur la vision d'ensemble du projet global : avoir un portail d'accès à tous les services & applications. Voir Synthèse de réunion 13Janvier
+                    - [ ] include
+                    - [ ] .global
+                    - [ ] .develop
+                    - [ ] .preprod
+                    - [ ] .production la vision d'ensemble du projet global : avoir un portail d'accès à tous les services & applications. Voir Synthèse de réunion 13Janvier
     - [ ] Déploiement sur AWS
     - [ ] Construire les images docker
         - [ ] Reprise de doc sur docker buildx build 
