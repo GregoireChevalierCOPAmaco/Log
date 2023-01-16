@@ -284,6 +284,7 @@
         - [x] Création d'un repo test pour les actions
         - [x] Création d'une github action template
         - [ ] Poursuite de recherches sur la CI (https://docs.github.com/fr/actions/automating-builds-and-tests/about-continuous-integration)
+        - [ ] Poursuite de recherches sur le lien github actions & docker (https://docs.github.com/en/actions/creating-actions/creating-a-docker-container-action) & (https://docs.github.com/en/actions/creating-actions/dockerfile-support-for-github-actions)
     - [ ] Recréer la CI sur github actions au lieu de gitlab
         - [x] Créer un repo
         - [x] Cloner le repo en local
