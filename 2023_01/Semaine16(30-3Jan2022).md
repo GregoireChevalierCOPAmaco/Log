@@ -1,0 +1,13 @@
+**30 Janvier**
+- [ ] Objectif du jour : réaliser un lancement opérationnel de docker/keycloak/postgres/angular depuis un docker-compose
+- [ ] Accéder à l'application angular depuis un protail keycloak
+    - [x] Démarrage du container keycloak en local
+    - [ ] Accéder aux outils d'administration
+        - [ ] Résolution du problème d'identifiants incorrects/user not found
+    - [ ] Mise en commun de la base de données avec keycloak
+        - [ ] Reprise du fichier sql 
+        - [ ] Rebuild de l'image avec ```docker build -t templategithubactionspostgresql -f ./docker/Dockerfile.postgresql .```
+    - [ ] Implémentation d'une authentification keycloak 
+- [ ] Implémentation d'un module d'authentification angularkeycloak
+- [ ] Déploiement avec github actions
+- [ ] Déploiement avec AWS
