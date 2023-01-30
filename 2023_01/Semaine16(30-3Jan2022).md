@@ -240,6 +240,37 @@
 
                 }
                 ```
+                - [x] Complétion du fichier login.module.ts comme suit :
+                ```
+                import { NgModule, APP_INITIALIZER } from '@angular/core';
+                import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
+                import { LoginGuard } from './login.guard';
+                import { initializer } from './keycloak-initializer';
+                import { LoginService } from './service/login.service';
+                import { CommonModule } from '@angular/common';
+
+
+                @NgModule({
+                declarations: [],
+                imports: [
+                    KeycloakAngularModule,
+                    CommonModule
+                ],
+                providers: [
+                    {
+                        provide: APP_INITIALIZER,
+                        useFactory: initializer,
+                        multi: true,
+                        deps: [KeycloakService]
+                    },
+                    LoginGuard,
+                    LoginService
+                ]
+                })
+                export class LoginModule { }
+                ```
+                - [x] Ajout du module de login dans l'app.module.ts
+                - [ ] Configuration du module de routing 
         - [ ] Survol du projet atmos pour voir comment sont définis les users en dur dans la db
         - [ ] Création de 3 users en dur via commande docker compose
         - [ ] Attribuer des roles / realms différents aux trois users
