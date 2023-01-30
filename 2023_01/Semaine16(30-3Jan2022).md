@@ -105,6 +105,141 @@
             realm : angular-keycloak-testRealm
             client : app-angular-keycloak,
             même résultat mais le lien << Back to applicaiton mène bien à l'app angular 4200
+        - [ ] Sécurisation de l'application angular avec keycloak
+            - [x] Check de (https://medium.com/keycloak/secure-angular-app-with-keycloak-63ec934e5093)
+            - [ ] Suivi des instructions 
+                - [x] Création d'une branche sur le projet git TemplateGitHubActions : ```git checkout -b testKeycloakJs```
+                - [x] Installation de keycloak-js :
+                ```
+                cd .\app-angular-keycloak\
+                npm i keycloak-js --save
+                ```
+                - [x] Ajout dans le tsconfig.ts de :
+                ```
+                "allowSyntheticDefaultImports": true,
+                ```
+                à la rubrique compilerOptions
+                Trop d'erreurs, pas assez d'angles de résolution.
+               - [x] Check de (https://plainenglish.io/blog/secure-an-angular-single-page-application-with-keycloak-cdbe5026881e) 
+            - [ ] Suivi des instructions 
+                - [x] Création d'un fichier keycloak.config.ts & remplissage comme suit :
+                ```
+                import { KeycloakConfig } from "keycloak-js";
+
+                const keycloakConfig: KeycloakConfig = {
+                    url: 'http://localhost:4200/',
+                    realm: 'angular-keycloak-postgresRealm',
+                    clientId: 'app-angular-keycloak-postgres'
+                };
+
+                export default keycloakConfig;
+                ```
+                - [x] Création d'un module login avec ```ng generate module login```
+                - [x] Création d'un fichier  keycloak-initializer.ts rempli comme suit :
+                ```
+                import { KeycloakOptions, KeycloakService } from "keycloak-angular";
+
+                export function initializer(keycloak: KeycloakService): () => Promise<boolean> {
+                        const options: KeycloakOptions = {
+                            // config: :
+                            loadUserProfileAtStartUp:true,
+                            initOptions: {
+                                onLoad: 'check-sso',
+                                checkLoginIframe: false
+                            },
+                            bearerExcludedUrls: []
+                        };
+
+                        return () => keycloak.init(options);
+                }
+                ```
+                - [x] Création d'un service login avec ```ng generate service login/service/Login``` et remplissage comme suit :
+                ```
+                import { Injectable } from '@angular/core';
+                import { KeycloakService } from 'keycloak-angular';
+                import { KeycloakProfile, KeycloakTokenParsed } from 'keycloak-js';
+
+                @Injectable({
+                providedIn: 'root'
+                })
+                export class LoginService {
+
+                constructor(private keycloakService: KeycloakService) {}
+
+                public getLoggedUser(): KeycloakTokenParsed | undefined {
+                    try {
+                    const userDetails: KeycloakTokenParsed | undefined = this.keycloakService.getKeycloakInstance()
+                        .idTokenParsed;
+                    return userDetails;
+                    } catch (e) {
+                    console.error("Exception", e);
+                    return undefined;
+                    }
+                }
+
+                public isLoggedIn() : Promise<boolean> {
+                    return this.keycloakService.isLoggedIn();
+                }
+
+                public loadUserProfile() : Promise<KeycloakProfile> {
+                    return this.keycloakService.loadUserProfile();
+                }
+
+                public login() : void {
+                    this.keycloakService.login();
+                }
+
+                public logout() : void {
+                    this.keycloakService.logout(window.location.origin);
+                }
+
+                public redirectToProfile(): void {
+                    this.keycloakService.getKeycloakInstance().accountManagement();
+                }
+
+                public getRoles(): string[] {
+                    return this.keycloakService.getUserRoles();
+                }
+
+                }
+                ```
+                - [x] Création d'un fichier  login.guard.ts rempli comme suit :
+                ```
+                import { Injectable } from '@angular/core';
+                import { ActivatedRouteSnapshot, RouterStateSnapshot, Router, UrlTree } from '@angular/router';
+                import { KeycloakAuthGuard, KeycloakService } from 'keycloak-angular';
+
+                @Injectable()
+                export class LoginGuard extends KeycloakAuthGuard {
+
+                constructor(protected override router: Router, protected override keycloakAngular: KeycloakService) {
+                    super(router, keycloakAngular);
+                }
+
+
+                public async isAccessAllowed(route: ActivatedRouteSnapshot,state: RouterStateSnapshot): Promise<boolean | UrlTree> {
+
+                    // Force the user to log in if currently unauthenticated.
+                    if (!this.authenticated) {
+                    await this.keycloakAngular.login({
+                        redirectUri: window.location.origin + state.url,
+                    });
+                    }
+
+                    // Get the roles required from the route.
+                    const requiredRoles = route.data['roles'];
+
+                    // Allow the user to to proceed if no additional roles are required to access the route.
+                    if (!(requiredRoles instanceof Array) || requiredRoles.length === 0) {
+                    return true;
+                    }
+
+                    // Allow the user to proceed if all the required roles are present.
+                    return requiredRoles.every((role) => this.roles.includes(role));
+                }
+
+                }
+                ```
         - [ ] Survol du projet atmos pour voir comment sont définis les users en dur dans la db
         - [ ] Création de 3 users en dur via commande docker compose
         - [ ] Attribuer des roles / realms différents aux trois users
