@@ -82,6 +82,29 @@
         - [x] Relance de docker compose up : les logs montrent ```INFO  [org.keycloak.services] (main) KC-SERVICES0009: Added user 'admin' to realm 'master'``` et le keycloak admin est fonctionnel & atteignable.
         Moralité : On a juste besoin de dockeriser l'app angular, postgres & keycloak sont des images templates de base.
     - [ ] Mise en commun de la base de données avec keycloak
+        - [ ] Survol du log pour voir comment avoir accès à l'app angular depuis keycloak
+            - [x] Création d'un user via l'admin keycloak:
+            g.chevalier
+            pw123
+            - [x] Création d'un user via l'admin keycloak:
+            t.test
+            pw123
+            - [x] Connection à http://localhost:8080/realms/angular-keycloak-postgresRealm/account/#/ avec les ids : accès au profil OK
+            - [x] Essai d'accès au projet angular depuis https://www.keycloak.org/app/ avec les ids :
+            keycloak url : http://localhost:8080
+            realm : angular-keycloak-postgresRealm
+            client : angular-keycloak-postgresRealm
+            Puis sign in : 
+                ```
+                We are sorry...
+                Invalid parameter: redirect_uri
+                « Back to Application
+                ```
+            - [x] Reprise des champs avec les bonnes infos :
+            keycloak url : http://localhost:8080
+            realm : angular-keycloak-testRealm
+            client : app-angular-keycloak,
+            même résultat mais le lien << Back to applicaiton mène bien à l'app angular 4200
         - [ ] Survol du projet atmos pour voir comment sont définis les users en dur dans la db
         - [ ] Création de 3 users en dur via commande docker compose
         - [ ] Attribuer des roles / realms différents aux trois users
