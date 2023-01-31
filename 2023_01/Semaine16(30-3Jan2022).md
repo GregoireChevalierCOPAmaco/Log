@@ -279,3 +279,21 @@
 - [ ] Déploiement avec github actions
 - [ ] Déploiement avec AWS
 - [ ] Aller voir (https://link.medium.com/K4tiifEKYwb) sur conseil de Franck
+
+
+**31 Janvier**
+- [x] Rangement pour retour Théo & Anthony
+- [x] Accéder à l'application angular depuis un protail keycloak
+    - [x] Accéder aux outils d'administration
+        - [x] Résolution du problème d'identifiants incorrects/user not found
+- [ ] Objectif du jour : accéder à l'app angular ou non selon l'user loggé et ses droits
+    - [ ] Sécurisation de l'application angular avec keycloak
+        - [ ] Finition du module login
+                - [ ] Configuration du module de routing 
+        - [ ] Survol du projet atmos pour voir comment sont définis les users en dur dans la db
+        - [ ] Création de 3 users en dur via commande docker compose
+        - [ ] Attribuer des roles / realms différents aux trois users
+    - [ ] Implémentation d'une authentification keycloak 
+- [ ] Implémentation d'un module d'authentification angularkeycloak
+- [ ] Déploiement avec github actions
+- [ ] Déploiement avec AWS
