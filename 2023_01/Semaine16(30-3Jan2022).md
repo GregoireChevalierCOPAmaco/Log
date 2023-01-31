@@ -289,10 +289,56 @@
 - [ ] Objectif du jour : accéder à l'app angular ou non selon l'user loggé et ses droits
     - [ ] Sécurisation de l'application angular avec keycloak
         - [ ] Finition du module login
-                - [ ] Configuration du module de routing 
-        - [ ] Survol du projet atmos pour voir comment sont définis les users en dur dans la db
-        - [ ] Création de 3 users en dur via commande docker compose
-        - [ ] Attribuer des roles / realms différents aux trois users
+            - [x] Reprise de (https://plainenglish.io/blog/secure-an-angular-single-page-application-with-keycloak-cdbe5026881e)
+                - [x] Création d'un *landing module* avec ```ng generate module landing```
+                - [x] Création du routing pour le landing avec ```ng generate module landing/landing-routing --flat --module=landing```
+                - [x] Création d'un *landing component* avec ```ng generate module landing```
+                - [x] Répétition des trois commandes précédentes pour un module admin
+                - [x] Répétition des trois commandes précédentes pour un module user
+                - [x] Configuration du module de routing :
+                ```
+                import { NgModule } from '@angular/core';
+                import { RouterModule, Routes } from '@angular/router';
+                import { LoginComponent } from './login/login.component';
+                import { LoginGuard } from './login/login.guard';
+
+                const routes: Routes = [
+                // { path: '', redirectTo: 'login', pathMatch: 'full' },
+                // { path: 'login', component: LoginComponent },
+                {
+                    path: '',
+                    redirectTo: 'landing',
+                    pathMatch: 'full'
+                },
+                {
+                    path: 'landing',
+                    loadChildren: () => import('./landing/landing.module').then(m => m.LandingModule),
+                },
+                {
+                    path: 'admin',
+                    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+                    canActivate: [LoginGuard],
+                    data: { roles: ["admin", "user"] }
+                },
+                {
+                    path: 'user',
+                    loadChildren: () => import('./user/user.module').then(m => m.UserModule),
+                    canActivate: [LoginGuard],
+                    data: { roles: ["user"] }
+                }
+                ];
+
+                @NgModule({
+                imports: [RouterModule.forRoot(routes)],
+                exports: [RouterModule]
+                })
+                export class AppRoutingModule { }
+                ```
+                - [x] Lancement du projet avec ```ng serve```
+                - [x] Non successful : stash de la branche et revert
+    - [ ] Survol du projet atmos pour voir comment sont définis les users en dur dans la db
+    - [ ] Création de 3 users en dur via commande docker compose
+    - [ ] Attribuer des roles / realms différents aux trois users
     - [ ] Implémentation d'une authentification keycloak 
 - [ ] Implémentation d'un module d'authentification angularkeycloak
 - [ ] Déploiement avec github actions
