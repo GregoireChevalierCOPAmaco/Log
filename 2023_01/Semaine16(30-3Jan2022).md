@@ -374,6 +374,7 @@ TypeOrmModule.forRoot({
     - [x] Résolution :  dans le app.module.ts du back, changement de ```synchronize: false``` à ```synchronize: true,```
     - [x] Résolution du problème de [Object object] dans les mails : changement de ```ticket``` à ```ticket.reference```les cas échéants dans amazon-ses.service.ts
     - [x] Nouveau commit et push après cleanup demandé par review de théo
+- [x] Réunion kmo équipe digitale
 - [ ] Objectif du jour : accéder à l'app angular ou non selon l'user loggé et ses droits
     - [ ] Sécurisation de l'application angular avec keycloak
         - [ ] Finition du module login
