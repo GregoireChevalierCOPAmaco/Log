@@ -375,10 +375,21 @@ TypeOrmModule.forRoot({
     - [x] Résolution du problème de [Object object] dans les mails : changement de ```ticket``` à ```ticket.reference```les cas échéants dans amazon-ses.service.ts
     - [x] Nouveau commit et push après cleanup demandé par review de théo
 - [x] Réunion kmo équipe digitale
+- [ ] Inventaire des tablettes fonctionnelles dans le stock bureau
+    - [ ] Installation de l'appli sur les tablettes
+        - [x] Récupération du code wifi guest : @Gu3St99!@
+        - [x] Insstallation de AppTester OK
+        - [ ] Installation de kmo : reste à faire
 - [ ] Objectif du jour : accéder à l'app angular ou non selon l'user loggé et ses droits
+    - [ ] Git clone d'un projet keycloak vierge ? Pour travailler en local
     - [ ] Sécurisation de l'application angular avec keycloak
         - [ ] Finition du module login
         - [ ] Survol du projet atmos pour voir comment sont définis les users en dur dans la db
+        - [ ] Survol du projet atmos pour voir comment marche le lien angular/keycloak pour l'auth
+            - [x] Check de (https://github.com/COP-AMACO/atmos/blob/main/atmos-client/src/app/business/util/auth-guard.service.ts)
+            - [ ] Documentation sur angular/router && keycloak-angular
+                - [x] Check de (https://angular.io/api/router#primary-entry-point-exports)
+                - [x] Check de (https://www.npmjs.com/package/keycloak-angular)
         - [ ] Lien du code d'auth angular avec keycloak
     - [ ] Création de 3 users en dur via commande docker compose
     - [ ] Attribuer des roles / realms différents aux trois users
