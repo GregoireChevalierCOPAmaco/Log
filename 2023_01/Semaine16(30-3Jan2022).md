@@ -288,7 +288,7 @@
         - [x] Résolution du problème d'identifiants incorrects/user not found
 - [ ] Objectif du jour : accéder à l'app angular ou non selon l'user loggé et ses droits
     - [ ] Sécurisation de l'application angular avec keycloak
-        - [ ] Finition du module login
+        - [x] Finition du module login
             - [x] Reprise de (https://plainenglish.io/blog/secure-an-angular-single-page-application-with-keycloak-cdbe5026881e)
                 - [x] Création d'un *landing module* avec ```ng generate module landing```
                 - [x] Création du routing pour le landing avec ```ng generate module landing/landing-routing --flat --module=landing```
@@ -336,10 +336,24 @@
                 ```
                 - [x] Lancement du projet avec ```ng serve```
                 - [x] Non successful : stash de la branche et revert
+        - [x] Reprise de doc (https://www.keycloak.org/getting-started/getting-started-docker#_secure_your_first_app)
+        - [x] Check de (https://stackoverflow.com/questions/54305880/how-can-i-restrict-client-access-to-only-one-group-of-users-in-keycloak)
+    - [ ] Implémentation d'une authentification keycloak 
+        - [x] Conclusion : pour associer les roles des utilisateurs & l'accès aux applications à keycloak, il faut passer par du code
     - [ ] Survol du projet atmos pour voir comment sont définis les users en dur dans la db
     - [ ] Création de 3 users en dur via commande docker compose
     - [ ] Attribuer des roles / realms différents aux trois users
-    - [ ] Implémentation d'une authentification keycloak 
 - [ ] Implémentation d'un module d'authentification angularkeycloak
 - [ ] Déploiement avec github actions
 - [ ] Déploiement avec AWS
+
+
+**1er Février**
+- [ ] Objectif du jour : accéder à l'app angular ou non selon l'user loggé et ses droits
+    - [ ] Sécurisation de l'application angular avec keycloak
+        - [ ] Finition du module login
+        - [ ] Survol du projet atmos pour voir comment sont définis les users en dur dans la db
+        - [ ] Lien du code d'auth angular avec keycloak
+    - [ ] Création de 3 users en dur via commande docker compose
+    - [ ] Attribuer des roles / realms différents aux trois users
+
