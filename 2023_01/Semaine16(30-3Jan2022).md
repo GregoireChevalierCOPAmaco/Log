@@ -349,6 +349,31 @@
 
 
 **1er Février**
+- [x] Commit des changements relatifs au service de mailing sur kmo-web
+- [x] Push & pull request sur le github
+- [x] Résolution des conflits
+- [ ] Résolution des problèmes liés à la modification  des  :
+```
+TypeOrmModule.forRoot({
+			type: 'mariadb',
+			host: 'kmo-mysql', //process.env.MYSQL_HOST,
+			port: 3306,
+			username: 'KMO',//process.env.MYSQL_USER, mettre les valeurs en dur ?
+			password: 'KMO15022022', //process.env.MYSQL_PASSWORD,
+			database: 'KMO', //process.env.MYSQL_DATABASE,
+			entities: [Checkout, User, Store, Data],
+			autoLoadEntities: true,
+			synchronize: false,
+		})
+```
+.
+    - [x] Problème : 
+    ```
+    QueryFailedError: ER_NO_SUCH_TABLE: Table 'KMO.user' doesn't exist
+    ```
+    - [x] Résolution :  dans le app.module.ts du back, changement de ```synchronize: false``` à ```synchronize: true,```
+    - [x] Résolution du problème de [Object object] dans les mails : changement de ```ticket``` à ```ticket.reference```les cas échéants dans amazon-ses.service.ts
+    - [x] Nouveau commit et push après cleanup demandé par review de théo
 - [ ] Objectif du jour : accéder à l'app angular ou non selon l'user loggé et ses droits
     - [ ] Sécurisation de l'application angular avec keycloak
         - [ ] Finition du module login
