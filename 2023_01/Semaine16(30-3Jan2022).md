@@ -352,7 +352,7 @@
 - [x] Commit des changements relatifs au service de mailing sur kmo-web
 - [x] Push & pull request sur le github
 - [x] Résolution des conflits
-- [ ] Résolution des problèmes liés à la modification  des  :
+- [x] Résolution des problèmes liés à la modification  des  :
 ```
 TypeOrmModule.forRoot({
 			type: 'mariadb',
@@ -390,6 +390,23 @@ TypeOrmModule.forRoot({
             - [ ] Documentation sur angular/router && keycloak-angular
                 - [x] Check de (https://angular.io/api/router#primary-entry-point-exports)
                 - [x] Check de (https://www.npmjs.com/package/keycloak-angular)
+        - [ ] Lien du code d'auth angular avec keycloak
+    - [ ] Création de 3 users en dur via commande docker compose
+    - [ ] Attribuer des roles / realms différents aux trois users
+
+
+**2 Février**
+- [x] Prse de connaissance du mail de pascal, je suis "pilote" de la gestion des tablettes & sim et je "m'engage à fournir des chiffres justes" .......
+- [ ] Objectif du jour : accéder à l'app angular ou non selon l'user loggé et ses droits
+    - [ ] Git clone d'un projet keycloak vierge ? Pour travailler en local
+    - [ ] Trouver le moyen de rediriger vers l'app angular dans le keycloak
+    - [ ] Sécurisation de l'application angular avec keycloak
+        - [ ] Survol du projet atmos pour voir comment marche le lien angular/keycloak pour l'auth
+            - [ ] Poursuite de documentation sur angular/router && keycloak-angular
+                - [x] Check de (https://angular.io/api/router#primary-entry-point-exports)
+                - [x] Check de (https://www.npmjs.com/package/keycloak-angular)
+        - [ ] Finition du module login
+        - [ ] Survol du projet atmos pour voir comment sont définis les users en dur dans la db
         - [ ] Lien du code d'auth angular avec keycloak
     - [ ] Création de 3 users en dur via commande docker compose
     - [ ] Attribuer des roles / realms différents aux trois users
