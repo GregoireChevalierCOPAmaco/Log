@@ -483,6 +483,8 @@ TypeOrmModule.forRoot({
     - [ ] Attribuer des roles / realms différents aux trois users
 - [ ] Renseignement sur la possibilité de faire un keycloak redirigeant vers x applications
     - [ ] Recherches générales
+    - [x] Poursuite de doc
+        - [x] Check de (https://www.keycloak.org/docs/latest/server_admin/index.html#using-the-admin-console) & (https://www.keycloak.org/docs/latest/server_admin/index.html#configuring-realms) & (https://www.keycloak.org/server/outgoinghttp) & (https://www.keycloak.org/docs/latest/securing_apps/#_javascript_adapter)
     - [x] Premier contact avec le concept de *multi-tenancy*
         - [x] Check de (https://medium.com/swlh/using-keycloak-for-multi-tenancy-with-one-realm-7be81583ed7b)
 
