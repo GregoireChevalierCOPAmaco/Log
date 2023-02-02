@@ -402,9 +402,26 @@ TypeOrmModule.forRoot({
     - [ ] Trouver le moyen de rediriger vers l'app angular dans le keycloak
     - [ ] Sécurisation de l'application angular avec keycloak
         - [ ] Survol du projet atmos pour voir comment marche le lien angular/keycloak pour l'auth
-            - [ ] Poursuite de documentation sur angular/router && keycloak-angular
+            - [x] Poursuite de documentation sur angular/router && keycloak-angular
                 - [x] Check de (https://angular.io/api/router#primary-entry-point-exports)
                 - [x] Check de (https://www.npmjs.com/package/keycloak-angular)
+        - [x] Check de la version angular/node dans le projet *templategithubactions* : 
+        ```
+        ng version
+
+        Angular CLI: 15.1.1
+        Node: 18.12.1
+        Package Manager: npm 9.2.0
+        OS: win32 x64
+
+        Angular: 15.1.0
+        ```
+        - [x] Versions adaptées de ```npm install keycloak-angular keycloak-js``` : 
+        ```
+        Angular | 	keycloak-js	|keycloak-angular	Support
+        15.x	|       18 - 20	        |   13.x.x	    New Features / Bugs
+        ```
+        - [ ] Suivi de : (https://www.npmjs.com/package/keycloak-angular#setup)
         - [ ] Finition du module login
         - [ ] Survol du projet atmos pour voir comment sont définis les users en dur dans la db
         - [ ] Lien du code d'auth angular avec keycloak
