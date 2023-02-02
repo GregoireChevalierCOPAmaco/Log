@@ -422,9 +422,67 @@ TypeOrmModule.forRoot({
         15.x	|       18 - 20	        |   13.x.x	    New Features / Bugs
         ```
         - [ ] Suivi de : (https://www.npmjs.com/package/keycloak-angular#setup)
+            - [x] Ajout au fichier app.module.ts de :
+            ```
+            import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+            function initializeKeycloak(keycloak: KeycloakService){
+            return () =>
+                keycloak.init({
+                config: {
+                    url: 'http://localhost:8080',
+                    realm: 'your-realm',
+                    clientId: 'your-client-id'
+                },
+                initOptions: {
+                    onLoad: 'check-sso',
+                    silentCheckSsoRedirectUri:
+                    window.location.origin + '/assets/silent-check-sso.html'
+                }
+                });
+            }
+
+            @NgModule({
+            declarations: [AppComponent],
+            imports: [AppRoutingModule, BrowserModule, KeycloakAngularModule],
+            providers: [
+                {
+                provide: APP_INITIALIZER,
+                useFactory: initializeKeycloak,
+                multi: true,
+                deps: [KeycloakService]
+                }
+            ],
+            bootstrap: [AppComponent]
+            })
+            ```
+            - [x] Documentation à propos du silent check-sso :
+            ```
+            In the example we have set up Keycloak to use a silent check-sso. With this feature enabled, your browser will not do a full redirect to the Keycloak server and back to your application, instead this action will be performed in a hidden iframe, so your application resources only need to be loaded and parsed once by the browser when the app is initialized and not again after the redirect back from Keycloak to your app. 
+            To ensure that Keycloak can communicate through the iframe you will have to serve a static HTML asset from your application at the location provided in silentCheckSsoRedirectUri.
+            ```
+            - [x] Création d'un fichier silent-check-sso.html dans le dossier /assets rempli comme suit :
+            ```
+            <html>
+                <body>
+                    <script>
+                    parent.postMessage(location.href, location.origin);
+                    </script>
+                </body>
+                </html>
+            ```
+            - [x] Sur conseil de la doc, check de (https://www.keycloak.org/docs/latest/securing_apps/#_javascript_adapter)
+            - [x] Suppression et délétion des images keycloak & angular
+            - [x] Rebuild de l'image keycloak : ```docker build -t templategithubactionskeycloak -f ./docker/Dockerfile.keycloak .```
+            - [x] Rebuild de l'image angular : ```docker build -t templategithubactionsangular -f ./docker/Dockerfile.angular .```
+            - [x] Relance de ```docker compose up```
+        - [x] Check de (https://www.youtube.com/watch?v=aykr98e7PlM)
         - [ ] Finition du module login
         - [ ] Survol du projet atmos pour voir comment sont définis les users en dur dans la db
         - [ ] Lien du code d'auth angular avec keycloak
     - [ ] Création de 3 users en dur via commande docker compose
     - [ ] Attribuer des roles / realms différents aux trois users
+- [ ] Renseignement sur la possibilité de faire un keycloak redirigeant vers x applications
+    - [ ] Recherches générales
+    - [x] Premier contact avec le concept de *multi-tenancy*
+        - [x] Check de (https://medium.com/swlh/using-keycloak-for-multi-tenancy-with-one-realm-7be81583ed7b)
 
