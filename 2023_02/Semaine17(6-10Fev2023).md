@@ -26,4 +26,9 @@
             - Le SSO se base sur Lightweight Directory Access Protocol (LDAP) & bases de données LDAP supportées par directory servers
             - Le SSO peut être utilisé avec les cookies dans le cadre de réseau IP, mais seulement si les différentes apps partagent le même domaine DNS parent
         - [x] Consigne des infos dans un doc de retour de veille
+        - [x] Assignation de rôle à un user :
+            - Créer un Realm Role qui englobe tous les rôles du realm
+            - Créer un rôle 
+            - Aller dans users/userX/Role_mapping/Assign_role/
+            - Cocher la case du role à assigner
 - [ ] Call ITS pour setup une ou plusieurs journées de formation keycloak
