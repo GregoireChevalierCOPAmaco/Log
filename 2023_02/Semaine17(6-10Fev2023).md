@@ -31,4 +31,15 @@
             - Créer un rôle 
             - Aller dans users/userX/Role_mapping/Assign_role/
             - Cocher la case du role à assigner
-- [ ] Call ITS pour setup une ou plusieurs journées de formation keycloak
+        - [x] Accéder au portail user de keycloak :
+            - Créer un client, renseigner l'ID et le Name
+            - Renseigner la valid URL, post logout url & web origins avec * pour taper sur la page de connexion de l'user
+        - [ ] Rediriger le user vers l'application angular
+            - [x] Check de (https://www.youtube.com/watch?v=0cufUQS59as)
+            - [x] Reprise de doc : (https://www.keycloak.org/docs/latest/securing_apps/#_javascript_adapter)
+                - [x] Toggle Client Authorization sur Off dans Clients/clientX/Settings , partie Capability config
+                - [x] Configuration de Valid Redirect URIs and Web Origins
+                    - [x] Check de (https://stackoverflow.com/questions/45352880/keycloak-invalid-parameter-redirect-uri) & (https://levelup.gitconnected.com/keycloak-in-angular-application-980260b4b196)
+            - [x] Suppression du container angular et rebuild, puis re compose up
+- [x] Call ITS pour setup une ou plusieurs journées de formation keycloak & réunion derrière
+- [ ] Essais de modifs sur le fichier authguard.service.ts pour voir si je peux accéder à l'application client keycloak
