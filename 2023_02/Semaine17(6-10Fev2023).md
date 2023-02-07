@@ -197,5 +197,24 @@
             })
             export class AppRoutingModule { }
             ```
-        - [ ] Suppression, rebuild et redémarrage des containers docker
-
+        - [x] Suppression, rebuild et redémarrage des containers docker
+- [x] Commit du projet de test
+- [x] Prochain objetcif : refaire l'app angular au plus basique pour tests
+    - [x] Positionnement dans le dossier racine et ```ng new angulartestapp```
+- [x] Installation application KMO Flasher sur la tablette gonflée
+    - [x] Aller dans l'App Tester
+    - [x] Création d'un compte google, pas de tel à asocier
+    - [x] Connecter l'AppTester au compte google : gerance.cop@gmail.com /COPAmaco2022**
+    - [x] IMEI 359839768760843 : kmo flasher installé, tablette envoyée à l'atelier
+- [x] Modification du fichier excel de suivi en conséquence
+- [x] Réunion de setup du jira KM Prédictive
+- [ ] Objectif : accéder à l'app angular ou non selon l'user loggé et ses droits
+    - [ ] Réussir à accéder à l'application
+    - [ ] Créer une dummy app sur un port 4567
+    - [ ] Créer une dummy app sur un port 5678
+    - [ ] Créer une dummy app sur un port 6789
+    - [ ] Créer 5 users 
+    - [ ] Créer 4 droits dans le realm
+    - [ ] Assigner les droits aux users
+    - [ ] Intercepter les connexions aux dummy apps avec keycloak
+    - [ ] Autoriser l'accès aux différentes apps selon le niveau de droits de chaque user 
