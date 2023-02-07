@@ -69,7 +69,7 @@
         - [x] Check de (https://github.com/mauriciovigolo/keycloak-angular) & du fichier (https://github.com/mauriciovigolo/keycloak-angular/blob/main/projects/keycloak-angular/src/lib/core/services/keycloak-auth-guard.ts) pour référence.
         - [ ] Application du code (https://github.com/mauriciovigolo/keycloak-angular#authguard) au projet template
         - [x] Check de (https://medium.com/@damilareaadedoyin/authentication-in-angular-using-keycloak-aff8e98dd094)
-        - [ ] Application du code (https://medium.com/@damilareaadedoyin/authentication-in-angular-using-keycloak-aff8e98dd094) au projet template
+        - [x] Application du code (https://medium.com/@damilareaadedoyin/authentication-in-angular-using-keycloak-aff8e98dd094) au projet template
             - [x] Reprise de l'app.module.ts :
             ```
             imports {...}
@@ -172,3 +172,30 @@
                 }
             }
             ```
+            - [x] Check de (https://www.npmjs.com/package/keycloak-angular#authguard)
+            - [ ] Ajout de l'authGuard aux routes, modification de app-routing.module.ts comme suit : 
+            ```
+            imports { ... } from ...
+
+            const routes: Routes = [
+                { 
+                    path: 'login', 
+                    canActivate: [AppAuthGuard],
+                    component: LoginComponent,
+                    data: { roles: ['user'] } 
+                },
+                { 
+                    path: '',
+                    component: LoginComponent 
+                }
+                ];
+
+                @NgModule({
+                imports: [RouterModule.forRoot(routes)],
+                providers: [AppAuthGuard],
+                exports: [RouterModule]
+            })
+            export class AppRoutingModule { }
+            ```
+        - [ ] Suppression, rebuild et redémarrage des containers docker
+
