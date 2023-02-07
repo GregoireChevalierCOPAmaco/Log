@@ -49,9 +49,126 @@
 
 
 **7 Février**
+- [x] Installation application SAV sur les tablettes
+    - [x] Aller dans l'App Tester
+    - [x] Création d'un compte google, pas de tel à asocier
+    - [x] Connecter la tablette au compte google : cop.monteur@gmail.com /COPkmo67  X  pas l'appareil racine pour vérifier la connexion
+    - [x] Connecter la tablette au compte google : gerance.cop@gmail.com /COPAmaco2022**
+    - [x] Connecter l'AppTester au compte google : gerance.cop@gmail.com /COPAmaco2022**
+    - [x] Mise à jour de KMO SAV sur chaque tablette valide :
+        - [x] IMEI 359839768760843 : à jour, tablette bureau & lien au compte google gerance.cop
+        - [x] IMEI 359839768837088 : màj d'AppTester, lien au compte google gerance.cop , KMO SAV & OS Android
+        - [x] IMEI 352807082442783 : màj d'AppTester, lien au compte google gerance.cop & KMO SAV
+        - [x] IMEI 359839768802520 : màj de KMO SAV & lien au compte google gerance.cop
+        - [x] IMEI 352807082442874 : màj de KMO SAV & lien au compte google gerance.cop
+    - [x] Mise à jour du fichier excel de suivi de tablettes sur le serveur
 - [ ] Objectif du jour : accéder à l'app angular ou non selon l'user loggé et ses droits
     - [ ] Réussir à accéder à l'application
     - [ ] Essais sur un template de fichier authguard.service.ts pour voir si je peux accéder à l'application client keycloak
     - [ ] Recherches sur le sujet
         - [x] Check de (https://github.com/mauriciovigolo/keycloak-angular) & du fichier (https://github.com/mauriciovigolo/keycloak-angular/blob/main/projects/keycloak-angular/src/lib/core/services/keycloak-auth-guard.ts) pour référence.
         - [ ] Application du code (https://github.com/mauriciovigolo/keycloak-angular#authguard) au projet template
+        - [x] Check de (https://medium.com/@damilareaadedoyin/authentication-in-angular-using-keycloak-aff8e98dd094)
+        - [ ] Application du code (https://medium.com/@damilareaadedoyin/authentication-in-angular-using-keycloak-aff8e98dd094) au projet template
+            - [x] Reprise de l'app.module.ts :
+            ```
+            imports {...}
+
+            const keycloakService = new KeycloakService();
+
+            @NgModule({
+            declarations: [
+                AppComponent,
+                XyzComponent,
+                FirstpageComponent
+            ],
+            imports: [
+                KeycloakAngularModule,
+                BrowserModule,
+                AppRoutingModule,
+                RouterModule
+            ],
+            providers: [AppAuthGuard, {
+                provide: KeycloakService,
+                useValue: keycloakService
+            }],
+            entryComponents: [AppComponent],
+            })
+            export class AppModule { 
+                ngDoBootstrap(app) {
+                    keycloakService
+                    .init({
+                        config: {
+                        url: 'http://localhost:8080/auth',
+                        realm: 'keycloak-angular',
+                        clientId: 'angularproject',
+                        },
+                        initOptions: {
+                        onLoad: 'login-required',
+                        checkLoginIframe: false,
+                        },
+                        enableBearerInterceptor: true,
+                        bearerExcludedUrls: [],
+                    })
+                    .then(() => {
+                        app.bootstrap(AppComponent);
+                    })
+                    .catch((error) =>
+                        console.error('[ngDoBootstrap] init Keycloak failed', error)
+                    );
+                }
+            }
+            ```
+            - [x] Création du fichier ./src/app/app.authguard.ts
+            - [x] Remplissage comme suit :
+            ```
+            import { Injectable } from '@angular/core';
+            import {
+            Router,
+            ActivatedRouteSnapshot,
+            RouterStateSnapshot,
+            } from '@angular/router';
+            import { KeycloakService, KeycloakAuthGuard } from 'keycloak-angular';
+
+            @Injectable()
+            export class AppAuthGuard extends KeycloakAuthGuard {
+            constructor(
+                protected override router: Router,
+                protected override keycloakAngular: KeycloakService
+            ) {
+                super(router, keycloakAngular);
+            }
+
+            isAccessAllowed(
+                route: ActivatedRouteSnapshot,
+                state: RouterStateSnapshot
+            ): Promise<boolean> {
+                    return new Promise((resolve, reject) => {
+                    let permission;
+                    if (!this.authenticated) {
+                        this.keycloakAngular.login().catch((e) => console.error(e));
+                        return reject(false);
+                    }
+
+                    const requiredRoles: string[] = route.data['roles'];
+                    if (!requiredRoles || requiredRoles.length === 0) {
+                        permission = true;
+                    } else {
+                        if (!this.roles || this.roles.length === 0) {
+                        permission = false
+                        }
+                        if (requiredRoles.every((role) => this.roles.indexOf(role) > -1))
+                        {
+                            permission=true;
+                        } else {
+                            permission=false;
+                        };
+                    }
+                    if(!permission){
+                        this.router.navigate(['/']);
+                    }
+                    resolve(permission)
+                    });
+                }
+            }
+            ```
