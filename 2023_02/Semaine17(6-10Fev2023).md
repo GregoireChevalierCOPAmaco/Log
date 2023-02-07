@@ -5,7 +5,7 @@
 - [x] Prise de connaissance du schéma d'utilisation des mails SAV de frank sur le serveur Discord 
 - [x] Prise de connaissance de l'évolution des tâches sur Jira (https://cop-amaco.atlassian.net/jira/software/c/projects/KW/issues)
 - [ ] Check d'un tuto youtube sur keycloak (https://www.youtube.com/watch?v=zyqWpFUPTnE&ab_channel=Tekgainers)
-- [ ] Redémarrage des containers docker
+- [x] Redémarrage des containers docker
 - [ ] Objectif du jour : accéder à l'app angular ou non selon l'user loggé et ses droits
     - [ ] Réussir à accéder à l'application
         - [x] Check de (https://www.comakeit.com/blog/quick-guide-using-keycloak-identity-access-management/)
@@ -43,3 +43,15 @@
             - [x] Suppression du container angular et rebuild, puis re compose up
 - [x] Call ITS pour setup une ou plusieurs journées de formation keycloak & réunion derrière
 - [ ] Essais de modifs sur le fichier authguard.service.ts pour voir si je peux accéder à l'application client keycloak
+    - [ ] Recherches sur le sujet
+        - [x] Check de (https://github.com/mauriciovigolo/keycloak-angular) & du fichier (https://github.com/mauriciovigolo/keycloak-angular/blob/main/projects/keycloak-angular/src/lib/core/services/keycloak-auth-guard.ts) pour référence.
+        - [ ] Application du code (https://github.com/mauriciovigolo/keycloak-angular#authguard) au projet template
+
+
+**7 Février**
+- [ ] Objectif du jour : accéder à l'app angular ou non selon l'user loggé et ses droits
+    - [ ] Réussir à accéder à l'application
+    - [ ] Essais sur un template de fichier authguard.service.ts pour voir si je peux accéder à l'application client keycloak
+    - [ ] Recherches sur le sujet
+        - [x] Check de (https://github.com/mauriciovigolo/keycloak-angular) & du fichier (https://github.com/mauriciovigolo/keycloak-angular/blob/main/projects/keycloak-angular/src/lib/core/services/keycloak-auth-guard.ts) pour référence.
+        - [ ] Application du code (https://github.com/mauriciovigolo/keycloak-angular#authguard) au projet template
