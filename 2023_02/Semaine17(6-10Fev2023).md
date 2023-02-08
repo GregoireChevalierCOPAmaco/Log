@@ -222,6 +222,53 @@
 
 **8 Février**
 - [ ] Réunion de définition des tâches pour le jira KM Prédictive
+- [ ] Création d'une 2e dummy app
+    - [x] Modification du docker-compose.yml comme suit :
+    ```
+    postgres:
+    ...
+    keycloak: 
+    ...
+    angular:
+        container_name: angular-container
+        image: templategithubactionsangular
+        build:
+        context: app-angular-keycloak
+        # dockerfile: docker/Dockerfile.angular
+        command: sh -c "cd app-angular-keycloak && npm link @angular/cli && ng serve --port 4200 --host 0.0.0.0"
+        ports: 
+        - 4200:4200
+    angular2:
+        container_name: angular-container2
+        image: templategithubactionsangular2
+        build:
+        context: angulartestapp
+        command: sh -c "cd angulartestapp && npm link @angular/cli && ng serve --port 4567 --host 0.0.0.0"
+        ports: 
+        - 4567:4567
+    ```
+    - [x] Création d'un 2e dockerfile Dockerfile.angular2 rempli comme suit :
+    ```
+    # syntax=docker/dockerfile:1
+
+    FROM node:18-alpine
+
+    # WORKDIR /app
+    WORKDIR /angulartestapp/src/app
+    # WORKDIR /
+
+    ENV PATH /angulartestapp/node_modules/.bin:$PATH
+
+    COPY ./angulartestapp/package.json ./
+    COPY ./angulartestapp/package-lock.json ./
+    RUN npm install
+
+    COPY . .
+    ```
+    - [x] Suppression des images angular docker existantes 
+    - [x] Build de l'image avec ```docker build -t templategithubactionsangular -f ./docker/Dockerfile.angular .```
+    - [x] Build de l'image avec ```docker build -t templategithubactionsangular2 -f ./docker/Dockerfile.angular2 .```
+    - [ ] Relance du docker compose up avec les modifs 
 - [ ] Objectif : accéder à l'app angular ou non selon l'user loggé et ses droits
     - [ ] Réussir à accéder à l'application
     - [ ] Créer une dummy app sur un port 4567
