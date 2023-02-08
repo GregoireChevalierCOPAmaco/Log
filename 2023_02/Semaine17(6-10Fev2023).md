@@ -218,3 +218,17 @@
     - [ ] Assigner les droits aux users
     - [ ] Intercepter les connexions aux dummy apps avec keycloak
     - [ ] Autoriser l'accès aux différentes apps selon le niveau de droits de chaque user 
+
+
+**8 Février**
+- [ ] Réunion de définition des tâches pour le jira KM Prédictive
+- [ ] Objectif : accéder à l'app angular ou non selon l'user loggé et ses droits
+    - [ ] Réussir à accéder à l'application
+    - [ ] Créer une dummy app sur un port 4567
+    - [ ] Créer une dummy app sur un port 5678
+    - [ ] Créer une dummy app sur un port 6789
+    - [ ] Créer 5 users 
+    - [ ] Créer 4 droits dans le realm
+    - [ ] Assigner les droits aux users
+    - [ ] Intercepter les connexions aux dummy apps avec keycloak
+    - [ ] Autoriser l'accès aux différentes apps selon le niveau de droits de chaque user 
