@@ -312,9 +312,25 @@
 
 **9 Février**
 - [x] Prise de connaissance des mails
+- [x] Code review du service de mail ses avec Anthony
 - [ ] Refonte du setup keycloak admin
-    - [ ] Recréation des clients
-    - [ ] Recréation des users
+    - [x] Recréation des clients
+    - [x] Recréation des roles
+        - [x] Création d'un role baseRole
+        - [x] Création d'un role canReach4567
+    - [x] Recréation des groupes
+        - [x] Création d'un group base user
+        - [x] Création d'un group super user
+    - [x] Recréation des users
+        - [x] Création de l'user g.chevalier
+            - [x] Assignation au groupe super_user
+            - [x] Assignation aux roles baseRole & canReach4567
+        - [x] Création de l'user t.test
+            - [x] Assignation au groupe base_user
+            - [x] Assignation au role baseRole
+        - [ ] Restriction de l'accès aux apps selon le role
+            - [x] Check de (https://www.keycloak.org/docs/latest/server_admin/#con-user-registration_server_administration_guide) & (https://www.keycloak.org/docs/latest/server_admin/#assigning-permissions-using-roles-and-groups)
+            - [ ] Application de la doc
 - [ ] Objectif : accéder à l'app angular ou non selon l'user loggé et ses droits
     - [ ] Réussir à accéder à l'application
     - [ ] Créer une dummy app sur un port 4567
