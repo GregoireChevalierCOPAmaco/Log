@@ -268,7 +268,53 @@
     - [x] Suppression des images angular docker existantes 
     - [x] Build de l'image avec ```docker build -t templategithubactionsangular -f ./docker/Dockerfile.angular .```
     - [x] Build de l'image avec ```docker build -t templategithubactionsangular2 -f ./docker/Dockerfile.angular2 .```
-    - [ ] Relance du docker compose up avec les modifs 
+    - [x] Relance du docker compose up avec les modifs : on arrive toujours au message d'erreur Invalid parameter: redirect_uri
+    - [x] Check de (https://github.com/mauriciovigolo/keycloak-angular/issues/396)
+    - [x] Application du workaround : dans le docker-compose.yml, modification de :
+    ```
+    keycloak:
+    container_name: keycloak-container
+    ...
+    command:
+      - start-dev
+    ```
+    en 
+    ```  
+    keycloak:
+    container_name: keycloak-container
+    ...
+    command:
+      - start --spi-login-protocol-openid-connect-legacy-logout-redirect-uri=true
+    ```
+    - [x] Relance du docker compose up, retour d'erreur console keycloak :
+    ```
+    ERROR: Unexpected error when starting the server in (production) mode
+    ERROR: Failed to start quarkus
+    ERROR: Strict hostname resolution configured but no hostname setting provided
+    ```
+    - [x] Reprise de la commande start avec start-dev et les flags, puis relance du docker compose up, setup des infos sur https://www.keycloak.org/app/ , sign in et retour d'erreur : Page not found && plus autorisé à accéder au realm créé
+    - [x] Revert de la commande sans le flag et relance docker compose up : Realm supprimé par le rebuild du docker keycloak
+    - [x] Reprise de la commande start avec start-dev et les flags
+    - [x] Recréation du realm
+    - [ ] Recréation des clients
+    - [ ] Recréation des users
+- [ ] Objectif : accéder à l'app angular ou non selon l'user loggé et ses droits
+    - [ ] Réussir à accéder à l'application
+    - [ ] Créer une dummy app sur un port 4567
+    - [ ] Créer une dummy app sur un port 5678
+    - [ ] Créer une dummy app sur un port 6789
+    - [ ] Créer 5 users 
+    - [ ] Créer 4 droits dans le realm
+    - [ ] Assigner les droits aux users
+    - [ ] Intercepter les connexions aux dummy apps avec keycloak
+    - [ ] Autoriser l'accès aux différentes apps selon le niveau de droits de chaque user 
+
+
+**9 Février**
+- [x] Prise de connaissance des mails
+- [ ] Refonte du setup keycloak admin
+    - [ ] Recréation des clients
+    - [ ] Recréation des users
 - [ ] Objectif : accéder à l'app angular ou non selon l'user loggé et ses droits
     - [ ] Réussir à accéder à l'application
     - [ ] Créer une dummy app sur un port 4567
