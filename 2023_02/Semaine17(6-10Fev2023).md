@@ -316,6 +316,7 @@
 - [ ] Refonte du setup keycloak admin
     - [x] Recréation des clients
     - [x] Recréation des roles
+        - [x] Création d'un role admin
         - [x] Création d'un role baseRole
         - [x] Création d'un role canReach4567
     - [x] Recréation des groupes
@@ -328,9 +329,17 @@
         - [x] Création de l'user t.test
             - [x] Assignation au groupe base_user
             - [x] Assignation au role baseRole
+        - [x] Création de l'user admin
+            - [x] Assignation au role admin
+            - [x] Assignation au role uma_authorization
+            - [x] Assignation au role offline_access
         - [ ] Restriction de l'accès aux apps selon le role
             - [x] Check de (https://www.keycloak.org/docs/latest/server_admin/#con-user-registration_server_administration_guide) & (https://www.keycloak.org/docs/latest/server_admin/#assigning-permissions-using-roles-and-groups)
             - [ ] Application de la doc
+    - [ ] Export du realm
+        - [x] Check de (https://www.opcito.com/blogs/how-to-import/export-realm-in-keycloak) & (http://www.mastertheboss.com/keycloak/how-to-export-and-import-realms-in-keycloak/)
+        - [x] Dans le realm/RealmSettings/General , dérouler le menu en haut à droite flaggé |Action ↓| , et faire un "partial export"
+        - [x] Récupération du json dans les téléchargements
 - [ ] Objectif : accéder à l'app angular ou non selon l'user loggé et ses droits
     - [ ] Réussir à accéder à l'application
     - [ ] Créer une dummy app sur un port 4567
