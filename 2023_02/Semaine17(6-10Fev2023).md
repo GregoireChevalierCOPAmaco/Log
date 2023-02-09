@@ -326,13 +326,16 @@
         - [x] Création de l'user g.chevalier
             - [x] Assignation au groupe super_user
             - [x] Assignation aux roles baseRole & canReach4567
+            - [x] Assignation d'un mdp pw123
         - [x] Création de l'user t.test
             - [x] Assignation au groupe base_user
             - [x] Assignation au role baseRole
+            - [x] Assignation d'un mdp pw123
         - [x] Création de l'user admin
             - [x] Assignation au role admin
             - [x] Assignation au role uma_authorization
             - [x] Assignation au role offline_access
+            - [x] Assignation d'un mdp admin
     - [x] Export du realm
         - [x] Check de (https://www.opcito.com/blogs/how-to-import/export-realm-in-keycloak) & (http://www.mastertheboss.com/keycloak/how-to-export-and-import-realms-in-keycloak/)
         - [x] Dans le realm/RealmSettings/General , dérouler le menu en haut à droite flaggé |Action ↓| , et faire un "partial export"
@@ -344,6 +347,30 @@
     - [x] Retour tab ecran cassé n° 359839768834986
     - [x] Sortie tab n° 359839768802520
     - [x] Mise à jour du fichier de suivi des tablettes
+- [ ] Réunion KMO Predict
+    - [x] Établissement des spécifications données utilisateur à afficher par magasin :
+        - Total time
+        - On Time
+        - Off Time
+        - Clients/heure
+        - Première utilisation
+        - Dernière maintenance
+        - État de maintenance
+        - Commande
+    - [x] Type de données remontables :
+        - Température CPU
+        - Bool trappe
+        - Bool moteur
+        - Bool IR
+        - Bool pédale
+        - État caisse
+        - Assistance
+        - Courant monteur
+        - Reboot
+        - Durée ON
+        - Durée OFF
+        - Temps de passage en caisse
+        - Taux d'occupation
 - [ ] Objectif : accéder à l'app angular ou non selon l'user loggé et ses droits
     - [ ] Réussir à accéder à l'application
     - [x] Créer une dummy app sur un port 4567
