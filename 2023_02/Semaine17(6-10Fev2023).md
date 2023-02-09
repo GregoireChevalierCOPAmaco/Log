@@ -333,16 +333,20 @@
             - [x] Assignation au role admin
             - [x] Assignation au role uma_authorization
             - [x] Assignation au role offline_access
-        - [ ] Restriction de l'accès aux apps selon le role
-            - [x] Check de (https://www.keycloak.org/docs/latest/server_admin/#con-user-registration_server_administration_guide) & (https://www.keycloak.org/docs/latest/server_admin/#assigning-permissions-using-roles-and-groups)
-            - [ ] Application de la doc
-    - [ ] Export du realm
+    - [x] Export du realm
         - [x] Check de (https://www.opcito.com/blogs/how-to-import/export-realm-in-keycloak) & (http://www.mastertheboss.com/keycloak/how-to-export-and-import-realms-in-keycloak/)
         - [x] Dans le realm/RealmSettings/General , dérouler le menu en haut à droite flaggé |Action ↓| , et faire un "partial export"
         - [x] Récupération du json dans les téléchargements
+        - [ ] Restriction de l'accès aux apps selon le role
+            - [x] Check de (https://www.keycloak.org/docs/latest/server_admin/#con-user-registration_server_administration_guide) & (https://www.keycloak.org/docs/latest/server_admin/#assigning-permissions-using-roles-and-groups)
+            - [ ] Application de la doc
+- [x] Échange de tablettes pour Ales Wandres
+    - [x] Retour tab ecran cassé n° 359839768834986
+    - [x] Sortie tab n° 359839768802520
+    - [x] Mise à jour du fichier de suivi des tablettes
 - [ ] Objectif : accéder à l'app angular ou non selon l'user loggé et ses droits
     - [ ] Réussir à accéder à l'application
-    - [ ] Créer une dummy app sur un port 4567
+    - [x] Créer une dummy app sur un port 4567
     - [ ] Créer une dummy app sur un port 5678
     - [ ] Créer une dummy app sur un port 6789
     - [ ] Créer 5 users 
