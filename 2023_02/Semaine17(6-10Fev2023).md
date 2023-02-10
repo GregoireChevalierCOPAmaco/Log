@@ -436,6 +436,11 @@
     - [x] Accéder à la console admin keycloak de l'atmos fourni par ITS
         - [x] Lancement vers http://auth.copamaco.local/admin/atmos/console, et redirection automatique vers : http://auth.copamaco.local/realms/atmos/login-actions/authenticate?execution=1735c886-d5fd-4126-9d3f-291d200b913f&client_id=security-admin-console&tab_id=GKcvhNIWNPg
         - [x] Connexion à l'interface d'adminn du keycloak : déception on n'a accès qu'aux menus users et groups, et encore pas avec toutes les infos
+    - [x] Tests d'ajout d'user sur le realm master en local
+        [x] Ajout d'un user pour le realm master :
+        - t.test
+        - pw123
+    - [ ] Assignation de roles & permissions pour restreindre son accès aux fonctionnalités keycloak comme pour la console d'admin atmos ITS
 - [ ] Objectif : accéder à l'app angular ou non selon l'user loggé et ses droits
     - [ ] Réussir à accéder à l'application
     - [x] Créer une dummy app sur un port 4567
