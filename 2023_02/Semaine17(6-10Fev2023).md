@@ -386,6 +386,56 @@
 
 **10 Février**
 - [ ] Démarrer le projet Atmos ITS pour aller voir comment est configuré le keycloak
+    - [x] Suppression du repo vide kmo-deploy sur le github de la boite
+    - [x] Réouverture du projet C:\Users\gchevalier\Desktop\atmos>
+    - [x] Tentative d'accès à http://auth.copamaco.local/admin/atmos/console/#/ , sans succès.
+    - [x] Lancement des containers
+        - [x] Positionnement dans le dossier ./portail-socle-1.0.4/deploy
+        - [x] Lancement de  ```docker compose --project-name atmos up -d```, retour console :
+        ```
+        time="2023-02-10T11:33:28+01:00" level=warning msg="The \"ENV_SUFFIX\" variable is not set. Defaulting to a blank string."
+        time="2023-02-10T11:33:28+01:00" level=warning msg="The \"FQDN\" variable is not set. Defaulting to a blank string."
+        time="2023-02-10T11:33:28+01:00" level=warning msg="The \"AUTH_FQDN\" variable is not set. Defaulting to a blank string."
+        time="2023-02-10T11:33:28+01:00" level=warning msg="The \"AUTH_FQDN\" variable is not set. Defaulting to a blank string."
+        time="2023-02-10T11:33:28+01:00" level=warning msg="The \"FQDN\" variable is not set. Defaulting to a blank string."
+        time="2023-02-10T11:33:28+01:00" level=warning msg="The \"KC_DB_PASSWORD\" variable is not set. Defaulting to a blank string."
+        time="2023-02-10T11:33:28+01:00" level=warning msg="The \"ATMOS_DB_USERNAME\" variable is not set. Defaulting to a blank string."
+        time="2023-02-10T11:33:28+01:00" level=warning msg="The \"ATMOS_DB_PASSWORD\" variable is not set. Defaulting to a blank string."
+        time="2023-02-10T11:33:28+01:00" level=warning msg="The \"KC_DB_USERNAME\" variable is not set. Defaulting to a blank string."
+        time="2023-02-10T11:33:28+01:00" level=warning msg="The \"ATMOS_DB_USERNAME\" variable is not set. Defaulting to a blank string."
+        time="2023-02-10T11:33:28+01:00" level=warning msg="The \"ATMOS_DB_PASSWORD\" variable is not set. Defaulting to a blank string."
+        time="2023-02-10T11:33:28+01:00" level=warning msg="The \"ENV_SUFFIX\" variable is not set. Defaulting to a blank string."
+        time="2023-02-10T11:33:28+01:00" level=warning msg="The \"KC_DB_USERNAME\" variable is not set. Defaulting to a blank string."
+        time="2023-02-10T11:33:28+01:00" level=warning msg="The \"KC_DB_PASSWORD\" variable is not set. Defaulting to a blank string."
+        time="2023-02-10T11:33:28+01:00" level=warning msg="The \"KC_LOG_LEVEL\" variable is not set. Defaulting to a blank string."
+        time="2023-02-10T11:33:28+01:00" level=warning msg="The \"ATMOS_BACK_KEY\" variable is not set. Defaulting to a blank string."
+        time="2023-02-10T11:33:28+01:00" level=warning msg="The \"KEYCLOAK_ADMIN\" variable is not set. Defaulting to a blank string."
+        time="2023-02-10T11:33:28+01:00" level=warning msg="The \"KEYCLOAK_ADMIN_PASSWORD\" variable is not set. Defaulting to a blank string."
+        time="2023-02-10T11:33:28+01:00" level=warning msg="The \"AUTH_FQDN\" variable is not set. Defaulting to a blank string."
+        time="2023-02-10T11:33:28+01:00" level=warning msg="The \"ATMOS_DB_USERNAME\" variable is not set. Defaulting to a blank string."
+        time="2023-02-10T11:33:28+01:00" level=warning msg="The \"ATMOS_DB_PASSWORD\" variable is not set. Defaulting to a blank string."
+        time="2023-02-10T11:33:28+01:00" level=warning msg="The \"ATMOS_S3_BUCKET\" variable is not set. Defaulting to a blank string."
+        time="2023-02-10T11:33:28+01:00" level=warning msg="The \"ATMOS_S3_REGION\" variable is not set. Defaulting to a blank string."
+        time="2023-02-10T11:33:28+01:00" level=warning msg="The \"SCHEME\" variable is not set. Defaulting to a blank string."
+        time="2023-02-10T11:33:28+01:00" level=warning msg="The \"AUTH_FQDN\" variable is not set. Defaulting to a blank string."
+        time="2023-02-10T11:33:28+01:00" level=warning msg="The \"ATMOS_BACK_KEY\" variable is not set. Defaulting to a blank string."
+        time="2023-02-10T11:33:28+01:00" level=warning msg="The \"ATMOS_AWS_ACCESS_KEY_ID\" variable is not set. Defaulting to a blank string."
+        time="2023-02-10T11:33:28+01:00" level=warning msg="The \"ATMOS_AWS_SECRET_ACCESS_KEY\" variable is not set. Defaulting to a blank string."
+        services.proxy.networks.default.aliases array items[0,1] must be unique
+        ```
+        - [x] Recherche dans les logs de la méthode à suivre pour lancer atmos
+        - [x] Dans le dossier :
+        ```
+        atmos\portail-socle-1.0.4\deploy>
+        ```
+        lancement de commande : 
+        ```
+        docker compose --project-name atmos --env-file .env.dev up -d
+
+        ```
+    - [x] Accéder à la console admin keycloak de l'atmos fourni par ITS
+        - [x] Lancement vers http://auth.copamaco.local/admin/atmos/console, et redirection automatique vers : http://auth.copamaco.local/realms/atmos/login-actions/authenticate?execution=1735c886-d5fd-4126-9d3f-291d200b913f&client_id=security-admin-console&tab_id=GKcvhNIWNPg
+        - [x] Connexion à l'interface d'adminn du keycloak : déception on n'a accès qu'aux menus users et groups, et encore pas avec toutes les infos
 - [ ] Objectif : accéder à l'app angular ou non selon l'user loggé et ses droits
     - [ ] Réussir à accéder à l'application
     - [x] Créer une dummy app sur un port 4567
