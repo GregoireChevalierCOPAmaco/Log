@@ -441,6 +441,8 @@
         - t.test
         - pw123
     - [ ] Assignation de roles & permissions pour restreindre son accès aux fonctionnalités keycloak comme pour la console d'admin atmos ITS
+        - [x] Check de (https://www.youtube.com/w  atch?v=zyqWpFUPTnE) pour référence
+        - [x] Check de (https://www.keycloak.org/docs-api/13.0/rest-api/index.html#_overview) pour documentaiton
 - [ ] Objectif : accéder à l'app angular ou non selon l'user loggé et ses droits
     - [ ] Réussir à accéder à l'application
     - [x] Créer une dummy app sur un port 4567
@@ -451,6 +453,7 @@
     - [ ] Assigner les droits aux users
     - [ ] Intercepter les connexions aux dummy apps avec keycloak
     - [ ] Autoriser l'accès aux différentes apps selon le niveau de droits de chaque user 
-- [ ] Démarrage KMO Predict
-    - [ ] Réunion
+- [x] Démarrage KMO Predict
+    - [x] Réunion
+    - [x] Prise en main du jira
     - [ ] Début du maquettage
