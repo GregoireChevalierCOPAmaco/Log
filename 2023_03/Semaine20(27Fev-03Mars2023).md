@@ -2,10 +2,25 @@
 - [ ] Poursuite démarrage du KMO-Predict
     - [ ] Réunion de catch-up avec Guillaume et Théo sur l'intégration des metadatas des gateways dans la vue cop
     - [ ] Initialisations
-        - [ ] Résolution du passage des tests autogénérés
-        - [ ] Merge de la branche KP-90
+        - [x] Résolution du passage des tests autogénérés
+            - [x] Relance des tests front : tout passe
+            - [x] Relance des tests back : tout passe
+        - [x] Pull develop et màj du projet en local
             - [ ] Résolution des conflits
-        - [ ] Pull develop et màj du projet en local
+            - [x] package.json /front
+            - [x] tests.ts /front
+            - [x] angular.json
+            - [x] package-lock.json /racine
+                - [x] Accepted all current
+                - [x] Deleted 46 duplicate object key
+            - [x] màj des imports foireux (mat au lieu de matlegacy)
+            - [x] main.ts /back, supression de l'async de startallmicroservicesasync()
+            - [x] push sur github & checks successful
+            - [x] test de viabilité du front
+                - [x] Front ok avec ng serve dans le dossier front
+                - [x] Front ok avec docker-compose dans le dossier racine
+        - [x] Merge de la branche KP-90
+        - [ ] Delete de la branche KP-90
 - [ ] Réunion followup
     - [ ] Se renseigner sur websocket.io
     - [ ] Checker la directive specification de doc de Guillaume sur le discord
