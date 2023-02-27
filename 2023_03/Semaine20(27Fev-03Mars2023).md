@@ -37,8 +37,9 @@
     - [x] Suppression du --no-verify dans le root package.json
 - [ ] Check de (https://www.npmjs.com/package/testcontainers) pour veille techno
 - [ ] Réparer le tailwind sur la maquette angular de kmo predict
-- [ ] Rouvrir le projet atmos pour remise en tête de keycloak
-- [ ] Rouvrir le projet githubactions perso pour remise en tête de keycloak
+    - [x] Check de (https://stackoverflow.com/questions/71384038/many-tailwind-css-classes-doesn%C2%B4t-work-on-my-angular-12-project)
+- [x] Rouvrir le projet atmos pour remise en tête de keycloak
+- [x] Rouvrir le projet githubactions perso pour remise en tête de keycloak
 - [ ] Se renseigner sur websocket.io
 - [ ] Checker la directive specification de doc de Guillaume sur le discord
 - [ ] Checker l'état de l'entité store créée par Théo

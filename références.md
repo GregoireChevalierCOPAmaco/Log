@@ -91,3 +91,5 @@ https://www.keycloak.org/docs/latest/server_admin/index.html#proc-assigning-role
 https://www.rfc-editor.org/rfc/rfc6749
 **TDD**
 https://igm.univ-mlv.fr/~dr/XPOSE2009/TDD/pagesHTML/PresentationTDD.html#:~:text=La%20mise%20en%20place%20de,du%20d%C3%A9veloppement%20d%27un%20logiciel.&text=On%20remarque%20g%C3%A9n%C3%A9ralement%20que%20les,que%20les%20tests%20seront%20%C3%A9crits
+**Obsolescence des programmeus & Chat GPT**
+https://javascript.plainenglish.io/coding-wont-exist-in-5-years-this-is-why-6da748ba676c
