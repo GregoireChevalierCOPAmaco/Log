@@ -22,17 +22,21 @@
         - [x] Merge de la branche KP-90
         - [ ] Delete de la branche KP-90
 - [x] Réunion followup
-- [ ] Intégrer les tests à la CI githubactions
+- [x] Intégrer les tests à la CI githubactions
     - [x] Lancement de ```turbo run test``` et retour positif : 
     ```
     Tasks:    2 successful, 2 total
     Cached:    0 cached, 2 total
     Time:    11.285s
     ```
-    - [ ] Modifications sur le fichier de CI
-    - [ ] Commit
-    - [ ] Mise sur le github distant
-    - [ ] Passage des checks
+    - [x] Modifications sur le fichier de CI
+    - [x] Suppression du --no-verify du package json racine
+    - [x] Commit
+    - [x] Mise sur le github distant
+    - [x] Passage des checks
+    - [x] Suppression du --no-verify dans le root package.json
+- [ ] Check de (https://www.npmjs.com/package/testcontainers) pour veille techno
+- [ ] Réparer le tailwind sur la maquette angular de kmo predict
 - [ ] Rouvrir le projet atmos pour remise en tête de keycloak
 - [ ] Rouvrir le projet githubactions perso pour remise en tête de keycloak
 - [ ] Se renseigner sur websocket.io
