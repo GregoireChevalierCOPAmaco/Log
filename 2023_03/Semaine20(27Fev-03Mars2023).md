@@ -1,0 +1,12 @@
+**23 Février**
+- [ ] Poursuite démarrage du KMO-Predict
+    - [ ] Réunion de catch-up avec Guillaume et Théo sur l'intégration des metadatas des gateways dans la vue cop
+    - [ ] Initialisations
+        - [ ] Résolution du passage des tests autogénérés
+        - [ ] Merge de la branche KP-90
+            - [ ] Résolution des conflits
+        - [ ] Pull develop et màj du projet en local
+- [ ] Réunion followup
+    - [ ] Se renseigner sur websocket.io
+    - [ ] Checker la directive specification de doc de Guillaume sur le discord
+    - [ ] Checker l'état de l'entité store créée par Théo
