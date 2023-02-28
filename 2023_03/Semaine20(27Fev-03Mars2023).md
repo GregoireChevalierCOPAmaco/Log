@@ -81,3 +81,10 @@
             - [x] Atm, l'application atmos acepte tout user loggé qui possède un attribut magasin
             - [x] entrypoint.sh : on précise l'import du realm dans ce fichier
     - [x] Demi journée non prise à replanifier
+- [ ] Reprise du projet perso keycloak
+    - [ ] Accéder à chaque appli séparément selon l'user connecté
+        - [ ] App4200
+            - [ ] Configurer l'auhtguard pour prendre en compte les user roles
+        - [ ] App4567
+            - [ ] Ajouter l'authguard
+            - [ ] Configurer l'auhtguard pour prendre en compte les user roles
