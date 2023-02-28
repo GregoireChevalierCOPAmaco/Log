@@ -43,3 +43,23 @@
 - [ ] Se renseigner sur websocket.io
 - [ ] Checker la directive specification de doc de Guillaume sur le discord
 - [ ] Checker l'état de l'entité store créée par Théo
+
+
+**28 Février**
+- [ ] Journée formation avec Olivier ITS
+    - [x] Présentation & résumé des projets en cours et à venir
+    - [ ] Keycloak : basiques
+        - [x] Oublier le passage par l'interface keycloak
+        - [x] Passer par l'authguard :
+        ```
+        keycloakService
+        .init({
+            config: {
+            url: 'http://localhost:8080',  <= retrait du /auth
+            realm: 'angular-keycloak-postgresRealm',
+            clientId: 'apptest4200',
+        ```
+    - [ ] Keycloak : prise en main atmos
+        - [ ] Lancement de l'application en dev
+            - [x] Atmos2, ```cd deploy``` & ``` docker compose --project-name atmos --env-file .env.dev up -d```
+            - [ ] Convertir les fichiers ./db/00_init.sh & ./keycloak/entrypoint & tous les fichiers de ./flyway/sql/ en fin de ligne LF pour éviter de mal interpréter les fins de lignes entre linux & windows
