@@ -46,9 +46,9 @@
 
 
 **28 Février**
-- [ ] Journée formation avec Olivier ITS
+- [x] Journée formation avec Olivier ITS
     - [x] Présentation & résumé des projets en cours et à venir
-    - [ ] Keycloak : basiques
+    - [x] Keycloak : basiques
         - [x] Oublier le passage par l'interface keycloak
         - [x] Passer par l'authguard :
         ```
@@ -59,7 +59,25 @@
             realm: 'angular-keycloak-postgresRealm',
             clientId: 'apptest4200',
         ```
-    - [ ] Keycloak : prise en main atmos
-        - [ ] Lancement de l'application en dev
+        - [x] Pré-création de tables en base de données avec flyway
+        - [x] Roles : attributs. Variables - c'est l'authguard qui va, en fonction du token généré avec le role de l'user, permettre l'accès à une app ou non
+        - [x] Annuaire Ldap permet d'autoriser un compte windwos/google d'accéder à une app sans avoir besoin de créer un user keycloak (identity providers & user federations)
+        - [x] Thèmes customizables selon l'user connecté ?
+        - [x] Client scope : tout ce que l'app (client) a le droit de demander pour entre autres permettre l'authentification en fonction du user en question
+        - [x] Client settings/ Capability config = définition de si on sort ou pas de l'app/du browser via mobile ou pas
+        - [x] Voir keycloak admin api pour donner la possibilité de créer des users depuis les applications
+        - [x] Import keycloak en spécifiant le chemin d'accès dans le docker compose /keycloak/volume, comme suit dans le atmos 2 :
+        ```
+         - ../keycloak/copamaco-realm-export.json:/opt/keycloak/data/import/copamaco-realm-export.json:ro
+        ```
+        export-import de realm mieux pour les users (pw hashés & permissions, toussa)
+    - [x] Keycloak : prise en main atmos
+        - [x] Lancement de l'application en dev
             - [x] Atmos2, ```cd deploy``` & ``` docker compose --project-name atmos --env-file .env.dev up -d```
-            - [ ] Convertir les fichiers ./db/00_init.sh & ./keycloak/entrypoint & tous les fichiers de ./flyway/sql/ en fin de ligne LF pour éviter de mal interpréter les fins de lignes entre linux & windows
+            - [x] Convertir les fichiers ./db/00_init.sh & ./keycloak/entrypoint & tous les fichiers de ./flyway/sql/ en fin de ligne LF pour éviter de mal interpréter les fins de lignes entre linux & windows
+            - [x] Édition des fichiers hôte pour ajouter 127.0.0.1 - auth.copamaco.local et expoer le port voulu
+            - [x] À savoir : l'image angular doit être construite en prenant en compte l'environnement keycloak cible (si -> prod (défaut) et qu'on cherche à taper sur dev, en local on aura une 403 unauthorized)
+            - [x] Lancement front & base à la main et keycloak avec docker
+            - [x] Atm, l'application atmos acepte tout user loggé qui possède un attribut magasin
+            - [x] entrypoint.sh : on précise l'import du realm dans ce fichier
+    - [x] Demi journée non prise à replanifier
