@@ -87,4 +87,115 @@
             - [ ] Configurer l'auhtguard pour prendre en compte les user roles
         - [ ] App4567
             - [ ] Ajouter l'authguard
+                - [x] Suivi de (https://github.com/mauriciovigolo/keycloak-angular/blob/main/README.md)
+                - [x] ```npm install keycloak-angular keycloak-js``` dans le dossier ./angulartestapp, retour positif :
+                ```
+                added 3 packages, removed 1 package, and audited 887 packages in 3s
+
+                87 packages are looking for funding
+                run `npm fund` for details
+
+                found 0 vulnerabilities
+                ```
+                - [x] Modification de l'app.module.ts :
+                ```
+                import { APP_INITIALIZER,NgModule } from '@angular/core';
+                import { BrowserModule } from '@angular/platform-browser';
+
+                import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+                import { AppRoutingModule } from './app-routing.module';
+                import { AppComponent } from './app.component';
+
+                function initializeKeycloak(keycloak: KeycloakService) {
+                return () =>
+                    keycloak.init({
+                    config: {
+                        url: 'http://localhost:8080',
+                        realm: 'angular-keycloak-postgresRealm',
+                        clientId: 'apptest4567'
+                    },
+                    initOptions: {
+                        onLoad: 'check-sso',
+                        silentCheckSsoRedirectUri:
+                        window.location.origin + '/assets/silent-check-sso.html'
+                    }
+                    });
+                }
+
+                @NgModule({
+                declarations: [
+                    AppComponent
+                ],
+                imports: [
+                    BrowserModule,
+                    AppRoutingModule,
+                    KeycloakAngularModule
+                ],
+                providers: [
+                    {
+                    provide: APP_INITIALIZER,
+                    useFactory: initializeKeycloak,
+                    multi: true,
+                    deps: [KeycloakService]
+                    }
+                ],
+                bootstrap: [AppComponent]
+                })
+                export class AppModule { }
+                ```
+                - [x] Création d'un fichier ./angulartestapp/assets/silent-check-sso.html rempli comme suit :
+                ```
+                <html>
+                    <body>
+                        <script>
+                        parent.postMessage(location.href, location.origin);
+                        </script>
+                    </body>
+                </html>
+                ```
+                - [x] Création d'un fichier ./angulartestapp/src/app/app.authguard.ts rempli comme suit : 
+                ```
+                import { Injectable } from '@angular/core';
+                import {
+                ActivatedRouteSnapshot,
+                Router,
+                RouterStateSnapshot
+                } from '@angular/router';
+                import { KeycloakAuthGuard, KeycloakService } from 'keycloak-angular';
+
+                @Injectable({
+                providedIn: 'root'
+                })
+                export class AuthGuard extends KeycloakAuthGuard {
+                constructor(
+                    protected override readonly router: Router,
+                    protected readonly keycloak: KeycloakService
+                ) {
+                    super(router, keycloak);
+                }
+
+                public async isAccessAllowed(
+                    route: ActivatedRouteSnapshot,
+                    state: RouterStateSnapshot
+                ) {
+                    // Force the user to log in if currently unauthenticated.
+                    if (!this.authenticated) {
+                        await this.keycloak.login({
+                            redirectUri: window.location.origin + state.url
+                        });
+                        }
+
+                        // Get the roles required from the route.
+                        const requiredRoles = route.data['roles'];
+
+                        // Allow the user to proceed if no additional roles are required to access the route.
+                        if (!(requiredRoles instanceof Array) || requiredRoles.length === 0) {
+                        return true;
+                        }
+
+                        // Allow the user to proceed if all the required roles are present.
+                        return requiredRoles.every((role) => this.roles.includes(role));
+                    }
+                }
+                ```
             - [ ] Configurer l'auhtguard pour prendre en compte les user roles
