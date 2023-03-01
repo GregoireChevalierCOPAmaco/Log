@@ -289,11 +289,26 @@
     ```
     - [x] Changement du nom des containers en postgresdb-sass-container && keycloak-sass-container
     - [ ] Setup du realm
-        - [ ] Création du realm
-        - [ ] Création des users
-        - [ ] Création des roles
+        - [x] Création du realm
+            - [x] Cop_sass/realm settings/login : activation de :
+                - Edit username
+                - Forgot password
+                - Remember me
+                - Verify email
+                - Login with email
+        - [x] Création des roles
+            - [x] Création du rôle cop superadmin
+            - [x] Création du rôle cop developer
+            - [x] Création du rôle kmo storeManager
+            - [x] Création du rôle kmo regionalDirection
         - [ ] Création groups
         - [ ] Lier roles et groupes
+        - [ ] Gérer les permissions des différents rôles
+        - [ ] Création des users
         - [ ] Création d'un client predict
+    - [ ] Export du realm
     - [ ] Trouver le moyen d'exporter les users en meme temps que le realm ?
+    - [ ] Keycloak realm : se renseigner sur le Fronted URL
+    - [ ] Keycloak realm : lier le realm au serveur de mail
+    - [ ] Keycloak realm : se renseigner sur l'utilisation des thèmes pour le realm
     - [ ] Setup du repo
