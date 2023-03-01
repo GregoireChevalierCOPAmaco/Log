@@ -308,17 +308,60 @@
             - [x] Création du groupe kmo-predict_user avec kmo store manager seulement
             - [x] Création du groupe kmo-predict_DR_user avec le role kmo DR
         - [x] Lier roles et groupes
-        - [ ] Gérer les permissions des différents rôles
-        - [ ] Création des users
+        - [x] Création des users
             - [x] Création du user g.chevalier avec groupes assignés base_user & keycloak user, et implicitement rôles cop_developer, cop_super_user & les kmo-predict
             - [x] Création du user superadmin avec tous les roles assignés sauf les kmo predict
             - [x] Création du user j.random avec le seul role default-roles-cop_sass
             - [x] Création du user predictuser1 avec le seul groupe kmo-predeict_user et donc le seul role kmo-predict_storeManager
             - [x] Création du user predictDR1 avec le seul groupe kmo-predict_DR et donc le seul role kmo-predict_regionalDirection
-        - [ ] Création d'un client predict
+        - [x] Création d'un client predict
+        - [x] Création d'un client test 4567
+        - [x] Lien du client kmo predict au port 4200, lancement ng serve dans autre fenetre ide, accès au port 4200 et page vierge, erreur console : 
+        ```
+        Refused to frame 'http://localhost:8080/' because an ancestor violates the following Content Security Policy directive: "frame-ancestors 'self'".
+        ```
+        - [x] Check de (https://stackoverflow.com/questions/68509296/keycloak-js-initialization-failed-because-an-ancestor-violates-the-content-secur)
+        - [x] Lancer depuis le bon dossier (app-angular-keycloak) ça aide ....
     - [ ] Export du realm
+        - [x] L'export de base ne prend pas en compte les users.
+        - [x] Interrogation de GPT sur le sujet :
+        ```
+        Unfortunately, if the option to export users is not available in the Keycloak administration console, there is no built-in way to export the realm and its users via the console alone.
+
+        However, there are a couple of options to consider:
+
+        Use the Keycloak REST API: You can use the Keycloak REST API to export the realm and its users. The API provides an endpoint to export a realm configuration, including its users. You can use tools like curl or a programming language library to make the API calls.
+
+        Use a third-party tool: There are third-party tools available that can help you export Keycloak realms and users. One such tool is the Keycloak Exporter, which is a command-line tool that can export Keycloak realms and users.
+
+        Note that if you decide to use a third-party tool, make sure to carefully review the tool's documentation and ensure that it is compatible with your Keycloak version. Also, make sure to follow security best practices when exporting and handling sensitive user data.
+
+
+        g.chevalier@cop-amaco.com
+        How can i export a keycloak realm including its users using the Keycloak REST API ?
+        To export a Keycloak realm including its users using the Keycloak REST API, you can use the /admin/realms/{realm-name}/partial-export endpoint. Here are the general steps to follow:
+
+        Get an access token: You'll need an access token to authenticate your API requests. You can get an access token using the Keycloak API's /auth/realms/{realm-name}/protocol/openid-connect/token endpoint, passing in your client ID, client secret, and desired scopes.
+
+        Call the partial-export endpoint: Make an HTTP POST request to the /admin/realms/{realm-name}/partial-export endpoint, passing in your access token in the Authorization header, and specifying the desired export format (JSON or ZIP) and optional export options, such as including user data.
+
+        Here's an example cURL command that exports a Keycloak realm named my-realm in JSON format, including user data:
+
+        curl -X POST \
+        'https://keycloak.example.com/auth/admin/realms/my-realm/partial-export?export-users=true' \
+        -H 'Authorization: Bearer <access_token>' \
+        -H 'Content-Type: application/json' \
+        -o my-realm-export.json
+        In this example, replace <access_token> with your access token, and my-realm-export.json with the desired output file name. You can modify the export options, such as changing the export format, by adjusting the query parameters in the URL.
+
+        Note that the exported user data may contain sensitive information, so make sure to follow security best practices when handling the exported data.
+        ```
     - [ ] Trouver le moyen d'exporter les users en meme temps que le realm ?
     - [ ] Keycloak realm : se renseigner sur le Fronted URL
     - [ ] Keycloak realm : lier le realm au serveur de mail
     - [ ] Keycloak realm : se renseigner sur l'utilisation des thèmes pour le realm
     - [ ] Setup du repo
+        - [ ] Setup l'app 4567 avec l'adapter
+        - [ ] Mettre en place l'authguard
+        - [ ] Gérer les permissions des différents rôles (via angular)
+- [x] Pour la suite du projet, le code devra être jsDoc-é. Suivre : (https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html#param-and-returns)
