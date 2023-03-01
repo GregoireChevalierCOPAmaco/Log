@@ -301,10 +301,20 @@
             - [x] Création du rôle cop developer
             - [x] Création du rôle kmo storeManager
             - [x] Création du rôle kmo regionalDirection
+            - [x] Création du rôle kmo kmo-predict_admin
         - [ ] Création groups
-        - [ ] Lier roles et groupes
+            - [x] Création du groupe base_user avec tous les roles
+            - [x] Création du groupe keycloak user avec les roles cop & kmo-predict_admin
+            - [x] Création du groupe kmo-predict_user avec kmo store manager seulement
+            - [x] Création du groupe kmo-predict_DR_user avec le role kmo DR
+        - [x] Lier roles et groupes
         - [ ] Gérer les permissions des différents rôles
         - [ ] Création des users
+            - [x] Création du user g.chevalier avec groupes assignés base_user & keycloak user, et implicitement rôles cop_developer, cop_super_user & les kmo-predict
+            - [x] Création du user superadmin avec tous les roles assignés sauf les kmo predict
+            - [x] Création du user j.random avec le seul role default-roles-cop_sass
+            - [x] Création du user predictuser1 avec le seul groupe kmo-predeict_user et donc le seul role kmo-predict_storeManager
+            - [x] Création du user predictDR1 avec le seul groupe kmo-predict_DR et donc le seul role kmo-predict_regionalDirection
         - [ ] Création d'un client predict
     - [ ] Export du realm
     - [ ] Trouver le moyen d'exporter les users en meme temps que le realm ?
