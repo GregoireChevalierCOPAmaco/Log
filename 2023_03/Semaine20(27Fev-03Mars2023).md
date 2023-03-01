@@ -203,3 +203,97 @@
     
 **1er Mars**
 - [ ] Passage au keycloak predict
+    - [x] ```git status```, commit de la branche locale authguard 4567
+    - [x] Passage sur develop et ```git pull origin develop``` pour être à jour
+    - [x] Création d'une story dans  l'epic keycloak KP-5 jira
+    - [x] Création d'un repo keycloak
+        - [x] Clone en local
+        - [x] Récupération de keycloak sur (https://www.keycloak.org/downloads)
+        - [x] Check de la version (19.0.2) du keycloak atmos utilisé par ITS
+        - [x] Récupération de keycloak v.18.0.0, dernière version avant dépréciation du client adapter pour Node.Js
+        - [x] Téléchargement, copie, collage dans le dossier repo local de l'archive
+        - [ ] Extraction de l'archive avec ```bin/kc.bat start-dev```, retour console : 
+        ```
+        bin/kc.bat : Le terme «bin/kc.bat» n'est pas reconnu comme nom d'applet de commande, fonction, fichier de script ou programme exécutable. Vérifiez l'orthographe du nom, ou si un chemin d'accès existe, vérifiez que le chemin d'accès 
+        est correct et réessayez.
+        ```
+        Puis extraction au clic droit, mais pas nécessaire
+        - [ ] Reprise du modèle templategithubactions de docker-compose.yml & adaptation pour lancement au plus simple :
+        ```
+        version: "3.9"
+        volumes:
+        postgres_data:
+            driver: local
+
+        services:
+
+        postgres:
+            container_name: postgresdb-container
+            image: postgres:11
+            volumes:
+            - postgres_data:/var/lib/postgresql/data
+            environment:
+            POSTGRES_DB: keycloak
+            POSTGRES_USER: keycloak
+            POSTGRES_PASSWORD: pw123
+            # volumes:
+            #   - type: volume
+            #     source: postgresdb-container
+            #     target: /var/lib/postgresql/data
+            ports:
+            - "5432:5432"
+
+        keycloak:
+            container_name: keycloak-container
+            depends_on:
+            - postgres
+            image: quay.io/keycloak/keycloak:18.0.0
+            command:
+            # - start-dev
+            - start-dev --spi-login-protocol-openid-connect-legacy-logout-redirect-uri=true
+            - -Dkeycloak.migration.strategy=IGNORE_EXISTING
+            ports:
+            - 8080:8080
+            environment:
+            DB_VENDOR: POSTGRES
+            DB_ADDR: postgres
+            DB_DATABASE: keycloak
+            DB_USER: keycloak
+            DB_SCHEMA: public
+            DB_PASSWORD: password
+            KEYCLOAK_USER: jojo
+            KEYCLOAK_PASSWORD: pw123
+            KEYCLOAK_LOGLEVEL: DEBUG
+            ROOT_LOGLEVEL: DEBUG
+            KEYCLOAK_ADMIN: admin
+            KEYCLOAK_ADMIN_PASSWORD: admin
+            KEYCLOAK_IMPORT: /tmp/my-realm.json
+            # KEYCLOAK_LOGLEVEL: DEBUG
+            PROXY_ADDRESS_FORWARDING: 'true'
+            KEYCLOAK_FRONTEND_URL: https://proxy/auth
+            ```
+    - [x] ```docker compose up```, et retour erreur console : 
+    ```
+    [+] Running 5/5
+    - keycloak 
+    Pulled
+    - 4752687a61a9 Pull complete
+    - 0344366a246a Pull complete
+    - bf8a68204bbb Pull complete
+    - c4db0a36467a Pull complete
+    [+] Running 2/2
+    - Network kmo_sass_keycloak_default         Created
+    - Volume "kmo_sass_keycloak_postgres_data"  Created
+    - Container postgresdb-container
+    Error response from daemon: Conflict. The container name "/postgresdb-container" is already in use by container "f9d57bece05056fc1f1674d1502af9535de665fde277892197a59d5364156923". You have to remove (or rename) that container to be able to reuse that name.
+    ```
+    - [x] Changement du nom des containers en postgresdb-sass-container && keycloak-sass-container
+    - [ ] Setup du realm
+        - [ ] Création du realm
+        - [ ] Création des users
+        - [ ] Création des roles
+        - [ ] Création groups
+        - [ ] Lier roles et groupes
+        - [ ] Création d'un client predict
+    - [ ] Trouver le moyen d'exporter les users en meme temps que le realm ?
+    - [ ] Setup du repo
