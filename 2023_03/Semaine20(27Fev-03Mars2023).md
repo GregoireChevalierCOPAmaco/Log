@@ -199,3 +199,7 @@
                 }
                 ```
             - [ ] Configurer l'auhtguard pour prendre en compte les user roles
+
+    
+**1er Mars**
+- [ ] Passage au keycloak predict
