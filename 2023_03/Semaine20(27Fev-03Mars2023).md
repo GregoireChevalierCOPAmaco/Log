@@ -362,6 +362,22 @@
     - [ ] Keycloak realm : se renseigner sur l'utilisation des thèmes pour le realm
     - [ ] Setup du repo
         - [ ] Setup l'app 4567 avec l'adapter
+            - [x] Reprise fonctionnelle de l'app 4567
+            - [ ] Suivi de : (https://www.npmjs.com/package/keycloak-angular?activeTab=readme)
         - [ ] Mettre en place l'authguard
         - [ ] Gérer les permissions des différents rôles (via angular)
-- [x] Pour la suite du projet, le code devra être jsDoc-é. Suivre : (https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html#param-and-returns)
+- [x] Pour la suite du projet, le code devra être jsDoc-é. Suivre : (https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html#param-and-returns) && (https://stackoverflow.com/questions/34220564/is-there-a-way-to-generate-jsdoc-comments-in-visual-studio-code)
+
+
+**2 Mars**
+- [ ] Passage au keycloak predict
+    - [ ] Trouver le moyen d'exporter les users en meme temps que le realm ?
+    - [ ] Keycloak realm : se renseigner sur le Fronted URL
+    - [ ] Keycloak realm : lier le realm au serveur de mail
+    - [ ] Keycloak realm : se renseigner sur l'utilisation des thèmes pour le realm
+    - [ ] Setup du repo
+        - [ ] Setup l'app 4567 avec l'adapter
+            - [x] Reprise fonctionnelle de l'app 4567
+            - [ ] Suivi de : (https://www.npmjs.com/package/keycloak-angular?activeTab=readme)
+        - [ ] Mettre en place l'authguard
+        - [ ] Gérer les permissions des différents rôles (via angular)
