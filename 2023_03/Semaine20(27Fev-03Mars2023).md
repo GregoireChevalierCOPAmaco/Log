@@ -540,3 +540,18 @@
             - [ ] Implémentation générique de l'Authguard
             - [ ] Setup de l'HTTP Inerceptor
         - [ ] Gérer les permissions des différents rôles (via angular)
+
+
+**3 Mars**
+- [ ] Passage au keycloak predict
+    - [ ] Trouver le moyen d'exporter les users en meme temps que le realm ?
+    - [ ] Keycloak realm : se renseigner sur le Fronted URL
+    - [ ] Keycloak realm : lier le realm au serveur de mail
+    - [ ] Keycloak realm : se renseigner sur l'utilisation des thèmes pour le realm
+    - [ ] Setup du repo
+        - [x] Setup l'app 4567 avec l'adapter
+        - [x] Mise en place l'authguard
+            - [ ] Résolution de l'erreur console browser : "localhost/:1 Access to XMLHttpRequest at 'http://localhost:8080/realms/Cop_sass/protocol/openid-connect/token' from origin 'http://localhost:4567' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource."
+                - [x] Mail à Olivier, réponse : aller voir pour la configuration du web origins dans l'admin console keycloak
+                - [x] Check de (https://stackoverflow.com/questions/59018604/keycloak-no-access-control-allow-origin-header-is-present-on-the-requested-r)
+            - [ ] Résolution de l'erreur console browser : "[ngDoBootstrap] init Keycloak failed undefined"
