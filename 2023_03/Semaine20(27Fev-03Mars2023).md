@@ -378,6 +378,165 @@
     - [ ] Setup du repo
         - [ ] Setup l'app 4567 avec l'adapter
             - [x] Reprise fonctionnelle de l'app 4567
-            - [ ] Suivi de : (https://www.npmjs.com/package/keycloak-angular?activeTab=readme)
-        - [ ] Mettre en place l'authguard
+            - [ ] Suivi de : (https://www.npmjs.com/package/keycloak-angular?activeTab=readme) et lecture en entier avant d'attaquer
+        - [ ] Mise en place l'authguard
+            - [x] Suivi de : 
+            ```
+            A best practice is to load the JavaScript adapter directly from Keycloak Server as it will automatically be updated when you upgrade the server.
+            If you copy the adapter to your web application instead, make sure you upgrade the adapter only after you have upgraded the server.
+            ```
+            - [x] Installation avec ```npm install keycloak-angular js@18.0.0 --save``` et retour d'erreur :
+            ```
+            npm ERR! code ETARGET
+            npm ERR! notarget No matching version found for js@18.0.0.
+            npm ERR! notarget In most cases you or one of your dependencies are requesting
+            npm ERR! notarget a package version that doesn't exist.
+            ```
+            - [x] Installation avec ```npm install keycloak-angular keycloak-js@18.0.0 --save```, retour positif : ```added 3 packages, removed 1 package, and audited 887 packages in 1s```
+            - [x] Modification de l'app.module.ts comme suit : 
+            ```
+            import { APP_INITIALIZER, NgModule } from '@angular/core';
+            import { BrowserModule } from '@angular/platform-browser';
+            import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+            import { AppRoutingModule } from './app-routing.module';
+            import { AppComponent } from './app.component';
+
+            function initializeKeycloak(keycloak: KeycloakService) {
+            return () =>
+                keycloak.init({
+                config: {
+                    url: 'http://localhost:8080',
+                    realm: 'Cop-sass',
+                    clientId: 'apptest4567'
+                },
+                initOptions: {
+                    onLoad: 'check-sso',
+                    silentCheckSsoRedirectUri:
+                    window.location.origin + '/assets/silent-check-sso.html'
+                }
+                });
+            }
+
+
+            @NgModule({
+            declarations: [
+                AppComponent
+            ],
+            imports: [
+                BrowserModule,
+                AppRoutingModule,
+                KeycloakAngularModule
+            ],
+            providers: [
+                {
+                provide: APP_INITIALIZER,
+                useFactory: initializeKeycloak,
+                multi: true,
+                deps: [KeycloakService]
+                }
+            ],
+            bootstrap: [AppComponent]
+            })
+            export class AppModule { }
+            ```
+            - [x] Création du fichier ./src/app/assets/silent-check-sso.html rempli comme suit :
+            ```
+            <html>
+                <body>
+                    <script>
+                    parent.postMessage(location.href, location.origin);
+                    </script>
+                </body>
+            </html>
+            ```
+            Check (https://www.keycloak.org/docs/latest/securing_apps/#_javascript_adapter) pour plus de détail
+            - [x] Retour en arrière, reset de l'app.module.ts
+            - [x] Création d'un fichier de configuration keycloak
+                - [x] Selon GPT, :
+                ```
+                You can create the Keycloak configuration file anywhere in your Angular project, but a common convention is to create it in the assets folder. This folder is typically used to store static files that are served as-is by the web server, without being processed by Angular's build system.
+
+                To create the configuration file in the assets folder, follow these steps:
+
+                In the root of your Angular project, create a new folder called assets if it doesn't exist already.
+
+                Inside the assets folder, create a new file called keycloak.json.
+
+                Copy and paste your Keycloak configuration settings into the keycloak.json file, like so:
+
+                {
+                "realm": "your-realm",
+                "url": "https://your-keycloak-server.com/auth",
+                "clientId": "your-angular-app-client-id"
+                ...
+                }
+                ```
+                - [x] Création du fichier ./src/app/assets/keycloak.json
+                - [x] Remplissage comme suit :
+                ```
+                {
+                    "url": "http://localhost:8080",
+                    "realm": "Cop_sass",
+                    "clientId": "apptest4567"
+                }
+                ```
+                - [x] Création du fichier ./src/app/keycloak/keycloak.service.ts
+                - [x] Remplissage comme suit :
+                ```
+                import Keycloak from 'keycloak-js';
+                import { HttpClient } from '@angular/common/http';
+                import { Injectable } from '@angular/core';
+
+                @Injectable({
+                providedIn: 'root',
+                })
+
+                export class KeycloakService{
+                    
+                    constructor(private http: HttpClient) { }
+
+                    public init(): Promise<any> {
+                        return new Promise((resolve, reject) => {
+                        this.http.get<any>('assets/keycloak.json').toPromise()
+                            .then(config => {
+                            const keycloakAuth = new Keycloak(config);
+                            keycloakAuth.init({ onLoad: 'login-required' })
+                                .then(() => {
+                                resolve();
+                                })
+                                .catch(() => {
+                                reject();
+                                });
+                            });
+                        });
+                    }
+                    
+                }
+                ```
+                , avec retour erreur terminal : 
+                ```
+                Expected 1 arguments, but got 0. Did you forget to include 'void' in your type argument to 'Promise'?
+                ```
+                - [x] Erreur résolue en changeant le ```Promise<any> ``` en ```Promise<void>```
+                - [x] Modification du fichier app.component.ts comme suit :
+                ```
+                import { Component, OnInit } from '@angular/core';
+                import { KeycloakService } from './keycloak/keycloak.service';
+
+                @Component({
+                selector: 'app-root',
+                templateUrl: './app.component.html',
+                styleUrls: ['./app.component.css']
+                })
+                export class AppComponent implements OnInit {
+
+                    constructor(private keycloakService: KeycloakService) { }
+
+                    ngOnInit() {
+                        this.keycloakService.init();
+                    }
+                }
+                ``` 
+            - [ ] Implémentation générique de l'Authguard
+            - [ ] Setup de l'HTTP Inerceptor
         - [ ] Gérer les permissions des différents rôles (via angular)
