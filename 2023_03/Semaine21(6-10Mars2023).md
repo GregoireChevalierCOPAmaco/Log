@@ -62,6 +62,8 @@
             ,CopExampleDialogComponent,COPComponent
             ```
             dans le bootstrap [] de l'app.module.ts et résolution de l'erreur
+            - [x] Résolution de l'erreur de non-redirection vers le login keycloak au reach de l'app (8453 ERROR Error: Uncaught (in promise): Error: An error happened during access validation.)
+                - [x] Check de (https://www.google.com/search?q=keycloak+angular+core.mjs%3A8453+ERROR+Error%3A+Uncaught+(in+promise)%3A+Error%3A+An+error+happened+during+access+validation.+Details%3ATypeError%3A+Cannot+read+properties+of+undefined+(reading+%27resourceAccess%27)+Error%3A+An+error+happened+during+access+validation.+Details%3ATypeError%3A+Cannot+read+properties+of+undefined+(reading+%27resourceAccess%27)&oq=keycloak+angular+core.mjs%3A8453+ERROR+Error%3A+Uncaught+(in+promise)%3A+Error%3A+An+error+happened+during+access+validation.+Details%3ATypeError%3A+Cannot+read+properties+of+undefined+(reading+%27resourceAccess%27)+Error%3A+An+error+happened+during+access+validation.+Details%3ATypeError%3A+Cannot+read+properties+of+undefined+(reading+%27resourceAccess%27)&aqs=chrome..69i57.4239j0j1&sourceid=chrome&ie=UTF-8) & application : remplacement dans l'app.module.ts de ```bootstrap: [AppComponent]``` par ```entryComponents: [AppComponent]``` 
         - [ ] Ajouter au fichier app.component.html les bouton de déconnexion & infos user
         - [ ] Faire en sorte que le username = email
 - [ ] Lien avec les autres applis en fonction de qui est connecté
