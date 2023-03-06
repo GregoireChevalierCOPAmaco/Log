@@ -551,7 +551,84 @@
     - [ ] Setup du repo
         - [x] Setup l'app 4567 avec l'adapter
         - [x] Mise en place l'authguard
-            - [ ] Résolution de l'erreur console browser : "localhost/:1 Access to XMLHttpRequest at 'http://localhost:8080/realms/Cop_sass/protocol/openid-connect/token' from origin 'http://localhost:4567' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource."
+            - [x] Résolution de l'erreur console browser : "localhost/:1 Access to XMLHttpRequest at 'http://localhost:8080/realms/Cop_sass/protocol/openid-connect/token' from origin 'http://localhost:4567' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource."
                 - [x] Mail à Olivier, réponse : aller voir pour la configuration du web origins dans l'admin console keycloak
                 - [x] Check de (https://stackoverflow.com/questions/59018604/keycloak-no-access-control-allow-origin-header-is-present-on-the-requested-r)
-            - [ ] Résolution de l'erreur console browser : "[ngDoBootstrap] init Keycloak failed undefined"
+            - [x] Résolution de l'erreur console browser : "[ngDoBootstrap] init Keycloak failed undefined"
+        - [x] Résultat : eh bah la putaindlameredesémooooorts il a suffit de renseigner le champ Web Origins avec : "*".
+        C'est tout.
+        - [ ] Setup l'app maquette predict avec l'adapter
+            - [x] ```git pull origin develop``` && ```git checkout -b feature/KP-104_link_to_maquette```
+            - [x] ```cd apps\kmo-predict-front``` && ```npm install keycloak-angular keycloak-js```, retour console : 
+            ```
+            added 4 packages, and audited 2073 packages in 4s
+            ```
+            - [x] Ajout dans l'app.module.ts de :
+            ```
+            import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+            import { RouterModule } from '@angular/router';
+            import { AppAuthGuard } from './app.authguard';
+
+            const keycloakService = new KeycloakService();
+            ```
+            & déclaration dans les imports : []
+            & 
+            ```
+            providers: [AppAuthGuard, {
+                provide: KeycloakService,
+                useValue: keycloakService
+            }]
+            ```
+            - [x] Modification de l'app.component.ts comme suit : 
+            ```
+            import { Component, OnInit } from '@angular/core';
+            import { KeycloakService } from 'keycloak-angular';
+            import { KeycloakProfile } from 'keycloak-js';
+
+            @Component({
+            selector: 'app-root',
+            templateUrl: './app.component.html',
+            styleUrls: ['./app.component.css']
+            })
+            export class AppComponent implements OnInit {
+            
+                title = 'app-angular-keycloak';
+                
+                public isLogged = false;
+                public userProfile: KeycloakProfile | null = null;
+
+                constructor(private readonly keycloak: KeycloakService) { }
+
+                public async ngOnInit(): Promise<void>{
+                    this.isLogged = await this.keycloak.isLoggedIn();
+                    type usersRoles = Array<{id: number, text: string}>
+
+                    if (this.isLogged) {
+                    this.userProfile = await this.keycloak.loadUserProfile();
+                    }
+                }
+
+                public initSession(){
+                    this.keycloak.login();
+                }
+
+                public closeSession(){
+                    this.keycloak.logout();
+                }
+
+            }
+            ```
+            - [ ] Mise en place l'authguard
+                - [x] Création du fichier app.authguard.ts
+                - [x] Ajout à chaque route du fichier app-routing.module.ts de : 
+                ```
+                            , 
+                canActivate: [AppAuthGuard],
+                data: { roles: ['user'] }
+                ```
+                & déclaration de l'import de l'Authguard
+            - [ ] Ajouter au fichier app.component.html les bouton de déconnexion & infos user
+            - [ ] Faire en sorte que le username = email
+    - [ ] Lien avec les autres applis en fonction de qui est connecté
+        - [ ] Réussir à afficher le rôle de l'user connecté
+        - [ ] Afficher un lien vers l'app 4567 en fonction
