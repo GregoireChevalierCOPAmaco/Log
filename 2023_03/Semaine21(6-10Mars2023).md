@@ -93,12 +93,20 @@
     - [ ] Keycloak realm : se renseigner sur l'utilisation des thèmes pour le realm
     - [ ] Setup du repo
         - [x] Mise en place l'authguard
+        - [ ] Résolution des problèmes de lint : changement de ```ngDoBootstrap``` en ```DoBootstrap``` renvoie l'erreur fatale suivante :
+        ```
+        Error: NG0403: The module AppModule was bootstrapped, but it does not declare "@NgModule.bootstrap" components nor a "ngDoBootstrap" method. Please define one of these.
+        ```
+        Revert du changement pour retrouver l'appli fonctionnelle
         - [ ] Résolution des problèmes de versions jest-jsdom pour faire passer les tests
-        - [ ] Ajouter au fichier app.component.html le bouton de déconnexion
-        - [ ] Ajouter au fichier app.component.html les infos user dans la topbar
+        - [x] Ajouter au fichier app.component.html le bouton de déconnexion
+        - [x] Ajouter au fichier app.component.html les infos user dans la topbar
         - [ ] Lien avec les autres applis en fonction de qui est connecté
             - [ ] Réussir à afficher le rôle de l'user connecté
             - [ ] Afficher un lien vers l'app 4567 en fonction
 - [ ] Ajouter un attribut store à chaque user de predict sur keycloak
     - [ ] Voir comment ça a été fait pour atmos
     - [ ] Lier à une autre base ?
+
+
+    
