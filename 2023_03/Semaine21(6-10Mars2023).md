@@ -64,9 +64,41 @@
             dans le bootstrap [] de l'app.module.ts et résolution de l'erreur
             - [x] Résolution de l'erreur de non-redirection vers le login keycloak au reach de l'app (8453 ERROR Error: Uncaught (in promise): Error: An error happened during access validation.)
                 - [x] Check de (https://www.google.com/search?q=keycloak+angular+core.mjs%3A8453+ERROR+Error%3A+Uncaught+(in+promise)%3A+Error%3A+An+error+happened+during+access+validation.+Details%3ATypeError%3A+Cannot+read+properties+of+undefined+(reading+%27resourceAccess%27)+Error%3A+An+error+happened+during+access+validation.+Details%3ATypeError%3A+Cannot+read+properties+of+undefined+(reading+%27resourceAccess%27)&oq=keycloak+angular+core.mjs%3A8453+ERROR+Error%3A+Uncaught+(in+promise)%3A+Error%3A+An+error+happened+during+access+validation.+Details%3ATypeError%3A+Cannot+read+properties+of+undefined+(reading+%27resourceAccess%27)+Error%3A+An+error+happened+during+access+validation.+Details%3ATypeError%3A+Cannot+read+properties+of+undefined+(reading+%27resourceAccess%27)&aqs=chrome..69i57.4239j0j1&sourceid=chrome&ie=UTF-8) & application : remplacement dans l'app.module.ts de ```bootstrap: [AppComponent]``` par ```entryComponents: [AppComponent]``` 
-        - [ ] Ajouter au fichier app.component.html les bouton de déconnexion & infos user
+            - [x] Push et PR
+            - [x] Résolution linting :
+                - app.module.ts : changement de ngDoBootstrap en DoBootstrap
+                - app.authguard.ts : suppression de ```state: RouterStateSnapshot``` et de ses imports
+                - app.component.ts : suppression de ```type usersRoles = Array<{id: number, text: string}>```
+            - [x] Re-commit, repush et PR
+            - [ ] Résolution du fail des tests front : TypeError: Cannot read properties of undefined (reading 'testEnvironmentOptions')
+                - [x] Check de (https://stackoverflow.com/questions/72078160/jest-testenvironmentoptions-cannot-be-read)
+        - [x] Mise à jour du jira 
+        - [ ] Ajouter au fichier app.component.html le bouton de déconnexion
+        - [ ] Ajouter au fichier app.component.html les infos user dans la topbar
         - [ ] Faire en sorte que le username = email
 - [ ] Lien avec les autres applis en fonction de qui est connecté
     - [ ] Réussir à afficher le rôle de l'user connecté
     - [ ] Afficher un lien vers l'app 4567 en fonction
 - [ ] Ajouter un attribut store à chaque user de predict sur keycloak
+    - [x] Check de (https://www.keycloak.org/docs/latest/server_admin/index.html#user-attributes)
+    - [ ] Voir comment ça a été fait pour atmos
+    - [ ] Lier à une autre base ?
+    
+
+**7 Mars**
+- [ ] Passage au keycloak predict
+    - [ ] Trouver le moyen d'exporter les users en meme temps que le realm ?
+    - [ ] Keycloak realm : se renseigner sur le Fronted URL
+    - [ ] Keycloak realm : lier le realm au serveur de mail
+    - [ ] Keycloak realm : se renseigner sur l'utilisation des thèmes pour le realm
+    - [ ] Setup du repo
+        - [x] Mise en place l'authguard
+        - [ ] Résolution des problèmes de versions jest-jsdom pour faire passer les tests
+        - [ ] Ajouter au fichier app.component.html le bouton de déconnexion
+        - [ ] Ajouter au fichier app.component.html les infos user dans la topbar
+        - [ ] Lien avec les autres applis en fonction de qui est connecté
+            - [ ] Réussir à afficher le rôle de l'user connecté
+            - [ ] Afficher un lien vers l'app 4567 en fonction
+- [ ] Ajouter un attribut store à chaque user de predict sur keycloak
+    - [ ] Voir comment ça a été fait pour atmos
+    - [ ] Lier à une autre base ?
