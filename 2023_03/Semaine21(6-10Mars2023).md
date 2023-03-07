@@ -88,6 +88,7 @@
 **7 Mars**
 - [ ] Passage au keycloak predict
     - [ ] Trouver le moyen d'exporter les users en meme temps que le realm ?
+        - [x] Mail à Olivier
     - [ ] Keycloak realm : se renseigner sur le Fronted URL
     - [ ] Keycloak realm : lier le realm au serveur de mail
     - [ ] Keycloak realm : se renseigner sur l'utilisation des thèmes pour le realm
@@ -97,7 +98,15 @@
         ```
         Error: NG0403: The module AppModule was bootstrapped, but it does not declare "@NgModule.bootstrap" components nor a "ngDoBootstrap" method. Please define one of these.
         ```
-        Revert du changement pour retrouver l'appli fonctionnelle
+        Revert du changement pour retrouver l'appli fonctionnelle && 
+        ```
+        // eslint-disable-next-line 
+        ```
+        sur la ligne en question
+        - [x] test avec ```turbo lint``` , retour console :
+        ```
+        kmo-predict-front:lint: All files pass linting.
+        ```
         - [ ] Résolution des problèmes de versions jest-jsdom pour faire passer les tests
         - [x] Ajouter au fichier app.component.html le bouton de déconnexion
         - [x] Ajouter au fichier app.component.html les infos user dans la topbar
