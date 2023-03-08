@@ -119,3 +119,19 @@
 
 
     
+
+**8 Mars**
+- [x] Résolution du problème d'undefined des tests de Théo & démarrage de ses tsts en peer programming
+- [ ] Passage au keycloak predict
+    - [ ] Exporter les users en meme temps que le realm 
+    - [ ] Keycloak realm : se renseigner sur le Fronted URL
+    - [ ] Keycloak realm : lier le realm au serveur de mail
+    - [ ] Keycloak realm : se renseigner sur l'utilisation des thèmes pour le realm
+    - [ ] Setup du repo
+        - [ ] Résolution des problèmes de versions jest-jsdom pour faire passer les tests
+        - [ ] Lien avec les autres applis en fonction de qui est connecté
+            - [ ] Réussir à afficher le rôle de l'user connecté
+            - [ ] Afficher un lien vers l'app 4567 en fonction
+- [ ] Ajouter un attribut store à chaque user de predict sur keycloak
+    - [ ] Voir comment ça a été fait pour atmos
+    - [ ] Lier à une autre base ?
