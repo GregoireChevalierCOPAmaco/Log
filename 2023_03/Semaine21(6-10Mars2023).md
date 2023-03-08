@@ -128,7 +128,39 @@
     - [ ] Keycloak realm : lier le realm au serveur de mail
     - [ ] Keycloak realm : se renseigner sur l'utilisation des thèmes pour le realm
     - [ ] Setup du repo
-        - [ ] Résolution des problèmes de versions jest-jsdom pour faire passer les tests
+        - [x] Résolution des problèmes de versions jest-jsdom pour faire passer les tests
+            - [x] Désinstallation de jest & jsdom dans tous les dossiers du repo (root/front/back)
+            - [x] Clean install de jest 29.3.1 (root/front/back)
+            - [x] Clean install de jest-environment-jsdom 29.3.1 (root/front/back)
+            - [x] Update de ts-jest 29.0.0-next.1
+            - [x] Les réinstallations suppriment le problème de jsdom mais causent l'erreur en front suivante :
+            ```
+            jest Component is not resolved: Did you run and wait for 'resolveComponentResources()'?
+            ```
+        - [ ] Résolution de jest Component is not resolved: Did you run and wait for 'resolveComponentResources()'?
+            - [x] Sur suggestion de GPT, essai de : ```const componentFactory = (TestBed.inject(HomeCOPComponent).constructor as any)['ɵcmp'].ɵfac;``` & modifications, sans succès
+            - [x] Sur suggestion de GPT, essai de : 
+            ```
+            const componentRef = componentFactory(null);
+            await componentRef.resolveComponentResources(componentRef.hostView); // Wait for resources to be resolved
+            await new Promise(resolve => setTimeout(resolve, 100)); // Add a small timeout
+            component = componentRef.instance; // Create component instance after resources have been resolved
+            fixture = TestBed.createComponent(HomeCOPComponent);
+            fixture.detectChanges();
+            ```
+            mais sans succès
+            - [x] Sur suggestion de GPT, essai de : 
+            - [x] Sur suggestion de GPT, essai de : 
+            ```
+              TestBed.overrideComponent(HomeCOPComponent, {
+                set: {
+                templateUrl: './home-cop.component.html',
+                styleUrls: ['./home-cop.component.css']
+                }
+            });
+            ```
+            - [x] Sur suggestion de GPT, essai de : ```CUSTOM_ELEMENTS_SCHEMA``` sans succès apparent. problème de config ?
+            - [ ] Abandon pour downgrade à jest 29.0.0 ?
         - [ ] Lien avec les autres applis en fonction de qui est connecté
             - [ ] Réussir à afficher le rôle de l'user connecté
             - [ ] Afficher un lien vers l'app 4567 en fonction
