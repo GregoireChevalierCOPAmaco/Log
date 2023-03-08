@@ -161,6 +161,20 @@
             ```
             - [x] Sur suggestion de GPT, essai de : ```CUSTOM_ELEMENTS_SCHEMA``` sans succès apparent. problème de config ?
             - [ ] Abandon pour downgrade à jest 29.0.0 ?
+                - npm uninstall jest
+                - npm uninstall @types/jest
+                - npm uninstall ts-jest
+                - npm uninstall jest-environment-jsdom
+                - [x] npm uninstall front
+                - [x] npm uninstall back
+                - [x] npm uninstall root
+                - [x] Delete des node modules front, back & root
+                - [x] npm install jest@29.0.0 & dépendances
+                - [x] 29.0.0 ne résout pas le problèmre
+            - [ ] Downgrade à jest 28.1.0 
+                - [x] Backup de l'application front dans le dossier bureau
+                - [ ] Tout casser
+                - [ ] Reprendre clean avec jest 28.1.0 et voir à partir de là
         - [ ] Lien avec les autres applis en fonction de qui est connecté
             - [ ] Réussir à afficher le rôle de l'user connecté
             - [ ] Afficher un lien vers l'app 4567 en fonction
