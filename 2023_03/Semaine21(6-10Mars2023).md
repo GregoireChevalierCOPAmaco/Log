@@ -190,5 +190,65 @@
     - [ ] Keycloak realm : lier le realm au serveur de mail
     - [ ] Keycloak realm : se renseigner sur l'utilisation des thèmes pour le realm
     - [ ] Setup du repo
-        - [ ] Résolution de l'erreur jest Component is not resolved: Did you run and wait for 'resolveComponentResources()'?
+        - [x] Résolution de l'erreur jest Component is not resolved: Did you run and wait for 'resolveComponentResources()'?
             - [x] Copie des package json du github develop, collage, ```npm i``` & ```npm run test``` pour retomber sur le même problème
+                - [x] Tout casser
+                - [x] Désintallations dans root, front & back :
+                ```
+                npm uninstall jest-environment-jsdom
+                npm uninstall jest
+                npm uninstall jest-preset-angular
+                npm uninstall @types/jest 
+                ```
+                - [x] Suppression des dossiers node_modules
+                - [x] Réinstallations dans le dossier root :
+                ```
+                npm i jest@28.1.3
+                npm i jest-environment-jsdom@28.1.3
+                npm i jest-preset-angular@12.2.3
+                npm i
+                ```
+                - [x] ```git reset --hard```
+                - [x] ```npm i```
+                - [x] ```npm run test``` : retour à l'erreur :
+                ```
+                Test suite failed to run                                           TypeError: Cannot read properties of undefined (reading 'testEnvironmentOptions')
+                ```
+        - [ ] Résolution de l'erreur TypeError: Cannot read properties of undefined (reading 'testEnvironmentOptions')
+            - [x] Question à GPT : running jest tests in an angular application, i have this error : 
+            Test suite failed to run                                    
+            TypeError: Cannot read properties of undefined (reading 'testEnvironmentOptions')                        
+            at new JSDOMEnvironment (../../node_modules/jest-environment-jsdom/build/index.js:63:28) 
+            how can i solve it ?
+            Retour chat : 
+            ```
+            This error typically occurs when Jest is unable to set up the JSDOM environment for testing. Here are some steps you can try to solve this issue:
+
+            Make sure that you have installed the required dependencies for Jest to work with Angular. You can do this by running the following command:
+
+            scss
+            Copy code
+            npm install --save-dev jest @types/jest jest-preset-angular @angular-builders/jest
+            If you have recently upgraded Jest or any of its dependencies, try running the following command to clear the Jest cache:
+
+            css
+            Copy code
+            npm run jest -- --clearCache
+            If the above steps do not work, try updating the Jest configuration in your package.json file. Add the following lines to your Jest configuration:
+
+            json
+            Copy code
+            "testEnvironment": "jest-environment-jsdom",
+            "testEnvironmentOptions": {
+            "resources": "usable"
+            }
+            This should tell Jest to use the JSDOM environment and allow it to access resources.
+
+            If none of the above steps work, try deleting the node_modules folder and running npm install again.
+
+            Hopefully, one of these steps will solve the issue and allow you to run Jest tests in your Angular application.
+            ```
+            - [x] Application des suggestions sans effet positif.
+            - [x] ```git reset --hard```
+            - [x] ```npm i```
+    - [ ] Downgrade à jest 27
