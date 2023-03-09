@@ -181,3 +181,14 @@
 - [ ] Ajouter un attribut store à chaque user de predict sur keycloak
     - [ ] Voir comment ça a été fait pour atmos
     - [ ] Lier à une autre base ?
+    
+
+**9 Mars**
+- [ ] Passage au keycloak predict
+    - [ ] Exporter les users en meme temps que le realm 
+    - [ ] Keycloak realm : se renseigner sur le Fronted URL
+    - [ ] Keycloak realm : lier le realm au serveur de mail
+    - [ ] Keycloak realm : se renseigner sur l'utilisation des thèmes pour le realm
+    - [ ] Setup du repo
+        - [ ] Résolution de l'erreur jest Component is not resolved: Did you run and wait for 'resolveComponentResources()'?
+            - [x] Copie des package json du github develop, collage, ```npm i``` & ```npm run test``` pour retomber sur le même problème
