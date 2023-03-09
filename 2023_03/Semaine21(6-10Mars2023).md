@@ -251,4 +251,50 @@
             - [x] Application des suggestions sans effet positif.
             - [x] ```git reset --hard```
             - [x] ```npm i```
-    - [ ] Downgrade à jest 27
+    - [x] Downgrade à jest 27.5.1
+        - [x] Désintallations dans root, front & back :
+        ```
+        npm uninstall jest-environment-jsdom
+        npm uninstall jest
+        npm uninstall jest-config
+        npm uninstall ts-jest
+        npm uninstall jest-preset-angular
+        npm uninstall @types/jest 
+        ```
+        & cut dans le package.json front de :
+        ```
+        },
+        "jest": {
+            "preset": "jest-preset-angular",
+            "setupFilesAfterEnv": [
+            "<rootDir>/setup-jest.ts"
+            ],
+            "globalSetup": "jest-preset-angular/global-setup",
+            "testEnvironment": "jest-environment-jsdom",
+            "testEnvironmentOptions": {
+            "resources": "usable"
+            }
+        ```
+        - [x] Suppression des dossiers node_modules
+        - [x] ```npm i jest@27.5.1```
+        - [x] ```npm i jest-preset-angular@12.2.3``` renvoie l'erreur terminal : 
+        ```
+        npm ERR! ERESOLVE unable to resolve dependency tree
+        npm ERR!
+        npm ERR! While resolving: kmo-predict@0.0.0
+        npm ERR! Found: jest@27.5.1
+        npm ERR! node_modules/jest
+        npm ERR!   jest@"^27.5.1" from the root project
+        npm ERR!   jest@"^27.0.0" from kmo-predict-back@0.0.1
+        ```
+        - [x] ```npm uninstall jest``` dans le dossier back
+        - [x] 
+        ```
+        npm i jest-preset-angular --legacy-peer-deps
+        ``` 
+    - [x] Jest 27 ne résoud pas l'erreur et créée des conflits de dépendances
+        - [x] ```git reset --hard```
+        - [x] Essai en retirant ```entryComponents: [AppComponent]``` et remettant  ```bootstrap: [AppComponent]``` mais sans effet notable
+    - [ ] Reprise du develop clean
+    - [ ] Suppression de la branche KP_104
+    - [ ] Reprise du code pas à pas en vérifiant les tests à chaque étape
