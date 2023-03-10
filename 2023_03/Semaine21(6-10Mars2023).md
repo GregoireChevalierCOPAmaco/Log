@@ -382,4 +382,16 @@
         - [x] Modif de la ci avec legacy-peer-deps
         - [x] Re-commit, repush et PR
     - [x] Suppression de la branche KP_104
-    - [ ] Reprise du code pas à pas en vérifiant les tests à chaque étape
+    - [x] Reprise du code pas à pas en vérifiant les tests à chaque étape
+
+**10 Mars**
+- [ ] Passage au keycloak predict
+    - [ ] Exporter les users en meme temps que le realm 
+    - [ ] Keycloak realm : se renseigner sur le Fronted URL
+    - [ ] Keycloak realm : lier le realm au serveur de mail
+    - [ ] Keycloak realm : se renseigner sur l'utilisation des thèmes pour le realm
+    - [ ] Set d'un attribut store et lien avec users
+        - [ ] Positionnement en local sur develop et pull origin
+        - [ ] Création d'une nouvelle branche
+        - [ ] Création d'un attribut store dans le keycloak
+        - [ ] Update du code pour autoriser un user à accéder à un seul store
