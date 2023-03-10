@@ -386,12 +386,47 @@
 
 **10 Mars**
 - [ ] Passage au keycloak predict
+    - [x] Suppression de la branche foireuse KP-104 locale
     - [ ] Exporter les users en meme temps que le realm 
     - [ ] Keycloak realm : se renseigner sur le Fronted URL
     - [ ] Keycloak realm : lier le realm au serveur de mail
     - [ ] Keycloak realm : se renseigner sur l'utilisation des thèmes pour le realm
+    - [ ] Ajout d'un lien vers 4567 en fonction du role de l'user
+        - [ ] Récupération et affichage du role de l'user connecté
+        - [x] Check de (https://blog.strongbrew.io/display-a-component-based-on-role/) & (https://angular.io/guide/structural-directives) sans trouver ce que je cherche
+        - [x] Ajout dans le html de l'app de : 
+        ```
+        <div>
+          <ng-container *ngIf="userProfile">
+              <div *ngIf="userProfile.role">
+                <span>{{ userProfile.role }}</span>
+              </div>
+          </ng-container>
+        </div>
+        ```
+        mais sans succès, le build ne se fait pas puisque la valeur userProfile.role n'existe pas
+        - [x] Check du fichier de déclaration de l'objet keycloak.d.ts avec ctrl+clic sur KeycloakService dans l'app.component.ts
+        - [x] Ajout à l'app.component.ts de :
+        ```
+        public userRole: KeycloakRoles | null = null;
+        ```
+        et ajout de KeycloakRoles dans l'import en début de fichier
+        - [x] Check du role de l'user connecté au moyen de :
+        ```
+        if (this.isLogged) {
+            this.userProfile = await this.keycloak.loadUserProfile();
+            console.log(this.userProfile);      
+            console.log(this.userRole);      
+        }
+        ```
+        qui retourne ```null```
+        - [x] Ajout de role
+            - [x] Check dans la console keycloak de .../users/user/role-mappings & déroulé du dropdown, sélection du Client Role : KMO_Predict pour constater qu'il n'y a pas de roles dedans. Conclusion : **realm role =/= client role**
+            - [x] Création de roles pour le client KMO_Predict
+                - [x] Création du role  admin
+                - [x] Création du role  base_user
     - [ ] Set d'un attribut store et lien avec users
-        - [ ] Positionnement en local sur develop et pull origin
+        - [x] Positionnement en local sur develop et pull origin
         - [ ] Création d'une nouvelle branche
         - [ ] Création d'un attribut store dans le keycloak
         - [ ] Update du code pour autoriser un user à accéder à un seul store
