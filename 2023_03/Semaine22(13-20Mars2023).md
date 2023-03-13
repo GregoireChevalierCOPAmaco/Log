@@ -59,7 +59,11 @@
                 - [x] Essai de : ```QUARKUS_HTTP_HOST_ENABLED=false /opt/keycloak/bin/kc.sh export --file /tmp/testexport.json --users same_file --users-per-file 10```
                 - [x] Le fichier est maintenant exporté dans le dossier /tmp
             - [x] Check de (https://keepgrowing.in/tools/keycloak-in-docker-5-how-to-export-a-realm-with-users-and-secrets/)
-        - [ ] Trouver comment déplacer le fichier /tmp/realmexport.json depuis /tmp/ dans le docker vers Windows pour le récupérer
+        - [x] Trouver comment déplacer le fichier /tmp/realmexport.json depuis /tmp/ dans le docker vers Windows pour le récupérer
+            - [x] Check de (https://stackoverflow.com/questions/22049212/docker-copying-files-from-docker-container-to-host) & (https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/How-to-copy-files-from-a-Docker-container-to-a-host-machine)
+            - [x] Création d'un dossier realm_exports sur le bureau
+            - [x] win+R -> cmd -> entrée -> ```docker cp keycloak-sass-container:/tmp/realm-export_13_03_2023.json C:\Users\gchevalier\Desktop\realm_exports```
+        - [ ] Suivre (https://www.keycloak.org/server/containers#_importing_a_realm_on_startup) pour la suite
     - [ ] Assigner un attribut store aux users
         - [ ] Création d'une nouvelle branche
         - [ ] Création d'un attribut store dans le keycloak
