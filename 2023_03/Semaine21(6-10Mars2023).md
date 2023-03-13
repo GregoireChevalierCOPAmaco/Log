@@ -391,8 +391,8 @@
     - [ ] Keycloak realm : se renseigner sur le Fronted URL
     - [ ] Keycloak realm : lier le realm au serveur de mail
     - [ ] Keycloak realm : se renseigner sur l'utilisation des thèmes pour le realm
-    - [ ] Ajout d'un lien vers 4567 en fonction du role de l'user
-        - [ ] Récupération et affichage du role de l'user connecté
+    - [x] Ajout d'un lien vers 4567 en fonction du role de l'user
+        - [x] Récupération et affichage du role de l'user connecté
         - [x] Check de (https://blog.strongbrew.io/display-a-component-based-on-role/) & (https://angular.io/guide/structural-directives) sans trouver ce que je cherche
         - [x] Ajout dans le html de l'app de : 
         ```
@@ -425,8 +425,45 @@
             - [x] Création de roles pour le client KMO_Predict
                 - [x] Création du role  admin
                 - [x] Création du role  base_user
+            - [x] Le console log de role retourne toujours ```null```
+            - [x] Ajout dans l'app.component.ts de :
+            ```
+            this.userRole = await this.keycloak.getUserRoles();
+            ```
+            qui renvoie l'erreur suivante dans le terminal : 
+            ```
+            error TS2741: Property 'roles' is missing in type 'string[]' but required in type 'KeycloakRoles'
+            ```
+            - [x] Résolution de l'erreur error TS2741: Property 'roles' is missing in type 'string[]' but required in type 'KeycloakRoles', modification de :
+            ```
+            public userRole: KeycloakRole | null = null;
+            ```
+            en 
+            ```
+            public userRole: string[] | null = null;
+            ```
+            - [x] Ajout dans le html component de : 
+            ```
+            <div>
+                <ng-container *ngIf="userRole">
+                    <div *ngIf="userRole.includes('predict_admin')">
+                        <a href="http://localhost:4567/">Link to 4567</a>
+                    </div>
+                </ng-container>
+            </div>
+            ```
+            - [x] Création de 
+    - [x] Changer le port de keycloak sur 8081
+    - [x] Utiliser le fichier .env pour localiser le port
+    - [ ] Faire un fix sur le develop
+        - [x] Commit
+        - [x] Check du lint
+        - [x] Fix de l'erreur : TS2307: Cannot find module 'process' or its corresponding type declarations.
+
+36 import { env } from 'process';
     - [ ] Set d'un attribut store et lien avec users
         - [x] Positionnement en local sur develop et pull origin
         - [ ] Création d'une nouvelle branche
         - [ ] Création d'un attribut store dans le keycloak
         - [ ] Update du code pour autoriser un user à accéder à un seul store
+    - [ ] Voir avec pascalito pour le train du 4/04
