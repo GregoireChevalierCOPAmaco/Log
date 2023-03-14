@@ -83,6 +83,12 @@
             - [ ] Est-il possible de n'exporter que les users et leurs relations ?
             - [ ] Est-il possible d'importer des users dans un realm deja existant ?
             - [ ] Et sinon comment faire pour importer le realm master à l'initialisation du keycloak ?
+                - [x] Check de (https://keycloak.discourse.group/t/keycloak-17-docker-container-how-to-export-import-realm-import-must-be-done-on-container-startup/13619/21?page=2)
+                - [ ] Création d'une branche ?
+                - [x] Création & assignation d'une tâche jira
+                - [ ] Se baser sur --import-realm (cf. docker-compose.yml du projet socle atmos)
+                - [ ] Mise en place d'un script sh pour importer le realm avec users
+                - [ ] Appel du script dans le docker-compose.yml
     - [ ] Assigner un attribut store aux users
         - [ ] Suivre (https://www.keycloak.org/docs/latest/server_admin/#proc-configuring-user-attributes_server_administration_guide)
         - [ ] Création d'une nouvelle branche
