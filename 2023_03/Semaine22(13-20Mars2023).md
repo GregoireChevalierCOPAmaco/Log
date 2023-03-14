@@ -78,6 +78,11 @@
     - [ ] Keycloak realm : se renseigner sur l'utilisation des thèmes pour le realm
     - [x] Exporter les users en meme temps que le realm 
     - [ ] Essai de création de realm et import total avec users pour voir
+        - [x] Comparatif entre les json
+            - [x] Le realm exporté est le master. Ce qui est nécessaire si on veut récupérer les users, mais du coup à l'import via la console d'administration ça créée un conflit vu que le realm master est déjà existant.
+            - [ ] Est-il possible de n'exporter que les users et leurs relations ?
+            - [ ] Est-il possible d'importer des users dans un realm deja existant ?
+            - [ ] Et sinon comment faire pour importer le realm master à l'initialisation du keycloak ?
     - [ ] Assigner un attribut store aux users
         - [ ] Suivre (https://www.keycloak.org/docs/latest/server_admin/#proc-configuring-user-attributes_server_administration_guide)
         - [ ] Création d'une nouvelle branche
