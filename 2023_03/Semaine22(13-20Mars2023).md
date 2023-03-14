@@ -65,6 +65,21 @@
             - [x] win+R -> cmd -> entrée -> ```docker cp keycloak-sass-container:/tmp/realm-export_13_03_2023.json C:\Users\gchevalier\Desktop\realm_exports```
         - [ ] Suivre (https://www.keycloak.org/server/containers#_importing_a_realm_on_startup) pour la suite
     - [ ] Assigner un attribut store aux users
+        - [ ] Suivre (https://www.keycloak.org/docs/latest/server_admin/#proc-configuring-user-attributes_server_administration_guide)
+        - [ ] Création d'une nouvelle branche
+        - [ ] Création d'un attribut store dans le keycloak
+    - [ ] Ajouter un affichage conditionnel en fonction de l'attribut user
+- [ ] Mise en relation des applications dans le keycloak
+
+**14 Mars**
+- [ ] Passage au keycloak predict
+    - [ ] Keycloak realm : se renseigner sur le Fronted URL
+    - [ ] Keycloak realm : lier le realm au serveur de mail
+    - [ ] Keycloak realm : se renseigner sur l'utilisation des thèmes pour le realm
+    - [x] Exporter les users en meme temps que le realm 
+    - [ ] Essai de création de realm et import total avec users pour voir
+    - [ ] Assigner un attribut store aux users
+        - [ ] Suivre (https://www.keycloak.org/docs/latest/server_admin/#proc-configuring-user-attributes_server_administration_guide)
         - [ ] Création d'une nouvelle branche
         - [ ] Création d'un attribut store dans le keycloak
     - [ ] Ajouter un affichage conditionnel en fonction de l'attribut user
