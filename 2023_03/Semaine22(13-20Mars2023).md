@@ -178,9 +178,6 @@
 - [x] Review du code socket.io dans les fichiers gateways du back & ngrok
     - [x] Check de (https://ngrok.com/)
 - [ ] Passage au keycloak predict
-    - [ ] Keycloak realm : se renseigner sur le Fronted URL
-    - [ ] Keycloak realm : lier le realm au serveur de mail
-    - [ ] Keycloak realm : se renseigner sur l'utilisation des thèmes pour le realm
     - [ ] Automatiser l'import du realm au lancement de keycloak dans le docker compose
         - [x] Check de (https://stackoverflow.com/questions/39176561/copying-files-to-a-container-with-docker-compose)
         - [x] Reprise du docker-compose comme suit :
@@ -192,6 +189,26 @@
         - start-dev
         ```
         - [x] Le fichier de realm json est bien ajouté au docker dans opt/jboss/keycloak/imports, mais la commande d'import renvoie : ```Unknown option: '--profile'```
-        - [ ] Résolution de l'erreur d'import de realm  : ```Unknown option: '--profile'```
+        - [x] Résolution de l'erreur d'import de realm  : ```Unknown option: '--profile'```
+            - [x] Essai avece la commande : 
+            ```
+            - start-dev --import-realm --file /opt/jboss/keycloak/imports/realm-export_14_03_2023.json
+            ```
+            et retour terminal : Instead of manually specifying the files to import, just copy them to the 'data/import' directory.
+            - [x] Reprise du docker-compose comme suit :
+            ```
+            volumes:
+            - ./imports:/opt/keycloak/data/imports
+            command:
+            - start-dev --import-realm
+            ```
+            - [x] Erreur résolue, le docker se build, mais le realm n'apparaît pas sur la console d'administration
+            Voir avec olivier its ?
+        - [ ] Recherches sur keycloak angular use attributes with users
+    - [ ] Keycloak realm : se renseigner sur le Fronted URL
+        - [x] Check de (https://www.keycloak.org/server/hostname)
+        - [ ] Check de (https://keycloak.discourse.group/t/stuck-understanding-frontendurl-baseurl-and-configuring-registration-pages/4638)
+    - [ ] Keycloak realm : lier le realm au serveur de mail
+    - [ ] Keycloak realm : se renseigner sur l'utilisation des thèmes pour le realm
     - [ ] Voir pour la construction du keycloak version prod
     - [ ] Voir pour l'addition de stores depuis l'application (ajout et lien d'attribut store à la création d'un user ?)
