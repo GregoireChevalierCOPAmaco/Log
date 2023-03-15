@@ -175,10 +175,23 @@
 - [ ] Mise en relation des applications dans le keycloak
 
 **15 Mars**
-- [ ] Review du code socket.io dans les fichiers gateways du back
+- [x] Review du code socket.io dans les fichiers gateways du back & ngrok
+    - [x] Check de (https://ngrok.com/)
 - [ ] Passage au keycloak predict
     - [ ] Keycloak realm : se renseigner sur le Fronted URL
     - [ ] Keycloak realm : lier le realm au serveur de mail
     - [ ] Keycloak realm : se renseigner sur l'utilisation des thèmes pour le realm
     - [ ] Automatiser l'import du realm au lancement de keycloak dans le docker compose
-    - [ ] Voir pour la construction du keycloak ersion prod
+        - [x] Check de (https://stackoverflow.com/questions/39176561/copying-files-to-a-container-with-docker-compose)
+        - [x] Reprise du docker-compose comme suit :
+        ```
+        volumes:
+        - ./imports:/opt/jboss/keycloak/imports
+        command:
+        - /opt/keycloak/bin/kc.sh import --file realm-export_14_03_2023.json
+        - start-dev
+        ```
+        - [x] Le fichier de realm json est bien ajouté au docker dans opt/jboss/keycloak/imports, mais la commande d'import renvoie : ```Unknown option: '--profile'```
+        - [ ] Résolution de l'erreur d'import de realm  : ```Unknown option: '--profile'```
+    - [ ] Voir pour la construction du keycloak version prod
+    - [ ] Voir pour l'addition de stores depuis l'application (ajout et lien d'attribut store à la création d'un user ?)
