@@ -77,21 +77,108 @@
     - [ ] Keycloak realm : lier le realm au serveur de mail
     - [ ] Keycloak realm : se renseigner sur l'utilisation des thèmes pour le realm
     - [x] Exporter les users en meme temps que le realm 
-    - [ ] Essai de création de realm et import total avec users pour voir
+    - [x] Essai de création de realm et import total avec users pour voir
         - [x] Comparatif entre les json
             - [x] Le realm exporté est le master. Ce qui est nécessaire si on veut récupérer les users, mais du coup à l'import via la console d'administration ça créée un conflit vu que le realm master est déjà existant.
             - [ ] Est-il possible de n'exporter que les users et leurs relations ?
             - [ ] Est-il possible d'importer des users dans un realm deja existant ?
             - [ ] Et sinon comment faire pour importer le realm master à l'initialisation du keycloak ?
                 - [x] Check de (https://keycloak.discourse.group/t/keycloak-17-docker-container-how-to-export-import-realm-import-must-be-done-on-container-startup/13619/21?page=2)
-                - [ ] Création d'une branche ?
+                - [x] Création d'une branche ?
+                    - [x] Non
                 - [x] Création & assignation d'une tâche jira
-                - [ ] Se baser sur --import-realm (cf. docker-compose.yml du projet socle atmos)
-                - [ ] Mise en place d'un script sh pour importer le realm avec users
-                - [ ] Appel du script dans le docker-compose.yml
+                - [x] Se baser sur --import-realm (cf. docker-compose.yml du projet socle atmos)
+                - [x] Création d'un nouveau dossier/projet KMO SASS V2
+                    - [x] écriture du docker compose : 
+                    ```
+                    version: "3.9"
+                    volumes:
+                    postgres_data:
+                        driver: local
+
+                    services:
+
+                    postgres:
+                        container_name: postgresdb-sass-containerV2
+                        image: postgres:11
+                        volumes:
+                        - postgres_data:/var/lib/postgresql/data
+                        environment:
+                        POSTGRES_DB: keycloak
+                        POSTGRES_USER: keycloak
+                        POSTGRES_PASSWORD: pw123
+                        ports:
+                        - "5432:5432"
+
+                    keycloak:
+                        container_name: keycloak-sass-containerV2
+                        depends_on:
+                        - postgres
+                        image: quay.io/keycloak/keycloak:18.0.0
+                        command:
+                        - docker cp ./realm-export_13_03_2023.json keycloak-sass-containerV2:/opt/keycloak/data/import
+                        - start-dev --import-realm
+                        - -Dkeycloak.migration.strategy=IGNORE_EXISTING
+                        ports:
+                        - 8080:8080
+                        environment:
+                        DB_VENDOR: POSTGRES
+                        DB_ADDR: postgres
+                        DB_DATABASE: keycloak
+                        DB_USER: keycloak
+                        DB_SCHEMA: public
+                        DB_PASSWORD: password
+                        KEYCLOAK_USER: jojo
+                        KEYCLOAK_PASSWORD: pw123
+                        KEYCLOAK_LOGLEVEL: DEBUG
+                        ROOT_LOGLEVEL: DEBUG
+                        KEYCLOAK_ADMIN: admin
+                        KEYCLOAK_ADMIN_PASSWORD: admin
+                        KEYCLOAK_IMPORT: /tmp/realm-export_13_03_2023.json
+                        PROXY_ADDRESS_FORWARDING: 'true'
+                    ```
+                - [x] Lancement du compose pour voir le résultat : erraur dans le terminal ```Unknown option: 'docker'```, la ligne :
+                ```
+                command:
+                        - docker cp ./realm-export_13_03_2023.json keycloak-sass-containerV2:/opt/keycloak/data/import
+                ```
+                - [x] Check de (https://stackoverflow.com/questions/54796791/importing-keycloak-configuration-files-while-using-docker-compose) & application des changements :
+                    - suppression de la ligne de commande irrelevante
+                    - ajout dans  de :
+                    ```
+                    volumes:
+                    - ./imports:/opt/jboss/keycloak/imports
+                    command: 
+                    - "-b 0.0.0.0 -Dkeycloak.import=/opt/jboss/keycloak/imports/realm-export_13_03_2023.json"
+                    ```
+                - [x] insight de la doc : 
+                ```
+                To re-create realms you should explicitly run the import command prior to starting the server.
+
+                Importing the master realm is not supported because as it is a very sensitive operation.
+                ```
+                Il va falloir trouver comment exporter un realm spécifique, le doc dit :
+                ```
+                Exporting a specific realm
+                If you do not specify a specific realm to export, all realms are exported. To export a single realm, you can use the --realm option as follows:
+
+                bin/kc.[sh|bat] export [--dir|--file] <path> --realm my-realm
+                ```
+                - [x] Lancement la commande ```QUARKUS_HTTP_HOST_ENABLED=false /opt/keycloak/bin/kc.sh export --file realm-export_14_03_2023.json --users same_file --users-per-file 10 --realm Cop_sass``` depuis le dossier tmp
+                - [ ] Mise en place d'un script sh pour importer le realm avec users (Optionnel)
+                    - [ ] Appel du script dans le docker-compose.yml
     - [ ] Assigner un attribut store aux users
         - [ ] Suivre (https://www.keycloak.org/docs/latest/server_admin/#proc-configuring-user-attributes_server_administration_guide)
         - [ ] Création d'une nouvelle branche
         - [ ] Création d'un attribut store dans le keycloak
     - [ ] Ajouter un affichage conditionnel en fonction de l'attribut user
 - [ ] Mise en relation des applications dans le keycloak
+
+**15 Mars**
+- [ ] Review du code socket.io dans les fichiers gateways du back
+- [ ] Passage au keycloak predict
+    - [ ] Keycloak realm : se renseigner sur le Fronted URL
+    - [ ] Keycloak realm : lier le realm au serveur de mail
+    - [ ] Keycloak realm : se renseigner sur l'utilisation des thèmes pour le realm
+    - [ ] Automatiser l'import du realm au lancement de keycloak dans le docker compose
+    - [ ] Voir pour la construction du keycloak ersion prod
