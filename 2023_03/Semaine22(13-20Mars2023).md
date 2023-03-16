@@ -210,5 +210,18 @@
         - [ ] Check de (https://keycloak.discourse.group/t/stuck-understanding-frontendurl-baseurl-and-configuring-registration-pages/4638)
     - [ ] Keycloak realm : lier le realm au serveur de mail
     - [ ] Keycloak realm : se renseigner sur l'utilisation des thèmes pour le realm
+    - [x] Résolution des erreurs de tests d'Anthony
+    - [ ] Voir pour la construction du keycloak version prod
+    - [ ] Voir pour l'addition de stores depuis l'application (ajout et lien d'attribut store à la création d'un user ?)
+
+**16 Mars**
+- [ ] Check du protocole gateways écrit par Guillaume pour le predict (file:///C:/Users/gchevalier/Downloads/Specification_G2W.pdf)
+- [ ] Voir avec Anthony pour le mock des components à tester
+- [ ] Passage au keycloak predict
+    - [ ] Keycloak realm : se renseigner sur le Fronted URL
+        - [x] Check de (https://www.keycloak.org/server/hostname)
+        - [ ] Check de (https://keycloak.discourse.group/t/stuck-understanding-frontendurl-baseurl-and-configuring-registration-pages/4638)
+    - [ ] Keycloak realm : lier le realm au serveur de mail
+    - [ ] Keycloak realm : se renseigner sur l'utilisation des thèmes pour le realm
     - [ ] Voir pour la construction du keycloak version prod
     - [ ] Voir pour l'addition de stores depuis l'application (ajout et lien d'attribut store à la création d'un user ?)
