@@ -215,13 +215,42 @@
     - [ ] Voir pour l'addition de stores depuis l'application (ajout et lien d'attribut store à la création d'un user ?)
 
 **16 Mars**
-- [ ] Check du protocole gateways écrit par Guillaume pour le predict (file:///C:/Users/gchevalier/Downloads/Specification_G2W.pdf)
-- [ ] Voir avec Anthony pour le mock des components à tester
+- [x] Check du protocole gateways écrit par Guillaume pour le predict (file:///C:/Users/gchevalier/Downloads/Specification_G2W.pdf)
+- [x] Voir avec Anthony pour le mock des components à tester
+    - [x] Utilisation du spyOn
+    - [x] Utilisation du spyOn sur une variable, check de (https://stackoverflow.com/questions/56706667/how-to-mock-variables-inside-a-function-in-jest)
 - [ ] Passage au keycloak predict
+    - [x] Keycloak realm : se renseigner sur les timeout de session clients 
+        - [x] Check de (https://wjw465150.gitbooks.io/keycloak-documentation/content/server_admin/topics/sessions/timeouts.html)
+        - [x] Application su rle keycloak ici : http://localhost:8080/admin/master/console/#/realms/Cop_sass/token-settings
     - [ ] Keycloak realm : se renseigner sur le Fronted URL
-        - [x] Check de (https://www.keycloak.org/server/hostname)
-        - [ ] Check de (https://keycloak.discourse.group/t/stuck-understanding-frontendurl-baseurl-and-configuring-registration-pages/4638)
+        - [x] Check de (https://www.keycloak.org/server/hostname#_frontend)
+        - [x] Check de (https://keycloak.discourse.group/t/stuck-understanding-frontendurl-baseurl-and-configuring-registration-pages/4638)
+        - [ ] Modifier la console admin en conséquence
     - [ ] Keycloak realm : lier le realm au serveur de mail
+        - [x] Check du fichier ppt tuto mail monteurs
+        - [x] Check de la doc adaptée à la version 18 de keycloak in use : (https://www.keycloak.org/docs/18.0/server_admin/)
+        - [x] Aller dans le keycloak sur Realm Settings -> Email
+        - [ ] Configuration
+            - [x] Remplissage des champs avec : 
+                - mailhost.cop-amaco.com
+                - 25
+                - Cop Keycloak admin
+                - g.chevalier@cop-amaco.com
+                - Cop Keycloak admin
+                - g.chevalier@cop-amaco.com
+                - X
+                - OFF
+                - OFF
+                - OFF
+            Retour : error, no email set for this user
+            - [x] Ajout d'un email au compte admin de keycloak (v Admin -> Manage Account -> Personal info)
+            - [x] Renvoi du formulaire rempli à l'identique,
+            Retour : error! Failed to send email
+            - [ ] Résolution de l'erreur
     - [ ] Keycloak realm : se renseigner sur l'utilisation des thèmes pour le realm
     - [ ] Voir pour la construction du keycloak version prod
+        - [x] Check de (https://www.keycloak.org/server/containers)
+        - [x] Check de (https://dev.to/gjrdiesel/setup-a-production-grade-keycloak-instance-on-docker-19dk)
+        - [x] Check de (https://siweheee.medium.com/keycloak-a-real-scenario-from-development-to-production-ce57800e3ba9)
     - [ ] Voir pour l'addition de stores depuis l'application (ajout et lien d'attribut store à la création d'un user ?)
