@@ -248,9 +248,30 @@
             - [x] Renvoi du formulaire rempli à l'identique,
             Retour : error! Failed to send email
             - [ ] Résolution de l'erreur
+                - [x] Check de (https://keycloak.discourse.group/t/keycloak-test-email-fails-with-error-failed-to-send-email/15441/4) et modification des champs :
+                - mailhost.cop-amaco.com
+                - 25
+                - Cop Keycloak admin
+                - g.chevalier@cop-amaco.com
+                - Cop Keycloak admin
+                - g.chevalier@cop-amaco.com
+                - X
+                - ON
+                - ON
+                - ON
+                - g.chevalier
+                - COP67
+                - [x] Check de (https://stackoverflow.com/questions/62104654/keycloak-test-connection-doesnt-work-error-failed-to-send-email)
+                - [x] Check de (https://www.reddit.com/r/KeyCloak/comments/yte5no/setup_email_on_keycloak_20/) on peut accéder à l'erreur via le docker
+                - [x] Erreur docker : 
+                ```
+                org.keycloak.email.EmailException: com.sun.mail.util.MailConnectException: Couldn't connect to host, port: mailhost.cop-amaco.com, 587; timeout 10000;
+                ```
+                Voir avec Franck, ou olivier its ?
     - [ ] Keycloak realm : se renseigner sur l'utilisation des thèmes pour le realm
     - [ ] Voir pour la construction du keycloak version prod
         - [x] Check de (https://www.keycloak.org/server/containers)
         - [x] Check de (https://dev.to/gjrdiesel/setup-a-production-grade-keycloak-instance-on-docker-19dk)
         - [x] Check de (https://siweheee.medium.com/keycloak-a-real-scenario-from-development-to-production-ce57800e3ba9)
-    - [ ] Voir pour l'addition de stores depuis l'application (ajout et lien d'attribut store à la création d'un user ?)
+    - [ ] Voir pour la registration de users depuis l'application
+    - [ ] Voir pour l'addition de stores (attributes) depuis l'application (ajout et lien d'attribut store à la création d'un user ?)
