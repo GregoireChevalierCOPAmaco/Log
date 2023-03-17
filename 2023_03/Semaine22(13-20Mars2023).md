@@ -275,3 +275,11 @@
         - [x] Check de (https://siweheee.medium.com/keycloak-a-real-scenario-from-development-to-production-ce57800e3ba9)
     - [ ] Voir pour la registration de users depuis l'application
     - [ ] Voir pour l'addition de stores (attributes) depuis l'application (ajout et lien d'attribut store à la création d'un user ?)
+
+**17 Mars**
+- [ ] Poursuite keycloak
+    - [ ] Keycloak realm : se renseigner sur l'utilisation des thèmes pour le realm
+    - [ ] Voir pour la construction du keycloak version prod
+    - [ ] Voir pour la registration de users depuis l'application
+        - [x] Check de (https://www.keycloak.org/docs/latest/server_admin/#con-user-registration_server_administration_guide)
+    - [ ] Voir pour l'addition de stores (attributes) depuis l'application (ajout et lien d'attribut store à la création d'un user ?)
