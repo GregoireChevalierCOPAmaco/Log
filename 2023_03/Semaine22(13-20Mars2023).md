@@ -285,3 +285,5 @@
         - [x] Dans Realm Settings -> Login, toggle User Registration to On
         - [x] Dans Realm Settings -> Login, set Require SSL to none
     - [ ] Voir pour l'addition de stores (attributes) depuis l'application (ajout et lien d'attribut store à la création d'un user ?)
+        - [x] Check de (https://stackoverflow.com/questions/58011950/keycloak-user-registration-how-to-add-the-role)
+- [x] Grosse aprem de rangement sa mère
