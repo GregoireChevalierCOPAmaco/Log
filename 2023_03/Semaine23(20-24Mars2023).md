@@ -45,9 +45,25 @@
                 ```
             - [x] Modifs dans le css du theme extended theme/kmo-predict/admin/ressources/css
             - [ ] Renvoi du theme sur le docker
+                - [x] copie du readme sur le bureau pour voir ce qu'il dit, win + R / cmd :
+                ```
+                docker cp C:\Users\gchevalier\Desktop\theme\kmo-predict keycloak-sass-container:/opt/keycloak/themes/
+                ```
             - [ ] Selection du theme 
     - [x] Check des modifs de Théo sur la PR 36  (https://github.com/COP-AMACO/KMO_PREDICT/pull/36/files)
     - [x] Check de (https://medium.com/keycloak/create-a-custom-theme-for-keycloak-8781207be604) pour modifications thème existant
+    - [ ] Voir pour la construction du keycloak version prod
+    - [ ] Voir avec Frank pour la configuration du mail à keycloak
+    - [ ] Voir pour l'addition de stores (attributes) depuis l'application (ajout et lien d'attribut store à la création d'un user ?)
+        - [ ] Check de (https://stackoverflow.com/questions/58011950/keycloak-user-registration-how-to-add-the-role)
+- [x] La grosse réunion de mise au point des projets en cours + coeur paysan
+
+**21 Mars**
+- [ ] Poursuite keycloak
+    - [ ] Keycloak realm : se renseigner sur l'utilisation des thèmes pour le realm
+        - [ ] Création d'un thème personnalisé
+            - [ ] Modification du theme avec extend du basic/keycloak
+                
     - [ ] Voir pour la construction du keycloak version prod
     - [ ] Voir avec Frank pour la configuration du mail à keycloak
     - [ ] Voir pour l'addition de stores (attributes) depuis l'application (ajout et lien d'attribut store à la création d'un user ?)
