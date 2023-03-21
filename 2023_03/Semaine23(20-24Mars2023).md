@@ -63,7 +63,12 @@
     - [ ] Keycloak realm : se renseigner sur l'utilisation des thèmes pour le realm
         - [ ] Création d'un thème personnalisé
             - [ ] Modification du theme avec extend du basic/keycloak
-                
+                - [x] Suivi de (https://medium.com/keycloak/create-a-custom-theme-for-keycloak-8781207be604)
+                - [x] Recherche du fichier standalone.xml : (https://wiki.archlinux.org/title/Keycloak#:~:text=account%20already%20exists.-,Configuration,xml%20.) le fichier serait dans etc/keyclaok/standalone.xml ? Pas trouvé. Passage à autre chose ; le standalone ne sert qu'à s'éviter un restart du server keycloak pour voir les modifs
+                - [x] Redémarrage du docker keycloak, pas la peine, il suffit de sélectionner le theme voulu dans la console
+                - [ ] Modifs du theme pour changements login 
+            - [ ] Renvoi du theme sur le docker
+            - [ ] Selection du theme 
     - [ ] Voir pour la construction du keycloak version prod
     - [ ] Voir avec Frank pour la configuration du mail à keycloak
     - [ ] Voir pour l'addition de stores (attributes) depuis l'application (ajout et lien d'attribut store à la création d'un user ?)
