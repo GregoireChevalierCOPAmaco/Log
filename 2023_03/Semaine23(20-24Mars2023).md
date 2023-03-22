@@ -104,6 +104,13 @@
 
 **22 Mars**
 - [ ] Poursuite keycloak
+    - [ ] Bloquer l'accès la page cop a ceux qui n'ont pas le rôle requis
+        - [x] Précisions apportées à la tâche jira
+        - [x] Assignation à la tâche jira
+            - [ ] Récupération du rôle dans l’app front
+            - [ ] Modification de l’authguard
+            - [ ] Restriction de l’accès à la route en fonction du rôle 
+            - [ ] Affichage du bouton de link en fonction du rôle
 - [ ] Aide à la résolution des tests d'Anthony
     - [ ] Résolution de l'erreur : TypeError: Cannot read properties of undefined (reading 'inspectInstanceWrapper')
         - [ ] À essayer : désinstaller jest en global et le réinstaller en global ?
