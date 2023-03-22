@@ -60,9 +60,9 @@
 
 **21 Mars**
 - [ ] Poursuite keycloak
-    - [ ] Keycloak realm : se renseigner sur l'utilisation des thèmes pour le realm
-        - [ ] Création d'un thème personnalisé *via docker*
-            - [ ] Modification du theme avec extend du basic/keycloak
+    - [x] Keycloak realm : se renseigner sur l'utilisation des thèmes pour le realm
+        - [x] Création d'un thème personnalisé *via docker*
+            - [x] Modification du theme avec extend du basic/keycloak
                 - [x] Suivi de (https://medium.com/keycloak/create-a-custom-theme-for-keycloak-8781207be604)
                 - [x] Recherche du fichier standalone.xml : (https://wiki.archlinux.org/title/Keycloak#:~:text=account%20already%20exists.-,Configuration,xml%20.) le fichier serait dans etc/keyclaok/standalone.xml ? Pas trouvé. Passage à autre chose ; le standalone ne sert qu'à s'éviter un restart du server keycloak pour voir les modifs
                 - [x] Redémarrage du docker keycloak, pas la peine, il suffit de sélectionner le theme voulu dans la console
@@ -83,7 +83,33 @@
             - [x] Renvoi du theme sur le docker
             - [x] Selection du theme 
         - [ ] Modification du readme keycloak de base pour expliciter la procédure
+            - [x] Pull de develop pour être à jour
+            - [x] Écriture de doc pour la procédure en .md
     - [ ] Voir pour la construction du keycloak version prod
     - [ ] Voir avec Frank pour la configuration du mail à keycloak
     - [ ] Voir pour l'addition de stores (attributes) depuis l'application (ajout et lien d'attribut store à la création d'un user ?)
         - [ ] Check de (https://stackoverflow.com/questions/58011950/keycloak-user-registration-how-to-add-the-role)
+- [x] S'occuper de la carte sim en rab : Carte sim trouvée dans la tablette pétée ancienement celle de A.Wandres et mise dans la flybox : n°SIM : 1041079231059
+- [x] Config de l'airbox
+- [ ] Aide à la résolution des tests d'Anthony
+    - [x] Pull de la branche KP 129
+    - [x] Lancement des tests pour voir si ça passe et si la v9.1.4 de nest résout le problème : ça passe pas : 
+    ```TypeError: Cannot read properties of undefined (reading 'inspectInstanceWrapper')```
+    trouver pourquoi
+    - [ ] Résolution de l'erreur : TypeError: Cannot read properties of undefined (reading 'inspectInstanceWrapper')
+        - [ ] À essayer : désinstaller jest en global et le réinstaller en global ?
+- [ ] Question de créer une page dédiée de l'application qui puisse normaliser l'ajout d'un nouveau magasin
+- [ ] Question de créer une page dédiée de l'application qui puisse formater le principe d'utiliser l'API  pour aller taper dans la bdd pour y inscrire les nouveaux magasins
+- [ ] Ajouter un log de l'état des caisses au changement d'état : qui a modifié quelle caisse, vers quel état et quand
+
+**22 Mars**
+- [ ] Poursuite keycloak
+- [ ] Aide à la résolution des tests d'Anthony
+    - [ ] Résolution de l'erreur : TypeError: Cannot read properties of undefined (reading 'inspectInstanceWrapper')
+        - [ ] À essayer : désinstaller jest en global et le réinstaller en global ?
+- [ ] Question de créer une page dédiée de l'application qui puisse normaliser l'ajout d'un nouveau magasin
+    - [ ] Modification du jira en conséquence
+- [ ] Question de créer une page dédiée de l'application qui puisse formater le principe d'utiliser l'API  pour aller taper dans la bdd pour y inscrire les nouveaux magasins
+    - [ ] Modification du jira en conséquence
+- [ ] Ajouter un log de l'état des caisses au changement d'état : qui a modifié quelle caisse, vers quel état et quand
+    - [ ] Modification du jira en conséquence
