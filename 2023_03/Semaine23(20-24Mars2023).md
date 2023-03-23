@@ -107,16 +107,24 @@
     - [ ] Bloquer l'accès la page cop a ceux qui n'ont pas le rôle requis
         - [x] Précisions apportées à la tâche jira
         - [x] Assignation à la tâche jira
+            - [ ] Création de branche kp134 et checkout
+            - [ ] Voir avec Théo pour setup du back
             - [ ] Récupération du rôle dans l’app front
             - [ ] Modification de l’authguard
             - [ ] Restriction de l’accès à la route en fonction du rôle 
             - [ ] Affichage du bouton de link en fonction du rôle
-- [ ] Aide à la résolution des tests d'Anthony
-    - [ ] Résolution de l'erreur : TypeError: Cannot read properties of undefined (reading 'inspectInstanceWrapper')
-        - [ ] À essayer : désinstaller jest en global et le réinstaller en global ?
+- [x] Aide à la résolution des tests d'Anthony
+    - [x] Résolution de l'erreur : TypeError: Cannot read properties of undefined (reading 'inspectInstanceWrapper')
+        - [x] À essayer : désinstaller jest en global et le réinstaller en global ?
+        - [x] ```npm uninstall -g @nest/testing``` à la racine puis |```npm install -g @nest/testing```
 - [ ] Question de créer une page dédiée de l'application qui puisse normaliser l'ajout d'un nouveau magasin
     - [ ] Modification du jira en conséquence
 - [ ] Question de créer une page dédiée de l'application qui puisse formater le principe d'utiliser l'API  pour aller taper dans la bdd pour y inscrire les nouveaux magasins
     - [ ] Modification du jira en conséquence
 - [ ] Ajouter un log de l'état des caisses au changement d'état : qui a modifié quelle caisse, vers quel état et quand
     - [ ] Modification du jira en conséquence
+
+**23 Mars**
+- [ ] Résolution des problèmes de tests en local
+    - [ ] Kill du projet
+    - [ ] Re-clone et ```npm i --legacy-peer-deps```
