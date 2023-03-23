@@ -131,6 +131,95 @@
 - [x] Réponse à Evelyne sur les mails monteurs
 - [ ] Utilisation du keycloak uniformisé
     - [x] Update de la branche develop avec un dossier documentation
-- [ ] Ajouter les données en base locale
-    - [ ] Lancer l'extension db de vscode
-    - [ ] Lancer la commande
+    - [x] Relancer le docker avec ```docker compose --env-file .env.dev -f docker-compose.dev.yml up --renew-anon-volumes --always-recreate-deps --build```
+        - [x] Résolution de l'erreur :
+        ```
+         - keycloak Error              
+        Error response from daemon: Head "https://ghcr.io/v2/cop-amaco/kmo-keycloak/manifests/latest": denied: denied
+        ```
+        - [x] Recréation d'un personnal access token sur github avec les read & write de package
+        - [x] Relance de login avec PAT :
+        ```
+        echo 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 | docker login ghcr.io -u gregoirechevaliercopamaco --password-stdin
+        ```
+        - [x] Relance de compose :
+        ```
+        docker compose --env-file .env.dev -f docker-compose.dev.yml up --renew-anon-volumes --always-recreate-deps --build
+        ```
+        - [x] Erreur au lancement de l'app back dans docker, npm i peer deps, relance & all good
+    - [x] Refaire le realm
+        - [x] Import du dernier export de realm fourni par theo
+        - [x] Création de 3 users
+    - [x] Ajouter les données en base locale
+        - [x] Lancer l'extension db de vscode
+        - [x] Config de la connexion (pw : dbpredict16022023)
+        - [x] Lancer la commande : 
+        ```
+        INSERT INTO public.gateway (mac, datetime, "diskUsage", "temperatureCpu", "freeRam", services)
+        VALUES ('01:00:5E:xx:xx:2x', '2023-03-01 16:48:43.000000', 101, 29, 30,
+                '{
+                "ATMOS": {
+                    "active": true,
+                    "memory_usage": "46.6M",
+                    "mac_declared": "22:a9:fb:ff:d2:bc",
+                    "extras": {
+                    "operational_rate": 98.66666666666667
+                    }
+                },
+                "RTunnel": {
+                    "active": true,
+                    "memory_usage": "11.8M"
+                }
+                }'),
+            ('01:00:5E:xx:xx:xx', '2024-03-01 16:48:43.000000', 2323, 29, 30, '{
+                "ATMOS": {
+                "active": true,
+                "memory_usage": "46.6M",
+                "mac_declared": "22:a9:fb:ff:d2:bc",
+                "extras": {
+                    "operational_rate": 98.66666666666667
+                }
+                },
+                "RTunnel": {
+                "active": true,
+                "memory_usage": "11.8M"
+                }
+            }'),
+            ('22:a9:fb:ff:d2:bc', '2023-02-22 09:45:48.347000', 13, 39.444, 81.52787453215763, '{
+                "ATMOS": {
+                "active": true,
+                "memory_usage": "46.6M",
+                "mac_declared": "22:a9:fb:ff:d2:bc",
+                "extras": {
+                    "operational_rate": 98.66666666666667
+                }
+                }
+            }');
+
+        INSERT INTO public.kmo_box (mac, datetime, uptime, firmware_version,"checkoutNumber", "gatewayMac")
+        VALUES ('01:00:5E:xx:xx:xx', '2023-03-01 16:48:43.000000', 10, 1.4,1,
+                '22:a9:fb:ff:d2:bc'),
+            ('01:00:5E:xx:xx:33', '2023-03-02 13:44:01.000000', 3, 3,2, '22:a9:fb:ff:d2:bc');
+
+        INSERT INTO public.store (id, address, city, "postalCode", "isStoreOpen", "numberOfCheckouts", "gatewayMac", "openingHours", brand) VALUES ('081439dd-cfda-49e7-85d8-15c6c25c65ca', '7 rue du chenes', 'Nordhouse', '67100', true, 3, null, '{"fri": ["08:30", "20:00"], "mon": ["08:30", "20:00"], "sat": ["08:30", "20:00"], "sun": ["10:00", "13:00"], "thu": ["08:30", "20:00"], "tue": ["08:30", "20:00"], "wed": ["08:30", "20:00"]}', 'Lidl');
+        INSERT INTO public.store (id, address, city, "postalCode", "isStoreOpen", "numberOfCheckouts", "gatewayMac", "openingHours", brand) VALUES ('9de16383-c4d8-4616-bc4c-a26795f286ae', '7 rue du chenes', 'Nordhouse', '67100', true, 3, '01:00:5E:xx:xx:2x', '{"fri": ["08:30", "20:00"], "mon": ["08:30", "20:00"], "sat": ["08:30", "20:00"], "sun": ["10:00", "13:00"], "thu": ["08:30", "20:00"], "tue": ["08:30", "20:00"], "wed": ["08:30", "20:00"]}', 'Norma');
+        INSERT INTO public.store (id, address, city, "postalCode", "isStoreOpen", "numberOfCheckouts", "gatewayMac", "openingHours", brand) VALUES ('7d1a9808-ccf1-4136-8c8b-b80020ac0ec4', '7 rue du chenes', 'Nordhouse', '67100', true, 3, null, '{"fri": ["08:30", "20:00"], "mon": ["08:30", "20:00"], "sat": ["08:30", "20:00"], "sun": ["10:00", "13:00"], "thu": ["08:30", "20:00"], "tue": ["08:30", "20:00"], "wed": ["08:30", "20:00"]}', 'Lidl');
+
+        INSERT INTO public.event (id, type, duration, datetime, state, "stateValue", motor, "kmoBoxMac")
+        VALUES ('993051ef-1a3e-4781-b60f-1ea7faf7da89', 'pedal', 22.6, '2023-02-22 09:45:48.347000', 'up', null, null,
+        '01:00:5E:xx:xx:xx'),
+       ('75cb0af5-849d-4ce6-b794-a0585136bd8c', 'motor_flag', null, '2023-02-22 09:45:48.347000', 'value', 0.225, '2',
+        '01:00:5E:xx:xx:xx'),
+       ('6ee4988c-8e7b-4c10-820c-07b48fd8c574', 'cpu_temperature_changed', null, '2023-02-22 09:45:48.347000',
+        'thermal_switch', null, '2', '01:00:5E:xx:xx:xx'),
+       ('cbee4323-3f71-4fda-ba96-cc9c122aa5a2', 'power_intensity_changed', null, '2023-02-22 09:45:48.347000',
+        'thermal_switch', null, '2', '01:00:5E:xx:xx:xx'),
+       ('993051ef-1a3e-4781-b60f-1ea7faf7da83', 'ir', 22.6, '2023-03-02 13:43:30.000000', 'down', null, '1',
+        '01:00:5E:xx:xx:xx')
+        ```
+- [ ] Poursuite keycloak
+    - [ ] Bloquer l'accès la page cop a ceux qui n'ont pas le rôle requis
+        - [ ] Récupération du rôle dans l’app front
+        - [ ] Modification de l’authguard
+        - [ ] Restriction de l’accès à la route en fonction du rôle 
+    - [ ] Affichage du bouton de link sidebar en fonction du rôle
