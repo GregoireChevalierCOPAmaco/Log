@@ -125,6 +125,12 @@
     - [ ] Modification du jira en conséquence
 
 **23 Mars**
-- [ ] Résolution des problèmes de tests en local
-    - [ ] Kill du projet
-    - [ ] Re-clone et ```npm i --legacy-peer-deps```
+- [x] Résolution des problèmes de tests en local
+    - [x] Kill du projet
+    - [x] Re-clone et ```npm i --legacy-peer-deps```
+- [x] Réponse à Evelyne sur les mails monteurs
+- [ ] Utilisation du keycloak uniformisé
+    - [x] Update de la branche develop avec un dossier documentation
+- [ ] Ajouter les données en base locale
+    - [ ] Lancer l'extension db de vscode
+    - [ ] Lancer la commande
