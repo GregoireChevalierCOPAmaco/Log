@@ -217,9 +217,40 @@
        ('993051ef-1a3e-4781-b60f-1ea7faf7da83', 'ir', 22.6, '2023-03-02 13:43:30.000000', 'down', null, '1',
         '01:00:5E:xx:xx:xx')
         ```
+    - [x] Relance du projet, erreur non critique dans la construction du back : 
+    ```
+    kmo-predict-back:dev:     this.server.on('connection', (socket) => {              ^
+    kmo-predict-back:dev: TypeError: Cannot read properties of null (reading 'on')     
+    kmo-predict-back:dev:     at GatewaysGateway.onModuleInit (/app/apps/kmo-predict-back/src/app/gateways/gateways.gateway.ts:30:17)
+    ```
+    résolution via docker prune image, system & container ?
+        - [x] Prune de docker
+        - [x] Rajout d'un "?" après server dans le fichier gateways.gateway.ts : 
+        ```
+        onModuleInit() {
+            this.server?.on('connection', (socket) => {
+            console.log(socket.id);
+            });
+        }
+        ```
+- [x] Rédaction d'une doc pour l'export de realm avec users
 - [ ] Poursuite keycloak
     - [ ] Bloquer l'accès la page cop a ceux qui n'ont pas le rôle requis
         - [ ] Récupération du rôle dans l’app front
         - [ ] Modification de l’authguard
         - [ ] Restriction de l’accès à la route en fonction du rôle 
+        - [ ] Restructuration des rôles dans les groupes du keycloak
     - [ ] Affichage du bouton de link sidebar en fonction du rôle
+        - [ ] Création de branche kp134 et checkout
+
+**24 Mars**
+- [ ] Poursuite keycloak
+    - [x] Affichage du bouton de link sidebar en fonction du rôle
+        - [x] Création de branche kp134 et checkout
+        - [ ] Refacto du code avec un nommage correct
+        - [ ] Refacto du code avec tous les rôles autorisés à voir le lien
+    - [ ] Bloquer l'accès la page cop a ceux qui n'ont pas le rôle requis
+        - [ ] Récupération du rôle dans l’app front
+        - [ ] Modification de l’authguard
+        - [ ] Restriction de l’accès à la route en fonction du rôle 
+        - [ ] Restructuration des rôles dans les groupes du keycloak
