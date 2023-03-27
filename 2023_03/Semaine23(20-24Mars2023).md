@@ -247,10 +247,23 @@
 - [ ] Poursuite keycloak
     - [x] Affichage du bouton de link sidebar en fonction du rôle
         - [x] Création de branche kp134 et checkout
-        - [ ] Refacto du code avec un nommage correct
+        - [x] Refacto du code avec un nommage correct
         - [ ] Refacto du code avec tous les rôles autorisés à voir le lien
+            - [x] Voir (https://www.geekstrick.com/view-component-based-on-user-role/) pour le stack des roles assignés à la vision d'un component
+            - [ ] Utilisation de :
+            ```
+            this.keycloak.isUserInRole('kmo-predict_store-manager')
+            ```
+            pour ce faire ?
+        - [x] Refacto du code en adaptant la logique au bouton de lien mon magasin
+    - [x] Résoudre le problème d'infos qui ne s'affichent pas sur la topbar selon le role
+        - [x] Les rôles imbriqués dans default-roles-cop_sass sont nécessaires au bon fonctionnement, il faut les laisser attribués au user, même le plus basique
     - [ ] Bloquer l'accès la page cop a ceux qui n'ont pas le rôle requis
-        - [ ] Récupération du rôle dans l’app front
-        - [ ] Modification de l’authguard
+        - [x] Récupération du rôle dans l’app front
+        - [ ] Reprise des routes de l'app-routing.component (fait par Théo)
+        - [ ] Modification de l’authguard (fait par Théo)
+        - [ ] Restructuration des rôles dans les groupes du keycloak (fait par Théo)
         - [ ] Restriction de l’accès à la route en fonction du rôle 
-        - [ ] Restructuration des rôles dans les groupes du keycloak
+        - [ ] Appliquer la restriction à toutes les routes nécessaires
+        - [ ] Push & merge
+- [x] Installation de kmo flasher sur la tablette n° 352807082442783
