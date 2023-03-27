@@ -1,5 +1,6 @@
 **24 Mars**
 - [ ] Poursuite keycloak
+    - [x] Edit de la PR, squash & merge
     - [x] Affichage du bouton de link sidebar en fonction du rôle
         - [x] Refacto du code avec tous les rôles autorisés à voir le lien
             - [x] Voir (https://www.geekstrick.com/view-component-based-on-user-role/) pour le stack des roles assignés à la vision d'un component
@@ -17,9 +18,96 @@
         - [x] Push & merge
     - [ ] KP-139 : Suppression d'un magasin
         - [x] Définition & assignation de la tâche sur Jira
-        - [ ] Renseignements sur l’intercation entre code API & keycloak
+        - [x] Création de branche kp139 et checkout
+        - [ ] Renseignements sur l’interaction entre code API & keycloak
+            - [x] Check de (https://www.keycloak.org/docs-api/15.0/rest-api/index.html) & (https://www.keycloak.org/docs-api/15.0/rest-api/index.html#_users_resource)
         - [ ] Renseignements sur la suppression de store via l’API
+            - [x] Check de (https://www.keycloak.org/docs-api/15.0/rest-api/index.html) & (https://www.keycloak.org/docs-api/15.0/rest-api/index.html#_users_resource), chat gpt & (https://angular.io/guide/http)
+            - [x] Réponse de GPT sur le sujet :
+            ```
+            Authenticate with Keycloak: To be able to access the Keycloak API, you need to authenticate with Keycloak first. You can do this by obtaining an access token from Keycloak using your client credentials or a user's credentials.
+
+            Retrieve the user's Keycloak ID: In order to delete a user from Keycloak, you need to know the user's Keycloak ID. You can retrieve this ID by making a request to Keycloak's users API endpoint and filtering the results based on the user's email address or username.
+
+            Delete the user from Keycloak: Once you have the user's Keycloak ID, you can use it to make a DELETE request to the Keycloak users/{id} API endpoint to delete the user.
+
+            Delete the user's data from PostgreSQL: Finally, you can delete the user's data from your PostgreSQL database using an SQL query. You can use the user's email address or any other unique identifier to filter the data and ensure that you are deleting the correct user's data.
+
+            && 
+
+            import { HttpClient } from '@angular/common/http';
+            import { Injectable } from '@angular/core';
+            import { environment } from '../environments/environment';
+
+            @Injectable()
+            export class UserService {
+
+            private keycloakUrl = `${environment.keycloakUrl}/auth`;
+            private realm = 'myrealm';
+            private clientId = 'myclient';
+            private clientSecret = 'mysecret';
+
+            constructor(private http: HttpClient) {}
+
+            async deleteUser(email: string) {
+                const token = await this.getAccessToken();
+                const user = await this.getUserByEmail(email, token);
+
+                if (user) {
+                await this.deleteUserInKeycloak(user.id, token);
+                await this.deleteUserInDatabase(email);
+                }
+            }
+
+            private async getAccessToken(): Promise<string> {
+                const tokenUrl = `${this.keycloakUrl}/realms/${this.realm}/protocol/openid-connect/token`;
+                const body = new URLSearchParams({
+                'grant_type': 'client_credentials',
+                'client_id': this.clientId,
+                'client_secret': this.clientSecret,
+                }).toString();
+
+                const response = await this.http.post(tokenUrl, body, {
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                }).toPromise();
+
+                return response['access_token'];
+            }
+
+            private async getUserByEmail(email: string, token: string): Promise<any> {
+                const usersUrl = `${this.keycloakUrl}/admin/realms/${this.realm}/users?email=${email}`;
+                const headers = { 'Authorization': `Bearer ${token}` };
+
+                const response = await this.http.get(usersUrl, { headers }).toPromise();
+                const users = response as Array<any>;
+                return users.find(u => u.email === email);
+            }
+
+            private async deleteUserInKeycloak(userId: string, token: string) {
+                const userUrl = `${this.keycloakUrl}/admin/realms/${this.realm}/users/${userId}`;
+                const headers = { 'Authorization': `Bearer ${token}` };
+
+                await this.http.delete(userUrl, { headers }).toPromise();
+            }
+
+            private async deleteUserInDatabase(email: string) {
+                    // Use HttpClient to make a DELETE request to your API endpoint that deletes the user from the database.
+                    const apiUrl = `${environment.apiUrl}/users?email=${email}`;
+                    await this.http.delete(apiUrl).toPromise();
+                }
+            }
+            ```
+        - [x] Création d’un user keycloak pour le test : jordi recteur
+        - [ ] Assignation d'un attribut store au user créé : attribution du store
         - [ ] Création d’une page dédiée à la suppression
+            - [x] dans le dossier apps/front : ```ng generate component administration```
+            - [x] Déplacement dans le dossier ./src/app/page
+            - [x] Update de l'import dans le ficiher app.component
+            - [ ] Création du bouton de lien affiché conditionnellement si rôle = cop_developer
+        - [ ] Écriture des tests
+        - [ ] Récupération de l'id d'un store
+        - [ ] Retirer l'attribut store au user corespondant au store
+        - [ ] Utiliser la route d'API DELETE users:{id}
         - [ ] Restriction de l’accès à la page aux users ayant le rôle pour
         - [ ] Renseignements sur la suppression d’un attribut store à un user via API
         - [ ] Associer la suppression d’un attribut store & la suppression du store en db
