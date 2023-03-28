@@ -188,9 +188,11 @@
                 },
                 ```
             - [ ] Utilisation de Postman & Keycloak API pour get les attributs d'un user
+                - [x] Check de (https://docs.nestjs.com/techniques/http-module) & (https://github.com/keycloak/keycloak/tree/main/js/libs/keycloak-admin-client)
             - [ ] Création d’un userService
             - [ ] Création d’une userInterface
         - [ ] Récupération de l'attribut storeID d'un user via l'API
+            - [x] Check de (https://docs.nestjs.com/techniques/http-module) & (https://github.com/keycloak/keycloak/tree/main/js/libs/keycloak-admin-client)
         - [ ] Afficher tous les users par ligne et proposer un bouton suppression au bout de la ligne
         - [ ] Filtrer les users par un champ de texte
         - [ ] Lier le bouton suppression à la suppression dans le back
