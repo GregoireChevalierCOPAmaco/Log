@@ -1,4 +1,4 @@
-**24 Mars**
+**27 Mars**
 - [ ] Poursuite keycloak
     - [x] Edit de la PR, squash & merge
     - [x] Affichage du bouton de link sidebar en fonction du rôle
@@ -89,7 +89,6 @@
 
                 await this.http.delete(userUrl, { headers }).toPromise();
             }
-
             private async deleteUserInDatabase(email: string) {
                     // Use HttpClient to make a DELETE request to your API endpoint that deletes the user from the database.
                     const apiUrl = `${environment.apiUrl}/users?email=${email}`;
@@ -98,14 +97,64 @@
             }
             ```
         - [x] Création d’un user keycloak pour le test : jordi recteur
-        - [ ] Assignation d'un attribut store au user créé : attribution du store
-        - [ ] Création d’une page dédiée à la suppression
+        - [x] Assignation d'un attribut store au user créé : attribution du store : 7d1a9808-ccf1-4136-8c8b-b80020ac0ec4
+        - [x] Création d’une page dédiée à la suppression
             - [x] dans le dossier apps/front : ```ng generate component administration```
             - [x] Déplacement dans le dossier ./src/app/page
             - [x] Update de l'import dans le ficiher app.component
-            - [ ] Création du bouton de lien affiché conditionnellement si rôle = cop_developer
-        - [ ] Écriture des tests
+            - [x] Création du bouton de lien affiché conditionnellement si rôle = cop_developer
+                - [x] Ajout du code suivant dans l'app.component.ts :
+                 ```
+                if (this.keycloak.isUserInRole('cop_developer')) {
+                    this.isAdminUser = true;
+                } else {
+                    this.isAdminUser = false;
+                }
+                ```
+                - [x] Ajout du code suivant dans l'app.component.html :
+                 ```
+                <div *ngIf="isAdminUser">
+                    <a link mat-list-item routerLink="/administration" class="flex">
+                    <mat-icon class="text-white align-middle">bar_chart</mat-icon>
+                    <span class="link-label text-white">Administration</span>
+                    </a>
+                </div>
+                ```
+                - [x] Ajout du code suivant dans l'app-routing.component.ts :
+                ```
+                {
+                    path: 'administration',
+                    canActivate: [AuthGuard],
+                    data: {
+                    roles: [
+                        'cop_super-user',
+                        'cop_developer',
+                        'kmo-predict_admin',
+                        'kmo-predict_regional-direction'
+                    ]
+                    },
+                    component: AdministrationComponent
+                }
+                ```
         - [ ] Récupération de l'id d'un store
+            - [ ] Check de (https://wjw465150.gitbooks.io/keycloak-documentation/content/server_admin/topics/clients/protocol-mappers.html)
+        - [ ] Écriture des tests
+        - [ ] Retirer l'attribut store au user corespondant au store
+        - [ ] Utiliser la route d'API DELETE users:{id}
+        - [ ] Restriction de l’accès à la page aux users ayant le rôle pour
+        - [ ] Renseignements sur la suppression d’un attribut store à un user via API
+        - [ ] Associer la suppression d’un attribut store & la suppression du store en db
+- [x] Modification suivi tablette n° 352807082442783 : Localisation DRUDY & SUHR pour installations Grosbliederstroff & Sarralbe
+
+
+**28 Mars**
+- [ ] Poursuite keycloak
+    - [ ] KP-139 : Suppression d'un magasin
+        - [ ] Renseignements sur la suppression de store via l’API
+            - [x] Check de (https://www.keycloak.org/docs-api/15.0/rest-api/index.html) & (https://www.keycloak.org/docs-api/15.0/rest-api/index.html#_users_resource), chat gpt & (https://angular.io/guide/http)
+        - [ ] Récupération de l'id d'un store
+            - [ ] Check de (https://wjw465150.gitbooks.io/keycloak-documentation/content/server_admin/topics/clients/protocol-mappers.html)
+        - [ ] Écriture des tests
         - [ ] Retirer l'attribut store au user corespondant au store
         - [ ] Utiliser la route d'API DELETE users:{id}
         - [ ] Restriction de l’accès à la page aux users ayant le rôle pour
