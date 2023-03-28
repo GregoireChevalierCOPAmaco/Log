@@ -191,10 +191,20 @@
             - [ ] Création d’un userService
             - [ ] Création d’une userInterface
         - [ ] Récupération de l'attribut storeID d'un user via l'API
-        - [ ] Écriture des tests
-        - [ ] Retirer l'attribut store au user corespondant au store
-        - [ ] Utiliser la route d'API DELETE users:{id}
-        - [ ] Restriction de l’accès à la page aux users ayant le rôle pour
+        - [ ] Afficher tous les users par ligne et proposer un bouton suppression au bout de la ligne
+        - [ ] Filtrer les users par un champ de texte
+        - [ ] Lier le bouton suppression à la suppression dans le back
+            - [ ] Écriture des tests
+            - [ ] Retirer l'attribut store au user corespondant au store
+            - [ ] Utiliser la route d'API DELETE users:{id} : NON, ajouter un boolean dans le DTO du store en base et cesser de l'afficher si désactivé
+            - [ ] Cacher l'affichage de chaque magasin en cas de boolean désactivé
+        - [ ] Restriction de l’accès à la page aux users ayant le rôle (pas nécessaire, la deletion (désactivation) ne sera accesible qu'aux devs cop)
         - [ ] Renseignements sur la suppression d’un attribut store à un user via API
         - [ ] Associer la suppression d’un attribut store & la suppression du store en db
 - [x] Export du realm pour théo avec users ```docker cp kmo-keycloak:/tmp/realm-export_28_03_2023.json C:\Users\gchevalier\Desktop\realm_exports```
+- [x] Réunion quotidienne : 
+    - Changement/Remplacement des gateways/boitiersKMO : créer une interface visuelle pour faire le lien entre les nouvelles données et le code existant
+    - Créer un tracking de l'historique des changements de boitier/gateway (coté COP) pour référence et vision d'ensemble
+    - voir amazon glacier pour l'archivage des anciennes versions de base
+    - prévoir dans les tests e2e les cas d'unauthorized pour les accès aux pages non autorisées.
+    - se renseigner sur l'impersonate pour voir ce que voit tel user
