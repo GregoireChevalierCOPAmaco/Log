@@ -152,8 +152,43 @@
     - [ ] KP-139 : Suppression d'un magasin
         - [ ] Renseignements sur la suppression de store via l’API
             - [x] Check de (https://www.keycloak.org/docs-api/15.0/rest-api/index.html) & (https://www.keycloak.org/docs-api/15.0/rest-api/index.html#_users_resource), chat gpt & (https://angular.io/guide/http)
-        - [ ] Récupération de l'id d'un store
-            - [ ] Check de (https://wjw465150.gitbooks.io/keycloak-documentation/content/server_admin/topics/clients/protocol-mappers.html)
+        - [ ] Récupération de l'id d'un store via l'API
+            - [x] Check de (https://wjw465150.gitbooks.io/keycloak-documentation/content/server_admin/topics/clients/protocol-mappers.html) & (https://ravthiru.medium.com/keycloak-retrieve-custom-attributes-in-access-token-1a2d5aef0caa)
+            - [x] Création d’un mapper store-id-mapper
+            - [ ] Création d’un userService
+            - [ ] Création d’une userInterface
+            - [ ] Utilisation de Postman & Keycloak API pour get les users du realm
+                - [x] Renseigner l'url : http://localhost:8080/admin/realms/Cop_sass/users
+                - [x] Envoyer la requête GET : retour ```"error": "HTTP 401 Unauthorized"```
+                - [x] Trouver comment autoriser la connexion
+                    - [x] Check de (https://documenter.getpostman.com/view/7294517/SzmfZHnd) & (https://www.youtube.com/watch?v=jjHBJNlBLBU)
+                    - [x] Assignation des roles nécessaires à l'user admin 
+                        - [x] Users -> admin -> Role mappings -> dropdown "Client Roles" -> realm-management -> Assignation de "realm-admin"
+                        - [x] envoi d'une POST à http://localhost:8080/realms/Cop_sass/protocol/openid-connect/token avec les infos de Body/x-www-form-urlencoded renseigné comme suit :
+                            - username : admin
+                            - password : pw123
+                            - grant_type : password
+                            - client_ID : KMO_Predict
+                - [ ]  Renseigner le bearer token dans la requete http://localhost:8080/admin/realms/Cop_sass/users
+                - [ ]  Envoyer la requête GET : retour probant : 
+                ```
+                ...
+                {
+                "id": "bfe25071-688e-45b4-bd72-40391f62f9ce",
+                "createdTimestamp": 1679580118277,
+                "username": "g.chevalier",
+                "enabled": true,
+                "totp": false,
+                "emailVerified": true,
+                "firstName": "Grégoire",
+                "lastName": "Chevalier",
+                "email": "g.chevalier@cop-amaco.com",
+                "attributes": {
+                    "storeId": [
+                        "9de16383-c4d8-4616-bc4c-a26795f286ae"
+                    ]
+                },
+                ```
         - [ ] Écriture des tests
         - [ ] Retirer l'attribut store au user corespondant au store
         - [ ] Utiliser la route d'API DELETE users:{id}
