@@ -152,12 +152,10 @@
     - [ ] KP-139 : Suppression d'un magasin
         - [ ] Renseignements sur la suppression de store via l’API
             - [x] Check de (https://www.keycloak.org/docs-api/15.0/rest-api/index.html) & (https://www.keycloak.org/docs-api/15.0/rest-api/index.html#_users_resource), chat gpt & (https://angular.io/guide/http)
-        - [ ] Récupération de l'id d'un store via l'API
+        - [ ] Récupération de l'id d'un store via l'API (front)
             - [x] Check de (https://wjw465150.gitbooks.io/keycloak-documentation/content/server_admin/topics/clients/protocol-mappers.html) & (https://ravthiru.medium.com/keycloak-retrieve-custom-attributes-in-access-token-1a2d5aef0caa)
             - [x] Création d’un mapper store-id-mapper
-            - [ ] Création d’un userService
-            - [ ] Création d’une userInterface
-            - [ ] Utilisation de Postman & Keycloak API pour get les users du realm
+            - [x] Utilisation de Postman & Keycloak API pour get les users du realm
                 - [x] Renseigner l'url : http://localhost:8080/admin/realms/Cop_sass/users
                 - [x] Envoyer la requête GET : retour ```"error": "HTTP 401 Unauthorized"```
                 - [x] Trouver comment autoriser la connexion
@@ -169,8 +167,8 @@
                             - password : pw123
                             - grant_type : password
                             - client_ID : KMO_Predict
-                - [ ]  Renseigner le bearer token dans la requete http://localhost:8080/admin/realms/Cop_sass/users
-                - [ ]  Envoyer la requête GET : retour probant : 
+                - [x]  Renseigner le bearer token dans la requete http://localhost:8080/admin/realms/Cop_sass/users
+                - [x]  Envoyer la requête GET : retour probant : 
                 ```
                 ...
                 {
@@ -189,9 +187,14 @@
                     ]
                 },
                 ```
+            - [ ] Utilisation de Postman & Keycloak API pour get les attributs d'un user
+            - [ ] Création d’un userService
+            - [ ] Création d’une userInterface
+        - [ ] Récupération de l'attribut storeID d'un user via l'API
         - [ ] Écriture des tests
         - [ ] Retirer l'attribut store au user corespondant au store
         - [ ] Utiliser la route d'API DELETE users:{id}
         - [ ] Restriction de l’accès à la page aux users ayant le rôle pour
         - [ ] Renseignements sur la suppression d’un attribut store à un user via API
         - [ ] Associer la suppression d’un attribut store & la suppression du store en db
+- [x] Export du realm pour théo avec users ```docker cp kmo-keycloak:/tmp/realm-export_28_03_2023.json C:\Users\gchevalier\Desktop\realm_exports```
