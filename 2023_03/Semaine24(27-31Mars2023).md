@@ -215,19 +215,41 @@
 - [ ] Poursuite keycloak
     - [ ] KP-139 : Suppression d'un magasin
         - [x] Utilisation de Postman & Keycloak API pour get les attributs d'un user afin de supprimer l'attribut store d'un user ==> Plus nécessaire : les seuls users autorisés à "supprimer" un store seront des devs cop qui on accès à l'action de suppression d'un attribut storeId depuis la console d'administration keycloak, ce qui rend inutile la suppression de l'attribut via le code
-        - [ ] Renseignements sur la suppression de store via l’API
+        - [x] Renseignements sur la suppression de store via l’API
         - [ ] Récupération de l'id d'un store via l'API (front)
             - [x] Check de (https://angular.io/start/start-data) & (https://stackoverflow.com/questions/66670456/get-object-from-database-with-angular)
             - [x] Modifications sémantiques dans le store service et home-cop component : changement de getStore en getStore**s**
+        - [x] Suppression de store via l’API
+            - [x] C'est galère, je passe à autre chose
             - [x] Utilisation de Postman & Keycloak API pour get les stores : NON, utilisation d'angular et du storeService (avec httpclient)
         - [ ] Afficher tous les stores par ligne et proposer un bouton suppression au bout de la ligne
-            - [ ] Afficher les stores
-            - [ ] Créer un bouton désactiver à chaque ligne de store
-            - [ ] Utiliser la route d'API DELETE users:{id} : NON, ajouter un boolean dans le DTO du store en base et cesser de l'afficher si désactivé
+            - [x] Afficher les stores
+            - [ ] Créer une interface cohérente
+            - [x] Créer un bouton désactiver à chaque ligne de store
+            - [x] Utiliser la route d'API DELETE users:{id} : NON, ajouter un boolean dans le DTO du store en base et cesser de l'afficher si désactivé. Ajout de : 
+            ```
+            @ApiProperty()
+            @IsBoolean()
+            isStoreActive: boolean;
+            ```
+            au fichier kmo-predict-back\src\app\stores\dto\create-store.dto.ts
+            - [ ] Ajouter un état true aux stores existants dans la nouvelle colonne isActivated de la bdd
+            - [ ] Ajouter la ligne de code SQL dans la requête sur discord pour que les stores aient un état isActivated : true au lancement du projet
+                - [x] Voir (https://stackoverflow.com/questions/92082/add-a-column-with-a-default-value-to-an-existing-table-in-sql-server?rq=2)
+                - [ ] Adapter et lancer la commande en local
+                    - [x] Essai de : 
+                    ```
+                    ALTER TABLE store
+                    ADD isStoreActive bool NOT NULL
+                    DEFAULT true
+                    ```
+                    pour résultat : 
             - [ ] Cacher l'affichage de chaque magasin en cas de boolean désactivé
+            - [ ] Lier l'état isActive du store à son bouton associé dans la page administration
         - [ ] Filtrer les users par un champ de texte
         - [ ] Lier le bouton suppression à la suppression dans le back
             - [ ] Écriture des tests
+                - [x] Check de (https://github.com/keycloak/keycloak/blob/main/js/libs/keycloak-admin-client/test/clients.spec.ts)
             - [ ] Retirer l'attribut store au user corespondant au store
         - [ ] Restriction de l’accès à la page aux users ayant le rôle (pas nécessaire, la deletion (désactivation) ne sera accesible qu'aux devs cop)
         - [ ] Associer la désactivation du store en db & l'affichage des stores dans le front
