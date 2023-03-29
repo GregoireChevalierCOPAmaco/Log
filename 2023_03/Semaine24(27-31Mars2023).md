@@ -214,16 +214,20 @@
     **29 Mars**
 - [ ] Poursuite keycloak
     - [ ] KP-139 : Suppression d'un magasin
-        - [ ] Renseignements sur la suppression de store via l’API
         - [x] Utilisation de Postman & Keycloak API pour get les attributs d'un user afin de supprimer l'attribut store d'un user ==> Plus nécessaire : les seuls users autorisés à "supprimer" un store seront des devs cop qui on accès à l'action de suppression d'un attribut storeId depuis la console d'administration keycloak, ce qui rend inutile la suppression de l'attribut via le code
+        - [ ] Renseignements sur la suppression de store via l’API
         - [ ] Récupération de l'id d'un store via l'API (front)
-            - [ ] Utilisation de Postman & Keycloak API pour get les stores
-        - [ ] Afficher tous les users par ligne et proposer un bouton suppression au bout de la ligne
+            - [x] Check de (https://angular.io/start/start-data) & (https://stackoverflow.com/questions/66670456/get-object-from-database-with-angular)
+            - [x] Modifications sémantiques dans le store service et home-cop component : changement de getStore en getStore**s**
+            - [x] Utilisation de Postman & Keycloak API pour get les stores : NON, utilisation d'angular et du storeService (avec httpclient)
+        - [ ] Afficher tous les stores par ligne et proposer un bouton suppression au bout de la ligne
+            - [ ] Afficher les stores
+            - [ ] Créer un bouton désactiver à chaque ligne de store
+            - [ ] Utiliser la route d'API DELETE users:{id} : NON, ajouter un boolean dans le DTO du store en base et cesser de l'afficher si désactivé
+            - [ ] Cacher l'affichage de chaque magasin en cas de boolean désactivé
         - [ ] Filtrer les users par un champ de texte
         - [ ] Lier le bouton suppression à la suppression dans le back
             - [ ] Écriture des tests
             - [ ] Retirer l'attribut store au user corespondant au store
-            - [ ] Utiliser la route d'API DELETE users:{id} : NON, ajouter un boolean dans le DTO du store en base et cesser de l'afficher si désactivé
-            - [ ] Cacher l'affichage de chaque magasin en cas de boolean désactivé
         - [ ] Restriction de l’accès à la page aux users ayant le rôle (pas nécessaire, la deletion (désactivation) ne sera accesible qu'aux devs cop)
         - [ ] Associer la désactivation du store en db & l'affichage des stores dans le front
