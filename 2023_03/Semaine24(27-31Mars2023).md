@@ -210,3 +210,20 @@
     - voir amazon glacier pour l'archivage des anciennes versions de base
     - prévoir dans les tests e2e les cas d'unauthorized pour les accès aux pages non autorisées.
     - se renseigner sur l'impersonate pour voir ce que voit tel user
+
+    **29 Mars**
+- [ ] Poursuite keycloak
+    - [ ] KP-139 : Suppression d'un magasin
+        - [ ] Renseignements sur la suppression de store via l’API
+        - [x] Utilisation de Postman & Keycloak API pour get les attributs d'un user afin de supprimer l'attribut store d'un user ==> Plus nécessaire : les seuls users autorisés à "supprimer" un store seront des devs cop qui on accès à l'action de suppression d'un attribut storeId depuis la console d'administration keycloak, ce qui rend inutile la suppression de l'attribut via le code
+        - [ ] Récupération de l'id d'un store via l'API (front)
+            - [ ] Utilisation de Postman & Keycloak API pour get les stores
+        - [ ] Afficher tous les users par ligne et proposer un bouton suppression au bout de la ligne
+        - [ ] Filtrer les users par un champ de texte
+        - [ ] Lier le bouton suppression à la suppression dans le back
+            - [ ] Écriture des tests
+            - [ ] Retirer l'attribut store au user corespondant au store
+            - [ ] Utiliser la route d'API DELETE users:{id} : NON, ajouter un boolean dans le DTO du store en base et cesser de l'afficher si désactivé
+            - [ ] Cacher l'affichage de chaque magasin en cas de boolean désactivé
+        - [ ] Restriction de l’accès à la page aux users ayant le rôle (pas nécessaire, la deletion (désactivation) ne sera accesible qu'aux devs cop)
+        - [ ] Associer la désactivation du store en db & l'affichage des stores dans le front
