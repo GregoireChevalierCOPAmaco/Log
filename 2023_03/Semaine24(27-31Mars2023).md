@@ -253,3 +253,27 @@
             - [ ] Retirer l'attribut store au user corespondant au store
         - [ ] Restriction de l’accès à la page aux users ayant le rôle (pas nécessaire, la deletion (désactivation) ne sera accesible qu'aux devs cop)
         - [ ] Associer la désactivation du store en db & l'affichage des stores dans le front
+        
+**30 Mars**
+- [ ] Poursuite keycloak
+    - [ ] KP-139 : Suppression d'un magasin
+        - [ ] Afficher tous les stores par ligne et proposer un bouton suppression au bout de la ligne
+            - [x] Afficher les stores
+            - [ ] Créer une interface cohérente
+            - [ ] Ajouter un état true aux stores existants dans la nouvelle colonne isActivated de la bdd
+            - [ ] Ajouter la ligne de code SQL dans la requête sur discord pour que les stores aient un état isActivated : true au lancement du projet
+                - [ ] Adapter et lancer la commande en local
+                    - [x] Essai de : 
+                    ```
+                    ALTER TABLE store
+                    ADD isStoreActive bool NOT NULL
+                    ```
+                    pour résultat : 
+            - [ ] Cacher l'affichage de chaque magasin en cas de boolean désactivé
+            - [ ] Lier l'état isActive du store à son bouton associé dans la page administration
+        - [ ] Filtrer les users par un champ de texte
+        - [ ] Lier le bouton suppression à la suppression dans le back
+            - [ ] Écriture des tests
+            - [ ] Retirer l'attribut store au user corespondant au store
+        - [ ] Restriction de l’accès à la page aux users ayant le rôle (pas nécessaire, la deletion (désactivation) ne sera accesible qu'aux devs cop)
+        - [ ] Associer la désactivation du store en db & l'affichage des stores dans le front
