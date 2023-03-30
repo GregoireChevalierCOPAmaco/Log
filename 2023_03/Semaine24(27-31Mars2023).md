@@ -290,8 +290,44 @@
                     console.log(this.storeId[0]);
                 } 
                 ```
+                - [x] Récupérer l'état du boolean isstoreactive
+                    - [x] Récupération de l'objet store avec :
+                    ```
+                      getStoreById(id: string) {
+                        return  this.httpclient.get<StoreInterface>(this.apiUrl + '/' + id);
+                    }
+                    ```
+                    avec retour console : Observable {source: Observable, operator: ƒ}
+                    - [x] Récupération de la variable isstoreactive
+                        - [x] Check de (https://stackoverflow.com/questions/48702160/how-to-access-observable-object-values-in-component-class-in-angular) & réponse de GPT :
+                        ```
+                        this.yourServiceName.getStoreById(id).subscribe((store) => {
+                            this.store = store;
+                            console.log(store); // this will log the store object in your browser's console
+                            console.log(store.id); // this will log the id of the store
+                            console.log(store.address); // this will log the address of the store
+                            // and so on for other properties of the store
+                        });
+                        ```
+                        - [x] Application : 
+                        ```
+                        this.getStoreById(this.storeId[0]).subscribe((store) => {
+                            this.store = store;
+                            console.log(store);
+                            console.log(store.isStoreActive);
+                        });
+                        ```
+                        retourne l'objet store, mais isStoreActive renvoie ```undefined```
+                        - [x] Résolution en ajoutant :
+                        ```
+                        @ApiProperty()
+                        @IsBoolean()
+                        isstoreactive: boolean;
+                        ```
+                        au fichier create-store.dto **du back**
                 - [ ] Set la variable isStoreActive en fonction de la réponse
                 - [ ] Afficher ou cacher le store de la liste en fonction de l'état de son isStoreActive
+                - [ ] Lier la ligne affichant chaque store à l'id correspondant : actuellement c'est l'id du storeId de l'attribut de l'user connecté qui est pris
             - [ ] Lier l'état isActive du store à son bouton associé dans la page administration
         - [ ] Filtrer les users par un champ de texte
         - [ ] Lier le bouton suppression à la suppression dans le back
@@ -299,3 +335,4 @@
             - [ ] Retirer l'attribut store au user corespondant au store
         - [ ] Restriction de l’accès à la page aux users ayant le rôle (pas nécessaire, la deletion (désactivation) ne sera accesible qu'aux devs cop)
         - [ ] Associer la désactivation du store en db & l'affichage des stores dans le front
+- [x] Extraction de la SIM n°2826202551590 du stock tablettes de la salle serveur -> routeur sarralbe
