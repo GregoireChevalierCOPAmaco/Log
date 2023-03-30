@@ -260,7 +260,6 @@
         - [ ] Afficher tous les stores par ligne et proposer un bouton suppression au bout de la ligne
             - [x] Afficher les stores
             - [x] Créer une interface cohérente
-            - [ ] Ajouter un état true aux stores existants dans la nouvelle colonne isActivated de la bdd
             - [x] Ajouter la ligne de code SQL dans la requête sur discord pour que les stores aient un état isActivated : true au lancement du projet
                 - [x] Adapter et lancer la commande en local
                     - [x] Essai de : 
@@ -279,7 +278,20 @@
                     DEFAULT true
                     ```
                     pour résultat OK
+                - [x] Ajouter un état true aux stores existants dans la nouvelle colonne isActivated de la bdd
             - [ ] Cacher l'affichage de chaque magasin en cas de boolean désactivé
+                - [x] Ajout d'une variable ```private isStoreActive!: boolean;``` dans le fichier administraiton.component.ts
+                - [x] Récupérer l'ID du store en fonction du user connecté : 
+                ```
+                this.isLogged = await this.keycloak.isLoggedIn();
+                    if (this.isLogged) {
+                    this.userProfile = await this.keycloak.loadUserProfile();
+                    this.storeId = this.userProfile.attributes['storeId'];
+                    console.log(this.storeId[0]);
+                } 
+                ```
+                - [ ] Set la variable isStoreActive en fonction de la réponse
+                - [ ] Afficher ou cacher le store de la liste en fonction de l'état de son isStoreActive
             - [ ] Lier l'état isActive du store à son bouton associé dans la page administration
         - [ ] Filtrer les users par un champ de texte
         - [ ] Lier le bouton suppression à la suppression dans le back
