@@ -259,16 +259,26 @@
     - [ ] KP-139 : Suppression d'un magasin
         - [ ] Afficher tous les stores par ligne et proposer un bouton suppression au bout de la ligne
             - [x] Afficher les stores
-            - [ ] Créer une interface cohérente
+            - [x] Créer une interface cohérente
             - [ ] Ajouter un état true aux stores existants dans la nouvelle colonne isActivated de la bdd
-            - [ ] Ajouter la ligne de code SQL dans la requête sur discord pour que les stores aient un état isActivated : true au lancement du projet
-                - [ ] Adapter et lancer la commande en local
+            - [x] Ajouter la ligne de code SQL dans la requête sur discord pour que les stores aient un état isActivated : true au lancement du projet
+                - [x] Adapter et lancer la commande en local
                     - [x] Essai de : 
                     ```
                     ALTER TABLE store
                     ADD isStoreActive bool NOT NULL
                     ```
                     pour résultat : 
+                    ```
+                    column "isstoreactive" of relation "store" contains null values
+                    ```
+                    - [x] Essai de : 
+                    ```
+                    ALTER TABLE store
+                    ADD isStoreActive bool NOT NULL
+                    DEFAULT true
+                    ```
+                    pour résultat OK
             - [ ] Cacher l'affichage de chaque magasin en cas de boolean désactivé
             - [ ] Lier l'état isActive du store à son bouton associé dans la page administration
         - [ ] Filtrer les users par un champ de texte
