@@ -1,4 +1,6 @@
 **3 Avril**
+- [x] Re check billets aws summit
+- [x] Transfert billets train mail perso
 - [ ] Poursuite keycloak
     - [ ] KP-139 : Suppression d'un magasin
         - [ ] Afficher tous les stores par ligne et proposer un bouton suppression au bout de la ligne
@@ -14,4 +16,108 @@
             - [ ] Retirer l'attribut store au user corespondant au store
         - [ ] Restriction de l’accès à la page aux users ayant le rôle (pas nécessaire, la deletion (désactivation) ne sera accesible qu'aux devs cop)
         - [ ] Associer la désactivation du store en db & l'affichage des stores dans le front
+        - [x] Ajout du code back & front
+            - [x] Front : 
+                - [x] administration.component.ts :
+                ```
+                deActivateStore(){
+                    console.log("deActivateStore() called");
+                    
+                    const targetStore: StoreInterface = { ...this.store, isstoreactive: false };
+                    console.log(targetStore);
+                    this.storeService.updateStore(this.storeId[0], targetStore).subscribe({
+                    next: (data) => {
+                        console.log('Store deactivated successfully!');
+                    },
+                    error: (err) => console.log(err),
+                    });
+                }
+                ```
+                - [x] store.interface.ts :
+                ```
+                ...
+                isstoreactive: boolean;
+                ...
+                ```
+                - [x] administration.component.html :
+                ```
+                <div class="example-button-row">
+                    <button mat-stroked-button (click)="deActivateStore()"> Désactiver le magasin</button>
+                </div>
+                ```
+            - [x] Back : 
+                - [x] update-store.dto.ts :
+                ```
+                    @ApiProperty()
+                    @IsString()
+                    id: string;
+
+                    @ApiProperty()
+                    @IsString()
+                    @Length(0, 30)
+                    address: string;
+                
+                    @ApiProperty()
+                    @IsString()
+                    @Length(0, 20)
+                    city: string;
+                
+                    @ApiProperty()
+                    @IsEnum(BrandEnum)
+                    brand: BrandEnum;
+                
+                    @ApiProperty()
+                    @IsPostalCode('FR')
+                    postalCode: string;
+                
+                    @ApiProperty()
+                    @IsBoolean()
+                    isStoreOpen: boolean;
+                
+                    @ApiProperty()
+                    @IsNumber()
+                    @Min(1, {
+                    message: 'Le magasin doit avoir au moins 1 caisse',
+                    })
+                    numberOfCheckouts: number;
+                
+                    @ApiProperty()
+                    openingHours: Record<Day, Hours>;
+                
+                    @ApiProperty()
+                    @IsMACAddress()
+                    gateway: Gateway;
+                    
+                    @ApiProperty()
+                    @IsBoolean()
+                    isstoreactive: boolean;
+                ```
+                - [x] store.entity.ts :
+                ```
+                    @Column()
+                    isstoreactive: boolean;
+                ```
+        - [x] Requête ok, mais erreur 400
+        - [ ] Résolution du problème de 400 lors de l'update : 
+        ```
+        HttpErrorResponse {headers: HttpHeaders, status: 400, statusText: 'Bad Request', url: 'http://localhost:3001/stores/9de16383-c4d8-4616-bc4c-a26795f286ae', ok: false, …}
+        error
+        : error
+        : "Bad Request"
+        message
+        : Array(2)
+        0
+        : "property openingHours should not exist"
+        1
+        : "gateway must be a MAC Address"
+        length
+        : 2
+        [[Prototype]]
+        : Array(0)
+        statusCode
+        : 400
+        ...
+        ```
 - [ ] Reprise projet vierge & pull branche théo pour voir
+- [x] mdp orange business ARD : procédure habituelle + orangebusiness
+- [ ] Accéder au visionnage des lignes en cours chez Orange
