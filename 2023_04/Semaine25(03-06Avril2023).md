@@ -1,0 +1,17 @@
+**3 Avril**
+- [ ] Poursuite keycloak
+    - [ ] KP-139 : Suppression d'un magasin
+        - [ ] Afficher tous les stores par ligne et proposer un bouton suppression au bout de la ligne
+            - [ ] Cacher l'affichage de chaque magasin en cas de boolean désactivé
+                - [ ] Set la variable isStoreActive en fonction de la réponse
+                - [ ] Afficher ou cacher le store de la liste en fonction de l'état de son isStoreActive
+                - [ ] Lier la ligne affichant chaque store à l'id correspondant : actuellement c'est l'id du storeId de l'attribut de l'user connecté qui est pris
+            - [ ] Refactorer le code avec le service de store existant
+            - [ ] Lier l'état isActive du store à son bouton associé dans la page administration
+        - [ ] Filtrer les stores par un champ de texte, NON : proposer un champ de recherche pour sélectionner un store
+        - [ ] Lier le bouton suppression à la suppression dans le back
+            - [ ] Écriture des tests
+            - [ ] Retirer l'attribut store au user corespondant au store
+        - [ ] Restriction de l’accès à la page aux users ayant le rôle (pas nécessaire, la deletion (désactivation) ne sera accesible qu'aux devs cop)
+        - [ ] Associer la désactivation du store en db & l'affichage des stores dans le front
+- [ ] Reprise projet vierge & pull branche théo pour voir
