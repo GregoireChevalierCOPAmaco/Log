@@ -85,7 +85,7 @@
                     isstoreactive: boolean;
                 ```
         - [x] Requête ok, mais erreur 400
-        - [ ] Résolution du problème de 400 lors de l'update : 
+        - [x] Résolution du problème de 400 lors de l'update : 
         ```
         HttpErrorResponse {headers: HttpHeaders, status: 400, statusText: 'Bad Request', url: 'http://localhost:3001/stores/9de16383-c4d8-4616-bc4c-a26795f286ae', ok: false, …}
         error
@@ -123,6 +123,7 @@
             - [x] Cacher l'affichage du bouton desactiver en cas de boolean désactivé
                 - [x] Set la variable isStoreActive en fonction de la réponse
                 - [ ] Lier la ligne affichant chaque store à l'id correspondant : actuellement c'est l'id du storeId de l'attribut de l'user connecté qui est pris
+            - [ ] Lier l'id de chaque store au bouton désactivation de sa ligne
             - [ ] Refactorer le code avec le service de store existant
             - [ ] Lier l'état isActive du store à son bouton associé dans la page administration
         - [ ] Écriture des tests
@@ -130,3 +131,19 @@
 - [x] mdp orange business ARD : procédure habituelle + orangebusiness
 - [ ] Accéder au visionnage des lignes en cours chez Orange
 - [ ] Reprise projet vierge & pull branche théo pour voir
+
+**4 Avril**
+AWS Summit
+
+**5 Avril**
+- [ ] Poursuite keycloak
+    - [ ] KP-139 : Suppression d'un magasin
+        - [x] Afficher tous les stores par ligne et proposer un bouton réactivation au bout de la ligne
+            - [x] Cacher l'affichage du bouton desactiver en cas de boolean désactivé
+                - [x] Set la variable isStoreActive en fonction de la réponse
+                - [ ] Lier la ligne affichant chaque store à l'id correspondant : actuellement c'est l'id du storeId de l'attribut de l'user connecté qui est pris
+            - [ ] Lier l'id de chaque store au bouton désactivation de sa ligne
+            - [ ] Refactorer le code avec le service de store existant
+            - [ ] Lier l'état isActive du store à son bouton associé dans la page administration
+        - [ ] Écriture des tests
+        - [ ] Restriction de l’accès à la page aux users ayant le rôle (pas nécessaire, la deletion (désactivation) ne sera accesible qu'aux devs cop)
