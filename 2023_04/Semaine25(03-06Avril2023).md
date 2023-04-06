@@ -166,9 +166,21 @@ AWS Summit
 - [ ] Poursuite keycloak
     - [ ] KP-139 : Refacto suppression & tests
         - [ ] Repartir d'un dossier clean
-            - [ ] Git clone
-            - [ ] Rebuild du keycloak realm
-            - [ ] Rebuild de la db
+            - [x] Kill des docker containers
+            - [x] Kill des docker images
+            - [x] Kill des docker volumes
+            - [x] Git clone
+            - [x] ```npm i```
+            - [x] Retour erreur :
+            ```
+            npm ERR! While resolving: @angular/common@15.1.5
+            npm ERR! Found: @angular/core@15.2.2
+            ```
+            résolution avec ```npm i --force```
+            - [x] ```docker compose --env-file .env.dev -f docker-compose.dev.yml up --renew-anon-volumes --always-recreate-deps --build```
+            - [x] Rebuild du keycloak realm
+            - [x] Rebuild de la db
+            - [ ] Rendre la suppression fonctionnelle en local
         - [ ] Refactorer le code avec le service de store existant
         - [ ] Lier l'état isActive du store à son bouton associé dans la page administration
     - [ ] Écriture des tests
