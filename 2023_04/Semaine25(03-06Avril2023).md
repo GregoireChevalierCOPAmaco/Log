@@ -184,7 +184,9 @@ AWS Summit
             - [x] Rebuild de la db
             - [x] Rendre la suppression fonctionnelle en local
                 - [x] Tout marche comme attendu, cébô
-        - [ ] Refactorer le code avec le service de store existant
-        - [ ] Lier l'état isActive du store à son bouton associé dans la page administration
+        - [x] Refactorer le code avec le service de store existant
+        - [x] Lier l'état isActive du store à son bouton associé dans la page administration
     - [ ] Écriture des tests
     - [ ] Restriction de l’accès à la page aux users ayant le rôle (pas nécessaire, la deletion (désactivation) ne sera accesible qu'aux devs cop)
+    - [ ] Rendre les magasins désactivés en grisé et changer le vert par du gris
+    - [ ] Lier keycloak au service de mail ses aws et connecter au système de mot de passe oublié
