@@ -154,7 +154,22 @@ AWS Summit
                 - [x] Récupérer l'objet store
                 - [x] Isoler l'id
                 - [x] Envoyer la méthode reActivate(store.id)
+        - [x] Résolution des tests failing
+        - [x] Correction du linting
             - [ ] Refactorer le code avec le service de store existant
             - [ ] Lier l'état isActive du store à son bouton associé dans la page administration
         - [ ] Écriture des tests
         - [ ] Restriction de l’accès à la page aux users ayant le rôle (pas nécessaire, la deletion (désactivation) ne sera accesible qu'aux devs cop)
+
+
+**6 Avril**
+- [ ] Poursuite keycloak
+    - [ ] KP-139 : Refacto suppression & tests
+        - [ ] Repartir d'un dossier clean
+            - [ ] Git clone
+            - [ ] Rebuild du keycloak realm
+            - [ ] Rebuild de la db
+        - [ ] Refactorer le code avec le service de store existant
+        - [ ] Lier l'état isActive du store à son bouton associé dans la page administration
+    - [ ] Écriture des tests
+    - [ ] Restriction de l’accès à la page aux users ayant le rôle (pas nécessaire, la deletion (désactivation) ne sera accesible qu'aux devs cop)
