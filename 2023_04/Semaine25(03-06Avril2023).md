@@ -163,6 +163,8 @@ AWS Summit
 
 
 **6 Avril**
+- [x] Récupération tablette n°359839768760629
+- [x] Update du fichier de suivi tablettes
 - [ ] Poursuite keycloak
     - [ ] KP-139 : Refacto suppression & tests
         - [ ] Repartir d'un dossier clean
@@ -180,7 +182,8 @@ AWS Summit
             - [x] ```docker compose --env-file .env.dev -f docker-compose.dev.yml up --renew-anon-volumes --always-recreate-deps --build```
             - [x] Rebuild du keycloak realm
             - [x] Rebuild de la db
-            - [ ] Rendre la suppression fonctionnelle en local
+            - [x] Rendre la suppression fonctionnelle en local
+                - [x] Tout marche comme attendu, cébô
         - [ ] Refactorer le code avec le service de store existant
         - [ ] Lier l'état isActive du store à son bouton associé dans la page administration
     - [ ] Écriture des tests
