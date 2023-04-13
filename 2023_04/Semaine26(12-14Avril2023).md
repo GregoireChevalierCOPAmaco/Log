@@ -114,10 +114,10 @@
             });
             });
             ```
-            - [ ] Passer au lint
-            - [ ] Passer au tests
-            - [ ] Commit & push
-            - [ ] PR & résolution de conflits
+            - [x] Passer au lint
+            - [x] Passer au tests
+            - [x] Commit & push
+            - [x] PR & résolution de conflits
         - [ ] Modifier le jira créer une user story tests unitaires
         - [ ] Associer un end to end à chaque user sotry/fonctionnalité voulue
         - [ ] tester les dépendances ?!?
@@ -128,3 +128,10 @@
     - [ ] Restriction de l’accès à la page aux users ayant le rôle (pas nécessaire, la deletion (désactivation) ne sera accesible qu'aux devs cop)
     - [x] Rendre les magasins désactivés en grisé et changer le vert par du gris
     - [ ] Lier keycloak au service de mail ses aws et connecter au système de mot de passe oublié
+
+**13 Avril**
+- [x] Refacto de détails horaire & typo jaja admin spec test file
+- [ ] Poursuite keycloak
+    - [ ] KP-176 : tests
+        - [ ] Reprise des tests
+        - [ ] 
