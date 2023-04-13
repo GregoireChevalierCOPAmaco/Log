@@ -131,7 +131,43 @@
 
 **13 Avril**
 - [x] Refacto de détails horaire & typo jaja admin spec test file
-- [ ] Poursuite keycloak
-    - [ ] KP-176 : tests
-        - [ ] Reprise des tests
-        - [ ] 
+- [ ] Poursuite Predict
+    - [x] KP-176 : tests
+        - [x] Reprise des tests
+        - [x] Refacto pour raise une erreur si getbyId() fail :
+        ```
+        deActivateStore(storeId: string) {
+            this.storeService.getStoreById(storeId).subscribe({
+            next: (store) => {
+                const targetStore: StoreInterface = {
+                ...store,
+                id: storeId,
+                isStoreActive: false,
+                };
+                this.storeService.updateStore(storeId, targetStore).subscribe({
+                next: () => {
+                    this.targetStore = targetStore;
+                    this.getStores();
+                },
+                error: (err) => {
+                    this.snackBar.open(err.message, 'OK');
+                    throw new Error(err);
+                },
+                });
+            },
+            error: (err) => {
+                this.snackBar.open(err.message, 'OK');
+                throw new Error(err);
+            },
+            });
+        }
+        ```
+        - [x] Résolution des problèmes de nullinjectorerror R3 mon cul avec provider {provide : }
+    - [ ] KP-177 : test end to end désactivation
+        - [ ] Tester que la page existe
+        - [ ] Tester que le bouton existe
+        - [ ] Tester que le bouton appelle la fonction désactivation
+        - [ ] Tester que la désactivation retourne le bon store
+        - [ ] Tester que la désactivation update bien le store
+        - [ ] Tester que le store est désactivé en base de données
+        - [ ] Tester que l'affichage correspond aux données en base
