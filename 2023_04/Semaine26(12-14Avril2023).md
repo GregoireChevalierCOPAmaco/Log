@@ -164,6 +164,20 @@
         ```
         - [x] Résolution des problèmes de nullinjectorerror R3 mon cul avec provider {provide : }
     - [ ] KP-177 : test end to end désactivation
+        - [x] Check de (https://fr.wikipedia.org/wiki/Cycle_en_V)
+        - [ ] Récupération de develop
+            - [x] pull
+            - [x] Re-run des tests pour être sûr de repartir d'une clean sheet
+            - [ ] Vérification que tout marche comme attendu
+            - [ ] Résolution des problèmes
+                - [x] Tout brûler et reconstruire de zéro
+                - [ ] Suppression des containers
+                - [ ] Suppression des images
+                - [ ] Suppression des volumes
+                - [ ] docker compose --env-file .env.dev -f docker-compose.dev.yml up --renew-anon-volumes --always-recreate-deps --build
+                - [ ] Réinjecter le dernier realm
+                - [ ] Repeupler la database
+        - [ ] Création et checkout de branche 177
         - [ ] Tester que la page existe
         - [ ] Tester que le bouton existe
         - [ ] Tester que le bouton appelle la fonction désactivation
