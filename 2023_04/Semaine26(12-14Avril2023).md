@@ -169,14 +169,16 @@
             - [x] pull
             - [x] Re-run des tests pour être sûr de repartir d'une clean sheet
             - [ ] Vérification que tout marche comme attendu
-            - [ ] Résolution des problèmes
+            - [x] Résolution des problèmes
                 - [x] Tout brûler et reconstruire de zéro
-                - [ ] Suppression des containers
-                - [ ] Suppression des images
-                - [ ] Suppression des volumes
-                - [ ] docker compose --env-file .env.dev -f docker-compose.dev.yml up --renew-anon-volumes --always-recreate-deps --build
-                - [ ] Réinjecter le dernier realm
-                - [ ] Repeupler la database
+                - [x] Suppression des containers
+                - [x] Suppression des images
+                - [x] Suppression des volumes
+                - [x] docker compose --env-file .env.dev -f docker-compose.dev.yml up --renew-anon-volumes --always-recreate-deps --build
+                - [x] Réinjecter le dernier realm
+                    - [x] Dl du dernier realm en date avec ses mailing configuré
+                    - [x] Recréation du realm en local
+                - [x] Repeupler la database
         - [ ] Création et checkout de branche 177
         - [ ] Tester que la page existe
         - [ ] Tester que le bouton existe
