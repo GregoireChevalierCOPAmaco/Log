@@ -179,7 +179,7 @@
                     - [x] Dl du dernier realm en date avec ses mailing configuré
                     - [x] Recréation du realm en local
                 - [x] Repeupler la database
-        - [ ] Création et checkout de branche 177
+        - [x] Création et checkout de branche 177
         - [ ] Tester que la page existe
         - [ ] Tester que le bouton existe
         - [ ] Tester que le bouton appelle la fonction désactivation
@@ -187,3 +187,18 @@
         - [ ] Tester que la désactivation update bien le store
         - [ ] Tester que le store est désactivé en base de données
         - [ ] Tester que l'affichage correspond aux données en base
+
+
+**14 Avril**
+- [ ] Poursuite Predict
+    - [ ] KP-177 : test end to end désactivation
+        - [x] Création et checkout de branche 177
+        - [ ] Créer un enironnement fonctionnel de e2e
+        - [ ] Écriture des tests
+            - [ ] Tester que la page existe
+            - [ ] Tester que le bouton existe
+            - [ ] Tester que le bouton appelle la fonction désactivation
+            - [ ] Tester que la désactivation retourne le bon store
+            - [ ] Tester que la désactivation update bien le store
+            - [ ] Tester que le store est désactivé en base de données
+            - [ ] Tester que l'affichage correspond aux données en base
