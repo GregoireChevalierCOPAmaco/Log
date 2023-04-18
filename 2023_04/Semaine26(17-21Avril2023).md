@@ -71,7 +71,65 @@
             [Nest] 25772  - 17/04/2023 12:05:28   ERROR [TypeOrmModule] Unable to connect to the database. Retrying (1)...
             Error: SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string
             ```
-            - [ ] Demande a gpt ce qu'il en pense
+            - [x] Demande a gpt ce qu'il en pense : 
+            ```
+                I am running a project with the following architecture :
+                - a turborepo folder in which there is :
+                - an angular project
+                - a nestJs project
+                There is a .env.dev file in the root turborepo folder as follows :
+                ```
+                # Databse environment variables
+                DB_HOST=postgres
+                DB_PORT=5432
+                DB_USER=predict
+                DB_PASSWORD=predict16022023
+                DB_NAME=predict
+
+                # Node environment variables
+                NODE_ENV=development
+
+                # Api ports
+                NEST_PORT=3000
+                ANGULAR_PORT=4200
+
+                # Apps environment variables
+                WEB_APP_URL=http://localhost:3000
+
+                # Local dev keycloak
+                KC_DEV_PORT=8080
+                KC_BASEURL=http://keycloak:8080
+                KC_IMG=ghcr.io/cop-amaco/kmo-keycloak:latest
+                KC_REALM=Cop_sass
+                KC_CLIENT=KMO_Predict
+                KC_ADMIN_USERNAME=admin
+                KC_ADMIN_PASSWORD=pw123
+
+                My issue is : e2e tests in the nestJs app do not pass since nest seems to be retrieving the user credentials of my windows' session instead of the DB_USER, DB_PASSWORD etc...
+                Is there anything you can tell me about this ?
+            ```
+            Sa réponse :
+            ```
+            Based on the information provided, it seems like the issue you are facing might be related to the way NestJS is accessing the environment variables.
+
+            When NestJS is started, it will typically load the environment variables from the .env file using a package like dotenv. 
+            However, it's possible that the package is not being loaded correctly or the .env file is not being read properly.
+            One possible solution is to ensure that the dotenv package is installed and correctly configured in your NestJS project. 
+            You can do this by adding the following code at the top of your main.ts file in the NestJS app
+            ```
+            voir pour dotenv package
+                - [x] Installation de dotenv dans le back : déjà présent nativement
+                - [x] Configuration de dotenv sans succès
+            - [x] Essai d'import forcé du .env.dev dans l'app.module.ts : 
+                ```
+                @Module({
+                imports: [
+                    ConfigModule.forRoot({
+                    envFilePath: '../../.env.dev'
+                    })
+                    ...
+                ```
+                - [x] Sans succès
             - [ ] Reprise du dossier kmo-back en standalone pour voir si le e2e passe
             - [ ] Reprise de la doc nest pour la config étape par étape
         - [ ] Écriture des tests
