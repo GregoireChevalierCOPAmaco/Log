@@ -131,6 +131,60 @@
                 ```
                 - [x] Sans succès
             - [ ] Reprise du dossier kmo-back en standalone pour voir si le e2e passe
+                - [x] Copiecolle du dossier
+                - [x] ```npm i --legacy-peer-deps``` & ```npm run test:e2e```, retour :
+                    ```
+                    FAIL  test/app.e2e-spec.ts
+                        ● Test suite failed to run
+                                                                                                                                                                                                                                            
+                        src/app/stores/stores.service.ts:9:8 - error TS2307: Cannot find module 'nestjs-typeorm-paginate' or its corresponding type declarations.
+
+                        9 } from 'nestjs-typeorm-paginate';
+                    ```
+                - [x] Installation du package, lancement test et retour de l'erreur :
+                ```
+                ERROR [TypeOrmModule] Unable to connect to the database. Retrying (4)...
+                Error: SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string
+                ```
+                - [x] Ajout d'un .env à la racine, même problème
+                - [x] Modif app.module.ts : 
+                ```
+                @Module({
+                    imports: [
+                        ConfigModule,
+                        EventsModule,
+                        GatewaysModule,
+                        KmoBoxesModule,
+                        TypeOrmModule.forRoot({
+                        type: 'postgres',
+                        host: 'localhost',
+                        port: 5432,
+                        username: 'predict',
+                        password: 'predict16022023',
+                        database: 'predict',
+                        // entities: [Event, Gateway, KmoBox, Store],
+                        autoLoadEntities: true,
+                        synchronize: process.env.NODE_ENV !== 'production'
+                        }),
+                        ...
+                ```
+                nouveau message d'erreur : 
+                ERROR [TypeOrmModule] Unable to connect to the database. Retrying (2)...
+                TypeORMError: Entity metadata for Gateway#kmoBoxes was not found. Check if you specified a correct entity object and if it's connected in the connection options.
+                - [x] Ajout de ligne ```entities: [Event, Gateway, KmoBox, Store]``` avec imports corrects
+                - [x] ```npm run test:e2e```, retour :
+                ```
+                 PASS  test/app.e2e-spec.ts (6.82 s)
+                AppController (e2e)
+                    √ / (GET) (602 ms)
+                                                          
+                Test Suites: 1 passed, 1 total                                          
+                Tests:       1 passed, 1 total                                         
+                Snapshots:   0 total
+                Time:        6.949 s
+                ```
+                - [x] Reproduction dans le dossier dev OK
+            - [ ] Plongée dans les options de typeOrmModule.forRoot(options) pour comprendre d'où vient le lézard
             - [ ] Reprise de la doc nest pour la config étape par étape
         - [ ] Écriture des tests
             - [ ] Tester que la page existe
