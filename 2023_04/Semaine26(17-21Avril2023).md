@@ -48,7 +48,40 @@
             - [ ] Tester que la page existe
             - [ ] Tester que le bouton existe
             - [ ] Tester que le bouton appelle la fonction désactivation
+            - [ ] Tester que l'appel à la db se fait bien
+            - [ ] Tester que la connexion à la db est établie
             - [ ] Tester que la désactivation retourne le bon store
-            - [ ] Tester que la désactivation update bien le store
             - [ ] Tester que le store est désactivé en base de données
+            - [ ] Tester que la désactivation update bien la variable du store dans le front
             - [ ] Tester que l'affichage correspond aux données en base
+
+**18 Avril**
+- [ ] Poursuite Predict
+    - [ ] KP-177 : test end to end désactivation
+        - [x] Créer un enironnement fonctionnel de e2e
+        - [ ] Passage des 2 tests e2e de base
+            - [ ] Résolution de l'erreur :
+            ```
+            FAIL  test/app.e2e-spec.ts (13.47 s)
+            ● AppController (e2e) › / (GET)
+            ```
+            - [ ] Résolution de l'erreur :
+            ```
+            Jest encountered an unexpected token
+            [Nest] 25772  - 17/04/2023 12:05:28   ERROR [TypeOrmModule] Unable to connect to the database. Retrying (1)...
+            Error: SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string
+            ```
+            - [ ] Demande a gpt ce qu'il en pense
+            - [ ] Reprise du dossier kmo-back en standalone pour voir si le e2e passe
+            - [ ] Reprise de la doc nest pour la config étape par étape
+        - [ ] Écriture des tests
+            - [ ] Tester que la page existe
+            - [ ] Tester que le bouton existe
+            - [ ] Tester que le bouton appelle la fonction désactivation
+            - [ ] Tester que l'appel à la db se fait bien
+            - [ ] Tester que la connexion à la db est établie
+            - [ ] Tester que la désactivation retourne le bon store
+            - [ ] Tester que le store est désactivé en base de données
+            - [ ] Tester que la désactivation update bien la variable du store dans le front
+            - [ ] Tester que l'affichage correspond aux données en base
+
