@@ -358,6 +358,59 @@
             - [x] Rebuild du realm
             - [x] Repeuplement de la db
             - [x] Relance des tests e2e, sans succès, même erreur.    
+    - [x] Création d'un fichier AppTest.module.ts avec la config db locale :
+    ```
+    @Module({
+    imports: [
+        ConfigModule,
+        EventsModule,
+        GatewaysModule,
+        KmoBoxesModule,
+        TypeOrmModule.forRoot(
+        {
+            type: 'postgres',
+            host: 'localhost',
+            port: 5432,
+            username: 'predict',
+            password: 'predict16022023',
+            database: 'predict',
+            entities: [Event, Gateway, KmoBox, Store],
+            autoLoadEntities: true,
+            synchronize: process.env.NODE_ENV !== 'production'
+        }
+        ),
+        StoresModule,
+        StatisticFormulaModule,
+        UsersModule,
+        MailingModule,
+    ],
+    providers: [ConfigService],
+    })
+    export class AppTestModule {}
+    ```
+    - [x] Update du fichier de test : 
+    ```
+    beforeEach(async () => {
+        const moduleFixture: TestingModule = await Test.createTestingModule({
+        imports: [AppTestModule],
+        }).compile();
+
+        app = moduleFixture.createNestApplication();
+        await app.init();
+    });
+
+    afterEach(async () => {
+        await app.close();
+    });
+    ```
+    Les tests e2e passent * maintenant
+- [ ] Écriture des tests
+    - [ ] Tester que la page existe
+    - [ ] Tester que le bouton existe
+    - [ ] Tester que le bouton appelle la fonction désactivation
+    - [ ] Tester que l'appel à la db se fait bien
+    - [ ] Tester que la connexion à la db est établie
+    - [ ] Tester que la désactivation retourne le bon store
 - [ ] Essai de couplage e2e-docker de test
     - [x] Check de (https://medium.com/free-code-camp/how-to-dockerize-your-end-to-end-acceptance-tests-dbb593acb8e0)
     - [ ] Check de (https://node.testcontainers.org/quickstart/)
