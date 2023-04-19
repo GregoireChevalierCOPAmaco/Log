@@ -231,4 +231,134 @@
         - [ ] Doit passer par la résolution du problème d'environnement & de la communication e2e/bdd
     - [ ] KP-177
         - [ ] Doit passer par la résolution du problème d'environnement & de la communication e2e/bdd
+        - [ ] Demande à gpt de : 
+        ```
+        i have a running project with 2 applications (one angular, and one netJs) in a root directory turborepo.
+        The users and their roles & permissions are managed by a working keycloak instance 
+        This project is run in docker containers :  one for the keycloak, one for the angular & nestAPI, & one for the postgres database
+        I haveinstalled and configured jest that runs and passes unit tests.
+        I have supertest library already installed and working.
+        I want to write e2e tests using Jest to ensure the nestJs API works properly. 
+        I have an e2e test file as follows :
+
+        ...
+        it('/ (GET)', () => {
+            return request(app.getHttpServer()).get('/stores').expect(200);
+        });
+
+        In this file, the endpoint /stores targeted exists and is working.
+        Running `jest app.e2e-spec.ts` fails with in my code editor's console :
+        ERROR [TypeOrmModule] Unable to connect to the database. Retrying (1)...
+        Error: SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string
+        
+        my postgres config in docker-compose.yml file is as follows :
+        postgres:
+            container_name: predict-pg
+            image: postgres:15.0-alpine3.16
+            restart: on-failure
+            environment:
+            - POSTGRES_USER=${DB_USER?}
+            - POSTGRES_PASSWORD=${DB_PASSWORD?}
+            - POSTGRES_DB=${DB_NAME?}
+            ports:
+            - "${DB_PORT?}:5432"
+            networks:
+            - app
+
+        and the variables refered as in the ${} parts are defined in the following .env file :
+        DB_HOST=postgres
+        DB_PORT=5432
+        DB_USER=predict
+        DB_PASSWORD=predict16022023
+        DB_NAME=predict
+        ```
+        gpt suggère : Verify that the environment variables defined in the docker-compose.yml file are being correctly read by Docker when the containers are launched. You can run docker-compose config to check that the environment variables are being properly set.
+            - [x] Lancement de ```docker-compose config``` et retour console : 
+            ERROR: 
+            Can't find a suitable configuration file in this directory or any parent. Are you in the right directory?
+            - [x] Renommage temporaire du fichier compose en enlevant le .env et lancement de ```docker-compose config``` avec retour console :
+            ```
+            WARNING: The KC_IMG variable is not set. Defaulting to a blank string.  
+            ERROR: Missing mandatory value for "environment" option interpolating ['POSTGRES_USER=${DB_USER?}', 'POSTGRES_PASSWORD=${DB_PASSWORD?}', 'POSTGRES_DB=${DB_NAME?}'] in service "postgres": DB_USER 
+            ```
+            - [x] Changement du docker-compose.yml :
+            ```
+              postgres:
+                container_name: predict-pg
+                image: postgres:15.0-alpine3.16
+                restart: on-failure
+                environment:
+                - .env.dev
+                ports:
+                - "${DB_PORT?}:5432"
+                networks:
+                - app
+            ```
+            au lieu de :
+            ```
+            postgres:
+                container_name: predict-pg
+                image: postgres:15.0-alpine3.16
+                restart: on-failure
+                environment:
+                - POSTGRES_USER=${DB_USER?}
+                - POSTGRES_PASSWORD=${DB_PASSWORD?}
+                - POSTGRES_DB=${DB_NAME?}
+                ports:
+                - "${DB_PORT?}:5432"
+                networks:
+                - app
+            ```
+            et brûlage de tout le docker existant, containers, images, volumes
+            - [x] Rebuild du docker   
+                - [x] ```docker compose --env-file .env.dev -f docker-compose.dev.yml up --renew-anon-volumes --always-recreate-deps --build``` 
+                - [x] Le predict-pg fail et rebuild à l'infini
+                - [x] rajout dans le .env.dev de :
+                ```
+                POSTGRES_USER=predict
+                POSTGRES_PASSWORD=predict16022023
+                POSTGRES_DB=predict
+                ```  
+            - [x] Relance des tests e2e, sans succès, même erreur.    
+            - [x] Changement du docker-compose.yml :
+            ```
+              postgres:
+                container_name: predict-pg
+                image: postgres:15.0-alpine3.16
+                restart: on-failure
+                # env_file:
+                #   - .env.dev
+                environment:
+                - POSTGRES_USER=predict
+                - POSTGRES_PASSWORD=predict16022023
+                - POSTGRES_DB=predict
+                ports:
+                - "${DB_PORT?}:5432"
+                networks:
+                - app
+            ```
+            au lieu de :
+            ```
+            postgres:
+                container_name: predict-pg
+                image: postgres:15.0-alpine3.16
+                restart: on-failure
+                environment:
+                - POSTGRES_USER=${DB_USER?}
+                - POSTGRES_PASSWORD=${DB_PASSWORD?}
+                - POSTGRES_DB=${DB_NAME?}
+                ports:
+                - "${DB_PORT?}:5432"
+                networks:
+                - app
+            ```
+            et brûlage de tout le docker existant, containers, images, volumes
+            - [x] Rebuild du docker   
+                - [x] ```docker compose --env-file .env.dev -f docker-compose.dev.yml up --renew-anon-volumes --always-recreate-deps --build``
+            - [x] Rebuild du realm
+            - [x] Repeuplement de la db
+            - [x] Relance des tests e2e, sans succès, même erreur.    
 - [ ] Essai de couplage e2e-docker de test
+    - [x] Check de (https://medium.com/free-code-camp/how-to-dockerize-your-end-to-end-acceptance-tests-dbb593acb8e0)
+    - [ ] Check de (https://node.testcontainers.org/quickstart/)
+    - [ ] Check de (https://github.com/leonidas/e2e-ui-testing)
