@@ -208,7 +208,8 @@
             3 | import { environment } from '../../../environments/environment';
         ```
         - [ ] Trouver comment modifier les envs selon le de / test/ prod
-            - [ ] Reprise de (https://docs.nestjs.com/techniques/configuration) encore une fois
+            - [ ] Reprise de (https://docs.nestjs.com/techniques/configuration) encore une fois, et (https://docs.nestjs.com/techniques/configuration#custom-env-file-path)
+            - [ ] Check de (https://dev.to/pitops/managing-multiple-environments-in-nestjs-71l)
         - [ ] Écriture des tests
             - [ ] Tester que la page existe
             - [ ] Tester que le bouton existe
@@ -220,3 +221,14 @@
             - [ ] Tester que la désactivation update bien la variable du store dans le front
             - [ ] Tester que l'affichage correspond aux données en base
 
+3000 =/= 5432 ? où vont taper les options du typeOrm ? dans la db ou l'api ?
+
+
+
+**19 Avril**
+- [ ] Poursuite Predict
+    - [ ] KP-190
+        - [ ] Doit passer par la résolution du problème d'environnement & de la communication e2e/bdd
+    - [ ] KP-177
+        - [ ] Doit passer par la résolution du problème d'environnement & de la communication e2e/bdd
+- [ ] Essai de couplage e2e-docker de test
