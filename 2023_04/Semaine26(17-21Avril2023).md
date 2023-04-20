@@ -472,6 +472,24 @@
         });
     });
         ```
+        - [x] Tester que la connexion au keycloak se fait bien avec les ids g.chevalier/pw123 :
+        ```
+        test('submit Keycloak login form with username and password', async () => {
+            const res = await request('http://localhost:8080')
+            .post('/realms/Cop_sass/protocol/openid-connect/token')
+            .type('form')
+            .send({
+                grant_type: 'password',
+                client_id: 'KMO_Predict',
+                username: 'g.chevalier',
+                password: 'pw123'
+            })
+            .set('Accept', 'application/json');
+        
+            expect(res.status).toEqual(200);
+            expect(res.body).toHaveProperty('access_token');
+        }); 
+        ``
         - [ ] Tester que la page existe
         - [ ] Tester que le bouton existe
         - [ ] Tester que le bouton appelle la fonction désactivation
