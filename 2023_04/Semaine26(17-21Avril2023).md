@@ -422,6 +422,37 @@
     - [ ] KP-177
         - [x] Doit passer par la résolution du problème d'environnement & de la communication e2e/bdd
     - [ ] Écriture des tests
+        - [ ] Tester que l'application angular existe & est définie
+        - [x] Tester que l'application angular tourne et est accessible sur le port 3000 :
+        ```
+        import * as request from 'supertest';
+        import { NestFactory } from '@nestjs/core';
+        import { AppTestModule } from '../src/app-test.module';
+
+        describe('AppController (e2e)', () => {
+        let app;
+
+        beforeAll(async () => {
+            app = await NestFactory.create(AppTestModule);
+            await app.listen(3002); // Doit démarrer une instance de nest
+                                    // Le port 3002 est utilisé pour run
+                                    // le test e2e et ne pas entrer en conflit
+                                    // avec l'instance réelle sur le 3001
+        });
+
+        afterAll(async () => {
+            await app.close();
+        });
+
+        test('if the angular app is running on port 3000', () => {
+                return request('http://localhost:3000')
+                .get('/')
+                .expect(200)/*
+                .expect('Content-Type', /text\/html/)
+                .expect('Welcome to my Angular app!')*/;
+            });
+        });
+        ```
         - [ ] Tester que la page existe
         - [ ] Tester que le bouton existe
         - [ ] Tester que le bouton appelle la fonction désactivation
