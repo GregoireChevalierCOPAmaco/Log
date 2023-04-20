@@ -453,6 +453,25 @@
             });
         });
         ```
+        - [x] Tester que l'instance keycloak tourne et est accessible sur le port 8080 :
+        ```
+          test('if the keycloak instance is running on port 8080', () => {
+            return request('http://localhost:8080').get('/').expect(200);
+        });
+        ```
+        - [x] Tester que la redirection vers l'auth keycloak se fait bien :
+        ```
+        describe('KeycloakAuthentication', () => {
+        it('should redirect unauthenticated users to Keycloak login page', async () => {
+        // Set up a request to the Angular app
+        const response = await request('http://localhost:8080/realms/master/protocol/openid-connect/auth?client_id=security-admin-console&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fadmin%2Fmaster%2Fconsole%2F%23%2Frealms%2FCop_sass&state=3055055e-037e-4079-8d15-22a1e2ee2f5f&response_mode=fragment&response_type=code&scope=openid&nonce=509564f3-2b76-4841-8b8f-d00a0aad1bcb&code_challenge=tEmmBYlbp0m743pvMIaHyN5TcXu8IMd9dkqN19FAimw&code_challenge_method=S256').get('/');
+    
+        // Check that the response is a redirect to the Keycloak login page
+        expect(response.status).toEqual(302);
+        expect(response.header.location).toMatch("http://localhost:8080/admin/master/console/#/realms/Cop_sass&error=invalid_request&error_description=Invalid+parameter%3A+code+challenge+method+is+not+configured+one&state=3055055e-037e-4079-8d15-22a1e2ee2f5f");
+        });
+    });
+        ```
         - [ ] Tester que la page existe
         - [ ] Tester que le bouton existe
         - [ ] Tester que le bouton appelle la fonction désactivation
