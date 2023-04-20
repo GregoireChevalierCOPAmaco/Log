@@ -415,3 +415,19 @@
     - [x] Check de (https://medium.com/free-code-camp/how-to-dockerize-your-end-to-end-acceptance-tests-dbb593acb8e0)
     - [ ] Check de (https://node.testcontainers.org/quickstart/)
     - [ ] Check de (https://github.com/leonidas/e2e-ui-testing)
+    
+
+**20 Avril**
+- [ ] Poursuite Predict
+    - [ ] KP-177
+        - [x] Doit passer par la résolution du problème d'environnement & de la communication e2e/bdd
+    - [ ] Écriture des tests
+        - [ ] Tester que la page existe
+        - [ ] Tester que le bouton existe
+        - [ ] Tester que le bouton appelle la fonction désactivation
+        - [ ] Tester que l'appel à la db se fait bien
+        - [ ] Tester que la connexion à la db est établie
+        - [ ] Tester que la désactivation retourne le bon store
+    - [ ] KP-190
+        - [x] Doit passer par la résolution du problème d'environnement & de la communication e2e/bdd
+        - [ ] Demande à gpt de : 
