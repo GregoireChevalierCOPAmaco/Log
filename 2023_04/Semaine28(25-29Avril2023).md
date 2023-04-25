@@ -4,6 +4,27 @@
     - [ ] Écriture des tests
         - [ ] Tester que l'application angular existe & est définie
         - [ ] Tester que l'user est redirigé vers l'auth keycloak
+            - [ ]
+            - [x] Faire passer le test en cas d'erreur raised avec un try catch : 
+            ```
+            try {
+                const response = await axios.post(
+                    'http://localhost:8080/auth/realms/Cop_sass/protocol/openid-connect/token',
+                    grant_type: 'password',
+                    client_id: 'KMO_Predict',
+                    username: 'g.chevalier',
+                    password: 'pw123',
+                }, {
+                    headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                });
+
+                cookies = response.headers['set-cookie'];
+                } catch (error) {
+                console.error(error);
+            }   
+            ```
         - [ ] Tester que l'auth keycloak est validée avec les ids "g.chevalier" / "pw123"
         - [ ] Tester que l'user connecté a les bons rôles
         - [ ] Tester que la page existe
