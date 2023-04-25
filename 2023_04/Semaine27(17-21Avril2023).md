@@ -497,5 +497,4 @@
         - [ ] Tester que la connexion à la db est établie
         - [ ] Tester que la désactivation retourne le bon store
     - [ ] KP-190
-        - [x] Doit passer par la résolution du problème d'environnement & de la communication e2e/bdd
-        - [ ] Demande à gpt de : 
+        - [ ] Doit passer par la résolution du problème d'environnement & de la communication e2e/bdd
