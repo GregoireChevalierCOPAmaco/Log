@@ -72,6 +72,75 @@ Je pense que ton application, est une "Single Page Application".
 C'est pourquoi la seule requête qui peut répondre une 200 est http://localhost:3000.
 Mettre un proxy devant (type nginx / apache2) permet de réécrire l'URL et te permettra d'avoir un code 200. Cependant, tu ne verras pas de redirection, car c'est le code javascript qui s'en charge.
 ```
+- [ ] Recherches sur atteindre les SPAs
+    - [x] (https://oliverjam.es/articles/avoid-spa-404#:~:text=This%20is%20because%20your%20server,correctly%20responds%20with%20a%20404.) suggests to point everything towards the one rendered page (http://localhost:3000) and see from there
+    - [x] (https://thegray.company/blog/single-page-application-spas-404s-seo) explique que (http://localhost:3000) render la première page de la SPA, à savoir main.ts (?) et que c'est l'application qui build le routing et le reste
+    - [x] Réponse GPT : 
+    ```
+    Single page applications (SPAs) built with frameworks like Angular use client-side routing to manage application state and navigation, which means that instead of loading new pages from the server, they dynamically update the content displayed on the same page based on user interactions.
+
+    When you access an SPA through a web browser, the browser's JavaScript engine handles client-side routing, allowing you to navigate between different views or pages without triggering a full page reload. 
+    However, when you call an SPA API endpoint with Postman, you are sending a request directly to the server, bypassing the client-side routing mechanism. 
+    This can cause the server to return a 404 error because it doesn't recognize the requested endpoint.
+
+    To resolve this issue, you need to configure your server to serve the SPA's index.html file for all routes, including those that would normally trigger a 404 error. 
+    This is known as "fallback routing" and can be implemented using server-side routing rules or by using a service like ngrok to tunnel your local server to a public URL that can be accessed by Postman.
+
+    In Angular, you can enable fallback routing by configuring the RouterModule with the useHash option, which adds a hash fragment to the URL and allows the server to serve the index.html file for all routes:
+
+    javascript
+    Copy code
+    @NgModule({
+    imports: [RouterModule.forRoot(routes, { useHash: true })],
+    exports: [RouterModule]
+    })
+    export class AppRoutingModule { }
+    With this configuration, all requests to your server will be redirected to the index.html file, allowing your SPA to handle the routing on the client-side.
+    ```
+    &&
+    ```
+    Since your Angular application uses client-side routing, the server is not aware of the client-side routes and will return a 404 error for any route that is not explicitly handled on the server-side. To handle this situation, you need to configure your server to serve the index.html file for all routes and let your Angular application handle the routing on the client-side.
+
+    In your NestJS backend, you can create a fallback route to handle all requests that are not handled by the server and serve the index.html file. You can add the following code to your app.module.ts file:
+
+    typescript
+    Copy code
+    import { join } from 'path';
+
+    @Module({
+    imports: [
+        ServeStaticModule.forRoot({
+        rootPath: join(__dirname, '..', 'front-end'),
+        exclude: ['/api*'],
+        }),
+        AngularUniversalModule.forRoot({
+        bootstrap: AppServerModule,
+        viewsPath: join(process.cwd(), 'dist/front-end/browser'),
+        }),
+        ...
+    ],
+    controllers: [AppController],
+    providers: [AppService],
+    })
+    export class AppModule {
+    configure(consumer: MiddlewareConsumer) {
+        consumer.apply((req, res, next) => {
+        res.sendFile(join(process.cwd(), 'dist/front-end/browser/index.html'));
+        }).forRoutes({
+        path: '/*',
+        method: RequestMethod.GET
+        });
+    }
+    }
+    Here, we use the ServeStaticModule from @nestjs/serve-static to serve the static files for the Angular application from the front-end directory. 
+    We exclude the /api* route from being handled by the static file server. 
+    Then we use the AngularUniversalModule from @nestjs/ng-universal to serve the Angular application from the dist/front-end/browser directory.
+
+    Finally, we create a fallback route using the configure method of the AppModule to handle all requests that are not handled by the server and serve the index.html file. 
+    This will ensure that all client-side routes are handled by the Angular application and prevent 404 errors from being returned by the server.
+
+    After adding this configuration, you should be able to call GET/ http://localhost:3000/administration in Postman and receive a 200 code.
+    ```
 - [ ] Poursuite Predict
     - [ ] KP-177
     - [ ] Écriture des tests
