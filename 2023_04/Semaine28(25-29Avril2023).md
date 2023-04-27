@@ -163,13 +163,91 @@ Mettre un proxy devant (type nginx / apache2) permet de réécrire l'URL et te p
 - [ ] Poursuite Predict
     - [ ] KP-177
     - [ ] Écriture des tests
-        - [ ] Tester que l'application angular existe & est définie
-        - [ ] Tester que l'user est redirigé vers l'auth keycloak
+        - [x] Tester que l'application angular existe & est définie : on teste si http://localhost:3000/
+        - [x] Tester que l'user est redirigé vers l'auth keycloak
             - [ ] Réussir à atteindre la bonne page de connexion
         - [ ] Tester que l'auth keycloak est validée avec les ids "g.chevalier" / "pw123"
         - [ ] Tester que l'user connecté a les bons rôles
-        - [ ] Tester que la page existe
+        - [ ] Tester que la page existe 
         - [ ] Tester que la page est accessible
+            - [x] Essai avec jest & jsdom : 
+            ```
+            import { JSDOM } from 'jsdom';
+
+            describe('Angular app (e2e)', () => {
+            let dom: any;
+
+            beforeAll(async () => {
+                // Create a new JSDOM instance with the Angular app URL
+                dom = await JSDOM.fromURL('http://localhost:3000');
+            });
+
+            afterAll(() => {
+                // Clean up the JSDOM instance after all tests have finished
+                dom.window.close();
+            });
+
+            it('should load the administration page', async () => {
+                // Navigate to the administration page and wait for it to load
+                await dom.window.location.assign('http://localhost:3000/administration');
+                await new Promise(resolve => {
+                dom.window.addEventListener('load', resolve);
+                });
+
+                // Check if the desired element exists on the page
+                const element = dom.window.document.querySelector('app-administration');
+                expect(element).not.toBeNull();
+                });
+            });
+            ```
+            mais erreur  Error: Not implemented: navigation (except hash changes)
+            - [x] Essai avec puppeteer : 
+                - [x] Installation de puppeteer ```npm install --save-dev @nestjs/testing puppeteer --legacy-peer-deps```
+            ```
+            import * as puppeteer from 'puppeteer';
+
+            describe('AppController (e2e)', () => {
+            let browser: puppeteer.Browser;
+            let page: puppeteer.Page;
+
+            beforeAll(async () => {
+                // Launch a headless browser
+                browser = await puppeteer.launch();
+            });
+
+            beforeEach(async () => {
+                // Open a new page in the browser and navigate to your Angular app
+                page = await browser.newPage();
+                await page.goto('http://localhost:3000');
+            });
+
+            afterEach(async () => {
+                // Close the current page after each test
+                await page.close();
+            });
+
+            afterAll(async () => {
+                // Close the browser after all tests have finished
+                await browser.close();
+            });
+
+            it('should load the administration page', async () => {
+                // Navigate to the administration page and wait for it to load
+                await page.goto('http://localhost:3000/administration');
+                await page.waitForSelector('#admin-page');
+
+                // Check if the desired element exists on the page
+                const element = await page.$('#admin-page');
+                expect(element).not.toBeNull();
+                });
+            });
+            ```
+            timeouts
+            logs keycloak
+            puppeteer keycloak
+            puppeteer keycloak form submit
+            puppeteer keycloak submit incorrect timeout
+                -> séparer en plusieurs fichiers de tests bien nommés
         - [ ] Tester que le bouton existe
         - [ ] Tester que le bouton appelle la fonction désactivation
         - [ ] Tester que l'appel à la db se fait bien
