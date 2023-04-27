@@ -141,6 +141,25 @@ Mettre un proxy devant (type nginx / apache2) permet de réécrire l'URL et te p
 
     After adding this configuration, you should be able to call GET/ http://localhost:3000/administration in Postman and receive a 200 code.
     ```
+    - [x] Installation de ```npm install --save @nestjs/serve-static @nestjs/ng-universal @nguniversal/express-engine
+ --legacy-peer-deps```
+    - [x] Ajout de :
+    ```
+        ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '../..', 'front-end'),
+      exclude: ['/api*'],
+    }),
+    ```
+    dans le app.module.ts de nestJs
+    - [x] Rebuild du docker avec ```docker compose --env-file .env.dev -f docker-compose.dev.yml up --renew-anon-volumes --always-recreate-deps --build``` et toujours la 404 sur postman
+    - [x] Précisions de GPT : 
+    ```
+    When you navigate to a route in your Angular application, the client-side code in the browser sends an HTTP GET request to the server to retrieve the page content. The server then responds with the HTML, CSS, and JavaScript files required to render the page in the browser.
+
+    When you try to access the same route using Postman, it will send a GET request to the server, but it will not be able to render the page in the same way that the client-side code in the browser can. Instead, Postman will receive the raw HTML, CSS, and JavaScript files that are returned by the server, which may not be what you were expecting.
+
+    If you want to test your Angular routes, you can use a browser like Google Chrome, Firefox or Safari to navigate to the desired route, or you can use a tool like cURL to make HTTP requests from the command line.
+    ```En gros : on ne peut pas accéder à angular depuis postman, juste vérifier que l'app tourne sur le port choisi.
 - [ ] Poursuite Predict
     - [ ] KP-177
     - [ ] Écriture des tests
