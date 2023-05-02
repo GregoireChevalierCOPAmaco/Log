@@ -248,6 +248,7 @@ Mettre un proxy devant (type nginx / apache2) permet de réécrire l'URL et te p
             puppeteer keycloak form submit
             puppeteer keycloak submit incorrect timeout
                 -> séparer en plusieurs fichiers de tests bien nommés
+            séparation en fichiers car un seul fichier multitests plus lourd. (?)
         - [ ] Tester que le bouton existe
         - [ ] Tester que le bouton appelle la fonction désactivation
         - [ ] Tester que l'appel à la db se fait bien
