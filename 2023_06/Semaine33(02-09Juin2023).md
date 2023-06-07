@@ -62,3 +62,10 @@
     constructor() {
   // console.log('options: ' + JSON.stringify(options));
 }
+
+**7 Juin**
+- [ ] Poursuite Predict
+    - [x] Catchup log
+    - [ ] Up du coverage
+    - [ ] Back-end
+        - [ ] Résolution du fail des tests des modules
