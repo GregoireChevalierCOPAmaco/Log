@@ -64,8 +64,13 @@
 }
 
 **7 Juin**
-- [ ] Poursuite Predict
+- [x] Poursuite Predict
     - [x] Catchup log
-    - [ ] Up du coverage
-    - [ ] Back-end
-        - [ ] Résolution du fail des tests des modules
+    - [x] Up du coverage
+    - [x] Back-end
+        - [x] Résolution du fail des tests des modules
+            - [x] Reprise de la solution de skip des tests qui fail en CI
+- [ ] Mise en prod
+    - [ ] Documentation
+        - [ ] Check approfondi de (https://www.adaltas.com/en/2023/03/14/ec2-deploy-keycloak/)
+    - [ ] Bac à sable serveur prod
