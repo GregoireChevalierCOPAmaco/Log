@@ -301,4 +301,14 @@
     - [x] Atteindre keycloak
     - [ ] Installer git sur le serveur prod
     - [ ] Cloner le repo git 
+        - [x] Installation de git ```sudo yum install git -y```
+        - [ ] Clone du projet
+            - [x] Accès refusé
+            - [ ] Génération de clé ssh
+                - [x] ```ssh-keygen -t ed25519 -C "g.chevalier@cop-amaco.com"```
+                - [x] ```ssh-add ~/.ssh/id_ed25519```
+                - [x] Ajout de la clé dans le 
     - [ ] essayer de lancer le tout
+        - [ ] Installation de node
+        - [ ] Installation de npm
+        - [ ] Installation des modules avec ```npm i```
