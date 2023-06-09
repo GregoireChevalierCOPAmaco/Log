@@ -255,5 +255,50 @@
             - username  GCHEVALIER
             - pw        voir discord anthony
         - [ ] Création d'une instance
+            - Amazon Linux 2023 AMI 2023.0.20230607.0 x86_64 HVM kernel-6.1 ami-0122fd36a4f50873a
+            - t2.micro
+            - 8 Go
         - [ ] Démarrage d'une instance
-        
+        - [ ] Connexion à l'insatnce : 
+            - selectionner l'instance
+            - se connecter 
+            - client ssh
+            - copie de (ssh -i "Keycloak.pem" ec2-user@ec2-18-192-107-239.eu-central-1.compute.amazonaws.com)
+            - lancement terminal
+            - se rendre dans le dossier dans lequel il y a la clé paire
+            - ```ssh -i "Keycloak.pem" ec2-user@ec2-18-192-107-239.eu-central-1.compute.amazonaws.com``` (cliw sur l'id de l'instance, puis "se connecter" puis onglet client ssh)
+            - fingerprint ? yes
+        - [x] installation de docker : 
+            - [x] ```sudo amazon-linux-extras install docker``` fails with : ```sudo: amazon-linux-extras: command not found```
+            - [x] Résolution avec : ```sudo yum install docker```
+        - [x] Démarrage de docker : ```sudo service docker start```
+        - [x] Activation de postgresql
+            - [x] Check de (https://superuser.com/questions/1777045/amazon-linux-extras-command-not-found)
+    - [ ] Atteindre keycloak
+        - [x] Lancer keycloak : 
+        ```
+        sudo docker run -d   --name keycloak-dev2   -p 8080:8080   -e KEYCLOAK_ADMIN=admin   -e KEYCLOAK_ADMIN_PASSWORD=admin   quay.io/keycloak/keycloak:18.0.0   start-dev   
+        ```
+        - [x] https le keycloak : 
+        ```
+        kcadm.sh config credentials --server http://localhost:8080/ \
+        --realm master \
+        --user admin --password admin
+        ```
+        puis 
+        ```
+        kcadm.sh update realms/master -s enabled=true -s sslRequired=none
+        ```
+        et retour sur : (http://18.185.52.243:8080/realms/master/protocol/openid-connect/auth...) qui fonctionne cette fois comme attendu
+        À noter que l'id ip est élstique et change à chaque redémarrage de l'instance    
+
+
+**9 Juin**
+- [ ] Mise en prod
+    - [x] Documentation
+        - [x] Check approfondi de (https://www.adaltas.com/en/2023/03/14/ec2-deploy-keycloak/)
+    - [x] Bac à sable serveur prod
+    - [x] Atteindre keycloak
+    - [ ] Installer git sur le serveur prod
+    - [ ] Cloner le repo git 
+    - [ ] essayer de lancer le tout
