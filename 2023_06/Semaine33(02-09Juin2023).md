@@ -309,6 +309,14 @@
                 - [x] ```ssh-add ~/.ssh/id_ed25519```
                 - [x] Ajout de la clé dans le 
     - [ ] essayer de lancer le tout
-        - [ ] Installation de node
-        - [ ] Installation de npm
+        - [x] Installation de node
+            - [x] 
+            ```
+            curl -fsSL https://rpm.nodesource.com/setup_16.x | sudo bash -
+            sudo yum update
+            sudo yum install -y nodejs
+            ```
+        - [x] Installation de npm
         - [ ] Installation des modules avec ```npm i```
+            - [x] Ca fait turbo crasher le serveur, freeze puis plus rien
+            
