@@ -1,4 +1,4 @@
-**9 Juin**
+**13 Juin**
 - [ ] Mise en prod
     - [x] Connexion sur AWS & run de l'instance test i-0ff387a4c39282058
     - [x] Login à l'instance avec :
@@ -98,6 +98,25 @@
                         ├─6443 "postgres: autovacuum launcher "
                         └─6444 "postgres: logical replication launcher "
             ```
+            - [x] Set du pw postgresql : 
+            ```
+            sudo su - postgres
+            psql -c "ALTER USER postgres WITH PASSWORD '12062023';"
+            exit
+            ```
+            retour console : 
+            ```
+            ALTER ROLE
+            ```
             - [x] Postgresql & server OK
             - [ ] Suite du tuto
+    - [ ] Lancer le tout combiné
+
+**14 Juin**
+- [ ] Mise en prod
+    - [x] Connexion sur AWS & run de l'instance test 
+    - [x] Check de l'espace disque restant dans l'instance : ```df -h``` , retour console : 
+    - [ ] Configurer Keycloak pour la prod
+        - [x] Reprise de (https://www.adaltas.com/en/2023/03/14/ec2-deploy-keycloak/) au point 3.2
+        - [ ] Suite du tuto
     - [ ] Lancer le tout combiné
