@@ -143,4 +143,179 @@
             ```
             openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out    cert.pem
             ```
+            retour console : 
+            ```
+            ...+.........+.+.........+......+......+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            -----
+            You are about to be asked to enter information that will be incorporated
+            into your certificate request.
+            What you are about to enter is what is called a Distinguished Name or a DN.
+            There are quite a few fields but you can leave some blank
+            For some fields there will be a default value,
+            If you enter '.', the field will be left blank.
+            ```
+            prompt infos : 
+            ```
+            Country Name (2 letter code) [XX]:FR
+            State or Province Name (full name) []:
+            Locality Name (eg, city) [Default City]:Nordhouse
+            Organization Name (eg, company) [Default Company Ltd]:COP
+            Organizational Unit Name (eg, section) []:
+            Common Name (eg, your name or your server's hostname) []:predict-test-greg
+            Email Address []:g.chevalier@cop-amaco.com
+            ```
+            - [x] Déplacement du dossier certificates : 
+            ```
+            mv -i -v certificates predict-prod/KMO_PREDICT
+            ```
+            - [x] Setup du pw & hostname : 
+            ```
+            export KEYCLOAK_ADMIN_PASSWORD=admin
+            export DB_PASSWORD=12062023
+            export KEYCLOAK_HOSTNAME=3.123.128.118:8443 (ip publique)
+            ```
+            - [ ] Lancement de la commande : 
+            ```
+            sudo docker run -d  \
+                --name keycloak-prodtest-greg \
+                -v /home/ec2-user/certificates:/certificates \
+                --network=host \
+                -e KEYCLOAK_ADMIN=admin \
+                -e KEYCLOAK_ADMIN_PASSWORD=$KEYCLOAK_ADMIN_PASSWORD \
+                quay.io/keycloak/keycloak:18.0.0 \
+                start \
+                --features=token-exchange \
+                --https-certificate-file=/certificates/cert.pem \
+                --https-certificate-key-file=/certificates/key.pem \
+                --hostname=$KEYCLOAK_HOSTNAME \
+                --proxy=edge \
+                --db=postgres \
+                --db-url=jdbc:postgres://localhost:5432/postgres \
+                --db-username=postgres \
+                --db-password=$DB_PASSWORD
+            ```
+            - [ ] Lancement du container : 
+            ```
+            sudo docker start keycloak-prodtest-greg
+            ```
+            mais  le container exit après 1s
+                - [x] Trouver la raison de l'exit
+                ```
+                sudo docker logs -t keycloak-prodtest-greg
+                2023-06-14T10:13:07.342783643Z Unknown option: '--features'
+                ```
+                - [x] Nouvel essai sans le --features 
+                ```
+                sudo docker run -d  \
+                --name keycloak-ptg-nofeatures \
+                -v /home/ec2-user/certificates:/certificates \
+                --network=host \
+                -e KEYCLOAK_ADMIN=admin \
+                -e KEYCLOAK_ADMIN_PASSWORD=$KEYCLOAK_ADMIN_PASSWORD \
+                quay.io/keycloak/keycloak:18.0.0 \
+                start \
+                --https-certificate-file=/certificates/cert.pem \
+                --https-certificate-key-file=/certificates/key.pem \
+                --hostname=$KEYCLOAK_HOSTNAME \
+                --proxy=edge \
+                --db=postgres \
+                --db-url=jdbc:postgres://localhost:5432/postgres \
+                --db-username=postgres \
+                --db-password=$DB_PASSWORD
+                ```
+                - [x] nouvel arret :
+                ```
+                sudo docker logs -t keycloak-ptg-nofeatures
+                2023-06-14T11:03:20.556699006Z Unknown option: '--db'
+                ```
+                - [x] Nouvel essai sans le --db 
+                ```
+                sudo docker run -d  \
+                --name keycloak-ptg-nodb \
+                -v /home/ec2-user/certificates:/certificates \
+                --network=host \
+                -e KEYCLOAK_ADMIN=admin \
+                -e KEYCLOAK_ADMIN_PASSWORD=$KEYCLOAK_ADMIN_PASSWORD \
+                quay.io/keycloak/keycloak:18.0.0 \
+                start \
+                --https-certificate-file=/certificates/cert.pem \
+                --https-certificate-key-file=/certificates/key.pem \
+                --hostname=$KEYCLOAK_HOSTNAME \
+                --proxy=edge \
+                --db-url=jdbc:postgres://localhost:5432/postgres \
+                --db-username=postgres \
+                --db-password=$DB_PASSWORD
+                ```
+                nouvel arrêt : 
+                ```
+                sudo docker logs -t keycloak-ptg-nodb
+                2023-06-14T11:49:56.095751601Z ERROR: Failed to start server in (production) mode
+                2023-06-14T11:49:56.096065537Z ERROR: Strict hostname resolution configured but no hostname was set
+                ```
+                - [x] Re run des commandes host, dbp & kcp, logs :
+                ```
+                INFO  [org.keycloak.quarkus.runtime.hostname.DefaultHostnameProvider] (main) Hostname settings: FrontEnd: 3.123.128.118:8443, Strict HTTPS: true, Path: <request>, Strict BackChannel: false, Admin: <request>, Port: -1, Proxied: true
+                WARN  [io.agroal.pool] (agroal-11) Datasource '<default>': No suitable driver found for jdbc:postgres://localhost:5432/postgres
+                WARN  [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator] (JPA Startup Thread: keycloak-default) HHH000342: Could not obtain connection to query metadata: java.sql.SQLException: No suitable driver found for jdbc:postgres://localhost:5432/postgres
+                aSource.getJdbcConnection(JdbcDataSource.java:191)
+                aSource.getXAConnection(JdbcDataSource.java:352)
+                ctionFactory.createConnection(ConnectionFactory.java:216)
+                ctionPool$CreateConnectionTask.call(ConnectionPool.java:513)
+                ctionPool$CreateConnectionTask.call(ConnectionPool.java:494)
+                concurrent.FutureTask.run(FutureTask.java:264)
+                PriorityScheduledExecutor.beforeExecute(PriorityScheduledExecutor.java:75)
+                concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1126)
+                concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+                Thread.run(Thread.java:829)
+                WARN  [io.agroal.pool] (agroal-11) Datasource '<default>': No suitable driver found for jdbc:postgres://localhost:5432/postgres
+                WARN  [org.infinispan.PERSISTENCE] (keycloak-cache-init) ISPN000554: jboss-marshalling is deprecated and planned for removal
+                WARN  [org.infinispan.CONFIG] (keycloak-cache-init) ISPN000569: Unable to persist Infinispan internal caches as no global state enabled
+                INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000556: Starting user marshaller 'org.infinispan.jboss.marshalling.core.JBossUserMarshaller'
+                INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000128: Infinispan version: Infinispan 'Triskaidekaphobia' 13.0.8.Final
+                INFO  [org.infinispan.CLUSTER] (keycloak-cache-init) ISPN000078: Starting JGroups channel `ISPN`
+                INFO  [org.infinispan.CLUSTER] (keycloak-cache-init) ISPN000088: Unable to use any JGroups configuration mechanisms provided in properties {}. Using default JGroups configuration!
+                WARN  [org.jgroups.protocols.UDP] (keycloak-cache-init) JGRP000015: the send buffer of socket MulticastSocket was set to 1.00MB, but the OS only allocated 212.99KB
+                WARN  [org.jgroups.protocols.UDP] (keycloak-cache-init) JGRP000015: the receive buffer of socket MulticastSocket was set to 20.00MB, but the OS only allocated 212.99KB
+                WARN  [org.jgroups.protocols.UDP] (keycloak-cache-init) JGRP000015: the send buffer of socket MulticastSocket was set to 1.00MB, but the OS only allocated 212.99KB
+                WARN  [org.jgroups.protocols.UDP] (keycloak-cache-init) JGRP000015: the receive buffer of socket MulticastSocket was set to 25.00MB, but the OS only allocated 212.99KB
+                INFO  [org.jgroups.protocols.pbcast.GMS] (keycloak-cache-init) ip-172-31-29-175-53584: no members discovered after 2011 ms: creating cluster as coordinator
+                INFO  [org.infinispan.CLUSTER] (keycloak-cache-init) ISPN000094: Received new cluster view for channel ISPN: [ip-172-31-29-175-53584|0] (1) [ip-172-31-29-175-53584]
+                INFO  [org.infinispan.CLUSTER] (keycloak-cache-init) ISPN000079: Channel `ISPN` local address is `ip-172-31-29-175-53584`, physical addresses are `[172.31.29.175:41756]`
+                INFO  [org.infinispan.CLUSTER] (main) ISPN000080: Disconnecting JGroups channel `ISPN`
+                ERROR [org.keycloak.quarkus.runtime.cli.ExecutionExceptionHandler] (main) ERROR: Failed to start server in (production) mode
+                ERROR [org.keycloak.quarkus.runtime.cli.ExecutionExceptionHandler] (main) ERROR: Failed to obtain JDBC connection
+                ERROR [org.keycloak.quarkus.runtime.cli.ExecutionExceptionHandler] (main) ERROR: No suitable driver found for jdbc:postgres://localhost:5432/postgres
+                ```
+                raison : il faut --db
+                - [x] Essai en ajoutant --auto-build : 
+                ```
+                sudo docker run -d  \
+                --name keycloak-ptg-db \
+                -v /home/ec2-user/certificates:/certificates \
+                --network=host \
+                -e KEYCLOAK_ADMIN=admin \
+                -e KEYCLOAK_ADMIN_PASSWORD=$KEYCLOAK_ADMIN_PASSWORD \
+                quay.io/keycloak/keycloak:18.0.0 \
+                start \
+                --auto-build \
+                --https-certificate-file=/certificates/cert.pem \
+                --https-certificate-key-file=/certificates/key.pem \
+                --hostname=$KEYCLOAK_HOSTNAME \
+                --proxy=edge \
+                --db=postgres \
+                --db-url=jdbc:postgres://localhost:5432/postgres \
+                --db-username=postgres \
+                --db-password=$DB_PASSWORD
+                ```
+                retour logs : 
+                ```
+                Changes detected in configuration. Updating the server image.
+                Updating the configuration and installing your custom providers, if any. Please wait.
+                ```
+                vu sur (https://github.com/keycloak/keycloak/issues/10722)
+                - [x] Ajout sur l'instance du groupe de sécurité pour ouvrir le port 8443 
+                    - modifier règle entrante
+                    - ajout d'une règle
+                    - TCP perso / 8443 / 0.0.0.0/0
+                    - reach https://3.123.128.118:8443/admin/master/console/#/realms/master
     - [ ] Lancer le tout combiné
