@@ -119,4 +119,28 @@
     - [ ] Configurer Keycloak pour la prod
         - [x] Reprise de (https://www.adaltas.com/en/2023/03/14/ec2-deploy-keycloak/) au point 3.2
         - [ ] Suite du tuto
+            - [x] Modification du fichier pg_hba.conf
+                - [x] À la racine de l'instance, ``` sudo nano /var/lib/pgsql/data/pg_hba.conf```
+                - [x] Changement de :
+                ```
+                host    all             all             127.0.0.1/32            ident
+                ```
+                en 
+                ```
+                # host    all             all             127.0.0.1/32            ident
+                host    all             postgres             127.0.0.1/32            md5
+                ```
+                - [x] Redémarrage de postgres : 
+                ```
+                sudo systemctl restart postgresql
+                ```
+            - [x] Création du dossier à certificats : 
+            ```
+            mkdir certificates
+            cd certificates
+            ```
+            - [ ] Création du certificat SSL self-signed : 
+            ```
+            openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out    cert.pem
+            ```
     - [ ] Lancer le tout combiné
