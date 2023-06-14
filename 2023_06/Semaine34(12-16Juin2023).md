@@ -319,3 +319,6 @@
                     - TCP perso / 8443 / 0.0.0.0/0
                     - reach https://3.123.128.118:8443/admin/master/console/#/realms/master
     - [ ] Lancer le tout combiné
+        - [ ] Créer un docker network externe
+        - [ ] Modifier le docker-compose du projet en y intégrant le network externe dans la section keycloak
+        - [ ] Lancer la giga commande docker run du keycloak avec en flag le network externe
