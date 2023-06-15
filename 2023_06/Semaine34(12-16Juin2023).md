@@ -322,3 +322,13 @@
         - [ ] Créer un docker network externe
         - [ ] Modifier le docker-compose du projet en y intégrant le network externe dans la section keycloak
         - [ ] Lancer la giga commande docker run du keycloak avec en flag le network externe
+
+**15 Juin**
+- [ ] Mise en prod
+    - [ ] Faire démarrer les apps avec le keycloak de prod
+        - [x] Connexion sur AWS & run de l'instance test 
+        - [ ] Lier les apps en local à un docker network externe local
+            - [ ] Créer un docker network externe
+            - [ ] Modifier le docker-compose du projet en y intégrant le network externe dans la section keycloak
+            - [ ] Lancer la giga commande docker run du keycloak avec en flag le network externe 
+        - [ ] Reproduire le schéma en prod
