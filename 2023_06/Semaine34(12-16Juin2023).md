@@ -328,7 +328,7 @@
     - [ ] Faire démarrer les apps avec le keycloak de prod
         - [x] Connexion sur AWS & run de l'instance test 
         - [ ] Lier les apps en local à un docker network externe local
-            - [ ] Créer un docker network externe : 
+            - [x] Créer un docker network externe : 
             Dans le dossier root de KOM-PREDICT, 
             ```
             docker network create kc-network
@@ -337,65 +337,80 @@
             ```
             dee893e40c34c5589f04581f11d5e6c98a9c1ada44a69a21e8d4fd5be5aae43b
             ```
-            - [ ] Modifier le docker-compose du projet en y intégrant le network externe dans la section keycloak
-                - [x] Création d'un docker-compose kc :
-                ```
-                version: "3.9"
+            - [x] Création d'un docker-compose kc :
+            ```
+            version: "3.9"
 
-                services:
-                keycloak:
-                    container_name: kmo-keycloak-ext
-                    build:
-                    context: .
-                    dockerfile: Dockerfile.2kc.dev
-                    restart: always
-                    depends_on:
-                    - postgres
-                    image: ${KC_IMG}
-                    ports:
-                    - "8080:8080"
-                    env_file:
-                    - .env.dev
-                    networks:
-                    - kc-network
-
-                postgres:
-                    container_name: predict-pg
-                    image: postgres:15.0-alpine3.16
-                    restart: on-failure
-                    environment:
-                    - POSTGRES_USER=${DB_USER?}
-                    - POSTGRES_PASSWORD=${DB_PASSWORD?}
-                    - POSTGRES_DB=${DB_NAME?}
-                    ports:
-                    - "${DB_PORT?}:5432"
-                    networks:
-                    - kc-network
-
+            services:
+            keycloak:
+                container_name: kmo-keycloak-ext
+                build:
+                context: .
+                dockerfile: Dockerfile.2kc.dev
+                restart: always
+                depends_on:
+                - postgres
+                image: ${KC_IMG}
+                ports:
+                - "8080:8080"
+                env_file:
+                - .env.dev
                 networks:
-                kc-network:
-                    external: true
-                ```
-                et son Dockerfile.2kc.dev : 
-                ```
-                FROM jboss/keycloak:18.0.0
+                - kc-network
 
-                COPY standalone-ha.xml /opt/jboss/keycloak/standalone/configuration/standalone-ha.xml
+            postgres:
+                container_name: predict-pg
+                image: postgres:15.0-alpine3.16
+                restart: on-failure
+                environment:
+                - POSTGRES_USER=${DB_USER?}
+                - POSTGRES_PASSWORD=${DB_PASSWORD?}
+                - POSTGRES_DB=${DB_NAME?}
+                ports:
+                - "${DB_PORT?}:5432"
+                networks:
+                - kc-network
 
-                CMD ["-b", "0.0.0.0", "-Djboss.socket.binding.port-offset=100"]
+            networks:
+            kc-network:
+                external: true
+            ```
+            et son Dockerfile.2kc.dev : 
+            ```
+            FROM jboss/keycloak:18.0.0
 
-                EXPOSE 8080
-                ```
-                - [x] Lancement du container avec ```docker compose --env-file .env.dev -f docker-compose2kc.yml up --renew-anon-volumes --always-recreate-deps --build```
-                et retour erreur : ``` => ERROR [internal] load metadata for docker.io/jboss/keycloak:18.0.0  ```
-                - [x] Résolution de l'erreur, changement dans le Dockerfile de :
-                ```
-                FROM io/jboss/keycloak:18.0.0
-                ```
-                en
-                ```
-                FROM quay.io/keycloak/keycloak:18.0.0
-                ```
-                - [x] Démarrage du container : ```docker compose --env-file .env.dev -f docker-compose2kc.yml up --renew-anon-volumes --always-recreate-deps --build```
-            - [ ] Lancer la giga commande docker run du keycloak avec en flag le network externe 
-        - [ ] Reproduire le schéma en prod
+            COPY standalone-ha.xml /opt/jboss/keycloak/standalone/configuration/standalone-ha.xml
+
+            CMD ["-b", "0.0.0.0", "-Djboss.socket.binding.port-offset=100"]
+
+            EXPOSE 8080
+            ```
+            - [x] Lancement du container avec ```docker compose --env-file .env.dev -f docker-compose2kc.yml up --renew-anon-volumes --always-recreate-deps --build```
+            et retour erreur : ``` => ERROR [internal] load metadata for docker.io/jboss/keycloak:18.0.0  ```
+            - [x] Résolution de l'erreur, changement dans le Dockerfile de :
+            ```
+            FROM io/jboss/keycloak:18.0.0
+            ```
+            en
+            ```
+            FROM quay.io/keycloak/keycloak:18.0.0
+            ```
+            - [x] Démarrage du container : ```docker compose --env-file .env.dev -f docker-compose2kc.yml up --renew-anon-volumes --always-recreate-deps --build```
+    - [ ] Modifier le docker-compose du projet en y intégrant le network externe dans la section keycloak
+        - [x] Doc (https://docs.docker.com/compose/networking/#use-a-pre-existing-network)
+        - [ ] Application au docker compose
+    - [ ] Lancer la giga commande docker run du keycloak avec en flag le network externe 
+    - [ ] Reproduire le schéma en prod
+
+
+**16 Juin**
+- [ ] Mise en prod
+    - [ ] Faire démarrer les apps avec le keycloak de prod
+        - [x] Connexion sur AWS & run de l'instance test 
+        - [ ] Lier les apps en local à un docker network externe local
+            - [x] Créer un docker network externe 
+    - [ ] Modifier le docker-compose du projet en y intégrant le network externe dans la section keycloak
+        - [x] Doc (https://docs.docker.com/compose/networking/#use-a-pre-existing-network)
+        - [ ] Application au docker compose
+    - [ ] Lancer la giga commande docker run du keycloak avec en flag le network externe 
+    - [ ] Reproduire le schéma en prod
