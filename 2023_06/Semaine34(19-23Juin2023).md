@@ -45,8 +45,13 @@
     - [ ] Reproduire le schéma en prod
 
 **21 Juin**
-- [x]Réponse à pascal pour le poste de commercial
+- [x] Réponse à pascal pour le poste de commercial
+- [x] Review de la PR 86 sur la KP 355
+    (ajout de la date de dernière maintenance dans la db)
 - [ ] Mise en prod
+    - [ ] Démarrer un docker prod de la db sur network externe
+    - [ ] Démarrer un docker prod ddu keycloak sur network externe
+    - [ ] Lier le keycloak à la db
     - [ ] Faire démarrer les apps avec le keycloak de prod
         - [x] Connexion sur AWS & run de l'instance test 
         - [ ] Lier les apps en local à un docker network externe local
