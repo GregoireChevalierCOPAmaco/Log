@@ -89,6 +89,72 @@ In your case, the `kc-network` network has the `bridge` driver, indicating that 
     - [x] Création de la KP-361 
 - [ ] Mise en prod
     - [ ] Démarrer un docker prod de la db sur network externe
+        - [x] Création du docker compose : 
+        ```
+        version: '3.5'
+
+            services:
+            postgres:
+                container_name: postgres_container
+                image: postgres
+                environment:
+                POSTGRES_USER: ${POSTGRES_USER:-postgres}
+                POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+                PGDATA: /data/postgres
+                volumes:
+                - postgres:/data/postgres
+                ports:
+                - "5432:5432"
+                networks:
+                - pg-network
+
+            networks:
+            pg-network:
+                driver: bridge
+
+            volumes:
+                postgres:
+        ```
+        - [x] Installation de compose sur l'aws ```sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose```
+        - [x] Modification des permissions associées
+        ```
+        sudo chmod +x /usr/local/bin/docker-compose
+        ```
+        - [x] ```sudo docker-compose up docker-compose-pg.yml```
+        retour fail : 
+        ```
+        no configuration file provided: not found
+        ```
+    - [ ] Démarrer un docker prod ddu keycloak sur network externe
+    - [ ] Lier le keycloak à la db
+    - [ ] Faire démarrer les apps avec le keycloak de prod
+        - [x] Connexion sur AWS & run de l'instance test 
+        - [ ] Lier les apps en local à un docker network externe local
+    - [ ] Modifier le docker-compose du projet en y intégrant le network externe dans la section keycloak
+        - [ ] Application au docker compose
+    - [ ] Lancer la giga commande docker run du keycloak avec en flag le network externe 
+    - [ ] Reproduire le schéma en prod
+
+    
+
+**22 Juin**
+- [x] Check des ports in use : 
+```sudo lsof -i -P -n | grep LISTEN```
+et réponse : 
+```
+sshd        2030            root    5u  IPv4   16031      0t0  TCP *:22 (LISTEN)
+sshd        2030            root    7u  IPv6   16039      0t0  TCP *:22 (LISTEN)
+postmaste   4524        postgres    6u  IPv4   28722      0t0  TCP 127.0.0.1:5432 (LISTEN)
+container   9044            root   13u  IPv4   76141      0t0  TCP 127.0.0.1:33761 (LISTEN)
+java      256165        ec2-user  346u  IPv4 1327568      0t0  TCP 172.31.29.175:33291 (LISTEN)
+java      256165        ec2-user  347u  IPv4 1327637      0t0  TCP 127.0.0.1:45407 (LISTEN)
+java      256165        ec2-user  348u  IPv4 1327680      0t0  TCP *:8080 (LISTEN)
+java      256165        ec2-user  349u  IPv4 1327681      0t0  TCP *:8443 (LISTEN)
+docker-pr 351177            root    4u  IPv4 1789175      0t0  TCP *:6543 (LISTEN)
+docker-pr 351182            root    4u  IPv6 1789187      0t0  TCP *:6543 (LISTEN)
+```
+- [ ] Mise en prod
+    - [x] Démarrer un docker prod de la db sur network externe
     - [ ] Démarrer un docker prod ddu keycloak sur network externe
     - [ ] Lier le keycloak à la db
     - [ ] Faire démarrer les apps avec le keycloak de prod
