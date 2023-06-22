@@ -138,8 +138,7 @@ In your case, the `kc-network` network has the `bridge` driver, indicating that 
     
 
 **22 Juin**
-- [x] Check des ports in use : 
-```sudo lsof -i -P -n | grep LISTEN```
+- [x] Check des ports in use : ```sudo lsof -i -P -n | grep LISTEN```
 et réponse : 
 ```
 sshd        2030            root    5u  IPv4   16031      0t0  TCP *:22 (LISTEN)
@@ -153,9 +152,12 @@ java      256165        ec2-user  349u  IPv4 1327681      0t0  TCP *:8443 (LISTE
 docker-pr 351177            root    4u  IPv4 1789175      0t0  TCP *:6543 (LISTEN)
 docker-pr 351182            root    4u  IPv6 1789187      0t0  TCP *:6543 (LISTEN)
 ```
+- [ ] Check de let's encrypt (https://letsencrypt.org/fr/getting-started/)
+- [ ] Récupération d'un certificat letsencrypt
+- [ ] Ajout du certificat dans le dossier ./certificates
 - [ ] Mise en prod
     - [x] Démarrer un docker prod de la db sur network externe
-    - [ ] Démarrer un docker prod ddu keycloak sur network externe
+    - [ ] Démarrer un docker prod du keycloak sur network externe
     - [ ] Lier le keycloak à la db
     - [ ] Faire démarrer les apps avec le keycloak de prod
         - [x] Connexion sur AWS & run de l'instance test 
