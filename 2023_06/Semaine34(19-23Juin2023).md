@@ -170,7 +170,30 @@ docker-pr 351182            root    4u  IPv6 1789187      0t0  TCP *:6543 (LISTE
 **23 Juin**
 - [ ] Check de let's encrypt (https://letsencrypt.org/fr/getting-started/)
 - [ ] Récupération d'un certificat letsencrypt
+    - [x] Suivi de (https://mistonline.in/wp/how-to-secure-apache-using-lets-encrypt-on-amazon-linux-2/)
     - [ ] Installation des modules nécessaires
+        - [ ] epel
+            ```
+            sudo yum install epel
+            ```
+            retour console : 
+            ```
+            Last metadata expiration check: 3:32:33 ago on Fri Jun 23 04:53:43 2023.
+            No match for argument: epel
+            Error: Unable to find a match: epel
+            ```
+            check de (https://linux.how2shout.com/can-we-install-epel-repo-on-amazon-linux-2023/) pour comprendre
+        - [ ] certbot
+            ```
+            sudo yum install certbot
+            ```
+            retour console : 
+            ```
+            Last metadata expiration check: 3:37:47 ago on Fri Jun 23 04:53:43 2023.
+            No match for argument: certbot
+            Error: Unable to find a match: certbot
+            ```
+            check de (https://unix.stackexchange.com/questions/744633/how-to-install-certbot-via-snap-on-amazon-linux-2023) pour comprendre
 - [ ] Ajout du certificat dans le dossier ./certificates
 - [ ] Mise en prod
     - [ ] Démarrer un docker prod du keycloak sur network externe
