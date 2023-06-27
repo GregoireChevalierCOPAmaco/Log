@@ -57,6 +57,7 @@
 
 
 **27 Juin**
+- [x] Mise à jour du jira
 - [ ] Check de let's encrypt (https://letsencrypt.org/fr/getting-started/)
 - [ ] Récupération d'un certificat letsencrypt
     - [ ] Installation des modules nécessaires
@@ -64,7 +65,73 @@
             - [ ] Installation de certbot
                 - [x] Installation de nginx
                 - [ ] Installation de snapd
-                - [ ] Installation de certbot
+                    - [x] Check de (https://snapcraft.io/docs/installing-snap-on-arch-linux)
+                    - [ ] suivi des commandes : 
+                    ```
+                    git clone https://aur.archlinux.org/snapd.git
+                    cd snapd
+                    makepkg -si
+                    ```
+                    retour terminal : 
+                    ```
+                    Cloning into 'snapd'...
+                    remote: Enumerating objects: 677, done.
+                    remote: Counting objects: 100% (677/677), done.
+                    remote: Compressing objects: 100% (397/397), done.
+                    remote: Total 677 (delta 283), reused 666 (delta 275), pack-reused 0
+                    Receiving objects: 100% (677/677), 196.66 KiB | 2.69 MiB/s, done.
+                    Resolving deltas: 100% (283/283), done.
+                    ```
+                    &
+                    ```
+                    makepkg -si command not found
+                    ```
+                    - [x] Check de (https://www.thegeekdiary.com/makepkg-command-not-found/)
+                    - [ ] Installation de snapd via pip (https://certbot.eff.org/instructions?ws=nginx&os=pip) : 
+                    ```
+                    sudo yum update
+                    sudo yum install python3 augeas-libs
+                    ```
+                    retour console
+                    ```
+                    Installing:
+                    augeas-libs              x86_64              1.13.0-1.amzn2023.0.2              amazonlinux              408 k
+
+                    Transaction Summary
+                    ================================================================================================================
+                    Install  1 Package
+
+                    Total download size: 408 k
+                    Installed size: 1.2 M
+                    Is this ok [y/N]: y
+                    Downloading Packages:
+                    augeas-libs-1.13.0-1.amzn2023.0.2.x86_64
+                    ....
+                    Complete!
+                    ```
+                    - [x] Setup python virtual env :
+                    ```
+                    sudo /opt/certbot/bin/pip install certbot certbot-nginx
+                    sudo /opt/certbot/bin/pip install --upgrade pip
+                    ```
+                    retour terminal : 
+                    ```
+                    Requirement already satisfied: pip in /opt/certbot/lib/python3.9/site-packages (21.3.1)
+                    Collecting pip
+                    Downloading pip-23.1.2-py3-none-any.whl (2.1 MB)
+                        |████████████████████████████████| 2.1 MB 5.8 MB/s
+                    Installing collected packages: pip
+                    Attempting uninstall: pip
+                        Found existing installation: pip 21.3.1
+                        Uninstalling pip-21.3.1:
+                        Successfully uninstalled pip-21.3.1
+                    Successfully installed pip-23.1.2
+                    ```
+                - [x] Installation de certbot : 
+                ```
+                sudo yum remove certbot
+                sudo /opt/certbot/bin/pip install certbot certbot-nginx
+                ```
                 - [ ] Installation de nginx plugin for certbot
             - [ ] Configuration du virtual host
             - [ ] Request de certificat
