@@ -168,9 +168,138 @@
                 - [x] Installation de certbot
                 - [x] Installation de nginx plugin for certbot
                 - [x] Lancement de ```sudo ln -s /opt/certbot/bin/certbot /usr/bin/certbot``` pour assurer la faisabilité du certificat sur la machine, retour terminal normal
-            - [ ] Génération du certificat
+            - [x] Génération du certificat
+                - [x] ```sudo certbot --nginx```
+                retour console : 
+                ```
+                Saving debug log to /var/log/letsencrypt/letsencrypt.log
+                Enter email address (used for urgent renewal and security notices)
+                (Enter 'c' to cancel): g.chevalier@cop-amaco.com
+
+                - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                Please read the Terms of Service at
+                https://letsencrypt.org/documents/LE-SA-v1.3-September-21-2022.pdf. You must
+                agree in order to register with the ACME server. Do you agree?
+                - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                (Y)es/(N)o: y
+
+                - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                Would you be willing, once your first certificate is successfully issued, to
+                share your email address with the Electronic Frontier Foundation, a founding
+                partner of the Let's Encrypt project and the non-profit organization that
+                develops Certbot? We'd like to send you email about our work encrypting the web,
+                EFF news, campaigns, and ways to support digital freedom.
+                - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                (Y)es/(N)o: n
+                Account registered.
+                Please enter the domain name(s) you would like on your certificate (comma and/or
+                space separated) (Enter 'c' to cancel): http://3.123.128.118/
+                ```
+                - [x] Demande à Kévin de créer un sous-domaine OVH appelé testgreg.cop-amaco.digital/ qui tape sur http://3.123.128.118/
+                re-run de la commande certbot
+                - [x] renseignement du http://testgreg.cop-amaco.digital/ dans l'étape de génération du certificat, et retour terminal : 
+                ```
+                Requesting a certificate for testgreg.cop-amaco.digital
+
+                Successfully received certificate.
+                Certificate is saved at: /etc/letsencrypt/live/testgreg.cop-amaco.digital/fullchain.pem
+                Key is saved at:         /etc/letsencrypt/live/testgreg.cop-amaco.digital/privkey.pem
+                This certificate expires on 2023-09-27.
+                These files will be updated when the certificate renews.
+
+                Deploying certificate
+                Could not install certificate
+
+                NEXT STEPS:
+                - The certificate was saved, but could not be installed (installer: nginx). After fixing the error shown below, try installing it again by running:
+                certbot install --cert-name testgreg.cop-amaco.digital
+                - The certificate will need to be renewed before it expires. Certbot can automatically renew the certificate in the background, but you may need to take steps to enable that functionality. See https://certbot.org/renewal-setup for instructions.
+
+                Could not automatically find a matching server block for testgreg.cop-amaco.digital. Set the `server_name` directive to use the Nginx installer.
+                Ask for help or search for solutions at https://community.letsencrypt.org. See the logfile /var/log/letsencrypt/letsencrypt.log or re-run Certbot with -v for more details.
+                ```
+                - [x] Soumission du retour à chat gpt, réponse : 
+                ```
+                The error message indicates that Certbot could not automatically find a matching server block for your domain in the Nginx configuration. To resolve this issue, you need to manually configure Nginx to recognize your domain and serve the SSL/TLS certificate.
+
+                Here are the steps you can take to fix the problem:
+
+                1. Open the Nginx configuration file for your website. The location of the file can vary depending on your Linux distribution, but common paths include `/etc/nginx/nginx.conf` or `/etc/nginx/sites-available/default`.
+
+                2. Within the configuration file, locate the `server` block that corresponds to the domain `testgreg.cop-amaco.digital` (or create a new `server` block if one doesn't exist).
+
+                3. Inside the `server` block, ensure that the `server_name` directive is set to your domain name. For example:
+                ```
+                server_name testgreg.cop-amaco.digital;
+                ```
+
+                4. Verify that the `location` block for port 80 (HTTP) includes a redirect to HTTPS. If not, add the following lines inside the `server` block:
+                ```
+                location / {
+                    return 301 https://$host$request_uri;
+                }
+                ```
+
+                5. Save the changes to the Nginx configuration file.
+
+                6. Test the configuration to ensure there are no syntax errors:
+                ```
+                sudo nginx -t
+                ```
+                If any errors are reported, review your changes and correct any mistakes.
+
+                7. Once the configuration passes the test, restart Nginx to apply the changes:
+                ```
+                sudo service nginx restart
+                ```
+
+                8. Finally, run the Certbot installation command again to install the certificate:
+                ```
+                sudo certbot install --cert-name testgreg.cop-amaco.digital
+                ```
+
+                This command should install the certificate and configure Nginx to use it.
+
+                If you encounter any issues during this process or need further assistance, don't hesitate to ask for help on the Let's Encrypt community forum or refer to the Certbot documentation for more troubleshooting options.
+                ```
             - [ ] Configuration du virtual host
             - [ ] Request de certificat
+            ```
+            sudo certbot --nginx
+            Saving debug log to /var/log/letsencrypt/letsencrypt.log
+
+            Which names would you like to activate HTTPS for?
+            We recommend selecting either all domains, or all domains in a VirtualHost/server block.
+            - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+            1: testgreg.cop-amaco.digital
+            - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+            Select the appropriate numbers separated by commas and/or spaces, or leave input
+            blank to select all options shown (Enter 'c' to cancel): 1
+            Certificate not yet due for renewal
+
+            You have an existing certificate that has exactly the same domains or certificate name you requested and isn't close to expiry.
+            (ref: /etc/letsencrypt/renewal/testgreg.cop-amaco.digital.conf)
+
+            What would you like to do?
+            - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+            1: Attempt to reinstall this existing certificate
+            2: Renew & replace the certificate (may be subject to CA rate limits)
+            - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+            Select the appropriate number [1-2] then [enter] (press 'c' to cancel): 1
+            Deploying certificate
+            Successfully deployed certificate for testgreg.cop-amaco.digital to /etc/nginx/nginx.conf
+            Congratulations! You have successfully enabled HTTPS on https://testgreg.cop-amaco.digital
+
+            - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+            If you like Certbot, please consider supporting our work by:
+            * Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+            * Donating to EFF:                    https://eff.org/donate-le
+            - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+            [ec2-user@ip-172-31-29-175 ~]$ ping https://testgreg.cop-amaco.digital
+            ping: https://testgreg.cop-amaco.digital: Name or service not known
+            [ec2-user@ip-172-31-29-175 ~]$ sudo service nginx restart
+            Redirecting to /bin/systemctl restart nginx.service
+            ```
             - [ ] Update du path de crtificat ssl
             - [ ] Restart nginx & test du reach  
                 - [ ] Réussir à accéder au site (3.123.128.118)
