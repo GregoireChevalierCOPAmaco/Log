@@ -137,6 +137,41 @@
             - [ ] Request de certificat
             - [ ] Update du path de crtificat ssl
             - [ ] Restart nginx & test du reach  
+                - [ ] Réussir à accéder au site (3.123.128.118)
+- [ ] Ajout du certificat dans le dossier ./certificates
+- [ ] Mise en prod
+    - [ ] Démarrer un docker prod du keycloak sur network externe
+    - [ ] Lier le keycloak à la db
+    - [ ] Faire démarrer les apps avec le keycloak de prod
+        - [x] Connexion sur AWS & run de l'instance test 
+        - [ ] Lier les apps en local à un docker network externe local
+    - [ ] Modifier le docker-compose du projet en y intégrant le network externe dans la section keycloak
+        - [ ] Application au docker compose
+    - [ ] Lancer la giga commande docker run du keycloak avec en flag le network externe 
+    - [ ] Reproduire le schéma en prod
+
+
+**28 Juin**
+- [x] Mise à jour du jira
+- [ ] Check de let's encrypt (https://letsencrypt.org/fr/getting-started/)
+- [ ] Récupération d'un certificat letsencrypt
+    - [ ] Installation des modules nécessaires
+        - [ ] certbot
+            - [ ] Installation de certbot
+                - [x] Installation de nginx
+                - [x] ouverture du port 80 dans les règles de sécurité 
+                    - instance / onglet sécurité / lien externe vers les groupes de sécurité
+                    - modifier règle entrante
+                    - ajout d'une règle
+                    - TCP perso / 8443 / 0.0.0.0/0
+                    - reach https://3.123.128.118:8443/admin/master/console/#/realms/master
+                - [x] Installation de certbot
+                - [x] Installation de nginx plugin for certbot
+            - [ ] Configuration du virtual host
+            - [ ] Request de certificat
+            - [ ] Update du path de crtificat ssl
+            - [ ] Restart nginx & test du reach  
+                - [ ] Réussir à accéder au site (3.123.128.118)
 - [ ] Ajout du certificat dans le dossier ./certificates
 - [ ] Mise en prod
     - [ ] Démarrer un docker prod du keycloak sur network externe
