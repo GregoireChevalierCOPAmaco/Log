@@ -157,16 +157,18 @@
 - [ ] Récupération d'un certificat letsencrypt
     - [ ] Installation des modules nécessaires
         - [ ] certbot
-            - [ ] Installation de certbot
+            - [x] ouverture du port 80 dans les règles de sécurité 
+                - instance / onglet sécurité / lien externe vers les groupes de sécurité
+                - modifier règle entrante
+                - ajout d'une règle
+                - TCP perso / 8443 / 0.0.0.0/0
+                - reach https://3.123.128.118:8443/admin/master/console/#/realms/master
+            - [x] Installation de certbot
                 - [x] Installation de nginx
-                - [x] ouverture du port 80 dans les règles de sécurité 
-                    - instance / onglet sécurité / lien externe vers les groupes de sécurité
-                    - modifier règle entrante
-                    - ajout d'une règle
-                    - TCP perso / 8443 / 0.0.0.0/0
-                    - reach https://3.123.128.118:8443/admin/master/console/#/realms/master
                 - [x] Installation de certbot
                 - [x] Installation de nginx plugin for certbot
+                - [x] Lancement de ```sudo ln -s /opt/certbot/bin/certbot /usr/bin/certbot``` pour assurer la faisabilité du certificat sur la machine, retour terminal normal
+            - [ ] Génération du certificat
             - [ ] Configuration du virtual host
             - [ ] Request de certificat
             - [ ] Update du path de crtificat ssl
