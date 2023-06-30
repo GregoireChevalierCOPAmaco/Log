@@ -323,6 +323,52 @@
     - [ ] Installation des modules nécessaires
         - [ ] certbot
             - [ ] Update du path de crtificat ssl
+            - [ ] Renouvellement automatique du certificat via cron
+                - [x] Check si cron est actif
+                ```
+                sudo systemctl status cron
+                ```
+                retour terminal : 
+                ```
+                Unit cron.service could not be found.
+                ```
+                - [x] Installation de cron
+                    - [x] Check de (https://jainsaket-1994.medium.com/installing-crontab-on-amazon-linux-2023-ec2-98cf2708b171)
+                    - [x] Installation : 
+                    ```
+                    sudo yum install cronie -y
+                    ```
+                    retour terminal : 
+                    ```
+                    Installing:
+                    cronie                      x86_64              1.5.7-1.amzn2023.0.2                amazonlinux              115 k
+                    Installing dependencies:
+                    cronie-anacron              x86_64              1.5.7-1.amzn2023.0.2                amazonlinux               32 k
+
+                    Transaction Summary
+                    ====================================================================================================================
+                    Install  2 Packages
+
+                    Total download size: 147 k
+                    Installed size: 341 k
+                    Downloading Packages:
+                    (1/2): cronie-anacron-1.5.7-1.amzn2023.0.2.x86_64.rpm                               378 kB/s |  32 kB     00:00
+                    (2/2): cronie-1.5.7-1.amzn2023.0.2.x86_64.rpm
+                    Installed:
+                    cronie-1.5.7-1.amzn2023.0.2.x86_64                   cronie-anacron-1.5.7-1.amzn2023.0.2.x86_64
+
+                    Complete!
+                    ```
+                    puis
+                    ```
+                    sudo systemctl enable crond.service
+                    &
+                    sudo systemctl start crond.service
+                    ```
+                    et check du statut :
+                    ```
+                    sudo systemctl status crond | grep Active
+                    ```
             - [ ] Restart nginx & test du reach  
                 - [ ] Réussir à accéder au site (3.123.128.118)
 - [ ] Ajout du certificat dans le dossier ./certificates
