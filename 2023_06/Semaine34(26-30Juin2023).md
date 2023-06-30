@@ -370,7 +370,8 @@
                     sudo systemctl status crond | grep Active
                     ```
             - [ ] Restart nginx & test du reach  
-                - [ ] Réussir à accéder au site (3.123.128.118)
+                - [ ] Réussir à accéder au site (3.123.128.118)  
+                - [ ] Réussir à accéder au site (http://testgreg.cop-amaco.digital/)
 - [ ] Ajout du certificat dans le dossier ./certificates
 - [ ] Mise en prod
     - [ ] Démarrer un docker prod du keycloak sur network externe
