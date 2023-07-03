@@ -1,5 +1,8 @@
 **29 Juin**
-- [x] Mise à jour du jira
+- [x] Mise à jour du serveur aws linux : 
+```
+sudo dnf upgrade --releasever=2023.1.20230628
+```
 - [ ] Check de let's encrypt (https://letsencrypt.org/fr/getting-started/)
 - [ ] Récupération d'un certificat letsencrypt
     - [ ] Installation des modules nécessaires
@@ -13,11 +16,12 @@
                 et check du statut :
                 ```
                 sudo systemctl status crond | grep Active
-                ```
+                ``` 
             - [ ] Restart nginx & test du reach  
                 - [ ] Réussir à accéder au site (3.123.128.118)  
                 - [ ] Réussir à accéder au site (http://testgreg.cop-amaco.digital/)
 - [ ] Ajout du certificat dans le dossier ./certificates
+- [ ] Redémarrer un keycloak avec dans les --flags le lien vers le nouveau certificat
 - [ ] Mise en prod
     - [ ] Démarrer un docker prod du keycloak sur network externe
     - [ ] Lier le keycloak à la db
@@ -26,5 +30,7 @@
         - [ ] Lier les apps en local à un docker network externe local
     - [ ] Modifier le docker-compose du projet en y intégrant le network externe dans la section keycloak
         - [ ] Application au docker compose
-    - [ ] Lancer la giga commande docker run du keycloak avec en flag le network externe 
+    - [ ] Lancer la giga commande docker run du keycloak avec en flag le network externe & le certificat
     - [ ] Reproduire le schéma en prod
+
+- [ ] Entrevue olivier ITS
