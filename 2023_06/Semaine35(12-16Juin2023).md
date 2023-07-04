@@ -176,7 +176,7 @@
             ```
             - [ ] Lancement de la commande : 
             ```
-            sudo docker run -d  \
+            sudo  -d  \
                 --name keycloak-prodtest-greg \
                 -v /home/ec2-user/certificates:/certificates \
                 --network=host \

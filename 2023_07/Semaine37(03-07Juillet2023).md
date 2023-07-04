@@ -34,3 +34,50 @@ sudo dnf upgrade --releasever=2023.1.20230628
     - [ ] Reproduire le schéma en prod
 
 - [ ] Entrevue olivier ITS
+    - [x] Résolution problème de db atmos prod
+    - [ ] Points à aborder : 
+        - [ ] Keycloak prod
+        - [ ] Apps sur docker network externe lié au keycloak
+        - [ ] Certificat Letsencrypt sur Keycloay prod 
+
+        ```
+        sudo docker run -d  \
+                --name keycloak-prod8 \
+                --network=host \
+                -e KEYCLOAK_ADMIN=admin \
+                -e KEYCLOAK_ADMIN_PASSWORD=$KEYCLOAK_ADMIN_PASSWORD \
+                quay.io/keycloak/keycloak:18.0.0 \
+                start \
+                --auto-build \
+                --hostname=$KEYCLOAK_HOSTNAME \
+                --proxy=edge \
+                --db=postgres \
+                --db-url=jdbc:postgres://localhost:5432/postgres \
+                --db-username=postgres \
+                --db-password=$DB_PASSWORD
+        ```
+
+redirection vers localhost 8080
+
+changement du fichier de conf nginx : ajouter
+```
+set_proxy_header 4 lines voir atmos
+
+
+
+- démarrer aws container db postgres
+- déclarer dans aws export KEYCLOAK_HOSTNAME=testgreg.cop-amaco.digital
+- déclarer dans aws export DB_PASSWORD=12062023
+- déclarer dans aws export KEYCLOAK_ADMIN_PASSWORD=admin
+- démarrer aws container keycloak prod avec la grosse commande
+- ouvrir le port 8443 sur amazon pour le serveur
+- installer nginx
+- installer certbot
+- générer certificat
+- configurer nginx avec le nom de domaine dans un bloc serveur
+- configurer nginx.conf avec location / {
+    proxy_pass http://nomducontainerkeycloak:port
+}
+- configurer nginx.conf avec les 4 lignes de proxy set header
+
+
