@@ -1,4 +1,4 @@
-**29 Juin**
+**3 Juillet**
 - [x] Mise à jour du serveur aws linux : 
 ```
 sudo dnf upgrade --releasever=2023.1.20230628
@@ -62,7 +62,7 @@ redirection vers localhost 8080
 changement du fichier de conf nginx : ajouter
 ```
 set_proxy_header 4 lines voir atmos
-
+```
 
 
 - démarrer aws container db postgres
@@ -81,3 +81,20 @@ set_proxy_header 4 lines voir atmos
 - configurer nginx.conf avec les 4 lignes de proxy set header
 
 
+**4 Juillet**
+- [x] Mise à jour du Jira
+- [ ] Mise en prod
+    - [ ] Créer l'instance ubuntu
+    - [ ] Ouvrir les ports
+    - [ ] Installer docker
+    - [ ] Démarrer un container postgres avec docker
+    - [ ] Installer keycloak
+    - [ ] Fair ele docker compose du keycloak de prod
+    - [ ] Lier le keycloak à la db
+    - [ ] Modifier le docker-compose du projet en y intégrant le network externe dans la section keycloak
+        - [ ] Application au docker compose
+    - [ ] Générer le certificat 
+    - [ ] Renouvellement automatique du certificat via cron
+    - [ ] Faire démarrer les apps avec le keycloak de prod
+        - [x] Connexion sur AWS & run de l'instance test 
+        - [ ] Lier les apps en local à un docker network externe local
