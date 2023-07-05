@@ -84,8 +84,38 @@ set_proxy_header 4 lines voir atmos
 **4 Juillet**
 - [x] Mise à jour du Jira
 - [ ] Mise en prod
-    - [ ] Créer l'instance ubuntu
-    - [ ] Ouvrir les ports
+    - [x] Créer l'instance ubuntu
+        - [x] Création de l'instance ubuntu 20.04/clé paire ed25519/x86/30G stockage/t2micro nommée keycloak-prod-beta
+    - [x] Ouvrir les ports
+        - [x] Créer un groupe de sécurité
+            - nom : keycloak-prod-securitygroup
+            - SSH/TCP/22/N'importe ipv4/0.0.0.0/0
+            - HTTP/TCP/80/N'importe ipv4/0.0.0.0/0
+            - TCPPersonnalisé/TCP/8080/N'importe ipv4/0.0.0.0/0
+            - TCPPersonnalisé/TCP/8443/N'importe ipv4/0.0.0.0/0
+            - HTTPS/TCP/443/N'importe ipv4/0.0.0.0/0
+    - [x] Se connecter à l'instance
+    - [ ] Mettre ubuntu à jour
+    - [ ] installer les dépendances requises
+    - [ ] Installer docker
+    - [ ] Démarrer un container postgres avec docker
+    - [ ] Installer keycloak
+    - [ ] Fair ele docker compose du keycloak de prod
+    - [ ] Lier le keycloak à la db
+    - [ ] Modifier le docker-compose du projet en y intégrant le network externe dans la section keycloak
+        - [ ] Application au docker compose
+    - [ ] Générer le certificat 
+    - [ ] Renouvellement automatique du certificat via cron
+    - [ ] Faire démarrer les apps avec le keycloak de prod
+        - [x] Connexion sur AWS & run de l'instance test 
+        - [ ] Lier les apps en local à un docker network externe local
+        
+
+**5 Juillet**
+- [x] Mise à jour du Jira
+- [ ] Mise en prod
+    - [ ] Mettre ubuntu à jour
+    - [ ] installer les dépendances requises
     - [ ] Installer docker
     - [ ] Démarrer un container postgres avec docker
     - [ ] Installer keycloak
