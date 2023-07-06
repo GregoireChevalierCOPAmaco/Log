@@ -115,11 +115,120 @@ set_proxy_header 4 lines voir atmos
 - [x] Mise à jour du Jira
 - [ ] Mise en prod
     - [ ] Mettre ubuntu à jour
+        - [x] ```sudo apt list --upgradable```
+        - [x] ```sudo apt-get upgrade```
+    - [x] Installer docker
+        - [x] ```sudo apt install docker.io``` puis y
     - [ ] installer les dépendances requises
-    - [ ] Installer docker
     - [ ] Démarrer un container postgres avec docker
+        - [x] Check si postgres est ibstallée et active :
+        ```sudo systemctl status postgresql``` et retour : 
+        ```
+        Unit postgresql.service could not be found.
+        ```
+        - [ ] Installation de pg
+            ```
+            sudo apt-get install postgresql postgresql-server -y
+            ```
+            mais retour négatif : 
+            ```
+            Reading package lists... Done
+            Building dependency tree
+            Reading state information... Done
+            E: Unable to locate package postgresql-server
+            ```
+            - [x] Check de (https://www.cherryservers.com/blog/how-to-install-and-setup-postgresql-server-on-ubuntu-20-04)
+            et :
+            ```
+            apt install postgresql postgresql-contrib
+            ```
+            puis run de :
+            ```
+            service postgresql status
+            ```
+            et retour positif : 
+            ```
+            service postgresql status
+            ● postgresql.service - PostgreSQL RDBMS
+                Loaded: loaded (/lib/systemd/system/postgresql.service; enabled; >
+                Active: active (exited) since Wed 2023-07-05 07:31:55 UTC; 6min a>
+            Main PID: 48652 (code=exited, status=0/SUCCESS)
+                Tasks: 0 (limit: 1141)
+                Memory: 0B
+                CGroup: /system.slice/postgresql.service
+
+            Jul 05 07:31:54 ip-172-31-32-174 systemd[1]: Starting PostgreSQL RDBMS>
+            Jul 05 07:31:55 ip-172-31-32-174 systemd[1]: Finished PostgreSQL RDBMS.
+            ```
     - [ ] Installer keycloak
     - [ ] Fair ele docker compose du keycloak de prod
+    - [ ] Lier le keycloak à la db
+    - [ ] Modifier le docker-compose du projet en y intégrant le network externe dans la section keycloak
+        - [ ] Application au docker compose
+    - [ ] Générer le certificat 
+    - [ ] Renouvellement automatique du certificat via cron
+    - [ ] Faire démarrer les apps avec le keycloak de prod
+        - [x] Connexion sur AWS & run de l'instance test 
+        - [ ] Lier les apps en local à un docker network externe local
+
+
+**6 Juillet**
+- [x] Mise à jour du Jira
+- [ ] Mise en prod
+    - [ ] Mettre ubuntu à jour : 
+    ```
+    0 updates can be applied immediately.
+
+    Enable ESM Apps to receive additional future security updates.
+    See https://ubuntu.com/esm or run: sudo pro status
+
+
+    *** System restart required ***
+    ```
+    Redémarrage de l'instance via aws
+    - [ ] installer les dépendances requises
+    - [ ] Démarrer un container postgres avec docker
+        - [x] Check si postgres est ibstallée et active :
+        ```sudo systemctl status postgresql``` et retour : 
+        ```
+        Unit postgresql.service could not be found.
+        ```
+        - [x] Installation de pg
+            ```
+            sudo apt-get install postgresql postgresql-server -y
+            ```
+            mais retour négatif : 
+            ```
+            Reading package lists... Done
+            Building dependency tree
+            Reading state information... Done
+            E: Unable to locate package postgresql-server
+            ```
+            - [x] Check de (https://www.cherryservers.com/blog/how-to-install-and-setup-postgresql-server-on-ubuntu-20-04)
+            et :
+            ```
+            apt install postgresql postgresql-contrib
+            ```
+            puis run de :
+            ```
+            service postgresql status
+            ```
+            et retour positif : 
+            ```
+            service postgresql status
+            ● postgresql.service - PostgreSQL RDBMS
+                Loaded: loaded (/lib/systemd/system/postgresql.service; enabled; >
+                Active: active (exited) since Wed 2023-07-05 07:31:55 UTC; 6min a>
+            Main PID: 48652 (code=exited, status=0/SUCCESS)
+                Tasks: 0 (limit: 1141)
+                Memory: 0B
+                CGroup: /system.slice/postgresql.service
+
+            Jul 05 07:31:54 ip-172-31-32-174 systemd[1]: Starting PostgreSQL RDBMS>
+            Jul 05 07:31:55 ip-172-31-32-174 systemd[1]: Finished PostgreSQL RDBMS.
+            ```
+    - [ ] Installer keycloak
+    - [ ] Faire le docker compose du keycloak de prod
     - [ ] Lier le keycloak à la db
     - [ ] Modifier le docker-compose du projet en y intégrant le network externe dans la section keycloak
         - [ ] Application au docker compose
