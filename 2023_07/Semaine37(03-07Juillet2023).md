@@ -352,6 +352,36 @@ set_proxy_header 4 lines voir atmos
     - [ ] Installer compose 
         - [x] Check de (https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04)
         - [x] ```sudo curl -L "https://github.com/docker/compose/releases/download/2.19.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose``` puis ```sudo apt install docker-compose```
+        mais retour : 
+        ```
+        $ docker-compose version
+        /usr/local/bin/docker-compose: line 1: Not: command not found
+        ```
+        - [x] Résolution du problème compose not a docker command
+            - [x] Check de (https://github.com/docker/compose/issues/8630)
+            - [x] Application de :
+            ```
+            sudo apt-get install docker-compose-plugin
+            ```
+            mais retour : 
+            ```
+            E: Unable to locate package docker-compose-plugin
+            ```
+            - [x] Check de (https://docs.docker.com/compose/install/linux/#install-the-plugin-manually) et 
+            ```
+            DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
+            mkdir -p $DOCKER_CONFIG/cli-plugins
+            curl -SL https://github.com/docker/compose/releases/download/v2.19.1/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose                                   
+            ```
+            puis
+            ```
+            chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
+            ```
+            enfin
+            ```
+            docker compose version
+            Docker Compose version v2.19.1
+            ```
     - [ ] Faire le docker compose du keycloak de prod
         
     - [ ] Installer keycloak
