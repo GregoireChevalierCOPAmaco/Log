@@ -227,8 +227,102 @@ set_proxy_header 4 lines voir atmos
             Jul 05 07:31:54 ip-172-31-32-174 systemd[1]: Starting PostgreSQL RDBMS>
             Jul 05 07:31:55 ip-172-31-32-174 systemd[1]: Finished PostgreSQL RDBMS.
             ```
-    - [ ] Installer keycloak
+    - [x] Vérification que docker est installé & fonctionnel : 
+    ```
+    sudo docker ps -a
+    =====
+    CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+    ```
+    - [x] Check si le postgresql est actif : 
+    ```
+    sudo systemctl status postgresql
+    ```
+    et retour terminal : 
+    ```
+    ● postgresql.service - PostgreSQL RDBMS
+     Loaded: loaded (/lib/systemd/system/postgresql.service; enabled; vendor preset: enabled)
+     Active: active (exited) since Thu 2023-07-06 06:40:57 UTC; 25min ago
+    Process: 805 ExecStart=/bin/true (code=exited, status=0/SUCCESS)
+   Main PID: 805 (code=exited, status=0/SUCCESS)
+
+    Jul 06 06:40:57 ip-172-31-32-174 systemd[1]: Starting PostgreSQL RDBMS...
+    Jul 06 06:40:57 ip-172-31-32-174 systemd[1]: Finished PostgreSQL RDBMS.
+    ```
     - [ ] Faire le docker compose du keycloak de prod
+        - [x] Chat gpt : 
+        ```
+        i have this command to run a production version of keycloak : 
+
+        sudo docker run -d  \
+                        --name keycloak-prod8 \
+                        --network=host \
+                        -e KEYCLOAK_ADMIN=admin \
+                        -e KEYCLOAK_ADMIN_PASSWORD=$KEYCLOAK_ADMIN_PASSWORD \
+                        quay.io/keycloak/keycloak:18.0.0 \
+                        start \
+                        --auto-build \
+                        --hostname=$KEYCLOAK_HOSTNAME \
+                        --proxy=edge \
+                        --db=postgres \
+                        --db-url=jdbc:postgres://localhost:5432/postgres \
+                        --db-username=postgres \
+                        --db-password=$DB_PASSWORD
+
+        i want you to make a dockerfile based on it please
+        ```
+        réponse de gpt : 
+        ```
+        FROM quay.io/keycloak/keycloak:18.0.0
+
+        ENV KEYCLOAK_ADMIN=admin
+        ENV KEYCLOAK_ADMIN_PASSWORD=<your_admin_password>
+        ENV KEYCLOAK_HOSTNAME=<your_keycloak_hostname>
+        ENV DB_PASSWORD=<your_db_password>
+
+        CMD ["start", "--auto-build", "--hostname=${KEYCLOAK_HOSTNAME}", "--proxy=edge", "--db=postgres", "--db-url=jdbc:postgres://localhost:5432/postgres", "--db-username=postgres", "--db-password=${DB_PASSWORD}"]
+
+        To build the Docker image using this Dockerfile, navigate to the directory containing the Dockerfile and run the following command:
+
+        docker build -t keycloak-prod:1.0 .
+        docker run -d --name keycloak-prod8 --network=host -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=<your_admin_password> -e KEYCLOAK_HOSTNAME=<your_keycloak_hostname> -e DB_PASSWORD=<your_db_password> keycloak-prod:1.0
+        Adjust the container name, network settings, and environment variables according to your requirements.
+
+        Note: The --network=host flag in the docker run command allows the container to use the host's network stack, eliminating the need to publish individual ports. Ensure that it aligns with your specific networking needs and security considerations.
+
+        Remember to properly secure your environment and sensitive data, such as passwords and connection strings, when deploying Keycloak in a production environment.
+        ```
+        - [x] ```sudo touch Dockerfile.keycloak``` & ```sudo nano Dockerfile.keycloak```
+        - [x] Paste dans le dockerfile :
+        ```
+        FROM quay.io/keycloak/keycloak:18.0.0
+
+        ENV KEYCLOAK_ADMIN=admin
+        ENV KEYCLOAK_ADMIN_PASSWORD=@dminKC-prod!1
+        ENV KEYCLOAK_HOSTNAME=$KEYCLOAK_HOSTNAME
+        ENV DB_PASSWORD=dbp@06072023-pwpg
+
+        CMD ["start", "--auto-build", "--hostname=${KEYCLOAK_HOSTNAME}", "--proxy=edge", "--db=postgres", "--db-url=jdbc:postgres://localhost:5432/postgres", "--db-username=postgres", "--db-password=${DB_PASSWORD}"]
+        ```
+        - [x] Redo chat gpt pour docker compose et retour : 
+        ```
+        version: '3.8'
+        services:
+        keycloak:
+            build:
+            context: .
+            dockerfile: Dockerfile
+            container_name: keycloak-prod8
+            network_mode: host
+            environment:
+            - KEYCLOAK_ADMIN=admin
+            - KEYCLOAK_ADMIN_PASSWORD=<your_admin_password>
+            - KEYCLOAK_HOSTNAME=<your_keycloak_hostname>
+            - DB_PASSWORD=<your_db_password>
+        ```
+        - [ ] Installer compose 
+            - [x] Check de (https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04)
+            - [x] ```sudo curl -L "https://github.com/docker/compose/releases/download/2.19.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose``` puis ```sudo apt install docker-compose```
+    - [ ] Installer keycloak
     - [ ] Lier le keycloak à la db
     - [ ] Modifier le docker-compose du projet en y intégrant le network externe dans la section keycloak
         - [ ] Application au docker compose
@@ -236,4 +330,35 @@ set_proxy_header 4 lines voir atmos
     - [ ] Renouvellement automatique du certificat via cron
     - [ ] Faire démarrer les apps avec le keycloak de prod
         - [x] Connexion sur AWS & run de l'instance test 
+        - [ ] Lier les apps en local à un docker network externe local
+- [x] Passage avec Anthony sur ses tests des nouvelles fonctions lambda/kmoboxes
+- [x] Review de la PR concernant les ajouts d'Anthonye
+
+
+**7 Juillet**
+- [x] Mise à jour du Jira
+- [ ] Mise en prod
+    - [ ] installer les dépendances requises
+    - [ ] Démarrer un container postgres avec docker
+        - [x] Check si postgres est ibstallée et active :
+        ```sudo systemctl status postgresql``` et retour positif
+        - [x] Installation de pg
+    - [x] Vérification que docker est installé & fonctionnel : 
+    ```
+    sudo docker ps -a
+    =====
+    CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+    ```
+    - [ ] Installer compose 
+        - [x] Check de (https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04)
+        - [x] ```sudo curl -L "https://github.com/docker/compose/releases/download/2.19.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose``` puis ```sudo apt install docker-compose```
+    - [ ] Faire le docker compose du keycloak de prod
+        
+    - [ ] Installer keycloak
+    - [ ] Lier le keycloak à la db
+    - [ ] Modifier le docker-compose du projet en y intégrant le network externe dans la section keycloak
+        - [ ] Application au docker compose
+    - [ ] Générer le certificat 
+    - [ ] Renouvellement automatique du certificat via cron
+    - [ ] Faire démarrer les apps avec le keycloak de prod
         - [ ] Lier les apps en local à un docker network externe local
