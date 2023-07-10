@@ -1,0 +1,20 @@
+**7 Juillet**
+- [x] Mise à jour du Jira
+- [ ] Mise en prod
+    - [x] Installer les dépendances requises
+    - [ ] Certifier le keycloak de prod pour https
+        - [ ] Générer le certificat 
+            - [ ] Essai depuis container dédié
+            - [ ] Essai depuis serveur de prod en direct avec nginx
+                - [ ] Installation de nginx
+                - [ ] Configuration du nginx.conf
+                - [ ] Installation de certbot
+                - [ ] Génération
+                - [ ] Accéder au keycloak en https
+    - [ ] Renouvellement automatique du certificat via cron
+    - [ ] Faire démarrer les apps sur un serveur séparé de prod
+    - [ ] Lier les apps au serveur keycloak
+    - [ ] 
+    - [ ] 
+    - [ ] 
+- [ ] Réunion followup

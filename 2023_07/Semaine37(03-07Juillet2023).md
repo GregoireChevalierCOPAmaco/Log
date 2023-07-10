@@ -349,7 +349,7 @@ set_proxy_header 4 lines voir atmos
     =====
     CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
     ```
-    - [ ] Installer compose 
+    - [x] Installer compose 
         - [x] Check de (https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04)
         - [x] ```sudo curl -L "https://github.com/docker/compose/releases/download/2.19.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose``` puis ```sudo apt install docker-compose```
         mais retour : 
@@ -382,8 +382,76 @@ set_proxy_header 4 lines voir atmos
             docker compose version
             Docker Compose version v2.19.1
             ```
+    - [x] Création du fichier .env avec ```sudo touch .env``` et ```sudo nano .env```
+    ```
+    KEYCLOAK_ADMIN=admin
+    KEYCLOAK_ADMIN_PASSWORD=@dminKC-prod!1
+    KEYCLOAK_HOSTNAME=host-kc1
+    DB_PASSWORD=dbp@06072023-pwpg
+    ```
+    - [x] Création du fichier Dockerfile avec ```sudo touch Dockerfile.keycloak``` et ```sudo nano Dockerfile.keycloak```
+    ```
+    FROM quay.io/keycloak/keycloak:18.0.0
+
+    ENV KEYCLOAK_ADMIN=admin
+    ENV KEYCLOAK_ADMIN_PASSWORD=${KEYCLOAK_ADMIN_PASSWORD}
+    ENV KEYCLOAK_HOSTNAME=${KEYCLOAK_HOSTNAME}
+    ENV DB_PASSWORD=${DB_PASSWORD}
+
+    CMD ["start", "--auto-build", "--hostname=${KEYCLOAK_HOSTNAME}", "--proxy=edge", "--db=postgres", "--db-url=jdbc:postgres://postgres:5432/postgres", "--db-username=postgres", "--db-password=${DB_PASSWORD}"]
+    ```
     - [ ] Faire le docker compose du keycloak de prod
-        
+        - [x] Création du fichier .env avec ```sudo touch docker-compose.yml``` et ```sudo nano docker-compose.yml```
+        ```
+        version: '3.8'
+            services:
+            postgres:
+                image: postgres
+                container_name: keycloak-postgres
+                restart: unless-stopped
+                environment:
+                - POSTGRES_USER=postgres
+                - POSTGRES_PASSWORD=${DB_PASSWORD}
+                volumes:
+                - postgres-data:/var/lib/postgresql/data
+                ports:
+                - 6543:5432
+
+            keycloak:
+                build:
+                context: .
+                dockerfile: Dockerfile
+                container_name: keycloak-prod8
+                restart: unless-stopped
+                depends_on:
+                - postgres
+                environment:
+                - KEYCLOAK_ADMIN=${KEYCLOAK_ADMIN}
+                - KEYCLOAK_ADMIN_PASSWORD=${KEYCLOAK_ADMIN_PASSWORD}
+                - KEYCLOAK_HOSTNAME=${KEYCLOAK_HOSTNAME}
+                - DB_PASSWORD=${DB_PASSWORD}
+                - DB_VENDOR=postgres
+                - DB_ADDR=postgres
+                - DB_PORT=5432
+                - DB_DATABASE=postgres
+                - DB_USER=postgres
+                - PROXY_ADDRESS_FORWARDING=true
+                ports:
+                - 8443:8443
+                volumes:
+                - keycloak-data:/opt/jboss/keycloak/standalone/data
+
+            volumes:
+            postgres-data:
+            keycloak-data:
+        ```
+        - [x] Lancement de la commande docker compose up -d, retour : 
+        ```
+        /usr/local/bin/docker-compose: 1: Not: not found
+        ````
+        ```
+        sudo docker compose --env-file .env -f docker-compose.yml up --renew-anon-volumes --always-recreate-deps --build
+        ```
     - [ ] Installer keycloak
     - [ ] Lier le keycloak à la db
     - [ ] Modifier le docker-compose du projet en y intégrant le network externe dans la section keycloak
@@ -392,3 +460,4 @@ set_proxy_header 4 lines voir atmos
     - [ ] Renouvellement automatique du certificat via cron
     - [ ] Faire démarrer les apps avec le keycloak de prod
         - [ ] Lier les apps en local à un docker network externe local
+- [x] Réunion followup
