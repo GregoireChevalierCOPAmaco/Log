@@ -238,7 +238,15 @@
                 sudo systemctl restart nginx
                 ```
                 - [x] Accéder au keycloak en https
-    - [ ] Renouvellement automatique du certificat via cron
+    - [x] Renouvellement automatique du certificat via cron
+        - [x] Recherches
+        - [x] Ajout de la commande cron
+        ```
+        crontab -e
+        1
+        0 0 1 * * certbot renew "sudo systemctl restart nginx"
+        ```
+        ce qui équivaut à lancer le script de renouvellement de certificat tous les mois
     - [ ] Faire démarrer les apps sur un serveur séparé de prod
     - [ ] Lier les apps au serveur keycloak
     - [ ] 
