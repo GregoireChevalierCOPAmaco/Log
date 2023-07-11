@@ -281,10 +281,65 @@
             ssh -i "predict-beta-clepaire.pem" ubuntu@ec2-52-58-79-10.eu-central-1.compute.amazonaws.com
             ```
             Connexion success ! 
+        - [x] Découverte de l'instance
         - [ ] Lancer les apps avec un docker compose
+            - [x] ```docker compose --env-file .env.dev -f docker-compose.dev.yml up --renew-anon-volumes --always-recreate-deps --build``` sur le serveur beta des apps
+            - [ ] Reach l'application angular de beta
     - [ ] Lier les apps au serveur keycloak
-        - [ ] "Connecter" le network des applications au serveur keycloak
+        - [x] Demande à gpt comment faire, sa suggestion : 
+            - S'assurer de la connectivité et de la connectabailité des deux instances
+            - Utiliser keycloak-js adapter
+            - Modifier l'app.module.ts
+            - Modifier l'authguard
+            - Configurer le KeycloakService d'angular
+            - Configurer les client settings dans la console d'administration du keycloak de prod
+        - [ ] "Connecter" les applications au serveur keycloak
+            - [ ] S'assurer de la connectivité et de la connectabailité des deux instances
+                - [x] GPT à ce sujet : 
+                ```
+                Certainly! To ensure that both EC2 instances have proper network connectivity, you can follow these steps:
 
+                1. Identify the security groups associated with your EC2 instances. 
+                You can find this information in the AWS Management Console by navigating to the EC2 service, selecting the instance, and viewing the "Security groups" section.
+
+                2. Ensure that both instances are associated with security groups that allow the necessary network traffic to pass between them. 
+                By default, instances are assigned a default security group, which allows all inbound traffic from within the same security group. 
+                You can modify the rules of the default security group or create a new security group specifically for your use case.
+
+                3. Create a new security group (if needed) and configure the inbound rules to allow the necessary communication between the instances. 
+                For example, if your Keycloak container listens on port 8443 and your Angular container communicates with Keycloak over that port, you'll need to allow inbound traffic on port 8443 from the IP address or security group associated with your Angular instance.
+
+                To add a new inbound rule to a security group:
+                - Go to the AWS Management Console and navigate to the EC2 service.
+                - Select "Security Groups" from the sidebar.
+                - Choose the appropriate security group associated with one of your instances.
+                - Click the "Edit inbound rules" button.
+                - Add a new rule with the desired port and source IP or security group.
+
+                Repeat these steps for the security group associated with the other instance, ensuring that the necessary ports and sources are allowed.
+
+                4. Verify the network connectivity by attempting to ping one EC2 instance from the other using their private IP addresses. 
+                For example, on EC2 instance 2, you can run the following command:
+
+                ping <private-ip-of-EC2-instance-1>
+
+                If the ping is successful, it means the instances have proper network connectivity.
+
+                By configuring the security groups of both EC2 instances to allow the necessary network traffic, you ensure that the containers within the instances can communicate with each other over the specified ports.
+                ```
+                - [ ] Assurer la connexion entre les 2 instances
+            - [ ] Recréer le realm keycloak sur la prod
+                - [ ] Créer le fichier realm export sur le serveur prod keycloak
+            - [ ] Refaire le docker-compose
+                - [ ] Ne plus lancer de container keycloak
+                - [ ] Pointer vers le serveur keycloak prod à la place
+                - [ ] Ne plus lancer de script entrypoint.sh (déjà lancé dans le serveur keycloak)
+            - [ ] Sécuriser la connexion à angular
+                - [ ] Installer nginx
+                - [ ] Configurer nginx
+                - [ ] Ouvrir les ports sur amazon
+                - [ ] Générer le certificat
+                - [ ] Reach l'application angular
 
 
 
