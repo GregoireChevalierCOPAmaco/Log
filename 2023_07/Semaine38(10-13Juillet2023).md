@@ -259,6 +259,28 @@
 - [x] Mise à jour du Jira
 - [ ] Mise en prod
     - [ ] Faire démarrer les apps sur un serveur séparé de prod
+        - [x] Utilisation du serveur déjà existant (Predict-Beta / i-08c43697e819e6501)
+        - [x] Connexion avec ```ssh -i "Predict-Beta.pem" ubuntu@ec2-52-58-79-10.eu-central-1.compute.amazonaws.com``` et retour négatif : 
+        ```
+        ED25519 key fingerprint is SHA256:5QwsamG38bWUUMeLJ5cOk1fcCikqzq9A0qqQHt2uomA.
+        This key is not known by any other names
+        Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+        Warning: Permanently added 'ec2-52-58-79-10.eu-central-1.compute.amazonaws.com' (ED25519) to the list of known hosts.
+        ubuntu@ec2-52-58-79-10.eu-central-1.compute.amazonaws.com: Permission denied (publickey).
+        ```
+        Je n'ai pas la clé paire
+            - [x] Check de (https://linux.how2shout.com/add-a-new-key-pair-to-your-exisitng-aws-ec2-instances/)
+            - [x] Création d'une clé paire nommée predict-beta-clepaire.pem
+            - [x] Positionnement dans le dossier via invite de commande et ```ssh-keygen -y -f "predict-beta-clepaire.pem"```
+            - [x] Connexion à l'instance via l'interface web
+            - [x] ```sudo nano .ssh/authorized_keys```
+            - [x] Ajout du résultat de la commande ssh-keygen -f -y au fichier
+            - [x] Redémarrage de l'instance
+            - [x] Connexion à l'instance en SSH avec : 
+            ```
+            ssh -i "predict-beta-clepaire.pem" ubuntu@ec2-52-58-79-10.eu-central-1.compute.amazonaws.com
+            ```
+            Connexion success ! 
         - [ ] Lancer les apps avec un docker compose
     - [ ] Lier les apps au serveur keycloak
         - [ ] "Connecter" le network des applications au serveur keycloak
