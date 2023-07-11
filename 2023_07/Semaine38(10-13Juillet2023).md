@@ -1,4 +1,4 @@
-**7 Juillet**
+**10 Juillet**
 - [x] Mise à jour du Jira
 - [ ] Mise en prod
     - [x] Installer les dépendances requises
@@ -253,6 +253,21 @@
     - [ ] 
     - [ ] Checker le DKIM amazon, reapport au mail de Franck
 - [ ] Réunion followup
+
+
+**11 Juillet**
+- [x] Mise à jour du Jira
+- [ ] Mise en prod
+    - [ ] Faire démarrer les apps sur un serveur séparé de prod
+        - [ ] Lancer les apps avec un docker compose
+    - [ ] Lier les apps au serveur keycloak
+        - [ ] "Connecter" le network des applications au serveur keycloak
+
+
+
+
+
+
 
 docker compose file as is :
 ```
