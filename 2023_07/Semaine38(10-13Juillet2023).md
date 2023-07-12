@@ -380,9 +380,29 @@
         - Modifier l'authguard
         - Configurer le KeycloakService d'angular
         - Configurer les client settings dans la console d'administration du keycloak de prod
+    - [x] S'assurer de la connectivité et de la connectabailité des deux instances
+        - [x] Modifier les règles de sécurité entrantes / sortantes des instances
+            - [x] Instance KC
+                - [x] Modification des règles de sécurité
+                    - [x] Autorisation de tout le traffic entrant de 172.31.5.119
+                        - [x] Modification des règles entrantes/ ICMP Personnalisé-IPv4 /Tous / Personnalisé / 172.31.5.119/32
+                    - [x] Autorisation de tout le traffic sortant de 172.31.5.119
+                        - [x] Modification des règles sortantes/ ICMP Personnalisé-IPv4 /Tous / Personnalisé / 172.31.5.119/32
+            - [x] Instance APPS
+                - [x] Modification des règles de sécurité
+                    - [x] Autorisation de tout le traffic entrant de 172.31.39.193
+                        - [x] Modification des règles entrantes/ ICMP Personnalisé-IPv4 /Tous / Personnalisé / 172.31.39.193/32
+                    - [x] Autorisation de tout le traffic sortant de 172.31.39.193
+                        - [x] Modification des règles sortantes/ ICMP Personnalisé-IPv4 /Tous / Personnalisé / 172.31.39.193/32
+        - [x] Vérification au ping :
+        ```
+        --- 172.31.39.193 ping statistics ---
+        6 packets transmitted, 6 received, 0% packet loss, time 5091m
+        &&
+        --- 172.31.5.119 ping statistics ---
+        4 packets transmitted, 4 received, 0% packet loss, time 3080ms
+        ```
     - [ ] "Connecter" les applications au serveur keycloak
-        - [ ] S'assurer de la connectivité et de la connectabailité des deux instances
-            - [ ] Modifier les règles de sécurité entrantes / sortantes des instances
         - [ ] Recréer le realm keycloak sur la prod
             - [ ] Créer le fichier realm export sur le serveur prod keycloak
         - [ ] Refaire le docker-compose
