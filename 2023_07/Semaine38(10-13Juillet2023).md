@@ -328,6 +328,27 @@
                 By configuring the security groups of both EC2 instances to allow the necessary network traffic, you ensure that the containers within the instances can communicate with each other over the specified ports.
                 ```
                 - [ ] Assurer la connexion entre les 2 instances
+                - [x] Check de (https://repost.aws/questions/QUR3jtTMoyQlSE-aSmdX0-aQ/aws-internal-communication-between-2-ec2-servers)
+                - [x] Élément de réponse ici : (https://www.edureka.co/community/51996/how-to-connect-an-ec2-linux-instance-another-linux-instance)
+                - [x] Ping de l'instance kc à l'instance apps : 
+                ```
+                ping 172.31.5.119
+                PING 172.31.5.119 (172.31.5.119) 56(84) bytes of data.
+                64 bytes from 172.31.5.119: icmp_seq=1 ttl=64 time=1.13 ms
+                64 bytes from 172.31.5.119: icmp_seq=2 ttl=64 time=0.762 ms
+                64 bytes from 172.31.5.119: icmp_seq=3 ttl=64 time=0.795 ms
+                64 bytes from 172.31.5.119: icmp_seq=4 ttl=64 time=0.723 ms
+                64 bytes from 172.31.5.119: icmp_seq=5 ttl=64 time=0.726 ms
+                ```
+                mais ping de l'instance apps à l' instance kc : 
+                ```
+                ping 172.31.39.193
+                PING 172.31.39.193 (172.31.39.193) 56(84) bytes of data.
+                ^C
+                --- 172.31.39.193 ping statistics ---
+                15 packets transmitted, 0 received, 100% packet loss, time 14314ms
+                ```
+                - [ ]
             - [ ] Recréer le realm keycloak sur la prod
                 - [ ] Créer le fichier realm export sur le serveur prod keycloak
             - [ ] Refaire le docker-compose
@@ -341,65 +362,36 @@
                 - [ ] Générer le certificat
                 - [ ] Reach l'application angular
 
-
-
-
-
-
-docker compose file as is :
-```
-version: '3.8'
-            services:
-
-            postgres:
-                image: postgres:14.5
-                container_name: keycloak-postgres
-                restart: always
-                environment:
-                - POSTGRES_USER=postgres
-                - POSTGRES_PASSWORD=${DB_PASSWORD}
-                volumes:
-                - postgres-data:/var/lib/postgresql/data
-                ports:
-                - 6543:5432
-
-            keycloak:
-                image: quay.io/keycloak/keycloak:18.0.0
-                container_name: keycloak-beta07Juillet
-                restart: always
-                depends_on:
-                - postgres
-                entrypoint: bash -c "entrypoint.sh"
-                environment:
-                - KEYCLOAK_ADMIN=${KEYCLOAK_ADMIN}
-                - KEYCLOAK_ADMIN_PASSWORD=${KEYCLOAK_ADMIN_PASSWORD}
-                - KEYCLOAK_HOSTNAME=${KEYCLOAK_HOSTNAME}
-                - DB_PASSWORD=${DB_PASSWORD}
-                - DB_VENDOR=postgres
-                - DB_ADDR=postgres
-                - DB_PORT=5432
-                - DB_DATABASE=postgres
-                - DB_USER=postgres
-                - PROXY_ADDRESS_FORWARDING=true
-                ports:
-                - 8443:8443
-                - 8080:8080
-                volumes:
-                - keycloak-data:/opt/jboss/keycloak/standalone/data
-                - entrypoint.sh:/entrypoint.sh:ro
-
-            volumes:
-            postgres-data:
-            keycloak-data:
-```
-
-entrypoint.sh as is :
-```
-echo "========================================"
-echo "=======         BUILDING         ======="
-echo "========================================"
-/opt/keycloak/bin/kc.sh build
-echo "=======     STARTING SERVER      ======="
-echo "========================================"
-/opt/keycloak/bin/kc.sh start --import-realm --proxy edge --hostname-strict=false
-```
+**12 Juillet**
+- [x] Mise à jour du Jira
+- [ ] Mise en prod
+    - [ ] Faire démarrer les apps sur un serveur séparé de prod
+        - [x] Connexion à l'instance en SSH avec : 
+        ```
+        ssh -i "predict-beta-clepaire.pem" ubuntu@ec2-52-58-79-10.eu-central-1.compute.amazonaws.com
+        ```
+        Connexion success !
+        - [ ] Reach l'application angular de beta
+- [ ] Lier les apps au serveur keycloak
+    - [x] Feuille de route : 
+        - S'assurer de la connectivité et de la connectabailité des deux instances
+        - Utiliser keycloak-js adapter
+        - Modifier l'app.module.ts
+        - Modifier l'authguard
+        - Configurer le KeycloakService d'angular
+        - Configurer les client settings dans la console d'administration du keycloak de prod
+    - [ ] "Connecter" les applications au serveur keycloak
+        - [ ] S'assurer de la connectivité et de la connectabailité des deux instances
+            - [ ] Modifier les règles de sécurité entrantes / sortantes des instances
+        - [ ] Recréer le realm keycloak sur la prod
+            - [ ] Créer le fichier realm export sur le serveur prod keycloak
+        - [ ] Refaire le docker-compose
+            - [ ] Ne plus lancer de container keycloak
+            - [ ] Pointer vers le serveur keycloak prod à la place
+            - [ ] Ne plus lancer de script entrypoint.sh (déjà lancé dans le serveur keycloak)
+        - [ ] Sécuriser la connexion à angular
+            - [ ] Installer nginx
+            - [ ] Configurer nginx
+            - [ ] Ouvrir les ports sur amazon
+            - [ ] Générer le certificat
+            - [ ] Reach l'application angular
