@@ -417,7 +417,7 @@
             - [ ] Reach l'application angular
 
 
-**12 Juillet**
+**13 Juillet**
 - [x] Mise à jour du Jira
 - [ ] Mise en prod
     - [ ] Faire démarrer les apps sur un serveur séparé de prod
@@ -426,18 +426,245 @@
         ssh -i "predict-beta-clepaire.pem" ubuntu@ec2-52-58-79-10.eu-central-1.compute.amazonaws.com
         ```
         Connexion success !
-        - [ ] Reach l'application angular de beta
 - [ ] Lier les apps au serveur keycloak
     - [ ] "Connecter" les applications au serveur keycloak
+        - [ ] Refaire le docker-compose
+            - [x] Arrêt des containers déjà en run avec ```sudo docker stop predict-apps predict-pgadmin kmo-keycloak predict-pg```
+            - [x] Placement dans le dossier KMO-PREDICT
+            - [x] Création du fichier docker-compose.beta.yml
+            - [ ] Pointer vers le serveur keycloak prod à la place
+            - [x] Ne plus lancer de script entrypoint.sh (déjà lancé dans le serveur keycloak)
+            - [x] Création des docker networks app_network & keycloak_network sur l'instance du keycloak :
+            ```
+            sudo docker network create app_network
+            sudo docker network create keycloak_network
+            ```
+            - [x] Refonte du .env : 
+            ```
+            # Database environment variables
+            DB_HOST=postgres
+            DB_PORT=6543
+            DB_USER=postgres
+            DB_PASSWORD=dbp@06072023-pwpg
+            DB_NAME=predict
+            POSTGRES_USER=predict
+            POSTGRES_PASSWORD=dbp@06072023-pwpg
+            POSTGRES_DB=predict
+
+            # Node environment variables
+            #NODE_ENV=development
+            NODE_ENV=beta
+
+            # Api ports
+            NEST_PORT=3000
+            ANGULAR_PORT=4200
+
+            # Apps environment variables
+            WEB_APP_URL=http://localhost:3000
+
+            # AWS
+            AWS_REGION=eu-central-1
+            AWS_ACCESS_KEY_ID=AKIAY5QV4ILLYTYUOK7R
+            AWS_SECRET_ACCESS_KEY=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
+            ```
+            - [x] Docker-compose.beta.yml as is :
+            ```
+            version: "3.9"
+
+            services:
+
+            apps:
+                container_name: predict-apps-beta
+                build:
+                context: .
+                dockerfile: Dockerfile.dev
+                ports:
+                - "3000:3000"
+                - "3001:3001"
+                env_file:
+                - .env.beta
+                depends_on:
+                - postgres
+                volumes:
+                - ./apps:/app/apps
+                - /app/node_modules
+                - /app/apps/kmo-predict-back/node_modules
+                - /app/apps/kmo-predict-back/dist
+                - /app/apps/kmo-predict-front/node_modules
+                - /app/apps/kmo-predict-front/.angular
+                - /app/apps/kmo-predict-front/dist
+                - /app/packages/eslint-config-custom/node_modules
+                - /app/packages/tsconfig/node_modules
+                networks:
+                - app
+                - keycloak
+
+            keycloak:
+                container_name: kmo-keycloak
+                restart: always
+                depends_on:
+                - postgres
+                image: ${KC_IMG}
+                ports:
+                - "8443:8443"
+                networks:
+                app:
+                    ipv4_address: 172.31.39.193  # Instance 1 IP address
+
+            postgres:
+                container_name: predict-pg
+                image: postgres:15.0-alpine3.16
+                restart: on-failure
+                environment:
+                - POSTGRES_USER=${DB_USER?}
+                - POSTGRES_PASSWORD=${DB_PASSWORD?}
+                - POSTGRES_DB=${DB_NAME?}
+                ports:
+                - "${DB_PORT?}:5432"
+                networks:
+                app:
+                    ipv4_address: 172.31.39.193  # Instance 1 IP address
+
+            pgadmin:
+                container_name: predict-pgadmin
+                image: dpage/pgadmin4
+                restart: always
+                environment:
+                PGADMIN_DEFAULT_EMAIL: admin@admin.com
+                PGADMIN_DEFAULT_PASSWORD: root
+                ports:
+                - "5050:80"
+                networks:
+                app:
+
+            networks:
+            app:
+                external:
+                name: app_network
+            keycloak:
+                external:
+                name: keycloak_network
+            ```
+        - [x] Lancement du docker-compose.beta.yml avec :
+        ```
+        sudo docker compose --env-file .env.beta -f docker-compose.beta.yml up --renew-anon-volumes --always-recreate-deps --build
+        ```
+        et retour : 
+        ```
+        WARN[0000] The "KC_IMG" variable is not set. Defaulting to a blank string.
+        WARN[0000] network keycloak: network.external.name is deprecated. Please set network.name with external: true
+        WARN[0000] network app: network.external.name is deprecated. Please set network.name with external: true
+        service "keycloak" has neither an image nor a build context specified: invalid compose project
+        ```
+        - [x] Résolution des warnings, changement de :
+        ```
+        networks:
+        app:
+            external:
+            name: app_network
+        keycloak:
+            external:
+            name: keycloak_network    
+        ```
+        en : 
+        ```
+        networks:
+        app:
+            name: app_network
+            external: true
+        keycloak:
+            name: keycloak_network
+            external: true
+        ```
+        - [x] Suppression de "KC_IMG" du docker compose
+        - [x] Ne plus lancer de container keycloak, update as is :
+        ```
+        version: "3.9"
+
+        services:
+
+            apps:
+                container_name: predict-apps-beta
+                build:
+                context: .
+                dockerfile: Dockerfile.dev
+                ports:
+                - "3000:3000"
+                - "3001:3001"
+                env_file:
+                - .env.beta
+                depends_on:
+                - postgres
+                volumes:
+                - ./apps:/app/apps
+                - /app/node_modules
+                - /app/apps/kmo-predict-back/node_modules
+                - /app/apps/kmo-predict-back/dist
+                - /app/apps/kmo-predict-front/node_modules
+                - /app/apps/kmo-predict-front/.angular
+                - /app/apps/kmo-predict-front/dist
+                - /app/packages/eslint-config-custom/node_modules
+                - /app/packages/tsconfig/node_modules
+                networks:
+                - app
+                - keycloak
+
+            pgadmin:
+                container_name: predict-pgadmin
+                image: dpage/pgadmin4
+                restart: always
+                environment:
+                PGADMIN_DEFAULT_EMAIL: admin@admin.com
+                PGADMIN_DEFAULT_PASSWORD: root
+                ports:
+                - "5050:80"
+                networks:
+                app:
+
+            networks:
+            app:
+                name: app_network
+                external: true
+            keycloak:
+                name: keycloak_network
+                external: true
+        ```
+        et relance de la commande ```sudo docker compose --env-file .env.beta -f docker-compose.beta.yml up --renew-anon-volumes --always-recreate-deps --build```
+        retour négatif : 
+        ```
+        network app_network declared as external, but could not be found
+        ```
+        - [x] Création des networks aussi sur l'instance des apps : 
+        ```
+        sudo docker network create app_network
+        sudo docker network create keycloak_network
+        ```
+        - [ ] Résolution des erreurs : 
+            - [ ] Connexion à la db :
+            ```
+            ERROR [TypeOrmModule] Unable to connect to the database. Retrying (1)...
+            Error: connect ETIMEDOUT 172.31.39.193:6543
+            at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1300:16)
+            ```
         - [ ] Recréer le realm keycloak sur la prod
             - [ ] Créer le fichier realm export sur le serveur prod keycloak
-        - [ ] Refaire le docker-compose
-            - [ ] Ne plus lancer de container keycloak
-            - [ ] Pointer vers le serveur keycloak prod à la place
-            - [ ] Ne plus lancer de script entrypoint.sh (déjà lancé dans le serveur keycloak)
         - [ ] Sécuriser la connexion à angular
             - [ ] Installer nginx
             - [ ] Configurer nginx
             - [ ] Ouvrir les ports sur amazon
             - [ ] Générer le certificat
             - [ ] Reach l'application angular
+        - [ ] Reach l'application angular de beta
+        - [x] Retour de warnings apps  : 
+        ```
+        Warning: This is a simple server for use in testing or debugging Angular applications
+        locally. 
+        It hasn't been reviewed for security issues.
+
+        Binding this server to an open connection can result in compromising your application or
+        computer. 
+        Using a different host than the one passed to the "--host" flag might result in websocket connection issues. 
+        You might need to use "--disable-host-check" if that's the case.
+        ```
+        - [ ] Setup les apps pour la prod
+
