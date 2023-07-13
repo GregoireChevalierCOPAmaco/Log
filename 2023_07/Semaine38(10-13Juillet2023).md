@@ -415,3 +415,29 @@
             - [ ] Ouvrir les ports sur amazon
             - [ ] Générer le certificat
             - [ ] Reach l'application angular
+
+
+**12 Juillet**
+- [x] Mise à jour du Jira
+- [ ] Mise en prod
+    - [ ] Faire démarrer les apps sur un serveur séparé de prod
+        - [x] Connexion à l'instance en SSH avec : 
+        ```
+        ssh -i "predict-beta-clepaire.pem" ubuntu@ec2-52-58-79-10.eu-central-1.compute.amazonaws.com
+        ```
+        Connexion success !
+        - [ ] Reach l'application angular de beta
+- [ ] Lier les apps au serveur keycloak
+    - [ ] "Connecter" les applications au serveur keycloak
+        - [ ] Recréer le realm keycloak sur la prod
+            - [ ] Créer le fichier realm export sur le serveur prod keycloak
+        - [ ] Refaire le docker-compose
+            - [ ] Ne plus lancer de container keycloak
+            - [ ] Pointer vers le serveur keycloak prod à la place
+            - [ ] Ne plus lancer de script entrypoint.sh (déjà lancé dans le serveur keycloak)
+        - [ ] Sécuriser la connexion à angular
+            - [ ] Installer nginx
+            - [ ] Configurer nginx
+            - [ ] Ouvrir les ports sur amazon
+            - [ ] Générer le certificat
+            - [ ] Reach l'application angular
