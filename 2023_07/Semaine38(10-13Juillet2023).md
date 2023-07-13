@@ -646,6 +646,8 @@
             Error: connect ETIMEDOUT 172.31.39.193:6543
             at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1300:16)
             ```
+        - [ ] Reach l'application angular de beta
+            - [x] Ouvrir le port 3000 sur aws
         - [ ] Recréer le realm keycloak sur la prod
             - [ ] Créer le fichier realm export sur le serveur prod keycloak
         - [ ] Sécuriser la connexion à angular
@@ -654,7 +656,6 @@
             - [ ] Ouvrir les ports sur amazon
             - [ ] Générer le certificat
             - [ ] Reach l'application angular
-        - [ ] Reach l'application angular de beta
         - [x] Retour de warnings apps  : 
         ```
         Warning: This is a simple server for use in testing or debugging Angular applications
