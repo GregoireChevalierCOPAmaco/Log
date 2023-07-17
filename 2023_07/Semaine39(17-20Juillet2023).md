@@ -91,20 +91,18 @@
                     ```
                     sudo docker compose --env-file .env.beta -f docker-compose.beta.yml up --renew-anon-volumes --always-recreate-deps --build
                     ```
-        - [ ] Résolution des erreurs : 
-            - [ ] Connexion à la db :
+        - [x] Résolution des erreurs : 
+            - [x] Connexion à la db :
             ```
             ERROR [TypeOrmModule] Unable to connect to the database. Retrying (1)...
             Error: connect ETIMEDOUT 172.31.39.193:6543
             at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1300:16)
             ```
-        - [ ] Reach l'application angular de beta
             - [x] Ouvrir le port 3000 sur aws
-        - [ ] Recréer le realm keycloak sur la prod
+        - [x] Recréer le realm keycloak sur la prod
             - [x] Créer le fichier realm export sur le serveur prod keycloak
-        - [ ] Configurer le client predict dans le realm
-        - [ ] Configurer angular pour la redirection au keycloak de prod
-        - [ ] Sécuriser la connexion à angular
+        - [x] Configurer le client predict dans le realm
+        - [x] Sécuriser la connexion à angular
             - [x] Installer nginx : 
             ```
             sudo apt install nginx
@@ -195,7 +193,7 @@
                     }
                 }
                 ```
-            - [ ] Ouvrir les ports sur amazon
+            - [x] Ouvrir les ports sur amazon
             - [ ] Reach l'application angular
         - [x] Retour de warnings apps  : 
         ```
@@ -208,11 +206,13 @@
         Using a different host than the one passed to the "--host" flag might result in websocket connection issues. 
         You might need to use "--disable-host-check" if that's the case.
         ```
+        - [ ] Reach l'application angular de beta
+            - [ ] Modifier la config nginx
+            - [ ] Modifier le docker compose
+            - [ ] Modifier le Dockerfile
+            - [ ] Rebuild les containers
+        - [ ] Configurer angular pour la redirection au keycloak de prod
         - [ ] Setup les apps pour la prod
-
-
-
-
 
 
 
