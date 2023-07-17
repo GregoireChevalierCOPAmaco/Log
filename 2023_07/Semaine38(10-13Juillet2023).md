@@ -649,7 +649,9 @@
         - [ ] Reach l'application angular de beta
             - [x] Ouvrir le port 3000 sur aws
         - [ ] Recréer le realm keycloak sur la prod
-            - [ ] Créer le fichier realm export sur le serveur prod keycloak
+            - [x] Créer le fichier realm export sur le serveur prod keycloak
+        - [ ] Configurer le client predict dans le realm
+        - [ ] Configurer angular pour la redirection au keycloak de prod
         - [ ] Sécuriser la connexion à angular
             - [ ] Installer nginx
             - [ ] Configurer nginx
