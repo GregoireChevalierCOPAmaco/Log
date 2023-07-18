@@ -245,6 +245,132 @@
                 flags: 0x5000: not a directory: unknown: 
                 Are you trying to mount a directory onto a file (or vice-versa)? 
                 Check if the specified host path exists and is the expected type
+                ```
+                - [x] Arret des containers avec ```sudo docker stop nginx predict-apps-beta predict-pg``` et prune des volumes ``` sudo docker volume prune -f```
+                - [x] Ajout de ./ avant le chemin vers la source des fichiers dans le dockerfile pour partir du chemin relatif
+                - [x] Rebuild des containers, sans succès.
+                - [x] Copie des fichiers dans le dossier source du docker compose
+                    - [x] Copie du fichier de conf nginx
+                    - [x] Impossible de déplacer les fichiers ssl & clé pem
+                    - [x] Rebuild des containers, le container nginx exit car il ne trouve pas les fichiers de certificats : 
+                    ```
+                    2023/07/18 07:46:23 [emerg] 1#1: open() "/etc/letsencrypt/options-ssl-nginx.conf" failed (2: No such file or directory) in /etc/nginx/nginx.conf:41
+                    nginx: [emerg] open() "/etc/letsencrypt/options-ssl-nginx.conf" failed (2: No such file or directory) in /etc/nginx/nginx.conf:41
+                    ```
+                    - [x] Copie des fichiers
+                - [ ] Résolution de l'erreur du container nginx : 
+                ```
+                2023/07/18 08:51:14 [emerg] 1#1: host not found in upstream "apps" in /etc/nginx/nginx.conf:45
+                nginx: [emerg] host not found in upstream "apps" in /etc/nginx/nginx.conf:45
+                ubuntu@ip-172-31-5-119:~/KMO_PREDICT$ cat nginx/nginx.conf
+                ```
+                - [x] Changement dans le fichier nginx.conf de :
+                ```
+                proxy_pass http://apps:3000;
+                ```
+                à 
+                ```
+                proxy_pass http://predict-apps-beta:3000;
+                ```
+                et retour même erreur :
+                ```
+                host not found in upstream "predict-apps-beta"  
+                ```
+                - [x] check de la connectivité entre les containers via le network "app_network" avec 
+                ```
+                docker network inspect app_network
+                ```
+                et retour : 
+                ```
+                ... 
+                "Containers": {
+                        "937b74f071805cfaca5db59b6c4d3dee43503ac909d1ecd7e061c663d1f4f743": {
+                            "Name": "predict-apps-beta",
+                            "EndpointID": "cfe5339e5fcc76faadab4a940b58c2f53d7f8951edbcb079cd58310a17d0ca63",
+                            "MacAddress": "02:42:ac:16:00:03",
+                            "IPv4Address": "172.22.0.3/16",
+                            "IPv6Address": ""
+                        },
+                        "c1efb6a639fff97da100885c782658afb79126015254891472aebaabaf080a8a": {
+                            "Name": "predict-pg",
+                            "EndpointID": "67933d89badf5c90466f6a145ad0ebc13f928cfea48153c70a14bc297baed66b",
+                            "MacAddress": "02:42:ac:16:00:02",
+                            "IPv4Address": "172.22.0.2/16",
+                            "IPv6Address": ""
+                        }
+                    },
+                ```        
+                ce qui montre que le container nginx n'y est pas connecté.        
+                - [x] Modif du dockerfile : 
+                ```
+                version: "3.9"
+
+                services:
+                nginx:
+                    container_name: nginx
+                    image: nginx
+                    volumes:
+                    - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+                    - ./nginx/options-ssl-nginx.conf:/etc/letsencrypt/options-ssl-nginx.conf
+                    - ./nginx/ssl-dhparams.pem:/etc/letsencrypt/ssl-dhparams.pem
+                    - ./nginx/fullchain.pem:/etc/letsencrypt/live/predict-beta.cop-amaco.digital/fullchain.pem:ro
+                    - ./nginx/privkey.pem:/etc/letsencrypt/live/predict-beta.com-amaco.digital/privkey.pem:ro
+                    ports:
+                    - "80:80"
+                    - "443:443"
+                    depends_on:
+                    - apps
+                    networks:
+                    - app
+
+                apps:
+                    container_name: predict-apps-beta
+                    build:
+                    context: .
+                    dockerfile: Dockerfile.dev
+                    ports:
+                    - "3000:3000"
+                    - "3001:3001"
+                    env_file:
+                    - .env.beta
+                    volumes:
+                    - ./apps:/app/apps
+                    - /app/node_modules
+                    - /app/apps/kmo-predict-back/node_modules
+                    - /app/apps/kmo-predict-back/dist
+                    - /app/apps/kmo-predict-front/node_modules
+                    - /app/apps/kmo-predict-front/.angular
+                    - /app/apps/kmo-predict-front/dist
+                    - /app/packages/eslint-config-custom/node_modules
+                    - /app/packages/tsconfig/node_modules
+                    networks:
+                    - app
+
+                postgres:
+                    container_name: predict-pg
+                    image: postgres:15.0-alpine3.16
+                    restart: on-failure
+                    environment:
+                    - POSTGRES_USER=${DB_USER?}
+                    - POSTGRES_PASSWORD=${DB_PASSWORD?}
+                    - POSTGRES_DB=${DB_NAME?}
+                    ports:
+                    - "5432:5432"
+                    networks:
+                    app:
+
+                networks:
+                app:
+                    name: app_network
+                ```
+                le container demarre maintenant mais avec l'erreur :
+                - [ ] Résolution de l'erreur :
+                ```
+                cannot load certificate key "/etc/letsencrypt/live/predict-beta.cop-amaco.digital/privkey.pem": BIO_new_file() failed (SSL: error:80000002:system library::No such file or directory:calling fopen(/etc/letsencrypt/live/predict-beta.cop-amaco.digital/privkey.pem, r) error:10000080:BIO routines::no such file)
+                nginx: [emerg] cannot load certificate key "/etc/letsencrypt/live/predict-beta.cop-amaco.digital/privkey.pem": BIO_new_file() failed (SSL: error:80000002:system library::No such file or directory:calling fopen(/etc/letsencrypt/live/predict-beta.cop-amaco.digital/privkey.pem, r) error:10000080:BIO routines::no such file)
+                ```
+                on a peut etre pas les droit d'accès au folder live du ubuntu dockerisé ?
+                changement du folder de destination dans dockerfile
             - [ ] Modifier le Dockerfile
             - [ ] Rebuild les containers
         - [ ] Configurer angular pour la redirection au keycloak de prod
