@@ -364,13 +364,61 @@
                     name: app_network
                 ```
                 le container demarre maintenant mais avec l'erreur :
-                - [ ] Résolution de l'erreur :
+                - [x] Résolution de l'erreur :
                 ```
                 cannot load certificate key "/etc/letsencrypt/live/predict-beta.cop-amaco.digital/privkey.pem": BIO_new_file() failed (SSL: error:80000002:system library::No such file or directory:calling fopen(/etc/letsencrypt/live/predict-beta.cop-amaco.digital/privkey.pem, r) error:10000080:BIO routines::no such file)
                 nginx: [emerg] cannot load certificate key "/etc/letsencrypt/live/predict-beta.cop-amaco.digital/privkey.pem": BIO_new_file() failed (SSL: error:80000002:system library::No such file or directory:calling fopen(/etc/letsencrypt/live/predict-beta.cop-amaco.digital/privkey.pem, r) error:10000080:BIO routines::no such file)
                 ```
                 on a peut etre pas les droit d'accès au folder live du ubuntu dockerisé ?
-                changement du folder de destination dans dockerfile
+                changement du folder de destination dans dockerfile :
+                ```
+                ...
+                services:
+                    nginx:
+                        container_name: nginx
+                        image: nginx
+                        volumes:
+                        - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+                        - ./nginx/options-ssl-nginx.conf:/etc/letsencrypt/options-ssl-nginx.conf
+                        - ./nginx/ssl-dhparams.pem:/etc/letsencrypt/ssl-dhparams.pem
+                        - ./nginx/fullchain.pem:/etc/nginx/ssl/fullchain.pem
+                        - ./nginx/privkey.pem:/etc/nginx/ssl/privkey.pem
+                ```
+                & dans la config nginx : 
+                ```
+                    server {
+                listen 443 ssl;
+                listen [::]:443 ssl;
+                server_name predict-beta.cop-amaco.digital;
+
+                #        ssl_certificate /etc/letsencrypt/live/predict-beta.cop-amaco.digital/fullchain.pem; # managed by Certbot
+                #       ssl_certificate_key /etc/letsencrypt/live/predict-beta.cop-amaco.digital/privkey.pem; # managed by Certbot
+                ssl_certificate /etc/nginx/ssl/fullchain.pem;
+                ssl_certificate_key /etc/nginx/ssl/privkey.pem;
+                ```
+                puis relance de ``` sudo docker compose --env-file .env.beta -f docker-compose.beta.yml up --renew-anon-volumes --always-recreate-deps --build```
+                retour au message invalid host header
+                - [x] Check de (https://github.com/angular/angular-cli/issues/6349), il semblerait que ```ng serve```soit indissociable d'un host 0.0.0.0 qui est invalide pour nous ici.
+                - [x] Modification du package.json du front pour inclure 
+                ```
+                 "scripts": {
+                    "ng": "ng",
+                    "start": "ng serve",
+                    "dev": "ng build --watch",
+                ```
+                Problème de invalid host résolu ! On atterrit maintenant sur une 502
+                - [ ] Résolution de la 502 bad gateway
+                mon avis : c'est l'imbrication d'nginx dans docker qui fout la merde.
+                Je vais essayer de revenir au point où j'avais l'invalid host header avec nginx en-dehors du docker, sur le serveur. 
+                De là, lancer l'app angular avec build en  modifiant le package json du front.
+                Il est possible que le certificat ait été prévu pour le nginx du serveur et que les avoir déplacés dans le docker ait foutu le zbeul.
+                Une fois le setup revenu à l'invalid host header, regénérer les certificats
+                Puis tout relancer et un chien ici
+            - [ ] Reprise
+                - [ ] Retirer la partie nginx du docker compose
+                - [ ] Relancer les containers docker
+                - [ ] Retaper la config nginx
+                - [ ] Résoudre la 502
             - [ ] Modifier le Dockerfile
             - [ ] Rebuild les containers
         - [ ] Configurer angular pour la redirection au keycloak de prod
