@@ -86,8 +86,8 @@
                         keycloak:
                             name: keycloak_network
                             external: true
-                        ```
-                    - [x] Chenagement de la commande à :
+                    ```
+                    - [x] Changement de la commande à :
                     ```
                     sudo docker compose --env-file .env.beta -f docker-compose.beta.yml up --renew-anon-volumes --always-recreate-deps --build
                     ```
@@ -214,6 +214,41 @@
         - [ ] Configurer angular pour la redirection au keycloak de prod
         - [ ] Setup les apps pour la prod
 
+
+**18 Juillet**
+- [x] Mise à jour du Jira
+- [ ] Mise en prod
+    - [ ] Faire démarrer les apps sur un serveur séparé de prod
+        - [x] Connexion à l'instance en SSH avec : 
+        ```
+        ssh -i "predict-beta-clepaire.pem" ubuntu@ec2-52-58-79-10.eu-central-1.compute.amazonaws.com
+        ```
+        Connexion success !
+        &&
+        ```
+        ssh -i "keycloak-beta-clepaire.pem" ubuntu@ec2-3-75-5-27.eu-central-1.compute.amazonaws.com
+        ```
+- [ ] Lier les apps au serveur keycloak
+    - [ ] "Connecter" les applications au serveur keycloak
+        - [ ] Front
+            - [x] Modifier le lien au keycloak dans l'app.module.ts
+        - [ ] Reach l'application angular de beta
+            - [x] Modifier la config nginx
+            - [ ] Modifier le docker compose
+                - [ ] Résolution du problème : 
+                ```
+                Error response from daemon: failed to create shim task: 
+                OCI runtime create failed: runc create failed: 
+                unable to start container process: 
+                error during container init: error mounting "/etc/nginx/nginx.conf" to rootfs at "/etc/nginx/nginx.conf": 
+                mount /etc/nginx/nginx.conf:/etc/nginx/nginx.conf (via /proc/self/fd/6), 
+                flags: 0x5000: not a directory: unknown: 
+                Are you trying to mount a directory onto a file (or vice-versa)? 
+                Check if the specified host path exists and is the expected type
+            - [ ] Modifier le Dockerfile
+            - [ ] Rebuild les containers
+        - [ ] Configurer angular pour la redirection au keycloak de prod
+        - [ ] Setup les apps pour la prod
 
 
 
