@@ -446,7 +446,39 @@
                 - [x] Retirer la partie nginx du docker compose
                 - [x] Relancer les containers docker
                 - [x] Retaper la config nginx
+                - [x] Demande de conseil à gpt, ses suggestions : 
+                - Check Docker Container Logs:
+                - Ensure Angular Application is Running:
+                - Check Security Groups (Verify that the security group associated with your EC2 instance allows incoming traffic on port 3000 (the port where your Angular application is running). Additionally, ensure that the outbound rules of the security group are appropriately configured to allow the instance to communicate with external services like Keycloak.)
+                - Verify Keycloak Configuration:
+                - Check Nginx Error Logs:
+                - Check SELinux (Security-Enhanced Linux) (If you're running SELinux on your server, it might be blocking Nginx from communicating with the Docker container. You can check SELinux status with the following command: ```sestatus``` & ```sudo setenforce 0```)
+                - Test Connectivity: use ```curl http://localhost:3000``` from within the ec2
             - [ ] Modifier le Dockerfile
             - [ ] Rebuild les containers
         - [ ] Configurer angular pour la redirection au keycloak de prod
         - [ ] Setup les apps pour la prod
+
+        si la config nginx ne marche toujours pas, demain : commencer un projet angular keycloak hypersimple
+
+
+**20 Juillet**
+- [x] Mise à jour du Jira
+- [ ] Mise en prod
+    - [ ] Faire démarrer les apps sur un serveur séparé de prod
+        - [x] Connexion à l'instance en SSH avec : 
+        ```
+        ssh -i "predict-beta-clepaire.pem" ubuntu@ec2-52-58-79-10.eu-central-1.compute.amazonaws.com
+        ```
+        Connexion success !
+        &&
+        ```
+        ssh -i "keycloak-beta-clepaire.pem" ubuntu@ec2-3-75-5-27.eu-central-1.compute.amazonaws.com
+        ```
+- [ ] Lier les apps au serveur keycloak
+    - [ ] "Connecter" les applications au serveur keycloak
+        - [ ] Créer une app angular simpliste sur le serveur beta
+        - [ ] Faire le lien avec keycloak sur cette app simple
+        - [ ] Vérifier la possibilité de connexion à KC
+        - [ ] Reach l'application angular de beta
+            - [ ] Résolution de la 502 bad gateway
