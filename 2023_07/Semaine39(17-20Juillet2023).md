@@ -509,11 +509,92 @@
             npm install keycloak-js
             ```
             - [x] ```ng build```
-        - [ ] Créer une app angular simpliste sur le serveur beta
-            - [x] Check de (https://angular.io/quick-start)
-            - [x] Création d'un dossier
-            - [x] ```npm init @angular myApp```
-        - [ ] Faire le lien avec keycloak sur cette app simple
-        - [ ] Vérifier la possibilité de connexion à KC
+            - [x] Modification du nginx conf : 
+            ```
+            user www-data;
+            worker_processes auto;
+            error_log /var/log/nginx/error.log notice;
+            pid /run/nginx.pid;
+
+            # Load dynamic modules. See /usr/share/doc/nginx/README.dynamic.
+            include /usr/share/nginx/modules/*.conf;
+
+            events {
+                worker_connections 1024;
+            }
+
+            http {
+                log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                                '$status $body_bytes_sent "$http_referer" '
+                                '"$http_user_agent" "$http_x_forwarded_for"';
+
+            access_log  /var/log/nginx/access.log  main;
+
+            sendfile            on;
+            tcp_nopush          on;
+            keepalive_timeout   65;
+            types_hash_max_size 4096;
+
+            include             /etc/nginx/mime.types;
+            default_type        application/octet-stream;
+
+            # Load modular configuration files from the /etc/nginx/conf.d directory.
+            # See http://nginx.org/en/docs/ngx_core_module.html#include
+            # for more information.
+            include /etc/nginx/conf.d/*.conf;
+
+            server {
+                listen 443 ssl;
+                listen [::]:443 ssl;
+                server_name predict-beta.cop-amaco.digital;
+
+                ssl_certificate /etc/letsencrypt/live/predict-beta.cop-amaco.digital/fullchain.pem; # managed by Certbot
+                ssl_certificate_key /etc/letsencrypt/live/predict-beta.cop-amaco.digital/privkey.pem; # managed by Certbot
+                include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+                ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+                location / {
+                    root /home/ubuntu/KMO_PREDICT/apps/kmo-predict-front/dist/kmo-predict;
+                    try_files $uri $uri/ /index.html =404;
+                }
+
+                location @angular {
+                    # Proxy pass to the Angular development server running on localhost:3000.
+                    proxy_pass http://localhost:3000;
+
+                    # Proxy headers configuration...
+                    proxy_set_header Host $host;
+                    proxy_set_header X-Real-IP $remote_addr;
+                    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                    proxy_set_header X-Forwarded-Proto $scheme;
+                    proxy_set_header X-Forwarded-Host $host;
+                }
+            }
+            }
+            ```
+            - [x] Listing des droits ```ls -l /home/ubuntu/KMO_PREDICT/apps/kmo-predict-front/dist/kmo-predict```
+            - [x] Changement des doits pour le repo dist où sont buildés les fichiers de l'app angular : 
+            ```
+            sudo chown -R www-data:www-data /home/ubuntu/KMO_PREDICT/apps/kmo-predict-front/dist/kmo-predict
+            sudo chmod -R o+rx /home/ubuntu/KMO_PREDICT/apps/kmo-predict-front/dist/kmo-predict
+            ```
+            - [x] Ajout à l'utilisateur ubuntu des droits à tous les dossiers de la chaîne depuis l'endroit du nginx à l'endroit des fichiers dist d'angular : 
+            ```
+            sudo gpasswd -a www-data ubuntu
+            sudo chmod g+x /ubuntu
+            sudo chmod g+x /home/ubuntu
+            sudo chmod g+x /home/ubuntu/KMO_PREDICT/
+            sudo chmod g+x /home/ubuntu/KMO_PREDICT/apps/
+            sudo chmod g+x /home/ubuntu/KMO_PREDICT/apps/kmo-predict-front/
+            sudo chmod g+x /home/ubuntu/KMO_PREDICT/apps/kmo-predict-front/dist/
+            sudo chmod g+x /home/ubuntu/KMO_PREDICT/apps/kmo-predict-front/dist/kmo-predict/
+            ```
+            - [x] Restart & reload de nginx : 
+            ```
+            sudo systemctl restart nginx
+            sudo systemctl reload nginx
+            ```
+        - [x] Vérifier la possibilité de connexion à KC
+            - [x] Reach https://predict-beta.cop-amaco.digital/ redirige vers keycloak mais vers la page keycloak we are sorry page not found
         - [ ] Reach l'application angular de beta
             - [ ] Résolution de la 502 bad gateway
