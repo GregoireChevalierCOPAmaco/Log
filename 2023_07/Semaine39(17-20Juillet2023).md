@@ -477,7 +477,42 @@
         ```
 - [ ] Lier les apps au serveur keycloak
     - [ ] "Connecter" les applications au serveur keycloak
+        - [x] Extinction des containers de beta & changement config nginx
+        - [x] Essai avec l'app predict angular depuis le serveur
+            - [x] Installation des dépendances sur le serveur beta
+                - [x] ```sudo apt install npm```
+                - [x] ```npm install @angular/cli```
+            - [x] Echec, run ng ou npm ouvre l'éditeur de texte MG, ou micro
+            - [x] Désinstallation de mg++ ```sudo apt-get remove mg++```
+            et clean :
+            ```
+            sudo apt-get purge mg++
+            sudo apt-get autoremove
+            sudo apt remove mg ng-common
+            ```
+            - [x] ```npm install -g @angular/cli```
+            - [x] Ajout du lien ```export PATH="$PATH:/usr/local/bin"```
+            - [x] Update de node : 
+            ```
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+            nvm install v14.20.0
+            ```
+            - [x] Modification des permissions :
+            ```
+            chmod -R 755 .
+            chmod -R 777 .angular
+            chmod -R 777 node_modules
+            ```
+            - [x] Installation de kc-angular : 
+            ```
+            npm install keycloak-angular
+            npm install keycloak-js
+            ```
+            - [x] ```ng build```
         - [ ] Créer une app angular simpliste sur le serveur beta
+            - [x] Check de (https://angular.io/quick-start)
+            - [x] Création d'un dossier
+            - [x] ```npm init @angular myApp```
         - [ ] Faire le lien avec keycloak sur cette app simple
         - [ ] Vérifier la possibilité de connexion à KC
         - [ ] Reach l'application angular de beta
