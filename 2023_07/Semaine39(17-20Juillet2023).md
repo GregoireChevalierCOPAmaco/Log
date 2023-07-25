@@ -589,6 +589,7 @@
             sudo chmod g+x /home/ubuntu/KMO_PREDICT/apps/kmo-predict-front/dist/
             sudo chmod g+x /home/ubuntu/KMO_PREDICT/apps/kmo-predict-front/dist/kmo-predict/
             ```
+            Référence : (https://stackoverflow.com/questions/25774999/nginx-stat-failed-13-permission-denied)
             - [x] Restart & reload de nginx : 
             ```
             sudo systemctl restart nginx
@@ -596,5 +597,21 @@
             ```
         - [x] Vérifier la possibilité de connexion à KC
             - [x] Reach https://predict-beta.cop-amaco.digital/ redirige vers keycloak mais vers la page keycloak we are sorry page not found
-        - [ ] Reach l'application angular de beta
-            - [ ] Résolution de la 502 bad gateway
+        - [x] Reach l'application angular de beta
+    - [ ] Résolution de keycloak we are sorry page not found
+        - [ ] Rediriger vers la bonne ip
+        - [x] Renseigner le bon realm
+            - [x] App.module.ts
+            - [x] .env
+        - [x] Rectifier le fichier du realm export en remplaçant tous les Cop_sass par Cop_saas
+        - [x] Supprimer le realm Cop_saas de la prod
+        - [x] Réimporter le realm Cop_saas rectifé
+            - [x] Remettre le lien vers dans Valid redirect URL dans le résumé du client
+        - [x] Supprimer le dossier dist et son contenu
+        - [x] Rebuild les fichiers angular
+            - [x] Se positionner dans le dossier front
+            - [x] ```ng build --configuration production```
+    - [ ] Dockerisation
+    - [ ] Instructions à donner dans le Dockerfile
+        - [ ] Donner les droits d'exécuion aux fichiers présents dans le /dist à nginx
+        - [ ] Donner les autorisations d'accès aux dossiers
