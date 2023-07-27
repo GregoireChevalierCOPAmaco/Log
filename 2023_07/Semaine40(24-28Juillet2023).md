@@ -48,3 +48,15 @@
     ```
     net::ERR_SSL_PROTOCOL_ERROR
     ```
+
+idée guillaume : afficher coté client utilisateur un id correspondant à l'erreur
+Coté cop, on aurait le code & le nom de l'erreur
+
+**27 Juillet**
+- [x] Mise à jour du Jira
+- [ ] Mise en prod
+    - [ ] Résolution de l'erreur : 
+    ```
+    net::ERR_SSL_PROTOCOL_ERROR
+    ```
+    
