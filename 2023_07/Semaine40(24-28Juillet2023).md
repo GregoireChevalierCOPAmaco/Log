@@ -172,7 +172,107 @@ Coté cop, on aurait le code & le nom de l'erreur
             WEB_APP_URL=http://predict-beta.cop-amaco.digital:3000
             ```
             on est en http pas en https
-        - [ ] Modification du fichier env avec le s
-        - [ ] Down du container apps
-        - [ ] Prune du container
-        - [ ] Rebuild du docker compose
+        - [x] Modification du fichier env avec le s
+        - [x] Down du container apps
+        - [x] Prune du container avec : 
+        ```
+        sudo docker container prune
+        WARNING! This will remove all stopped containers.
+        Are you sure you want to continue? [y/N] Y
+        Deleted Containers:
+        4ac7744393179602d41e064c89c2b10295ea05aa8ba2673f0ac885b6cd2307e5
+        ```
+        - [x] Rebuild du docker compose, pas de changement, toujours la même erreur
+    - [ ] Build de l'app nest en https
+        - [x] Down du container apps & prune
+        - [x] Copie des certificat & clé dans le container nest via Dockerfile
+        - [x] Modification du main.ts : 
+        ```
+        import { NestFactory } from '@nestjs/core';
+        import { AppModule } from './app.module';
+        import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+        import { ValidationPipe } from '@nestjs/common';
+        import * as fs from 'fs';
+        import * as https from 'https';
+
+        async function bootstrap() {
+        const app = await NestFactory.create(AppModule, {
+            httpsOptions: {
+            key: fs.readFileSync('/app/privkey.pem'),
+            cert: fs.readFileSync('/app/fullchain.pem'),
+            },
+        });
+
+        app.enableCors({
+            origin: process.env.WEB_APP_URL,
+            methods: 'GET,POST, DELETE, PUT, PATCH, OPTIONS',
+            allowedHeaders:
+            'Accept, Accept-Language, authorization, Content-Language, Content-Type',
+        });
+
+        app.useGlobalPipes(
+            new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }),
+        );
+
+        const config = new DocumentBuilder()
+            .setTitle('Predict')
+            .setDescription('Maintenance prédictive')
+            .setVersion('0.0')
+            .build();
+
+        const document = SwaggerModule.createDocument(app, config);
+        SwaggerModule.setup('api', app, document);
+
+        const port = 3001;
+        // Use https.createServer instead of app.listen to enable HTTPS.
+        await https.createServer(app.getHttpServer(), app.get('httpsOptions')).listen(port);
+
+        console.log(`Application is running on: http://localhost:${port}`);
+        await app.startAllMicroservices();
+        }
+
+        bootstrap();
+        ```
+        - [x] Reprise du nginx.conf
+        - [ ] Rebuild du container
+- [ ] Recommençage de zéro pour cause d'instance pétée
+    - [x] Création de l'instance, association à l'ip ellastique, création de la clé paire & suppression du fichier known hosts
+        - [x] Connexion aux instances en SSH avec : 
+        ```
+        ssh -i "predict-beta-clepaire-27Juillet.pem" ubuntu@ec2-52-58-79-10.eu-central-1.compute.amazonaws.com
+        ```
+        Connexion success !
+        - [x] Clone du repo github 
+            - [x] ```sudo git clone git@github.com:COP-AMACO/KMO_PREDICT.git``` et retour négatif : 
+            ```
+            Cloning into 'KMO_PREDICT'...
+            git@github.com: Permission denied (publickey).
+            fatal: Could not read from remote repository.
+
+            Please make sure you have the correct access rights
+            and the repository exists.
+            ```
+            - [x] Génération de clé ssh
+                - [x] ```ssh-keygen -t ed25519 -C "g.chevalier@cop-amaco.com"```
+                - [x] ```eval "$(ssh-agent -s)"```
+                - [x] ```ssh-add ~/.ssh/id_ed25519```
+                - [x] Ajout de la clé dans le github (https://github.com/settings/keys)
+            - [x] ```git clone git@github.com:COP-AMACO/KMO_PREDICT.git``` note, ne pas mettre sudo devant.
+        - [x] Installation de docker
+        Check de (https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04) et application :
+        ```
+        sudo apt update
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+        sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+        sudo apt install docker-ce
+        ```
+        - [ ] Installation d'Nginx
+        - [ ] Installation de la cli d'angular
+        - [ ] Installation de certbot
+        - [ ] génération des certificats ssl
+        - [ ] Modification du fichier environment.prod.ts
+        - [ ] Modification du fichier .env.beta
+        - [ ] Modification du fichier main.ts (back)
+        - [ ] Modification du Dockerfile.dev
+        - [ ] Modification du fichier docker-compose.beta.yml
+        - [ ] Modification du fichier de config nginx
