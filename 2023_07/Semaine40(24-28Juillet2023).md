@@ -566,6 +566,10 @@ Coté cop, on aurait le code & le nom de l'erreur
 **28 Juillet**
 - [x] Mise à jour du Jira
 - [ ] Mise en prod
+    - [x] Connexion aux instances en SSH avec : 
+    ```
+    ssh -i "predict-beta-clepaire-27Juillet.pem" ubuntu@ec2-52-58-79-10.eu-central-1.compute.amazonaws.com
+    ```
     - [ ] Résolution de l'erreur : 
         ```
         net::ERR_SSL_PROTOCOL_ERROR
@@ -574,7 +578,30 @@ Coté cop, on aurait le code & le nom de l'erreur
         - [ ] Génération du dossier dist d'angular : 
             - [x] Placement dans le dossier /apps/kmo-predict-front
             - [x] ```sudo npm install --legacy-peer-deps```
-            - [x] Génération des files :
+            - [x] Changement des doits pour le repo dist où sont buildés les fichiers de l'app angular : 
+            ```
+            sudo chown -R www-data:www-data /home/ubuntu/KMO_PREDICT/apps/kmo-predict-front/dist/kmo-predict
+            sudo chmod -R o+rx /home/ubuntu/KMO_PREDICT/apps/kmo-predict-front/dist/kmo-predict
+            ```
+            - [ ] Ajout à l'utilisateur ubuntu des droits à tous les dossiers de la chaîne depuis l'endroit du nginx à l'endroit des fichiers dist d'angular : 
+            ```
+            sudo gpasswd -a www-data ubuntu
+            sudo chmod g+x /ubuntu
+            sudo chmod g+x /home/ubuntu
+            sudo chmod g+x /home/ubuntu/KMO_PREDICT/
+            sudo chmod g+x /home/ubuntu/KMO_PREDICT/apps/
+            sudo chmod g+x /home/ubuntu/KMO_PREDICT/apps/kmo-predict-front/
+            sudo chmod g+x /home/ubuntu/KMO_PREDICT/apps/kmo-predict-front/dist/
+            sudo chmod g+x /home/ubuntu/KMO_PREDICT/apps/kmo-predict-front/dist/kmo-predict/
+            ```
+            Référence : (https://stackoverflow.com/questions/25774999/nginx-stat-failed-13-permission-denied)
+            - [ ] Restart & reload de nginx : 
+            ```
+            sudo systemctl restart nginx
+            sudo systemctl reload nginx
+            ```
+            - [ ] Génération des files :
             ```
             ng build --configuration production
             ```
+            
