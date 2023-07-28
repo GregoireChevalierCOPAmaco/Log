@@ -561,3 +561,20 @@ Coté cop, on aurait le code & le nom de l'erreur
         ```
         ng build --configuration production
         ```
+
+
+**28 Juillet**
+- [x] Mise à jour du Jira
+- [ ] Mise en prod
+    - [ ] Résolution de l'erreur : 
+        ```
+        net::ERR_SSL_PROTOCOL_ERROR
+        ```
+    - [ ] Recommençage de zéro pour cause d'instance pétée
+        - [ ] Génération du dossier dist d'angular : 
+            - [x] Placement dans le dossier /apps/kmo-predict-front
+            - [x] ```sudo npm install --legacy-peer-deps```
+            - [x] Génération des files :
+            ```
+            ng build --configuration production
+            ```
