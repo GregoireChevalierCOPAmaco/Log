@@ -266,13 +266,298 @@ Coté cop, on aurait le code & le nom de l'erreur
         sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
         sudo apt install docker-ce
         ```
-        - [ ] Installation d'Nginx
-        - [ ] Installation de la cli d'angular
-        - [ ] Installation de certbot
-        - [ ] génération des certificats ssl
-        - [ ] Modification du fichier environment.prod.ts
-        - [ ] Modification du fichier .env.beta
-        - [ ] Modification du fichier main.ts (back)
-        - [ ] Modification du Dockerfile.dev
-        - [ ] Modification du fichier docker-compose.beta.yml
-        - [ ] Modification du fichier de config nginx
+        - [x] Installation de docker compose
+        Check de (https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04) et application :
+        ```
+        sudo curl -L "https://github.com/docker/compose/releases/download/2.20.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+        sudo chmod +x /usr/local/bin/docker-compose
+        ```
+        - [x] Installation de la cli d'angular
+            - [x] Installation de node ```sudo apt install npm```
+            - [x] ```npm install @angular/cli```
+            - [x] Ajout du lien ```export PATH="$PATH:/usr/local/bin"```
+            - [x] Update de node : 
+            ```
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+            nvm install v14.20.0
+            ```
+        - [x] Installation d'Nginx
+        ```
+        sudo apt install nginx
+        Y
+        ```
+        - [x] Installation de certbot
+        ```
+        sudo apt-get remove certbot
+        sudo snap install --classic certbot
+        sudo ln -s /snap/bin/certbot /usr/bin/certbot
+        ```
+        - [x] Installation de nginx plugin for certbot ```sudo apt install certbot python3-certbot-nginx```
+        - [x] Lancement de ```sudo ln -s /opt/certbot/bin/certbot /usr/bin/certbot``` pour assurer la faisabilité du certificat sur la machine, retour terminal normal
+        - [x] génération des certificats ssl
+            - [x] Ouverture des ports du serveur
+                - SSH/TCP/22/N'importe ipv4/0.0.0.0/0
+                - HTTP/TCP/80/N'importe ipv4/0.0.0.0/0
+                - TCPPersonnalisé/TCP/8080/N'importe ipv4/0.0.0.0/0
+                - TCPPersonnalisé/TCP/8443/N'importe ipv4/0.0.0.0/0
+                - HTTPS/TCP/443/N'importe ipv4/0.0.0.0/0
+                - ICMP-IPv4/ICMP/tous/172.31.39.193/32
+            - [x] Redémarrage de l'instance
+            - [x] Génération
+                ```
+                sudo certbot --nginx
+                g.chevalier@cop-amaco.com
+                Y
+                Y
+                keycloak-beta.cop-amaco.digital
+                ```
+        - [x] Modification du fichier de config nginx :
+        ```
+        user www-data;
+        worker_processes auto;
+        error_log /var/log/nginx/error.log notice;
+        pid /run/nginx.pid;
+
+        # Load dynamic modules. See /usr/share/doc/nginx/README.dynamic.
+        include /usr/share/nginx/modules/*.conf;
+
+        events {
+            worker_connections 1024;
+        }
+
+        http {
+            log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                            '$status $body_bytes_sent "$http_referer" '
+                            '"$http_user_agent" "$http_x_forwarded_for"';
+
+            access_log  /var/log/nginx/access.log  main;
+
+            sendfile            on;
+            tcp_nopush          on;
+            keepalive_timeout   65;
+            types_hash_max_size 4096;
+
+            include             /etc/nginx/mime.types;
+            default_type        application/octet-stream;
+
+            # Load modular configuration files from the /etc/nginx/conf.d directory.
+            # See http://nginx.org/en/docs/ngx_core_module.html#include
+            # for more information.
+            include /etc/nginx/conf.d/*.conf;
+
+                ##
+                # SSL Settings
+                ##
+
+                ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3; # Dropping SSLv3, ref: POODLE
+                ssl_prefer_server_ciphers on;
+
+
+            server {
+                listen 443 ssl;
+                listen [::]:443 ssl;
+                server_name predict-beta.cop-amaco.digital;
+
+                ssl_certificate /etc/letsencrypt/live/predict-beta.cop-amaco.digital/fullchain.pem; # managed by Certbot
+                ssl_certificate_key /etc/letsencrypt/live/predict-beta.cop-amaco.digital/privkey.pem; # managed by Certbot
+                include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+                ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+                location / {
+                    root /home/ubuntu/KMO_PREDICT/apps/kmo-predict-front/dist/kmo-predict;
+                    try_files $uri $uri/ /index.html =404;
+                }
+
+                location /api {
+                    proxy_pass "https://predict-beta.cop-amaco.digital/3001";
+                }
+
+                location @angular {
+                    # Proxy pass to the Angular development server running on localhost:3000.
+                    proxy_pass http://localhost:3000;
+
+                    # Proxy headers configuration...
+                    proxy_set_header Host $host;
+                    proxy_set_header X-Real-IP $remote_addr;
+                    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                    proxy_set_header X-Forwarded-Proto $scheme;
+                    proxy_set_header X-Forwarded-Host $host;
+                }
+            }
+        }
+        ```
+        - [x] Modification du fichier .env.beta :
+        ```
+        # Database environment variables
+        DB_HOST=postgres
+        DB_PORT=5432
+        DB_USER=predict
+        DB_PASSWORD=predict16022023
+        DB_NAME=predict
+        POSTGRES_USER=predict
+        POSTGRES_PASSWORD=predict16022023
+        POSTGRES_DB=predict
+
+        # Node environment variables
+        #NODE_ENV=development
+        NODE_ENV=beta
+
+        # Apps environment variables
+        WEB_APP_URL=https://predict-beta.cop-amaco.digital:3000
+
+        # AWS
+        AWS_REGION=eu-central-1
+        AWS_ACCESS_KEY_ID=AKIAY5QV4ILLYTYUOK7R
+        AWS_SECRET_ACCESS_KEY=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
+        ```
+        - [x] Modification du Dockerfile.dev :
+        ```
+        FROM node:18.12.1-alpine3.16
+
+        # Required for turbo post-install
+        RUN apk add --no-cache libc6-compat
+        RUN apk add --no-cache ffmpeg
+        RUN apk update
+
+        WORKDIR /app
+
+        COPY package.json ./
+        COPY package-lock.json ./
+        COPY turbo.json .
+
+        COPY apps/kmo-predict-front/package.json apps/kmo-predict-front/package.json
+        COPY apps/kmo-predict-back/package.json apps/kmo-predict-back/package.json
+
+        COPY packages/eslint-config-custom/package.json packages/eslint-config-custom/package.json
+        COPY packages/tsconfig/package.json packages/tsconfig/package.json
+
+        COPY /etc/letsencrypt/live/predict-beta.cop-amaco.digital/fullchain.pem /app/fullchain.pem
+        COPY /etc/letsencrypt/live/predict-beta.cop-amaco.digital/privkey.pem /app/privkey.pem
+
+        RUN npm cache clean --force
+        RUN npm install turbo --legacy-peer-deps --dev
+        RUN npm install --legacy-peer-deps
+
+        COPY . .
+
+        EXPOSE 3000 3001
+
+        CMD [ "npm", "run", "dev" ]
+        ```
+        - [x] Modification du fichier docker-compose.beta.yml :
+        ```
+        version: "3.9"
+
+        services:
+
+        apps:
+            container_name: predict-apps-beta
+            build:
+            context: .
+            dockerfile: Dockerfile.dev
+            ports:
+            - "3001:3001"
+            env_file:
+            - .env.beta
+            volumes:
+            - ./apps:/app/apps
+            - /app/node_modules
+            - /app/apps/kmo-predict-back/node_modules
+            - /app/apps/kmo-predict-back/dist
+            - /app/apps/kmo-predict-front/node_modules
+            - /app/apps/kmo-predict-front/.angular
+            - /app/apps/kmo-predict-front/dist
+            - /app/packages/eslint-config-custom/node_modules
+            - /app/packages/tsconfig/node_modules
+            networks:
+            - app
+            - keycloak
+
+        postgres:
+            container_name: predict-pg
+            image: postgres:15.0-alpine3.16
+            restart: on-failure
+            environment:
+            - POSTGRES_USER=${DB_USER?}
+            - POSTGRES_PASSWORD=${DB_PASSWORD?}
+            - POSTGRES_DB=${DB_NAME?}
+            ports:
+            - "5432:5432"
+            networks:
+            app:
+
+        networks:
+        app:
+            name: app_network
+            external: true
+        keycloak:
+            name: keycloak_network
+            external: true
+        ```
+        - [x] Modification du fichier environment.prod.ts :
+        ```
+        export const environment = {
+            production: true,
+            apiUrl: 'https://predict-beta.cop-amaco.digital:3001',
+            socketUrl: 'https://predict-beta.cop-amaco.digital:3001',
+            keycloakUrl: 'https://keycloak-beta.cop-amaco.digital/'
+        };
+        ```
+        - [x] Modification du fichier main.ts (back) :
+        ```
+        import { NestFactory } from '@nestjs/core';
+        import { AppModule } from './app.module';
+        import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+        import { ValidationPipe } from '@nestjs/common';
+        import * as fs from 'fs';
+        import * as https from 'https';
+
+        async function bootstrap() {
+        const app = await NestFactory.create(AppModule, {
+            httpsOptions: {
+            key: fs.readFileSync('/app/privkey.pem'),
+            cert: fs.readFileSync('/app/fullchain.pem'),
+            },
+        });
+
+        app.enableCors({
+            origin: process.env.WEB_APP_URL,
+            methods: 'GET,POST, DELETE, PUT, PATCH, OPTIONS',
+            allowedHeaders:
+            'Accept, Accept-Language, authorization, Content-Language, Content-Type',
+        });
+
+        app.useGlobalPipes(
+            new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }),
+        );
+
+        const config = new DocumentBuilder()
+            .setTitle('Predict')
+            .setDescription('Maintenance prédictive')
+            .setVersion('0.0')
+            .build();
+
+        const document = SwaggerModule.createDocument(app, config);
+        SwaggerModule.setup('api', app, document);
+
+        const port = 3001;
+        // Use https.createServer instead of app.listen to enable HTTPS.
+        await https.createServer(app.getHttpServer(), app.get('httpsOptions')).listen(port);
+
+        console.log(`Application is running on port : ${port}`);
+        await app.startAllMicroservices();
+        }
+
+        bootstrap();
+        ```
+        - [x] Création des docker networks : 
+        ```
+        sudo docker network create apps-network
+        sudo docker network create  keycloak-network
+        ```
+        - [ ] Génération du dossier dist d'angular : 
+            - [x] Placement dans le dossier /apps/kmo-predict-front
+            - [x] ```sudo npm install --legacy-peer-deps```
+        ```
+        ng build --configuration production
+        ```
