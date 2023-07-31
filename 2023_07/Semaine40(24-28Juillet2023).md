@@ -574,10 +574,30 @@ Coté cop, on aurait le code & le nom de l'erreur
         ```
         net::ERR_SSL_PROTOCOL_ERROR
         ```
-    - [ ] Recommençage de zéro pour cause d'instance pétée
-        - [ ] Génération du dossier dist d'angular : 
+    - [x] Recommençage de zéro pour cause d'instance pétée
+        - [x] Génération du dossier dist d'angular : 
             - [x] Placement dans le dossier /apps/kmo-predict-front
             - [x] ```sudo npm install --legacy-peer-deps```
+            - [x] Génération des files :
+            ```
+            ng build --configuration production
+            ```
+            et retour positif : 
+            ```
+            ✔ Browser application bundle generation complete.
+            ✔ Copying assets complete.
+            ✔ Index html generation complete.
+
+            Initial Chunk Files           | Names         |  Raw Size | Estimated Transfer Size
+            main.4a73a35ee90be4ad.js      | main          |   1.02 MB |               212.47 kB
+            styles.74eea402ed0644ac.css   | styles        | 186.24 kB |                16.82 kB
+            polyfills.90c6896f18b03906.js | polyfills     |  33.09 kB |                10.67 kB
+            runtime.cb3b55ae1562de4d.js   | runtime       |   1.23 kB |               662 bytes
+
+                                          | Initial Total |   1.24 MB |               240.61 kB
+
+            Build at: 2023-07-28T08:06:27.345Z - Hash: 51e40f3f36a120df - Time: 51414ms
+            ```
             - [x] Changement des doits pour le repo dist où sont buildés les fichiers de l'app angular : 
             ```
             sudo chown -R www-data:www-data /home/ubuntu/KMO_PREDICT/apps/kmo-predict-front/dist/kmo-predict
@@ -595,13 +615,304 @@ Coté cop, on aurait le code & le nom de l'erreur
             sudo chmod g+x /home/ubuntu/KMO_PREDICT/apps/kmo-predict-front/dist/kmo-predict/
             ```
             Référence : (https://stackoverflow.com/questions/25774999/nginx-stat-failed-13-permission-denied)
-            - [ ] Restart & reload de nginx : 
+            - [x] Restart & reload de nginx : 
             ```
             sudo systemctl restart nginx
             sudo systemctl reload nginx
             ```
-            - [ ] Génération des files :
-            ```
-            ng build --configuration production
-            ```
-            
+        - [x] Reach l'application angular de beta
+    - [x] Résolution de keycloak we are sorry page not found
+        - [x] Rediriger vers la bonne ip
+        - [x] Renseigner le bon realm
+            - [x] App.module.ts
+            - [x] .env
+        - [x] Rebuild des fichiers dist
+    - [ ] Lancement des docker :
+    ```
+    sudo docker compose --env-file .env.beta -f docker-compose.beta.yml up --renew-anon-volumes --always-recreate-deps --build
+    ```
+    et retour négatif : 
+    ```
+    => [apps  5/18] WORKDIR /app                                                                                                                                   0.1s
+    => CANCELED [apps  6/18] COPY package.json ./                                                                                                                  3.7s
+    => CACHED [apps  7/18] COPY package-lock.json ./                                                                                                               0.0s
+    => CACHED [apps  8/18] COPY turbo.json .                                                                                                                       0.0s
+    => CACHED [apps  9/18] COPY apps/kmo-predict-front/package.json apps/kmo-predict-front/package.json                                                            0.0s
+    => CACHED [apps 10/18] COPY apps/kmo-predict-back/package.json apps/kmo-predict-back/package.json                                                              0.0s
+    => CACHED [apps 11/18] COPY packages/eslint-config-custom/package.json packages/eslint-config-custom/package.json                                              0.0s
+    => CACHED [apps 12/18] COPY packages/tsconfig/package.json packages/tsconfig/package.json                                                                      0.0s
+    => ERROR [apps 13/18] COPY /etc/letsencrypt/live/predict-beta.cop-amaco.digital/fullchain.pem /app/fullchain.pem                                               0.0s
+    => ERROR [apps 14/18] COPY /etc/letsencrypt/live/predict-beta.cop-amaco.digital/privkey.pem /app/privkey.pem                                                   0.0s
+    ------
+    > [apps 13/18] COPY /etc/letsencrypt/live/predict-beta.cop-amaco.digital/fullchain.pem /app/fullchain.pem:
+    ------
+    ------
+    > [apps 14/18] COPY /etc/letsencrypt/live/predict-beta.cop-amaco.digital/privkey.pem /app/privkey.pem:
+    ------
+    failed to solve: failed to compute cache key: failed to calculate checksum of ref d1e9282b-9fda-4a98-9f87-115dbe979886::thvukxcm29j5ot90ptcfshv95: "/etc/letsencrypt/live/predict-beta.cop-amaco.digital/privkey.pem": not found
+    ```
+    résolution :
+        - [x] Déplacement de la commande de copie des certificats depuis Dockerfile vers docker-compose. Suppression des lignes du Dockerfile : 
+        ```
+        COPY /etc/letsencrypt/live/predict-beta.cop-amaco.digital/fullchain.pem /app/fullchain.pem
+        COPY /etc/letsencrypt/live/predict-beta.cop-amaco.digital/privkey.pem /app/privkey.pem
+        ```
+        Ajout des lignes au docker-compose.beta.yml : 
+        ```
+        - /etc/letsencrypt/live/predict-beta.cop-amaco.digital/fullchain.pem:/app/fullchain.pem:ro
+        - /etc/letsencrypt/live/predict-beta.cop-amaco.digital/privkey.pem:/app/privkey.pem:ro
+        ```
+        - [x] Relance des docker :
+        ```
+        sudo docker compose --env-file .env.beta -f docker-compose.beta.yml up --renew-anon-volumes --always-recreate-deps --build
+        ```
+        et nouvelle erreur : au démarrage de nest dans le docker :
+        ```
+        ERROR [ExceptionHandler] Nest could not find httpsOptions element (this provider does not exist in the current context)
+        ```
+        - [x] Check de (https://stackoverflow.com/questions/75203608/nest-could-not-find-prismaservice-element-this-provider-does-not-exist-in-the-c)
+        - [x] Modification du app.module.ts de nest comme suit :
+        ```
+        import { Module } from '@nestjs/common';
+        ... imports
+        import { join } from 'path';
+        import { ServeStaticModule } from '@nestjs/serve-static';
+        import * as fs from 'fs';
+        import * as https from 'https';
+
+        @Module({
+        imports: [
+            ServeStaticModule.forRoot({
+            rootPath: join(__dirname, '../..', 'kmo-predict-front'),
+            exclude: ['/api*'],
+            }),
+            ConfigModule,
+            EventsModule,
+            GatewaysModule,
+            KmoBoxesModule,
+            TypeOrmModule.forRoot(options),
+            StoresModule,
+            StatisticFormulaModule,
+            UsersModule,
+            MailingModule,
+            HistoryGatewayModule,
+        ],
+        providers: [ConfigService],
+        })
+        export class AppModule {
+        static withHttpsOptions(httpsOptions: https.ServerOptions): DynamicModule {
+            return {
+            module: AppModule,
+            providers: [
+                {
+                provide: httpsOptions,
+                useValue: httpsOptions,
+                },
+            ],
+            };
+        }
+        }
+        ```
+    - [x] Changement du main.ts
+    ```
+    import { NestFactory } from '@nestjs/core';
+    import { AppModule } from './app.module';
+    import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+    import { ValidationPipe } from '@nestjs/common';
+    import * as fs from 'fs';
+    import * as https from 'https';
+
+    async function bootstrap() {
+    const httpsOptions: https.ServerOptions = {
+        key: fs.readFileSync('/app/privkey.pem'),
+        cert: fs.readFileSync('/app/fullchain.pem'),
+    };
+
+    const app = await NestFactory.create(
+        AppModule.withHttpsOptions(httpsOptions),
+    );
+
+    app.enableCors({
+        origin: process.env.WEB_APP_URL,
+        methods: 'GET,POST, DELETE, PUT, PATCH, OPTIONS',
+        allowedHeaders:
+        'Accept, Accept-Language, authorization, Content-Language, Content-Type',
+    });
+
+    app.useGlobalPipes(
+        new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }),
+    );
+
+    const config = new DocumentBuilder()
+        .setTitle('Predict')
+        .setDescription('Maintenance prédictive')
+        .setVersion('0.0')
+        .build();
+
+    const document = SwaggerModule.createDocument(app, config);
+    SwaggerModule.setup('api', app, document);
+
+    const port = 3001;
+    // Use https.createServer instead of app.listen to enable HTTPS.
+    await https.createServer(httpsOptions, app).listen(port);
+
+    console.log(`Application is running on: http://localhost:${port}`);
+    await app.startAllMicroservices();
+    }
+
+    bootstrap();
+    ```
+    - [x] Relance des docker :
+    ```
+    sudo docker compose --env-file .env.beta -f docker-compose.beta.yml up --renew-anon-volumes --always-recreate-deps --build
+    ```
+    mais nouvelle erreur : 
+    ```
+    predict-apps-beta  | kmo-predict-back:dev: src/app.module.ts:38:63 - error TS2304: Cannot find name 'DynamicModule'.
+    predict-apps-beta  | kmo-predict-back:dev:
+    predict-apps-beta  | kmo-predict-back:dev: 38   static withHttpsOptions(httpsOptions: https.ServerOptions): DynamicModule {
+    predict-apps-beta  | kmo-predict-back:dev:                                                                  ~~~~~~~~~~~~~
+    predict-apps-beta  | kmo-predict-back:dev:
+    predict-apps-beta  | kmo-predict-back:dev: src/app.module.ts:38:63 - error TS4052: Return type of public static method from exported class has or is using private name 'DynamicModule'.
+    predict-apps-beta  | kmo-predict-back:dev:
+    predict-apps-beta  | kmo-predict-back:dev: 38   static withHttpsOptions(httpsOptions: https.ServerOptions): DynamicModule {
+    predict-apps-beta  | kmo-predict-back:dev:                                                                  ~~~~~~~~~~~~~
+    predict-apps-beta  | kmo-predict-back:dev:
+    predict-apps-beta  | kmo-predict-back:dev: src/main.ts:40:42 - error TS2345: Argument of type 'INestApplication' is not assignable to parameter of type 'RequestListener<typeof IncomingMessage, typeof ServerResponse>'.
+    predict-apps-beta  | kmo-predict-back:dev:   Type 'INestApplication' provides no match for the signature '(req: IncomingMessage, res: ServerResponse<IncomingMessage> & { req: IncomingMessage; }): void'.
+    predict-apps-beta  | kmo-predict-back:dev:
+    predict-apps-beta  | kmo-predict-back:dev: 40   await https.createServer(httpsOptions, app).listen(port);
+    predict-apps-beta  | kmo-predict-back:dev:                                             ~~~
+    predict-apps-beta  | kmo-predict-back:dev:
+    predict-apps-beta  | kmo-predict-back:dev: [12:00:01 PM] Found 3 errors. Watching for file changes.
+    ```
+    - [x] Résolution en ajoutant
+    ```
+    import { DynamicModule } from '@nestjs/common';
+    ```
+    dans le app.module.ts
+    et modification de main.ts comme suit : 
+    ```
+    import { NestFactory } from '@nestjs/core';
+    import { AppModule } from './app.module';
+    import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+    import { ValidationPipe } from '@nestjs/common';
+    import * as fs from 'fs';
+    import * as https from 'https';
+
+    async function bootstrap() {
+    const httpsOptions: https.ServerOptions = {
+        key: fs.readFileSync('/app/privkey.pem'),
+        cert: fs.readFileSync('/app/fullchain.pem'),
+    };
+
+    // Create the HTTPS server separately
+    const httpsServer = https.createServer(httpsOptions);
+
+    const app = await NestFactory.create(AppModule);
+
+    app.enableCors({
+        origin: process.env.WEB_APP_URL,
+        methods: 'GET,POST, DELETE, PUT, PATCH, OPTIONS',
+        allowedHeaders:
+        'Accept, Accept-Language, authorization, Content-Language, Content-Type',
+    });
+
+    app.useGlobalPipes(
+        new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }),
+    );
+
+    const config = new DocumentBuilder()
+        .setTitle('Predict')
+        .setDescription('Maintenance prédictive')
+        .setVersion('0.0')
+        .build();
+
+    const document = SwaggerModule.createDocument(app, config);
+    SwaggerModule.setup('api', app, document);
+
+    const port = 3001;
+
+    // Pass the request handler to app.init()
+    await app.init();
+
+    // Use httpsServer.listen instead of app.listen to enable HTTPS.
+    httpsServer.listen(port, () => {
+        console.log(`Application is running on: https://localhost:${port}`);
+    });
+    }
+
+    bootstrap();
+    ```
+    - [x] Relance des docker :
+    ```
+    sudo docker compose --env-file .env.beta -f docker-compose.beta.yml up --renew-anon-volumes --always-recreate-deps --build
+    ```
+    mais nouvelle erreur : 
+    ```
+    error TS2322: Type 'ServerOptions<typeof IncomingMessage, typeof ServerResponse>' is not assignable to type 'InjectionToken'.
+    predict-apps-beta  | kmo-predict-back:dev:
+    predict-apps-beta  | kmo-predict-back:dev: 44           provide: httpsOptions,
+    ```
+    - [x] Résolution en changeant l'app.module.ts : 
+    ```
+    import { Module } from '@nestjs/common';
+    import { TypeOrmModule } from '@nestjs/typeorm';
+    import options from './database/orm-config';
+    import { StoresModule } from './app/stores/stores.module';
+    import { ConfigModule, ConfigService } from '@nestjs/config';
+    import { EventsModule } from './app/events/events.module';
+    import { GatewaysModule } from './app/gateways/gateways.module';
+    import { KmoBoxesModule } from './app/kmo-boxes/kmo-boxes.module';
+    import { StatisticFormulaModule } from './app/statistic-formula/statistic-formula.module';
+    import { UsersModule } from './app/users/users.module';
+    import { MailingModule } from './app/mailing/mailing.module';
+    import { HistoryGatewayModule } from './app/history-gateway/history-gateway.module';
+    import { join } from 'path';
+    import { ServeStaticModule } from '@nestjs/serve-static';
+    import { httpsOptionsFactory } from './https-options.factory'; // Import the factory function
+
+    @Module({
+    imports: [
+        ServeStaticModule.forRoot({
+        rootPath: join(__dirname, '../..', 'kmo-predict-front'),
+        exclude: ['/api*'],
+        }),
+        ConfigModule,
+        EventsModule,
+        GatewaysModule,
+        KmoBoxesModule,
+        TypeOrmModule.forRoot(options),
+        StoresModule,
+        StatisticFormulaModule,
+        UsersModule,
+        MailingModule,
+        HistoryGatewayModule,
+    ],
+    providers: [
+        ConfigService,
+        {
+        provide: 'httpsOptions', // Use 'httpsOptions' as the provider token
+        useFactory: httpsOptionsFactory, // Use the factory function to create the object
+        },
+    ],
+    })
+    export class AppModule {}
+    ```
+    et le https.factory : 
+    ```
+    import { readFileSync } from 'fs';
+    import * as https from 'https';
+
+    export function httpsOptionsFactory(): https.ServerOptions {
+    return {
+        key: readFileSync('/app/privkey.pem'),
+        cert: readFileSync('/app/fullchain.pem'),
+    };
+    }
+    ```
+    - [x] Relance des docker :
+    ```
+    sudo docker compose --env-file .env.beta -f docker-compose.beta.yml up --build
+    ```
+    (suppression des flags --renew-anon-volumes --always-recreate-deps qui encombrent l'espace disque)
