@@ -125,4 +125,26 @@
     Host key for ec2-52-58-79-10.eu-central-1.compute.amazonaws.com has changed and you have requested strict checking.
     Host key verification failed.
     ```
-    - [ ] Suppression du fichier known hosts
+    - [x] Suppression du fichier known hosts et reconnexion : 
+    ```
+    Warning: Permanently added 'ec2-52-58-79-10.eu-central-1.compute.amazonaws.com' (ED25519) to the list of known hosts.
+    ubuntu@ec2-52-58-79-10.eu-central-1.compute.amazonaws.com: Permission denied (publickey).
+    ```
+    - [x] Récupération de la public key 
+    - [x] Poursuite des recherches net::ERR_CONNECTION_TIMED_OUT en attendant Anthony
+    - [ ] Résolution en peer programming avec Anthony de : 
+    ```
+    kmo-predict-back  | npm ERR! code ENOENT
+    kmo-predict-back  | npm ERR! syscall open
+    kmo-predict-back  | npm ERR! path /app/package.json
+    kmo-predict-back  | npm ERR! errno -2
+    kmo-predict-back  | npm ERR! enoent ENOENT: no such file or directory, open '/app/package.json'
+    kmo-predict-back  | npm ERR! enoent This is related to npm not being able to find a file.
+    kmo-predict-back  | npm ERR! enoent
+    kmo-predict-back  |
+    kmo-predict-back  | npm ERR! A complete log of this run can be found in:
+    kmo-predict-back  | npm ERR!     /root/.npm/_logs/2023-08-02T08_01_44_461Z-debug-0.log
+    kmo-predict-back exited with code 254
+    ```
+    - [x] Check de (https://stackoverflow.com/questions/45531633/npm-warn-enoent-enoent-no-such-file-or-directory-open-c-users-nuwanst-packag) sans trop de succes
+- [ ] Réalisation du excel de tests fonctionnels
