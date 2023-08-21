@@ -1,0 +1,16 @@
+**21 Aout**
+- [x] Check des mails
+- [ ] Reprise du tableau des tests fonctionnels 
+- [ ] KP-421, Suppression de la page /home
+    - [x] Retour en local
+        - [ ] Suppression de toutes les mentions à la route /home
+            - [ ] keycloak flow e2e test
+            - [ ] successful auth flow e2e test
+            - [ ] unsuccessful auth flow e2e test
+            - [ ] app.component.html
+            - [ ] app.module.ts
+            - [ ] tab store html
+            - [ ] home component & home component spec
+            - [ ] home cop component ts
+            - [ ] realm export
+        - [ ] Remplacement de la mention /home par /cop ou /storebyid/iddustore en fonction des privilèges
