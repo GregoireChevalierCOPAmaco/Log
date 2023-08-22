@@ -80,11 +80,35 @@
             - [ ] Modification du fichier app-routing.module.ts
         - [ ] Suppression de toutes les mentions à la route /home
             - [ ] keycloak flow e2e test
-            - [ ] successful auth flow e2e test
-            - [ ] unsuccessful auth flow e2e test
-            - [ ] app.component.html
+            - [x] successful auth flow e2e test
+            - [x] unsuccessful auth flow e2e test
+            - [x] app.component.html
+                - [x] Mise en commentaires du bouton vers home :
+                ```
+                <!-- <a link mat-list-item routerLink="/home" routerLinkActive="selected">
+                    <mat-icon class="text-white align-middle">home</mat-icon>
+                    <span class="link-label text-white">Accueil</span>
+                </a> -->
+                ```
             - [ ] app.module.ts
-            - [ ] tab store html
+            - [x] tab store html
+                - [x] Changement de :
+                ```
+                <div class="example-button-row py-8">
+                    <a routerLink="/home">
+                        <button mat-stroked-button color="primary">Retour à l'accueil</button>
+                    </a>
+                </div>
+                ```
+                à 
+                ```
+                <div class="example-button-row py-8">
+                    <a routerLink="/cop">
+                        <button mat-stroked-button color="primary">Retour</button>
+                    </a>
+                </div>
+                ```
             - [ ] home component & home component spec
             - [ ] home cop component ts
-            - [ ] realm export
+            - [x] realm export
+- [x] Mise à jour du jira
