@@ -138,10 +138,22 @@
             }
             resolve(granted);
             ```
-            - [ ] Modification du fichier app-routing.module.ts
-        - [ ] Suppression de toutes les mentions à la route /home
-            - [ ] keycloak flow e2e test
-            - [ ] app.module.ts
-            - [ ] home component & home component spec
-            - [ ] home cop component ts
+            - [x] Modification du fichier app-routing.module.ts
+        - [x] Suppression de toutes les mentions à la route /home
+            - [x] keycloak flow e2e test
+            - [x] app.module.ts
+            - [x] home component, css, html & home component spec
+            - [x] home cop component ts
+            - [x] rename home cop en cop-store-details
+                - [x] dossier
+                - [x] html
+                - [x] css
+                - [x] test
+                - [x] component
+                - [x] Remplacement des mentions à home-cop dans les fichiers
+        - [x] Delete des fichiers d'essais de docker temporaire
+        - [x] Commit, push & PR
 - [x] Mise à jour du jira
+- [x] Accès au compte office 365
+- [x] Accès au fichier excel partagé tests fonctionnels via : https://copcheksoutproduction.sharepoint.com/:x:/r/sites/DIGITAL_TEAM/_layouts/15/Doc.aspx?sourcedoc=%7B33F6BF81-A0DD-43F0-A454-13EA23CD8BA1%7D&file=Tests%20fonctionnels.xlsx&action=default&mobileredirect=true
+- [ ] Exhaustification du fichier excel de tests fonctionnels
