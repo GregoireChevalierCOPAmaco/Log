@@ -112,3 +112,36 @@
             - [ ] home cop component ts
             - [x] realm export
 - [x] Mise à jour du jira
+
+
+**23 Aout**
+- [ ] Reprise du tableau des tests fonctionnels 
+- [ ] KP-421, Suppression de la page /home
+    - [x] Retour en local
+        - [x] Redirection vers /cop ou /storebyid/iddustore en fonction des privilèges du user connecté
+            - [ ] Modification du fichier auth.guard.ts
+            Changement de :
+            ```
+            if (!granted) {
+                this.router.navigate(['/']);
+            }
+            resolve(granted);
+            ```
+            à
+            ```
+            if (!granted) {
+                if (this.roles.includes('kmo-predict_store-manager')) {
+                this.router.navigate(['/store/:id']); 
+                } else {
+                this.router.navigate(['/cop']);
+                }
+            }
+            resolve(granted);
+            ```
+            - [ ] Modification du fichier app-routing.module.ts
+        - [ ] Suppression de toutes les mentions à la route /home
+            - [ ] keycloak flow e2e test
+            - [ ] app.module.ts
+            - [ ] home component & home component spec
+            - [ ] home cop component ts
+- [x] Mise à jour du jira
