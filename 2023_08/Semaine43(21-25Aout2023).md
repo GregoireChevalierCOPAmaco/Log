@@ -157,3 +157,11 @@
 - [x] Accès au compte office 365
 - [x] Accès au fichier excel partagé tests fonctionnels via : https://copcheksoutproduction.sharepoint.com/:x:/r/sites/DIGITAL_TEAM/_layouts/15/Doc.aspx?sourcedoc=%7B33F6BF81-A0DD-43F0-A454-13EA23CD8BA1%7D&file=Tests%20fonctionnels.xlsx&action=default&mobileredirect=true
 - [ ] Exhaustification du fichier excel de tests fonctionnels
+- [x] Création de branche KP-430 pour tâche Résoudre les problèmes de renvoi de password par mail
+- [x] git pull
+
+
+**24 Aout**
+- [ ] Reprise du tableau des tests fonctionnels 
+- [ ] KP-430, Fix de l'envoi bugé de mail de recover password
+    - [x] Retour en local
