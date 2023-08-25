@@ -514,7 +514,36 @@
     - [x] Passage du lint
     - [x] Add, commit, push et création de PR
 - [ ] Passage à la KP 429
-    - [ ] Retour en local
-    - [ ] Création de la branche
-    - [ ] Switch sur la branche
-    - [ ] Pull origin pour être à jour 
+    - [x] Retour en local
+    - [x] Création de la branche
+    - [x] Switch sur la branche
+    - [x] Pull origin pour être à jour 
+    - [x] change-gateway-assignation.component.ts, ajout de :
+    ```
+    private snackBar: MatSnackBar
+    ```
+    dans le constructor et 
+    changement de la méthode *reassignGateway()* :
+    ```
+    reassignGateway() {
+
+    this.storeService.changeGateway(this.data.id, this.gatewayForm.get('mac')?.value).subscribe(() => {
+      this.historyGatewayService.createHistoryGateway({
+        nameOfTheUser: `${this.userProfile.__zone_symbol__value.username}`,
+        description: `gateway ajoutée au magasin ${this.data.address + this.data.brand}`,
+        gateway: {mac: this.gatewayForm.get('mac')?.value}
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+      }).subscribe(
+        () => {
+          this.snackBar.open('Réassignation de gateway réussie', 'fermer', {
+            panelClass: ['snackbarGreen'],
+          });
+      }, error => {
+        this.snackBar.open("Echec de réassignation de la gateway", 'fermer', {
+          panelClass: 'snackbarGreen',
+        });
+        throw error;
+      })
+    }
+    ```
+    - [ ] Passage des tests
