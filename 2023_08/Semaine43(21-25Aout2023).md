@@ -165,3 +165,19 @@
 - [ ] Reprise du tableau des tests fonctionnels 
 - [ ] KP-430, Fix de l'envoi bugé de mail de recover password
     - [x] Retour en local
+    - [x] Essai d'envoi de reset password avec g.chevalier@cop-amaco.com
+    Retour négatif console : 
+    POST http://localhost:8080/realms/Cop_sass/login-actions/reset-credentials?session_code=5bTuRtR7QD9q1Z8_5hKdMrcCp_tMH3SqrN8tPMg2nzk&execution=0a268b8a-484f-4c43-9ad4-917dc9e74364&client_id=KMO_Predict&tab_id=xq6cqFHWTmc 500 (Internal Server Error)
+    Retour négatif log docker : 
+    WARN  [org.keycloak.events] (executor-thread-62) type=SEND_RESET_PASSWORD_ERROR, realmId=Cop_sass, clientId=KMO_Predict, userId=bfe25071-688e-45b4-bd72-40391f62f9ce, ipAddress=172.24.0.1, error=email_send_failed, auth_method=openid-connect, auth_type=code, redirect_uri=http://localhost:3000/home, code_id=cbc58c53-4358-4aa9-aa67-a32cfa68abc9, username=g.chevalier@cop-amaco.com, authSessionParentId=cbc58c53-4358-4aa9-aa67-a32cfa68abc9, authSessionTabId=xq6cqFHWTmc
+    - [x] Essai avec 123, retour étrange avec message de success et coche verte.
+    - [x] Connexion à l'instance keycloak pour check des logs docker, même résultats qu'en local
+
+**25 Aout**
+- [ ] Reprise du tableau des tests fonctionnels 
+- [ ] KP-424, Réparer le triage des magasins sur /administration
+    - [x] Retour en local
+    - [ ] Création de la branche
+    - [ ] Switch sur la branche
+    - [ ] Pull origin pour être à jour 
+    - [ ] Comparaison du code entre /cop et /admin sur la table
