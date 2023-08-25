@@ -177,7 +177,344 @@
 - [ ] Reprise du tableau des tests fonctionnels 
 - [ ] KP-424, Réparer le triage des magasins sur /administration
     - [x] Retour en local
+    - [x] Création de la branche
+    - [x] Switch sur la branche
+    - [x] Pull origin pour être à jour 
+    - [ ] Comparaison du code entre /cop et /admin sur la table
+        - [x] Le code responsable du tri est le ```mat-sort-header```du fichier cop-store-details.component.html
+        - [x] Ajouts au component, passage de :
+        ```
+        import { Component } from '@angular/core';
+        import {MatDialog} from '@angular/material/dialog';
+        import {AddStoreComponent} from '../../component/administrations/add-store/add-store.component';
+
+        @Component({
+        selector: 'app-administration',
+        templateUrl: './administration.component.html',
+        styleUrls: ['./administration.component.css']
+        })
+        export class AdministrationComponent{
+        constructor(
+        public dialog : MatDialog,
+        ) {
+        }
+
+        openDialog(){
+        this.dialog.open(AddStoreComponent,{
+        data:{method:'post'}
+        })
+        }
+        }
+        ```
+        à :
+        ```
+        import { Component, HostListener, ViewChild } from '@angular/core';
+        import { MatDialog } from '@angular/material/dialog';
+        import { MatTableDataSource } from '@angular/material/table';
+        import { MatPaginator } from '@angular/material/paginator';
+        import { MatSort, Sort } from '@angular/material/sort';
+        import { StoreService } from '../../core/services/store.service';
+        import { StoreInterface } from '../../core/interfaces/store.interface';
+        import { WebsocketService } from '../../core/services/websocket.service';
+        import { GatewaysLogsInterface } from '../../core/interfaces/gateways-logs.interface';
+        import { LiveAnnouncer } from '@angular/cdk/a11y';
+        import { MatSnackBar } from '@angular/material/snack-bar';
+        import { AddStoreComponent } from 'src/app/component/administrations/add-store/add-store.component';
+
+        @Component({
+        selector: 'app-administration',
+        templateUrl: './administration.component.html',
+        styleUrls: ['./administration.component.css']
+        })
+        export class AdministrationComponent {
+        public gatewaysLogs!: GatewaysLogsInterface;
+        public dataSource = new MatTableDataSource<StoreInterface[]>();
+        public displayedColumns: string[] = [
+            'address',
+            'city',
+            'brand',
+            'postalCode',
+            'numberOfCheckouts',
+            'gatewaysState',
+        ];
+
+        @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+        sort: MatSort | null = new MatSort;
+        page!: number;
+        pageSize!: number;
+        query!: string;
+        length!: number;
+        pageIndex!: number;
+
+        constructor(
+            private snackBar: MatSnackBar,
+            private readonly storeService: StoreService,
+            private readonly websocketService: WebsocketService,
+            public dialog: MatDialog,
+            private liveAnnouncer: LiveAnnouncer
+        ) { }
+
+        ngOnInit(): void {
+            this.getStores();
+        }
+
+        getStores() {
+            this.storeService.getStores(this.page, this.pageSize,this.query).subscribe({
+            next: (data) => {
+                this.dataSource.data = data.items;
+                this.pageSize = data.meta.itemsPerPage;
+                this.length = data.items.length;
+            },
+            error: (err) => {
+                this.snackBar.open(err.message, 'Ok');
+            },
+            });
+        }
+        pageChangeEvent(event: any) {
+            this.page = event.page;
+            this.pageSize = event.pageSize;
+            this.getStores();
+        }
+        @HostListener('keydown.enter',['$event'])
+
+        announceSortChange(sortState: Sort){
+            if (sortState.direction) {
+            this.liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+            } else {
+            this.liveAnnouncer.announce('Sorting cleared');
+            }
+        }
+
+        isGatewayDisconnected(mac: string): boolean {
+            return this.gatewaysLogs?.disconnectedGateways.some((obj) =>
+            obj.mac.includes(mac),
+            );
+        }
+
+        ngAfterViewInit() {
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort
+
+        }
+
+        openDialog(){
+        this.dialog.open(AddStoreComponent,{
+        data:{method:'post'}
+        })
+        }
+
+        }
+        ```
+    - [x] Passage des tests
+        - [x] Résolution de Cannot find module 'src/app/component/administrations/add-store/add-store.component' from 'src/app/page/administration/administration.component.ts',
+        chengement de l'import à : ```import { AddStoreComponent } from '../../component/administrations/add-store/add-store.component';```
+        - [x] Résolution des 4 erreurs de  NullInjectorError: R3InjectorError(DynamicTestModule)[MatSnackBar -> MatSnackBar]:    
+      NullInjectorError: No provider for MatSnackBar!
+        - [x] Ajout dans les providers
+        - [x] Changement de  : 
+        ```
+        // import {ComponentFixture, TestBed} from '@angular/core/testing';
+        // import {AdministrationComponent} from './administration.component';
+        // import {MatDialog, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
+        // import {NO_ERRORS_SCHEMA} from '@angular/core';
+        // import { AddStoreComponent } from '../../component/administrations/add-store/add-store.component';
+        // import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+        // import { StoreService } from '../../../app/core/services/store.service';
+        // import { HttpClientTestingModule } from '@angular/common/http/testing';
+        // import { WebsocketService } from '../../../app/core/services/websocket.service';
+        // import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+        // import { WrappedSocket } from 'ngx-socket-io/src/socket-io.service';
+
+        // describe('AdministrationComponent', () => {
+        //   let component: AdministrationComponent;
+        //   let fixture: ComponentFixture<AdministrationComponent>;
+        //   let matDialogMock: Partial<MatDialog>;
+        //   let matSnackBarMock: Partial<MatSnackBar>;
+
+        //   beforeEach(async () => {
+        //     matDialogMock = {
+        //       open: jest.fn(),
+        //     };
+
+        //     matSnackBarMock = {
+        //       open: jest.fn(),
+        //     };
+
+        //     await TestBed.configureTestingModule({
+        //       declarations: [AdministrationComponent],
+        //       imports: [
+        //         MatDialogModule, 
+        //         MatSnackBarModule, 
+        //         HttpClientTestingModule,
+        //         SocketIoModule.forRoot({ url: 'http://localhost:3000' }),
+        //       ],
+        //       providers: [
+        //         {provide: MatDialog, useValue: matDialogMock}, 
+        //         {provide: MatDialogRef, useValue: {}},
+        //         {provide: MatSnackBar, useValue: matSnackBarMock}, 
+        //         StoreService,
+        //         WebsocketService,
+        //         WrappedSocket,
+        //       ],
+        //       schemas: [NO_ERRORS_SCHEMA],
+        //     })
+        //       .compileComponents();
+        //   });
+
+        //   beforeEach(() => {
+        //     fixture = TestBed.createComponent(AdministrationComponent);
+        //     component = fixture.componentInstance;
+        //     fixture.detectChanges();
+        //   });
+
+        //   it('should create', () => {
+        //     expect(component).toBeTruthy();
+        //   });
+
+        //   it('should open dialog when openDialog is called', () => {
+        //     component.openDialog();
+
+        //     expect(matDialogMock.open).toHaveBeenCalledWith(AddStoreComponent, {
+        //       data: { method: 'post' },
+        //     });
+        //   });
+        
+        //   it('should call openDialog when the button is clicked', () => {
+        //     const button = fixture.nativeElement.querySelector('button');
+        //     component.openDialog = jest.fn(); 
+        
+        //     button.click();
+        
+        //     expect(component.openDialog).toHaveBeenCalled();
+        //   });
+        
+        //   it('should render app-tab-store component', () => {
+        //     const tabStoreComponent = fixture.nativeElement.querySelector('app-tab-store');
+            
+        //     expect(tabStoreComponent).toBeTruthy();
+        //   });
+        
+        // });
+        ```
+        à :
+        ```
+        import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+        import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+        import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+        import { MatPaginatorModule } from '@angular/material/paginator';
+        import { MatSortModule } from '@angular/material/sort';
+        import { MatTableModule } from '@angular/material/table';
+        import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+        import { AdministrationComponent } from './administration.component';
+        import { StoreService } from '../../core/services/store.service';
+        import { WebsocketService } from '../../core/services/websocket.service';
+        import { AddStoreComponent } from '../../component/administrations/add-store/add-store.component';
+        import { LiveAnnouncer } from '@angular/cdk/a11y';
+        import { of } from 'rxjs';
+        import { Paginated } from 'src/app/core/interfaces/paginated.interface';
+        import { StoreInterface } from 'src/app/core/interfaces/store.interface';
+
+        describe('AdministrationComponent', () => {
+        let component: AdministrationComponent;
+        let fixture: ComponentFixture<AdministrationComponent>;
+        let matDialogMock: Partial<MatDialog>;
+        let matSnackBarMock: Partial<MatSnackBar>;
+        let storeServiceStub: Partial<StoreService>;
+        let websocketServiceStub: Partial<WebsocketService>;
+
+        beforeEach(waitForAsync(() => {
+            matDialogMock = {
+            open: jest.fn(),
+            };
+
+            matSnackBarMock = {
+            open: jest.fn(),
+            };
+
+            storeServiceStub = {
+            getStores: jest.fn(() => of({
+                items: [],
+                meta: {
+                itemsPerPage: 10,
+                totalItems: 0, 
+                itemCount: 0,
+                totalPages: 0,
+                currentPage: 1,
+                }
+            } as Paginated<StoreInterface[]>)),
+            };
+
+            websocketServiceStub = {};
+
+            TestBed.configureTestingModule({
+            declarations: [AdministrationComponent],
+            imports: [
+                NoopAnimationsModule,
+                MatDialogModule,
+                MatSnackBarModule,
+                MatPaginatorModule,
+                MatSortModule,
+                MatTableModule,
+            ],
+            providers: [
+                { provide: MatDialog, useValue: matDialogMock },
+                { provide: MatDialogRef, useValue: {} },
+                { provide: MatSnackBar, useValue: matSnackBarMock },
+                { provide: StoreService, useValue: storeServiceStub },
+                { provide: WebsocketService, useValue: websocketServiceStub },
+                LiveAnnouncer,
+            ],
+            }).compileComponents();
+        }));
+
+        beforeEach(() => {
+            fixture = TestBed.createComponent(AdministrationComponent);
+            component = fixture.componentInstance;
+            fixture.detectChanges();
+        });
+
+        it('should create', () => {
+            expect(component).toBeTruthy();
+        });
+
+        it('should open dialog when openDialog is called', () => {
+            component.openDialog();
+
+            expect(matDialogMock.open).toHaveBeenCalledWith(AddStoreComponent, {
+            data: { method: 'post' },
+            });
+        });
+
+        it('should render table', () => {
+            const tableElement = fixture.nativeElement.querySelector('table');
+            expect(tableElement).toBeTruthy();
+        });
+
+        it('should render mat-paginator', () => {
+            const paginatorElement = fixture.nativeElement.querySelector('mat-paginator');
+            expect(paginatorElement).toBeTruthy();
+        });
+
+        it('should call getStores on initialization', () => {
+            const getStoresSpy = jest.spyOn(component, 'getStores');
+            component.ngOnInit();
+            expect(getStoresSpy).toHaveBeenCalled();
+        });
+
+        it('should call getStores when pageChangeEvent is triggered', () => {
+            const getStoresSpy = jest.spyOn(component, 'getStores');
+            const event = { page: 1, pageSize: 10 };
+            component.pageChangeEvent(event);
+            expect(getStoresSpy).toHaveBeenCalled();
+        });
+
+        });
+        ```
+    - [x] Passage du lint
+    - [x] Add, commit, push et création de PR
+- [ ] Passage à la KP 429
+    - [ ] Retour en local
     - [ ] Création de la branche
     - [ ] Switch sur la branche
     - [ ] Pull origin pour être à jour 
-    - [ ] Comparaison du code entre /cop et /admin sur la table
