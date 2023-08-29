@@ -33,5 +33,34 @@
     - [x] Connexion à pgadmin avec les ids (avec l'app locale, pas le browser)
         - predict-pg/localhost
         - predict16022023
-    - [ ] Réparer le code de la table
-        - [ ] Résolution de l'erreur 400 sur /admin administration.component.ts:53     GET http://localhost:3001/stores/paginate?page=undefined&limit=undefined&searchTerm=undefined 400 (Bad Request)
+    - [x] Réparer le code de la table
+        - [x] Résolution de l'erreur 400 sur /admin administration.component.ts:53     GET http://localhost:3001/stores/paginate?page=undefined&limit=undefined&searchTerm=undefined 400 (Bad Request) : 
+        changement dans administration.component.ts de :
+        ```
+        sort: MatSort | null = new MatSort;
+        page!: number;
+        pageSize!: number;
+        query!: string;
+        length!: number;
+        pageIndex!: number;
+        ```
+        à 
+        ```
+        length!: number;
+        pageIndex!: number;
+        public query= '';
+        page = 1;
+        pageSize = 10;
+        ```
+        - [x] Faire fonctionner la table comme attendu (n'affiche pas les stores atm)
+        Changement de :
+        ```
+        @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+        sort: MatSort | null = new MatSort;
+        ```
+        à
+        ```
+        @ViewChild(MatPaginator) paginator!: MatPaginator;
+        @ViewChild(MatSort) sort!: MatSort;
+        ```
