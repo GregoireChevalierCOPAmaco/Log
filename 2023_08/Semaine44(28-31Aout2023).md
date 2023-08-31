@@ -70,7 +70,7 @@
         
 **31 Aout**
 - [ ] Reprise du tableau des tests fonctionnels 
-- [ ] KP-429, Ajouter un retour message au changement de gateway
+- [x] KP-429, Ajouter un retour message au changement de gateway
     - [x] Retour sur la branche locale
     - [x] Ajouter 5 gateways à la base locale pour tests
         - [x] Reprise du SQL et modifications : 
@@ -171,15 +171,15 @@
                 '01:00:5E:xx:xx:xx')
        ```
        - [x] Query successful
-    - [ ] Voir si la réassignation de gateway se fait bien
+    - [x] Voir si la réassignation de gateway se fait bien
         - [x] Retour local, erreurs : 
             - Page not found
             - No access to CORS
             - Failed to load ressource: net
-        - [ ] Résolution
-            - [ ] Export du realm
-            - [ ] Rebuild des containers
+        - [x] Résolution
+            - [x] Export du realm
+            - [x] Rebuild des containers
             - [x] Modification du realm → saas
-            - [ ] Réimportation du realm
-    - [ ] Ajouter une snackbar positive si la reass se fait bien
-    - [ ] Ajouter une snackbar négative si la reass rencontre une erreur
+            - [x] Réimportation du realm
+    - [x] Ajouter une snackbar positive si la reass se fait bien
+    - [x] Ajouter une snackbar négative si la reass rencontre une erreur -->> bah en fait anthony l'avait déjà fait
