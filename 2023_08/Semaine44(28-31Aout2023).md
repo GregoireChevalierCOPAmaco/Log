@@ -183,3 +183,9 @@
             - [x] Réimportation du realm
     - [x] Ajouter une snackbar positive si la reass se fait bien
     - [x] Ajouter une snackbar négative si la reass rencontre une erreur -->> bah en fait anthony l'avait déjà fait
+- [x] Màj Prod pour avancer dans les tests fonctionnels
+    - [x] Connexion à la prod 
+    - [x] Dans le dossier du projet, ```git pull origin develop --no-rebase```
+    - [x] Arrêt & suppression des containers
+    - [x] Rebuild des dockers ```sudo  docker compose --env-file .env.dev -f docker-compose-prod.yml up --always-recreate-deps --build```
+    - [x] Ajout des gateways & kmo boxes dans la db de prod  
