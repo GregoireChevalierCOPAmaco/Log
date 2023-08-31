@@ -72,7 +72,114 @@
 - [ ] Reprise du tableau des tests fonctionnels 
 - [ ] KP-429, Ajouter un retour message au changement de gateway
     - [x] Retour sur la branche locale
-    - [ ] Ajouter 5 gateways à la base locale pour tests
+    - [x] Ajouter 5 gateways à la base locale pour tests
+        - [x] Reprise du SQL et modifications : 
+        ```
+        INSERT INTO public.gateway (mac, datetime, "diskUsage", "temperatureCpu", "freeRam", services)
+        VALUES ('23:a9:dz:ff:d2:cd', '2023-05-07 16:48:43.000000', 101, 29, 30,
+        '{
+          "ATMOS": {
+            "active": true,
+            "memory_usage": "38.6M",
+            "mac_declared": "23:a9:dz:ff:d2:cd",
+            "extras": {
+              "operational_rate": 98.66666666666667
+            }
+          },
+          "RTunnel": {
+            "active": true,
+            "memory_usage": "11.8M"
+          }
+        }'),
+        ('25:a9:fb:ff:d2:cd', '2023-05-17 17:48:43.000000', 101, 29, 30,
+            '{
+            "ATMOS": {
+                "active": true,
+                "memory_usage": "41.53",
+                "mac_declared": "25:a9:fb:ff:d2:cd",
+                "extras": {
+                "operational_rate": 98.66666666666667
+                }
+            },
+            "RTunnel": {
+                "active": true,
+                "memory_usage": "21.8M"
+            }
+            }'),
+            ('24:a9:fb:ff:d2:cd', '2023-05-01 16:48:43.000000', 101, 29, 30,
+            '{
+            "ATMOS": {
+                "active": false,
+                "memory_usage": "47.5M",
+                "mac_declared": "24:a9:fb:ff:d2:cd",
+                "extras": {
+                "operational_rate": 98.66666666666667
+                }
+            },
+            "RTunnel": {
+                "active": true,
+                "memory_usage": "11.8M"
+            }
+            }'),
+            ('24:a9:fb:ff:d2:bc', '2024-04-01 16:48:43.000000', 2323, 29, 30, '{
+                "ATMOS": {
+                "active": true,
+                "memory_usage": "34.6M",
+                "mac_declared": "24:a9:fb:ff:d2:bc",
+                "extras": {
+                    "operational_rate": 98.66666666666667
+                }
+                },
+                "RTunnel": {
+                "active": true,
+                "memory_usage": "11.8M"
+                }
+            }'),
+            ('24:a9:fb:ff:d2:ef', '2023-02-24 09:45:48.347000', 13, 39.444, 81.52787453215763, '{
+                "ATMOS": {
+                "active": true,
+                "memory_usage": "26.6M",
+                "mac_declared": "24:a9:fb:ff:d2:ef",
+                "extras": {
+                    "operational_rate": 98.66666666666667
+                }
+                }
+            }');
+
+        INSERT INTO public.kmo_box (mac, datetime, uptime, "firmwareVersion","checkoutNumber", "gatewayMac")
+        VALUES ('01:00:5E:xx:xx:xx', '2023-03-01 16:48:43.000000', 10, 1.4,1,
+                '22:a9:fb:ff:d2:bc'),
+            ('01:00:5E:xx:xx:33', '2023-03-02 13:44:01.000000', 3, 3,2, '22:a9:fb:ff:d2:bc'),
+            ('01:00:5E:xx:xx:34', '2023-08-02 14:44:01.000000', 6, 2.3,2, '25:a9:fb:ff:d2:cd'),
+            ('01:00:5E:xx:xx:35', '2023-07-02 15:44:01.000000', 5, 3.5,2, '24:a9:fb:ff:d2:bc'),
+            ('01:00:5E:xx:xx:36', '2023-06-02 16:44:01.000000', 4, 2,1, '24:a9:fb:ff:d2:ef');
+
+        INSERT INTO public.store (id, address, city, "postalCode", "isStoreOpen", "numberOfCheckouts", "gatewayMac", "openingHours", brand, "isStoreActive") VALUES ('081439dd-cfda-49e7-85d8-15c6c25c65ca', '7 rue du chêne', 'Nordhouse', '67100', true, 3, '22:a9:fb:ff:d2:cd', '{"fri": ["08:30", "20:00"], "mon": ["08:30", "20:00"], "sat": ["08:30", "20:00"], "sun": ["10:00", "13:00"], "thu": ["08:30", "20:00"], "tue": ["08:30", "20:00"], "wed": ["08:30", "20:00"]}', 'Lidl',true);
+        INSERT INTO public.store (id, address, city, "postalCode", "isStoreOpen", "numberOfCheckouts", "gatewayMac", "openingHours", brand, "isStoreActive") VALUES ('9de16383-c4d8-4616-bc4c-a26795f286ae', '8 rue du chêne', 'Nordhouse', '67100', true, 3, '22:a9:fb:ff:d2:bc', '{"fri": ["08:30", "20:00"], "mon": ["08:30", "20:00"], "sat": ["08:30", "20:00"], "sun": ["10:00", "13:00"], "thu": ["08:30", "20:00"], "tue": ["08:30", "20:00"], "wed": ["08:30", "20:00"]}', 'Norma',true);
+        INSERT INTO public.store (id, address, city, "postalCode", "isStoreOpen", "numberOfCheckouts", "gatewayMac", "openingHours", brand, "isStoreActive") VALUES ('7d1a9808-ccf1-4136-8c8b-b80020ac0ec4', '9 rue du chêne', 'Nordhouse', '67100', true, 3, '22:a9:fb:ff:d2:ef', '{"fri": ["08:30", "20:00"], "mon": ["08:30", "20:00"], "sat": ["08:30", "20:00"], "sun": ["10:00", "13:00"], "thu": ["08:30", "20:00"], "tue": ["08:30", "20:00"], "wed": ["08:30", "20:00"]}', 'Lidl',true);
+
+        INSERT INTO public.event (id, type, duration, datetime, state, "stateValue", motor, "kmoBoxMac")
+        VALUES ('993051ef-1a3e-4781-b60f-1ea7faf7da89', 'pedal', 22.6, '2023-02-22 09:45:48.347000', 'up', null, null,
+                '01:00:5E:xx:xx:xx'),
+            ('75cb0af5-849d-4ce6-b794-a0585136bd8c', 'motor_flag', null, '2023-02-22 09:45:48.347000', 'value', 0.225, '2',
+                '01:00:5E:xx:xx:xx'),
+            ('6ee4988c-8e7b-4c10-820c-07b48fd8c574', 'cpu_temperature_changed', null, '2023-02-22 09:45:48.347000',
+                'thermal_switch', null, '2', '01:00:5E:xx:xx:xx'),
+            ('cbee4323-3f71-4fda-ba96-cc9c122aa5a2', 'power_intensity_changed', null, '2023-02-22 09:45:48.347000',
+                'thermal_switch', null, '2', '01:00:5E:xx:xx:xx'),
+            ('993051ef-1a3e-4781-b60f-1ea7faf7da83', 'ir', 22.6, '2023-03-02 13:43:30.000000', 'down', null, '1',
+                '01:00:5E:xx:xx:xx')
+       ```
+       - [x] Query successful
     - [ ] Voir si la réassignation de gateway se fait bien
+        - [x] Retour local, erreurs : 
+            - Page not found
+            - No access to CORS
+            - Failed to load ressource: net
+        - [ ] Résolution
+            - [ ] Export du realm
+            - [ ] Rebuild des containers
+            - [x] Modification du realm → saas
+            - [ ] Réimportation du realm
     - [ ] Ajouter une snackbar positive si la reass se fait bien
     - [ ] Ajouter une snackbar négative si la reass rencontre une erreur
