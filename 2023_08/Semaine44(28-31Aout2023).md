@@ -1,4 +1,4 @@
-**25 Aout**
+**28 Aout**
 - [ ] Reprise du tableau des tests fonctionnels 
 - [ ] KP-424, Réparer le triage des magasins sur /administration, le fix ne fonctionne pas en prod
     - [x] Retour en local
@@ -27,9 +27,9 @@
         - predict16022023
     - [ ] Réparer le code de la table
 
-    **25 Aout**
+    **29 Aout**
 - [ ] Reprise du tableau des tests fonctionnels 
-- [ ] KP-424, Réparer le triage des magasins sur /administration, le fix ne fonctionne pas en prod
+- [x] KP-424, Réparer le triage des magasins sur /administration, le fix ne fonctionne pas en prod
     - [x] Connexion à pgadmin avec les ids (avec l'app locale, pas le browser)
         - predict-pg/localhost
         - predict16022023
@@ -64,3 +64,15 @@
         @ViewChild(MatPaginator) paginator!: MatPaginator;
         @ViewChild(MatSort) sort!: MatSort;
         ```
+        - [x] Remettre dans /admin les actions de caisse
+        - [x] Déplacer le code dans app-tab-store
+        - [x] Ajouter la searchbar
+        
+**31 Aout**
+- [ ] Reprise du tableau des tests fonctionnels 
+- [ ] KP-429, Ajouter un retour message au changement de gateway
+    - [x] Retour sur la branche locale
+    - [ ] Ajouter 5 gateways à la base locale pour tests
+    - [ ] Voir si la réassignation de gateway se fait bien
+    - [ ] Ajouter une snackbar positive si la reass se fait bien
+    - [ ] Ajouter une snackbar négative si la reass rencontre une erreur
