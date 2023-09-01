@@ -196,3 +196,10 @@
 - [ ] Reprise du tableau des tests fonctionnels 
     - [ ] Reprise des tests de l'application
     - [ ] Ajout de ticket Jira pour chaque issue
+- [X] Résolution du probleme de Test connection AuthenticationFailedException: 535 Authentication Credentials Invalid
+    - [x] Connection à aws avec l'ID IAM
+    - [x] Dans la sidebar, aller dans l'onglet Paramètres SMTP
+    - [x] Cliquer sur le bouton Créer des informations d'identification SMTP
+    - [x] Valider redirige vers le sumup qui affiche les creds
+    - [x] Credentials utilisés, voir le message discord d'Anthony du 1/09 à 11H36
+    - [x] Reach de http://localhost:8080/realms/Cop_saas/login-actions/reset-credentials?client_id=KMO_Predict&tab_id=2mvxJSOLozM et demande de password reset pour g.chevalier@cop-amaco.com fonctionnel
