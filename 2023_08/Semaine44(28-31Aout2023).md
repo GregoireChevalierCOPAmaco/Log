@@ -189,3 +189,10 @@
     - [x] Arrêt & suppression des containers
     - [x] Rebuild des dockers ```sudo  docker compose --env-file .env.dev -f docker-compose-prod.yml up --always-recreate-deps --build```
     - [x] Ajout des gateways & kmo boxes dans la db de prod  
+
+            
+**1er Septembre**
+- [x] Check des mails
+- [ ] Reprise du tableau des tests fonctionnels 
+    - [ ] Reprise des tests de l'application
+    - [ ] Ajout de ticket Jira pour chaque issue
