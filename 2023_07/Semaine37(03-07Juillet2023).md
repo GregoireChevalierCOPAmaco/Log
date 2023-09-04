@@ -385,7 +385,7 @@ set_proxy_header 4 lines voir atmos
     - [x] Création du fichier .env avec ```sudo touch .env``` et ```sudo nano .env```
     ```
     KEYCLOAK_ADMIN=admin
-    KEYCLOAK_ADMIN_PASSWORD=@dminKC-prod!1
+    KEYCLOAK_ADMIN_PASSWORD=minKC-prod!1
     KEYCLOAK_HOSTNAME=host-kc1
     DB_PASSWORD=dbp@06072023-pwpg
     ```
