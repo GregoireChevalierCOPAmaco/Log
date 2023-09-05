@@ -94,7 +94,9 @@
         - [x] Changer l'état d'une caisse depuis l'interface /magasin:dialog
         - [x] N'afficher dans les dropdowns que les gateways non assignées ?
         - [x] Afficher les caisses d'un magasin dynamiquement
+        - [x] Afficher les informations de caisse d'un magasin dynamiquement
     - [ ] Ajout de ticket Jira pour chaque issue
         - [x] Ajout de KP-457 : N'afficher que les gateways dispon
         - [x] Ajout de KP-458 : Appliquer les changements d'états de caisses
         - [x] Ajout de KP-459 : Affiner l'affichage des caisses dans la carte de la page /cop
+        - [x] Ajout de KP-460 : Afficher dynamiquement les informations de caisse dans la boîte de dialogue
