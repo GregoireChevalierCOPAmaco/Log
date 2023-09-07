@@ -108,12 +108,50 @@
     - [ ] Création de branche et switch dessus
     - [ ] Git pull
     - [ ] Trouver où et comment récupérer les données db de gateways
-    - [ ] Lier les données à l'affichage de la carte
+    - [x] Voir avec Guillaume pour savoir comment connecter une gateway
+        - [x] Branchement d'une gateway en réseau eth & prise courant
+        - [ ] Voir avec Jacques pour les installs
+    - [x] Lier les données à l'affichage de la carte
+        - [x] Trouver le code relatif à la carte : fichier cop-store-details.component
+        - [x] Lier les données
+            - [x] Store.service, ajout de :
+            ```
+            getAllGateways() {
+                return this.httpclient.get<GatewayInterface[]>(environment.apiUrl + '/gateways');
+            }
+
+            getBrokenGatewaysCount(gateways: GatewayInterface[]) {
+                return gateways.filter((gateway) => gateway.isBroken).length;
+            }
+            ```
+            - [x] Cop-store-details.component.ts : 
+            ```
+            fetchAllGateways() {
+                this.storeService.getAllGateways().subscribe({
+                next: (gateways) => {
+                    this.totalBrokenGateways = this.storeService.getBrokenGatewaysCount(gateways);
+                },
+                error: (err) => {
+                    console.error('Error fetching gateways', err);
+                },
+                });
+            }
+            ```
+            - [x] Cop-store-details.component.html : 
+            ```
+            <mat-card-subtitle>Gateways Hors-service</mat-card-subtitle>
+            <mat-card-title>{{ totalBrokenGateways }}</mat-card-title>
+            <br>
+            ```
+        - [x] Tests et linting
 - [ ] Sécuriser l'API
     - [ ] Chercher de la documentation sur le sujet
         - [ ] Check de (https://medium.com/devops-dudes/secure-nestjs-rest-api-with-keycloak-745ef32a2370)
         - [ ] Check de (https://itnext.io/protecting-your-nestjs-api-with-keycloak-8236e0998233)
 - [ ] Reprise du tableau des tests fonctionnels 
     - [ ] Reprise des tests de l'application
+        - [x] Affichage du nombre de gateways HS dans la carte de /cop
+        - [x] Affichage du nombre de gateways disponibles non assignées dans la carte de /cop
     - [ ] Ajout de ticket Jira pour chaque issue
+        - [x] Affichage du nombre de gateways (KP-425)
 - [ ] Plonger dans le code relatif au websocket
