@@ -104,10 +104,10 @@
 
 **6 Septembre**
 - [ ] Check des mails
-- [ ] Faire l'affichage des gateways dans la carte de la page /cop (KP-425)
-    - [ ] Création de branche et switch dessus
-    - [ ] Git pull
-    - [ ] Trouver où et comment récupérer les données db de gateways
+- [x] Faire l'affichage des gateways dans la carte de la page /cop (KP-425)
+    - [x] Création de branche et switch dessus
+    - [x] Git pull
+    - [x] Trouver où et comment récupérer les données db de gateways
     - [x] Voir avec Guillaume pour savoir comment connecter une gateway
         - [x] Branchement d'une gateway en réseau eth & prise courant
         - [ ] Voir avec Jacques pour les installs
@@ -154,4 +154,23 @@
         - [x] Affichage du nombre de gateways disponibles non assignées dans la carte de /cop
     - [ ] Ajout de ticket Jira pour chaque issue
         - [x] Affichage du nombre de gateways (KP-425)
+- [ ] Plonger dans le code relatif au websocket
+
+
+**7 Septembre**
+- [ ] Check des mails
+- [ ] Faire l'affichage des gateways dans la carte de la page /cop (KP-425)
+    - [ ] Afficher le nombre de gateways non assignées disponibles
+    - [ ] Afficher les gateways déconnectées ainsi que la dernière date de connexion.
+    - [x] Voir avec Guillaume pour savoir comment connecter une gateway
+        - [x] Branchement d'une gateway en réseau eth & prise courant
+        - [ ] Voir avec Jacques pour les installs
+    - [ ] Lier les données à l'affichage de la carte
+- [ ] Sécuriser l'API
+    - [ ] Chercher de la documentation sur le sujet
+        - [ ] Check de (https://medium.com/devops-dudes/secure-nestjs-rest-api-with-keycloak-745ef32a2370)
+        - [ ] Check de (https://itnext.io/protecting-your-nestjs-api-with-keycloak-8236e0998233)
+- [ ] Reprise du tableau des tests fonctionnels 
+    - [ ] Reprise des tests de l'application de /cop  assignées dans la carte de /cop
+    - [ ] Ajout de ticket Jira pour chaque issue 
 - [ ] Plonger dans le code relatif au websocket
