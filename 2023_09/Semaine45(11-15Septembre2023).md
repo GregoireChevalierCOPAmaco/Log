@@ -1,10 +1,59 @@
 **11 Septembre**
 - [ ] Franck m'a dit de considérer la prise d'un stagiaire, et si le besoin est réel, définir le profil et les missions
+- [x] Brancher une GW locale pour corrélation données base/prod
 - [ ] Check des mails
 - [ ] Faire l'affichage des gateways dans la carte de la page /cop (KP-425)
-    - [ ] Afficher le nombre de gateways non assignées disponibles
+    - [x] Afficher le nombre de gateways non assignées disponibles
+        - [x] Résolution du problème : 
+        ```
+        core.mjs:8405 ERROR Error: NG02200: Cannot find a differ supporting object '[object Object]' of type 'object'. NgFor only supports binding to Iterables, such as Arrays. Did you mean to use the keyvalue pipe? Find more at https://angular.io/errors/NG02200
+        ```
+        - [x] Changement de la méthode d'ouverture de la modale dans cop-store-details : 
+        de
+        ```
+        openUnassociatedGatewaysModalComponent(unassociatedGWs: any) {
+            this.dialog.open(UnassociatedGatewaysModalComponent, {
+            data: {unassociatedGWs: this.unassociatedGWs},
+            });
+            this.fetchAllGateways();
+        }
+        ```
+        à
+        ```
+            openUnassociatedGatewaysModalComponent(unassociatedGWs: any) {
+            this.dialog.open(UnassociatedGatewaysModalComponent, {
+            data: this.unassociatedGWs,
+            });
+            this.fetchAllGateways();
+        }
+        ```
     - [ ] Afficher les gateways déconnectées ainsi que la dernière date de connexion.
-    - [ ] Lier les données à l'affichage de la carte
+    - [x] Lier les données à l'affichage de la carte
+    - [ ] Lint, tests, PR & push
+        - [x] Fix des tests dans cop-store-details.component.spec.ts en rajoutant els variables attendues 
+        ```
+        unassociatedGateways: [],
+        unassociatedGatewaysNumber: 3
+        ```
+        dans les mocks
+        - [ ] Résolution du problème de test CI :
+        ```
+        Cannot log after tests are done. Did you forget to wait for something async in your test?
+        kmo-predict-front:test:     Attempted to log "Error fetching gateways HttpErrorResponse {
+        kmo-predict-front:test:       headers: HttpHeaders {
+        kmo-predict-front:test:         normalizedNames: Map(0) {},
+        kmo-predict-front:test:         lazyUpdate: null,
+        kmo-predict-front:test:         headers: Map(0) {}
+        kmo-predict-front:test:       },
+        kmo-predict-front:test:       status: 0,
+        kmo-predict-front:test:       statusText: 'Unknown Error',
+        kmo-predict-front:test:       url: 'http://localhost:3001/gateways',
+        kmo-predict-front:test:       ok: false,
+        kmo-predict-front:test:       name: 'HttpErrorResponse',
+        kmo-predict-front:test:       message: 'Http failure response for http://localhost:3001/gateways: 0 Unknown Error',
+        kmo-predict-front:test:       error: ProgressEvent { isTrusted: [Getter] }
+        kmo-predict-front:test:     }".
+        ```
 - [ ] Sécuriser l'API
     - [ ] Chercher de la documentation sur le sujet
         - [ ] Check de (https://medium.com/devops-dudes/secure-nestjs-rest-api-with-keycloak-745ef32a2370)
