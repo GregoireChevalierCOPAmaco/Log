@@ -1,0 +1,15 @@
+**11 Septembre**
+- [ ] Franck m'a dit de considérer la prise d'un stagiaire, et si le besoin est réel, définir le profil et les missions
+- [ ] Check des mails
+- [ ] Faire l'affichage des gateways dans la carte de la page /cop (KP-425)
+    - [ ] Afficher le nombre de gateways non assignées disponibles
+    - [ ] Afficher les gateways déconnectées ainsi que la dernière date de connexion.
+    - [ ] Lier les données à l'affichage de la carte
+- [ ] Sécuriser l'API
+    - [ ] Chercher de la documentation sur le sujet
+        - [ ] Check de (https://medium.com/devops-dudes/secure-nestjs-rest-api-with-keycloak-745ef32a2370)
+        - [ ] Check de (https://itnext.io/protecting-your-nestjs-api-with-keycloak-8236e0998233)
+- [ ] Reprise du tableau des tests fonctionnels 
+    - [ ] Reprise des tests de l'application de /cop  assignées dans la carte de /cop
+    - [ ] Ajout de ticket Jira pour chaque issue 
+- [ ] Plonger dans le code relatif au websocket
