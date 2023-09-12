@@ -36,7 +36,7 @@
         unassociatedGatewaysNumber: 3
         ```
         dans les mocks
-        - [ ] Résolution du problème de test CI :
+        - [x] Résolution du problème de test CI :
         ```
         Cannot log after tests are done. Did you forget to wait for something async in your test?
         kmo-predict-front:test:     Attempted to log "Error fetching gateways HttpErrorResponse {
@@ -54,6 +54,12 @@
         kmo-predict-front:test:       error: ProgressEvent { isTrusted: [Getter] }
         kmo-predict-front:test:     }".
         ```
+        - [x] Isolation du problème : le message 
+        ```
+        A worker process has failed to exit gracefully and has been force exited. This is likely caused by tests leaking due to improper teardown. Try running with --detectOpenHandles to find leaks. Active timers can also cause this, ensure that .unref() was called on them.
+        ```
+        qui semble être la source du problème provient des modifs liées au fichier de test cop-store-details.component.spec.ts
+        - [x] Ajout de UnassociatedGatewaysModalComponent dans les declarations de l'app.module.ts
 - [ ] Sécuriser l'API
     - [ ] Chercher de la documentation sur le sujet
         - [ ] Check de (https://medium.com/devops-dudes/secure-nestjs-rest-api-with-keycloak-745ef32a2370)
@@ -62,3 +68,24 @@
     - [ ] Reprise des tests de l'application de /cop  assignées dans la carte de /cop
     - [ ] Ajout de ticket Jira pour chaque issue 
 - [ ] Plonger dans le code relatif au websocket
+
+
+**12 Septembre**
+- [ ] Franck m'a dit de considérer la prise d'un stagiaire, et si le besoin est réel, définir le profil et les missions
+- [x] Brancher une GW locale pour corrélation données base/prod
+- [ ] Check des mails
+- [ ] Faire l'affichage des gateways dans la carte de la page /cop (KP-425)
+    - [x] Afficher le nombre de gateways non assignées disponibles
+        - [x] Résolution du problème de test CI :
+        ```
+        NG0304: 'mat-icon' is not a known element (used in the 'AdministrationComponent' component template):
+        ```
+        - [x] Ajout de MatIconModule et import dans le fichier de test d'administration
+        - [ ] Résolution du problème de test CI :
+        ```
+        NG0304: 'app-tab-store' is not a known element (used in the 'AdministrationComponent' component template):
+        ```
+        - [ ] Résolution du problème de test CI :
+        ```
+        Cannot log after tests are done. Did you forget to wait for something async in your test?
+        ```
