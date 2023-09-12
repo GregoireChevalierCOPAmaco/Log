@@ -74,18 +74,68 @@
 - [ ] Franck m'a dit de considérer la prise d'un stagiaire, et si le besoin est réel, définir le profil et les missions
 - [x] Brancher une GW locale pour corrélation données base/prod
 - [ ] Check des mails
-- [ ] Faire l'affichage des gateways dans la carte de la page /cop (KP-425)
+- [x] Faire l'affichage des gateways dans la carte de la page /cop (KP-425)
     - [x] Afficher le nombre de gateways non assignées disponibles
         - [x] Résolution du problème de test CI :
         ```
         NG0304: 'mat-icon' is not a known element (used in the 'AdministrationComponent' component template):
         ```
         - [x] Ajout de MatIconModule et import dans le fichier de test d'administration
-        - [ ] Résolution du problème de test CI :
+        - [x] Résolution du problème de test CI :
         ```
         NG0304: 'app-tab-store' is not a known element (used in the 'AdministrationComponent' component template):
         ```
-        - [ ] Résolution du problème de test CI :
+        - [x] Ajout de TabStoreComponent dans les déclarations du fichier de test administration
+        - [x] Ajout de KeycloakService dans les providers du fichier
+        - [x] Ajout de FormsModule et import dans le fichier de test d'administration
+        - [x] Résolution du problème de test CI :
         ```
         Cannot log after tests are done. Did you forget to wait for something async in your test?
         ```
+        - [x] Reprise d'une branche clean basée sur develop
+        - [x] Checkout & modifs pour clean les errors console & warnings
+        - [x] Changed test : 
+        ```
+        // it('should call stateOfGateways method and subscribe to onStateOfGateways', () => {
+        //   const websocketService = TestBed.inject(WebsocketService);
+        //   const stateOfGatewaysSpy = jest.spyOn(websocketService, 'stateOfGateways');
+        //   const onStateOfGatewaysSpy = jest.spyOn(websocketService, 'onStateOfGateways').mockReturnValue(of({}));
+
+        //   component.fetchStatOfGateways();
+
+        //   expect(stateOfGatewaysSpy).toHaveBeenCalled();
+        //   expect(onStateOfGatewaysSpy).toHaveBeenCalled();
+        // });
+        ```
+        to : 
+        ```
+        it('should call stateOfGateways method and subscribe to onStateOfGateways', fakeAsync(() => {
+        const websocketService = TestBed.inject(WebsocketService);
+        const stateOfGatewaysSpy = jest.spyOn(websocketService, 'stateOfGateways');
+        const mockData = { 
+            totalGateways: 2,
+            connectedGateways: 2,
+            disconnectedGateways: [],
+            unassociatedGateways: [],
+            unassociatedGatewaysNumber: 0
+        };
+        
+        // Mock the onStateOfGateways method to return an observable
+        jest.spyOn(websocketService, 'onStateOfGateways').mockReturnValue(of(mockData));
+        
+        component.fetchStatOfGateways();
+        
+        // Verify that the stateOfGateways method was called
+        expect(stateOfGatewaysSpy).toHaveBeenCalled();
+        
+        // Ensure that the component's gatewaysLogs property has been updated
+        tick();
+        
+        // Now you can expect that component.gatewaysLogs equals mockData
+        expect(component.gatewaysLogs).toEqual(mockData);
+        }));
+        ```
+        - [x] Lint
+        - [x] Tests
+        - [x] Push & PR
+- [ ] Faire l'affichage de l'état des caisses dans la carte de la page /cop (KP-466)
