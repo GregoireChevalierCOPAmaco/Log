@@ -139,3 +139,73 @@
         - [x] Tests
         - [x] Push & PR
 - [ ] Faire l'affichage de l'état des caisses dans la carte de la page /cop (KP-466)
+    - [x] Création de branche 466 & switch
+    - [x] Retake mineure < br > card gws
+    - [ ] Récupération du nombre de caisses Check données utiles
+        - [ ] Afficher toutes les caisses et leurs données
+            - [x] Création d'une variable dans le fichier cop-details.component : 
+            ```
+            public kmoBoxData: KmoBoxInterface[] | null = null;
+            ```
+            - [x] Création d'une methode getAllKmoBoxes dans le service kmo box : 
+            ```
+            getAllKmoBoxes(){
+                return this.httpclient.get<KmoBoxInterface[]>(this.apiUrl);
+            }
+            ```
+            - [x] 
+            - [ ] Afficher le nombre de caisses HS
+                - [x] Ajout du html dans le fichier : 
+                ```
+                <mat-card-content>
+                    <mat-card-subtitle>Caisses Hors-service</mat-card-subtitle>
+                    <mat-card-title>{{ totalBrokenKmoBoxes }} / {{ totalKmoBoxes }}</mat-card-title>
+                    <br>
+                </div>
+                </mat-card-content>
+                ```
+                - [x] Création des variables totalBrokenKmoBoxes, totalKmoBoxesNumber & totalKmoBoxes
+                - [x] Création d'une methode getKmoBoxCount dans le service kmo box : 
+                ```
+                getAllKmoBoxes(){
+                    return this.httpclient.get<KmoBoxInterface[]>(this.apiUrl);
+                }
+                ```
+        - [ ] Afficher le nombre de caisses en fonctionnement
+        - [ ] Afficher les caisses en maintenance prev
+        - [ ] Afficher les caisses en maintenance urgente
+        ```
+        fetchBrokenKmoBoxes(){
+            this.kmoBoxesService.getAllKmoBoxes().subscribe({
+            next: (response: any) => {
+                if (response && Array.isArray(response.payload)) {
+                this.brokenKmoBoxes = response.payload.filter((kmoBox: any) => kmoBox.isOutOfOrder);
+                this.totalBrokenKmoBoxes = response.payload.filter((kmoBox: any) => kmoBox.isOutOfOrder).length;
+                this.workingKmoBoxes = response.payload.filter((kmoBox: any) => !kmoBox.isOutOfOrder).length;
+                this.curativeKmoBoxes = response.payload.filter(
+                    (kmoBox: any) => kmoBox.maintenanceLevel === "Curative"
+                );  
+                this.curativeKmoBoxesNumber = response.payload.filter(
+                    (kmoBox: any) => kmoBox.maintenanceLevel === "Curative"
+                ).length;
+                this.preventiveKmoBoxes = response.payload.filter(
+                    (kmoBox: any) => kmoBox.maintenanceLevel === "Preventive"
+                );  
+                this.preventiveKmoBoxesNumber = response.payload.filter(
+                    (kmoBox: any) => kmoBox.maintenanceLevel === "Preventive"
+                ).length;
+                } else {
+                this.brokenKmoBoxes = [];
+                }
+            },
+            error: (err) => {
+                console.error('Error fetching kmoboxes', err);
+            },
+            });
+        }
+        ```
+        - [ ] Tester unitairement les methodes créées
+        
+le mailing service marche en dev ?
+comment send mail à l'actualisation de statut d'une GW ?
+penser à ajouter une propriété "nom" ou autre pour identifier plus facilement les gateways
