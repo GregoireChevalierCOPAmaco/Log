@@ -216,5 +216,55 @@ ticket jira prod
 **13 Septembre**
 - [ ] KP-463 /cop, card magasins
     - [x] Nombre de magasins monitorés, déjà dynamique
-    - [ ] Pourcentage de caisses en fonctionnement 
+    - [x] Pourcentage de caisses en fonctionnement  
+        - [x] Récupérer le nombre total de kmoBoxes 
+        - [x] Récupérer le nombre de kmoBoxes qui ont un état différent de "Preventive"
+        - [x] Faire le calcul & arrondir
+        ```
+        this.totalKmoBoxes = response.payload.length;
+        this.workingKmoBoxesPercentage = parseFloat(((this.workingKmoBoxes / this.totalKmoBoxes) * 100).toFixed(1));
+        ```
     - [ ] Nombre & détail des magasins qui ont au moins une caisse en maintenance
+        - [x] Récupérer toutes les kmoBoxes
+        - [x] Trier par maintenanceLevel != Operationnel
+        - [x] Modifications back
+            - [x] Ajout de ```gatewayMac: string;```dans le DTO get kmo box
+            - [x] Ajout de 
+            ```
+            @Column({type: 'string', nullable: true})
+            gatewayMac: string;
+            ```
+            dans l'entity
+            - [x] Modification de la méthode : 
+            ```
+            async getKmoBoxesWithEvents(): Promise<GetLambdaKmoBoxDto[]> {
+                const kmoBoxes = await KmoBox.createQueryBuilder('kmoBox')
+                .leftJoinAndSelect('kmoBox.events', 'event')
+                .addSelect('kmoBox.gatewayMac')
+                .getMany();
+            ```
+            dans le service kmo boxes
+            - [x] Rebuild du docker pour maj back
+        - [ ] Récupérer la propriété gatewayMac associée
+        - [ ] Récupérer l'adresse, la ville & la brand du magasin ayant la gateway associée en propriété
+        - [x] Modifications back
+            - [x] Ajout de ```gatewayMac: string;```dans le DTO get store
+            - [x] Ajout de 
+            ```
+            @Column({type: 'string', nullable: true})
+            gatewayMac: string;
+            ```
+            dans l'entity
+            - [x] Modification de la méthode : 
+            ```createQueryBuilder('store')
+                .addSelect('store.gatewayMac');
+            ```
+            dans le service stores
+            - [x] Rebuild du docker pour maj back
+    - [x] Lint
+    - [ ] Modifier les tests pour faire passer suite aux modifs back
+- [ ] KP-467 Statut des magasins
+    - [ ] Afficher la liste des magasins avec au moins une maintenance urgente
+        - [ ] Afficher les caisses problématques et leur statut
+    - [ ] Afficher la liste des magasins avec au moins une maintenance préventive
+        - [ ] Afficher les caisses problématques et leur statut
