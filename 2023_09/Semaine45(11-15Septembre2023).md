@@ -209,3 +209,12 @@
 le mailing service marche en dev ?
 comment send mail à l'actualisation de statut d'une GW ?
 penser à ajouter une propriété "nom" ou autre pour identifier plus facilement les gateways
+
+brainstorm avec anthony pour kp 419
+ticket jira prod
+
+**13 Septembre**
+- [ ] KP-463 /cop, card magasins
+    - [x] Nombre de magasins monitorés, déjà dynamique
+    - [ ] Pourcentage de caisses en fonctionnement 
+    - [ ] Nombre & détail des magasins qui ont au moins une caisse en maintenance
