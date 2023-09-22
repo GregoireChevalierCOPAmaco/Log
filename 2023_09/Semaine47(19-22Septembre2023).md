@@ -106,8 +106,8 @@ penser pour la suite à changer gateway mac par serial number , faire les change
         ```
         sudo  docker compose --env-file .env.beta -f docker-compose-prod.yml up --build
         ```
-- [ ] KP-453 Ajouter un rafraîchissement de la page à l'ajout/duplication/modification de magasin de la page /admin
-    - [ ] Retour en local
+- [x] KP-453 Ajouter un rafraîchissement de la page à l'ajout/duplication/modification de magasin de la page /admin
+    - [x] Retour en local
     - [x] Création de branche
     ```
     git checkout -b feat/KP-453_autorefresh_pages_onstores_updates
@@ -237,3 +237,34 @@ penser pour la suite à changer gateway mac par serial number , faire les change
     }
     Now, when you submit a form in one of the modals, it will emit a refresh event, and the AdministrationComponent will subscribe to that event and trigger a refresh action, such as calling getStores to refresh the data on the page.
     ```
+- [ ] KP-476 Rendre fonctionnel le changement d'état d'une caisse au clic sur la modale
+    - [ ] Retour en local
+    - [ ] Création de branche
+    ```
+    git checkout -b fix/KP-476_apply_checkout_status_change_onclick
+    ```
+
+    renvoyer le user sur le magasin en question dans la liste des magasin critiques / a risques
+
+    mettre les cards de caisses en couleur selon leur état dans la vue magasin
+
+
+**21Septembre**
+- [x] KP-476 Rendre fonctionnel le changement d'état d'une caisse au clic sur la modale
+    - [x] Ajout d'une modif dans la ligne : 
+    ```
+    (selectionChange)="updateKmoBox()"
+    ```
+    dans 
+    ```
+    <mat-form-field appearance="fill">
+        <mat-select  [(ngModel)]="data.maintenanceLevel" (selectionChange)="updateKmoBox()">
+        <mat-option value="Operationnel">Operationnel</mat-option>
+        <mat-option value="R.A.S">R.A.S</mat-option>
+        <mat-option value="Curative">Curative</mat-option>
+        <mat-option value="Predictive">Predictive</mat-option>
+        </mat-select>
+    </mat-form-field>
+    ```
+- [x] Màj Jira des tickets doublon
+- [ ] Màj Jira des tickets à faire après le point de la veille
