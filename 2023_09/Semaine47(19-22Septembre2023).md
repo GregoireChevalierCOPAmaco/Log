@@ -270,3 +270,4 @@ penser pour la suite à changer gateway mac par serial number , faire les change
 - [ ] Màj Jira des tickets à faire après le point de la veille
 - [x] Mise en place des gateways test dans le bureau avec Jacques
 - [x] Test des gateways dans le bureau avec Jacques & modifs sur le timeout de connexion
+
