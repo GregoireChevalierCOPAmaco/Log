@@ -99,3 +99,4 @@
     ```
     - [x] Update du sql discord
     - [ ] Résolution de l'affichage 10+ stores
+    - [x] Faire passer les tickets jira à faire dans le prochain sprint depuis le backlog
