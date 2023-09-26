@@ -103,9 +103,22 @@
 
 **26 Septembre**
 - [ ] Mise à jour Kélio
-- [ ] KP-490 : Fix l'affichage des magasins sur /cop pour pouvoir afficher les magasins au-delà de 10
-    - [ ] Résolution de l'affichage 10+ stores
+- [x] KP-490 : Fix l'affichage des magasins sur /cop pour pouvoir afficher les magasins au-delà de 10
+    - [x] Résolution de l'affichage 10+ stores
         - [ ] Trifouillage du mat-paginator
         - [x] ```git reset --hard```
         - [x] ```git pull origin develop```
         - [x] ```docker compose --env-file .env.dev -f docker-compose.dev.yml up --renew-anon-volumes --always-recreate-deps --build```
+        - [x] Reprise sur des bases saines
+        Ne marchait pas UNIQUEMENT à cause de :
+        ```
+        @ViewChild(MatSort) sort!: MatSort;
+        @ViewChild(MatPaginator) paginator!: MatPaginator;
+        ```
+        à remplacer par : 
+        ```
+        private paginator!: MatPaginator;
+        private sort!: MatSort;
+        ```
+        pour rendre fonctionnel.
+        PAGINATOR DE SES MOOOOOOOORTS ! 
