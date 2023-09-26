@@ -106,3 +106,6 @@
 - [ ] KP-490 : Fix l'affichage des magasins sur /cop pour pouvoir afficher les magasins au-delà de 10
     - [ ] Résolution de l'affichage 10+ stores
         - [ ] Trifouillage du mat-paginator
+        - [x] ```git reset --hard```
+        - [x] ```git pull origin develop```
+        - [x] ```docker compose --env-file .env.dev -f docker-compose.dev.yml up --renew-anon-volumes --always-recreate-deps --build```
