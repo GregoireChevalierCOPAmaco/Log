@@ -100,3 +100,9 @@
     - [x] Update du sql discord
     - [ ] Résolution de l'affichage 10+ stores
     - [x] Faire passer les tickets jira à faire dans le prochain sprint depuis le backlog
+
+**26 Septembre**
+- [ ] Mise à jour Kélio
+- [ ] KP-490 : Fix l'affichage des magasins sur /cop pour pouvoir afficher les magasins au-delà de 10
+    - [ ] Résolution de l'affichage 10+ stores
+        - [ ] Trifouillage du mat-paginator
