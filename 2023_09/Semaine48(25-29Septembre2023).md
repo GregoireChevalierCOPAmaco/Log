@@ -122,3 +122,51 @@
         ```
         pour rendre fonctionnel.
         PAGINATOR DE SES MOOOOOOOORTS ! 
+        A changer aussi : 
+        ```
+          getStores() {
+            this.storeService.getStores(this.page, this.pageSize,this.query).subscribe({
+            next: (data) => {
+                this.dataSource.data = data.items;
+                this.pageSize = data.meta.itemsPerPage;
+                this.length = data.items.length;
+            },
+            error: (err) => err,
+            });
+        }
+        ```
+        en : 
+        ```
+            getStores() {
+            this.storeService.getStores(this.page, this.pageSize,this.query).subscribe({
+            next: (data) => {
+                this.dataSource.data = data.items;
+                this.pageSize = data.meta.itemsPerPage;
+                this.length = data.meta.totalItems;
+            },
+            error: (err) => err,
+            });
+        }
+        ```
+- [ ] kp-488 Rediriger l'user sur la vue du magasin au clic dans les listes de magasins de cards sur la vue /cop
+    - [ ] Création de branche & switch
+
+**27 Septembre** 
+- [x] kp-488 Rediriger l'user sur la vue du magasin au clic dans les listes de magasins de cards sur la vue /cop
+    - [x] ajout du html : 
+    ```
+    <mat-card 
+      (click)="openDialog(box)"
+      [style.background-color]="box.maintenanceLevel === 'Preventive' ? 'rgb(253 230 138)' : (box.maintenanceLevel === 'Curative' ? 'rgb(220 38 38)' : 'inherit')"
+      class="hover:opacity-75 text-center w-42 h-32"
+    >
+    ```
+    - [x] Changement de tous les 'Predictive' du projet en 'Preventive' pour harmonisation & fonctionnement global
+    - [x] 
+    ```
+    git add .  
+    git commit -m "feat(front): Added dynamic color change on kmo status change for cards in store view"
+    git push --set-upstream origin feat/KP-488_display_checkoutCards_coloured_by_status  
+    ```
+    - [x] PR github
+- [ ]
