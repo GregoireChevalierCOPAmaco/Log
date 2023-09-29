@@ -169,4 +169,12 @@
     git push --set-upstream origin feat/KP-488_display_checkoutCards_coloured_by_status  
     ```
     - [x] PR github
-- [ ]
+- [ ] Mise à jour Jira
+- [ ] Mise à jour document excel tests
+
+
+**29 Septembre**
+- [ ] Réunion SAV Pascal/Adrien/Béatrice
+    - [ ] Récupération éventuelle des SIM dans les magasins NORMA, à réinjecter dans 
+    - [ ] Récupérer des tablettes pour redispatcher aux chefs d'équipe
+    - [ ] Envoyer duplicata à l'adresse mail du magasin, comment obtenir l'adresse mail ?
