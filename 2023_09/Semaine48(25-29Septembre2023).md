@@ -178,3 +178,4 @@
     - [ ] Récupération éventuelle des SIM dans les magasins NORMA, à réinjecter dans 
     - [ ] Récupérer des tablettes pour redispatcher aux chefs d'équipe
     - [ ] Envoyer duplicata à l'adresse mail du magasin, comment obtenir l'adresse mail ?
+    - [ ] Offrir la possiblité au monteur dans le rapport (serrure / sangle ...) de préciser, gauche/droite, avant/arrière ...
