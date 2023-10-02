@@ -1,1 +1,18 @@
 **02 Octobre**
+- [x] Check des mails
+- [ ] Mise à jour Jira
+    - [x] Détail de KP-510
+    - [ ] Review des tickets à faire 
+- [x] KP-452 : Diagnostique et update Jira
+- [ ] Poursuite des tests fonctionnels
+    - [x] Capture du KP-514 à la modification de store
+- [ ] Aide à Jacques pour cibler d'où vient le problème d'events qui ne rentrent pas en base
+- [x] Reprise de db pour fix désassignation store modifié
+- [x] Reprise de db pour assigner un magasin à chaque kmobox
+- [ ] Réunion SAV, rebelote
+    - Fred Liger & Alex Wandres tablettes ok mises à jour sur site
+    - SAV relancé
+    - Magasin FR0544
+    - Faire liste de magasins récents à intégrer dans la base & actualiser en fonction
+    - Tablettes vont revenir pour être mises à jour
+    - [x] Envoyer liste tablettes à Bonetto
