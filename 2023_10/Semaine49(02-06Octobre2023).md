@@ -136,5 +136,54 @@
         export class StoreRepository extends Repository<Store> {}
         ```
         - [x] Imports & provide, mais toujours erreur : Nest can't resolve dependencies of the StoresService (StoreRepository, ?). Please make sure that the argument Repository at index [1] is available in the StoresModule context.
-        - [ ] ```git reset --hard```
-        - [ ] Reprise sur des bases saines
+        - [x] ```git reset --hard```
+        - [x] Reprise sur des bases saines
+        - [x] Modification du fichier store.service.ts (front) :
+        ```
+        changeGateway(id: string ,mac: string){
+            const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            });
+
+            const body = { gatewayMac: mac };
+
+            return this.httpclient.patch(this.apiUrl + '/reassignGateWay/' + id, body, {
+            headers,
+            });
+        }
+        ```
+        - [x] Modification du fichier change-gateway-assignation.component.ts : 
+        ```
+        selectedGatewayMac: string | undefined;
+        ...
+        reassignGateway() {
+            if (this.selectedGatewayMac) {
+            this.storeService.changeGateway(this.data.id, this.selectedGatewayMac).subscribe(
+                () => {
+                this.snackBar.open('Gateway reassigned successfully', 'Close', {
+                    panelClass: ['snackbarGreen'],
+                });
+                this.dialogRef.close();
+                },
+                (error) => {
+                this.snackBar.open('Failed to reassign gateway', 'Close', {
+                    panelClass: 'snackbarRed',
+                });
+                throw error;
+                }
+            );
+            } else {
+            // Handle the case where no gateway is selected
+            this.snackBar.open('Please select a gateway', 'Close', {
+                panelClass: 'snackbarRed',
+            });
+            }
+        }
+        ```
+        - [x] J'ai toujours le problème de duplicate key
+        ```
+        ERROR [ExceptionsHandler] duplicate key value violates unique constraint "REL_e36699fed6e6a91d65a0e9516b"
+        ```
+        - [x] Défonce de la db locale
+        - [x] Rebuild de la db locale
+        - [x] TLDR : le code est fonctionnel, mais l'application renvoie une 500 avec duplicate unique key parce que la liaison n'est pas faite dans la table gateway avec le storeId
