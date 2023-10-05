@@ -187,3 +187,19 @@
         - [x] Défonce de la db locale
         - [x] Rebuild de la db locale
         - [x] TLDR : le code est fonctionnel, mais l'application renvoie une 500 avec duplicate unique key parce que la liaison n'est pas faite dans la table gateway avec le storeId
+    - [ ] Ticket KP-452 fix duplicate store
+        - [x] Ajout de deux
+        ```
+        console.error(error)
+        ```
+        pour cibler le problème
+
+**05 Octobre**
+- [ ] Mise à jour Jira
+    - [x] Ajout de :
+    ```
+    class="hover:bg-gray-100 hover:cursor-pointer"
+    ```
+    dans le <li> des html
+    - [x] Commit, push et PR pour KP-510 QoL
+    - [ ] Ticket KP-517 fix désactivation de store
