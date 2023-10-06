@@ -203,3 +203,18 @@
     dans le <li> des html
     - [x] Commit, push et PR pour KP-510 QoL
     - [ ] Ticket KP-517 fix désactivation de store
+        - [x] Repasse sur develop et pull origin
+        - [x] Crééation de branche KP-517
+
+-> Verifier que il y est app tester d'installer sur la tablette avec un compte google connecter 
+-> si pas apptester connecter mail gerance.cop-amamco.com mdp COPAMACO2022**
+-> dans les mail chercher le mail qui notifie une nouvelle version de l'app KMO-Assist tu veras il y'aura un lien vers app tester
+-> connecter dans apptester le compte gmail gerance.cop-amaco.gmail.com
+-> télécharger l'app KMO-ASSIST
+-> si jamais les login sont Adresse mail cop mdp COPkmo67 
+
+voir avec jacques pour les infos des caisses
+
+**06 Octobre**
+- [ ] Mise à jour Jira
+    - [ ] Ticket KP-517 fix désactivation de store
