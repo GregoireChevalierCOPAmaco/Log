@@ -216,5 +216,18 @@
 voir avec jacques pour les infos des caisses
 
 **06 Octobre**
+- [x] Check des mails
+    - [x] Bot letsencrypt informe de la fin de validité du certificat dans 30 jours
+    - [ ] Connection à la prod pour voir si le renouvellement est prévu et comment
 - [ ] Mise à jour Jira
     - [ ] Ticket KP-517 fix désactivation de store
+
+idée pour la suite : KP-454 afficher dyna infos caisses
+    - créer un bouton refresh qui actualise les events ?
+    - récupérer les données event
+    - faire un tri par kmo box mac
+    - récupérer la mac gateway associée
+    - récupérer les infos events
+    - isoler les events correspondants à la mac kmobox
+    - créer des variables
+    - afficher les variables
