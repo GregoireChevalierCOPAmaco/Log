@@ -62,5 +62,171 @@
         ```
         - [x] Question : Est-ce qu'on veut récupérer à chaque intervalle (minute ?) l'état de chaque caisse de chaque de chaque store ? Non, Anthony conseille d'utiliser un worker Nest
         - [ ] Recherches sur les nest workers
+        - [x] Création du worker
+        ```
+        cd .\kmo-predict-back\
+        nest generate service worker/worker
+
+        CREATE src/worker/worker.module.ts (83 bytes)
+        UPDATE src/app-test.module.ts (1619 bytes)
+
+        nest generate service worker/worker
+
+        CREATE src/worker/worker/worker.service.spec.ts (460 bytes)
+        CREATE src/worker/worker/worker.service.ts (90 bytes)
+        UPDATE src/worker/worker.module.ts (170 bytes)
+        ```
+        - [x] Installation de dépendance à la racine : 
+        ```
+        npm install --save @nestjs/schedule --workspace=kmo-predict-back --legacy-peer-deps
+        ```
+        - [x] Création du worker.module
+        ```
+        import { Module } from '@nestjs/common';
+        import { ScheduleModule } from '@nestjs/schedule';
+        import { WorkerService } from './worker/worker.service';
+
+        @Module({
+        imports: [ScheduleModule.forRoot()],
+        providers: [WorkerService],
+        })
+        export class WorkerModule {}
+        ```
+        - [x] Création du worker.service
+        ```
+        import { Injectable, Logger } from '@nestjs/common';
+        import { Interval } from '@nestjs/schedule';
+        import { Event } from 'src/app/events/entities/event.entity';
+
+        @Injectable()
+        export class WorkerService {
+        private readonly logger = new Logger(WorkerService.name);
+
+        @Interval(120000) // Run every 2 minutes
+        async handleInterval() {
+            try {
+            // Get today's date as a string in the format "YYYY-MM-DD"
+            const today = new Date().toISOString().split('T')[0];
+
+            // Find the most recent event for each KmoBox for today
+            const latestEvents = await Event.query(`
+                SELECT DISTINCT ON (kmoBoxMac) *
+                FROM event
+                WHERE datetime::date = $1
+                ORDER BY kmoBoxMac, datetime DESC
+            `, [today]);
+
+            // Process the latest events as needed
+            for (const event of latestEvents) {
+                // Your processing logic here
+                this.logger.log(`Processed event: ${event.id}`);
+            }
+
+            this.logger.log(`Processed ${latestEvents.length} events for today.`);
+            console.log('worker de rcupération des events du jour lancé à ' + new Date().toISOString());
+            
+            } catch (error) {
+            this.logger.error(`Error: ${error.message}`);
+            }
+        }
+        }
+        ```
+        - [x] tests du service : 
+        - [x] 
         - [ ] Création d'une routine qui cherche les infos
         - [ ] Exploitation des infos en conséquence
+
+now how can i store all the events isolated by the created store into a variable and display it in my front end with angular in the /cop page ?
+
+- dans event
+créer les methodes avec typeorm pour récupérer les events
+importer dans le module du worker 
+injecter le service event
+
+
+**12 Octobre**
+Rather than doing all the heavy lifting front-end, i would rather use a Nest worker to do it. I want you to  :create me a worker that  :
+- is named worker
+- sorts the Events table to keep only events of today's date
+- keeps one event per different kmoBox mac (the most recent event)
+- resets itself every two minutes
+- use TypeOrm to deal with every database interaction
+- [x] Passage de la logique dans l'events service : 
+```
+@Interval(20000)
+  async processEvents() {    
+    try {
+      const currentDatetime = new Date();
+      currentDatetime.setHours(0, 0, 0, 0); 
+
+      // Find all events for today
+      const events = await Event.find({
+        relations: ['kmoBox'],
+        where: {
+          datetime: MoreThanOrEqual(currentDatetime.toISOString()),
+        },
+      });      
+
+      // Create a map to store the most recent event for each KmoBox
+      const kmoBoxEventsMap = new Map<string, Event>();
+
+      // Iterate through events and keep the most recent event for each KmoBox
+      events.forEach((event) => {
+        const kmoBoxMac = event.kmoBox.mac;
+        if (!kmoBoxEventsMap.has(kmoBoxMac)) {
+          kmoBoxEventsMap.set(kmoBoxMac, event);
+        } else {
+          const existingEvent = kmoBoxEventsMap.get(kmoBoxMac);
+          if (event.datetime > existingEvent.datetime) {
+            kmoBoxEventsMap.set(kmoBoxMac, event);
+          }
+        }
+      });
+
+      // Extract the time difference and state for each KmoBox
+      const kmoBoxInfoArray = [];
+      
+      for (const [kmoBoxMac, event] of kmoBoxEventsMap.entries()) {
+        const timeDelta = currentDatetime.getTime() - new Date(event.datetime).getTime();
+        const kmoCurrentState = event.state;
+        kmoBoxInfoArray.push({ mac: kmoBoxMac, timeDelta, kmoCurrentState });
+        
+      }
+      console.log(kmoBoxInfoArray);
+      return kmoBoxInfoArray;
+      // You can now use kmoBoxInfoArray as needed, e.g., save it to a file or send it to another service.
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+```
+- [x] Suppression des workers
+- [x] Création d'un event.service.ts dans le front :
+```
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { environment } from "../../../environments/environment";
+
+@Injectable({
+    providedIn: 'root',
+  })
+  export class EventService {
+    apiUrl = environment.apiUrl + '/events';
+  
+    constructor(private httpclient: HttpClient) {}
+  
+    getTodaysEvents(): Observable<any[]> {
+        return this.httpclient.get<any[]>(
+          this.apiUrl + 
+          '/events/todays-events'
+          );
+      }
+
+}
+```
+
+event service : mettre la logique de /cop qui cherche les caisses up dedans
+
+
