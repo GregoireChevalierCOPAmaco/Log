@@ -40,3 +40,10 @@
         - [x] Destruction containers et rebuild sain de la db 
         - [x] Modif du fichier SQL discord
     - [ ] interdire l'accès aux pages /cop aux users dr & manager 
+
+
+**17 Octobre**
+- [x] Check des mails
+- [ ] Mise à jour Jira
+- [ ] Reprise kp-492
+    - [ ] Résolution des erreurs Type '"xx"' is not assignable to type 'TypeEvent | FindOperator<TypeEvent>'.
