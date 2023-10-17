@@ -35,4 +35,8 @@
             - calculate the time spent between the two events in seconds and round it to the closest number
             - add this number to the "uptime" property of the kmoBox related to the events
         ```
+        - [x] création de branche et checkout
+        - [x] Rebuild des containers et relance : ERR_EMPTY_RESPONSE, due au fait que la connection ne peut se faire à la db à cause d'un problème d'enum
+        - [x] Destruction containers et rebuild sain de la db 
+        - [x] Modif du fichier SQL discord
     - [ ] interdire l'accès aux pages /cop aux users dr & manager 
