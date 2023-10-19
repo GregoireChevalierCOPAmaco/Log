@@ -318,3 +318,19 @@
 - [ ] Mise à jour Jira
 - [ ] Début kp-556
     - [ ] Exploitation des données pour les rendre exploitables
+        - [x] Écriture de la logique : 
+        ```
+        const uptimeHours = Math.floor((this.data.uptime) / 3600)
+        const remainingMinutes = this.data.uptime % 3600
+        const uptimeMinutes = Math.floor(remainingMinutes /60)
+        ```
+        - [x] Intégration au html
+        ```
+        <p>{{this.uptimeHours}}h{{this.uptimeMinutes}}m</p>
+        ```
+        - [x] Rebuild du docker
+        - [ ] Création de la logique pour l'affichage durée on/durée off
+            - À chaque event de type motor
+            - Récupérer le champ duration
+            - L'ajouter incrémentalement à une varialbe durée on
+            - Soustraire la variable durée on au uptime total
