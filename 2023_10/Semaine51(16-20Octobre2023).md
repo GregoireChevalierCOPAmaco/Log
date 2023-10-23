@@ -329,8 +329,19 @@
         <p>{{this.uptimeHours}}h{{this.uptimeMinutes}}m</p>
         ```
         - [x] Rebuild du docker
+        - [x] Ajout d'une colonne motorUsage à l'entité kmoBox
+        - [x] Rebuild de la base
+            - [x] Ajout de la colonne à la base
+            ```
+            ALTER TABLE public.kmo_box
+            ADD COLUMN "motorUsage" float;
+            ```
         - [ ] Création de la logique pour l'affichage durée on/durée off
             - À chaque event de type motor
             - Récupérer le champ duration
-            - L'ajouter incrémentalement à une varialbe durée on
+            - L'ajouter incrémentalement à la property motorUsage
             - Soustraire la variable durée on au uptime total
+- [ ] Pour la suite des évènements, rajouter les champs dont on aura besoin pour les autres entités
+
+
+**20 Octobre**
