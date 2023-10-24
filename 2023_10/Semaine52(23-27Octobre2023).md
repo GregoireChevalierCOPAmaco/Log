@@ -1,4 +1,4 @@
-**19 Octobre**
+**23 Octobre**
 - [x] Check des mails
 - [ ] Mise à jour Jira
 - [ ] Début kp-556
@@ -60,3 +60,83 @@
             recherche - checkbox to pin & summup
             head to head with 2 cards
             faire tache jira
+
+**24 Octobre**
+- [x] Check des mails
+- [ ] Mise à jour Jira
+- [ ] Début kp-556
+    - [ ] Exploitation des données pour les rendre exploitables
+        - [x] Affichage du temps depuis le dernier allumage de la caisse
+            - [x] Création de route pour find évents de fermeture & ouverture de caisse 
+            ```
+              @Get('latest-opened-event/:kmoBoxMac')
+            async getLastOpenedEvent(@Param('kmoBoxMac') kmoBoxMac: string) {
+                const event = await this.eventsService.getLastOpenedEvent(kmoBoxMac);
+                return event;
+            }
+
+            @Get('latest-closed-event/:kmoBoxMac')
+            async getLastClosedEvent(@Param('kmoBoxMac') kmoBoxMac: string) {
+                const event = await this.eventsService.getLastClosedEvent(kmoBoxMac);
+                return event;
+            }
+            ```
+            - [x] Création de logique back : 
+            ```
+              async getLastOpenedEvent(kmoBoxMac: string): Promise<Event | null> {
+                const event = await Event.createQueryBuilder('event')
+                .where('event.state = :state', { state: 'open' })
+                .andWhere('event.kmoBox.mac = :kmoBoxMac', { kmoBoxMac })
+                .orderBy('event.datetime', 'DESC')
+                .getOne();
+
+                return event;
+            }
+
+            async getLastClosedEvent(kmoBoxMac: string): Promise<Event | null> {
+                const event = await Event.createQueryBuilder('event')
+                .where('event.state = :state', { state: 'closed' })
+                .andWhere('event.kmoBox.mac = :kmoBoxMac', { kmoBoxMac })
+                .orderBy('event.datetime', 'DESC')
+                .getOne();
+
+                return event;
+            }
+            ```
+            - [x] Création de logique front : 
+            ```
+            this.eventsService.getLatestClosedEvent(kmoBoxMac).subscribe({
+                next: (latestClosedEvent) => {
+                    if (latestClosedEvent && latestClosedEvent.state === 'closed') {
+                    this.eventsService.getLatestOpenedEvent(kmoBoxMac).subscribe({
+                        next: (latestOpenedEvent) => {
+                        if (latestOpenedEvent && latestOpenedEvent.state === 'open') {
+                            const timeDiff =
+                            new Date().getTime() -
+                            new Date(latestClosedEvent.datetime).getTime();
+                            this.offTime = Math.floor(timeDiff / 1000);
+                            
+                            this.offTimeHours = Math.floor((this.offTime) / 3600);
+                            const remainingOffTimeMinutes = this.offTime % 3600;
+                            this.offTimeMinutes = Math.floor(remainingOffTimeMinutes / 60);
+                            
+                        } else {
+                            this.offTime = 0;
+                        }
+                        },
+                        error: (err) => {
+                        this.snackBar.open(err, 'Ok');
+                        },
+                    });
+                    } else {
+                    this.offTime = 0;
+                    }
+                },
+                error: (err) => {
+                    this.snackBar.open(err, 'Ok');
+                },
+            });
+            ```
+        - [x] Lint & tests
+        - [x] Commit
+    - [ ] Kp-573 powerpoint /statistiques
