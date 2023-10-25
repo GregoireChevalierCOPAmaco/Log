@@ -140,3 +140,12 @@
         - [x] Lint & tests
         - [x] Commit
     - [ ] Kp-573 powerpoint /statistiques
+
+
+**25 Octobre**
+- [x] Check des mails
+- [ ] Mise à jour Jira
+- [ ] Suite kp-556
+    - [ ] pull develop et résoudre les conflits
+    - [ ] kp-574
+- [ ] Kp-573 powerpoint /statistiques
