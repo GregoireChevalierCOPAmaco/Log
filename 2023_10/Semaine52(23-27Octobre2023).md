@@ -146,6 +146,13 @@
 - [x] Check des mails
 - [ ] Mise à jour Jira
 - [ ] Suite kp-556
-    - [ ] pull develop et résoudre les conflits
-    - [ ] kp-574
-- [ ] Kp-573 powerpoint /statistiques
+    - [x] pull develop et résoudre les conflits
+    - [x] Résolution de invalid input value for enum event_type_enum: "IR"
+    bug fantôme, redémarrage du docker et ok
+    - [x] Résolution du problème de ci, suppression des motorUsage en trop dans les mocks des tests
+    - [x] kp-574
+    - [ ] KP-575
+- [x] Kp-573 powerpoint /statistiques
+- [x] Réunion rôles keycloak
+    - [x] Création du rôle user_cop
+    - [x] Export du realm
