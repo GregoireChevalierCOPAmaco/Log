@@ -163,3 +163,83 @@
 - [ ] Mise à jour Jira
 - [ ] Suite kp-556
     - [ ] KP-570 moyennes IR & Pédale
+        - [x] Création des routes 
+        ```
+          @Get('ir-events-in-last-hour/:kmoBoxMac')
+        async getIREventsInLastHour(@Param('kmoBoxMac') kmoBoxMac: string) {
+            const irEvents = await this.eventsService.getIREventsInLastHour(kmoBoxMac);
+            return irEvents;
+        }
+
+        @Get('pedal-events-in-last-hour/:kmoBoxMac')
+        async getPedalEventsInLastHour(@Param('kmoBoxMac') kmoBoxMac: string) {
+            const pedalEvents = await this.eventsService.getPedalEventsInLastHour(kmoBoxMac);
+            return pedalEvents;
+        }
+        ```
+        - [x] Création dela logique back :
+        ```
+          async getIREventsInLastHour(kmoBoxMac: string): Promise<Event[]> {
+            const oneHourAgo = new Date();
+            oneHourAgo.setHours(oneHourAgo.getHours() - 1);
+
+            const irEvents = await this.eventRepository.find({
+            where: {
+                type: TypeEvent.IR,
+                kmoBox: {
+                mac: kmoBoxMac,
+                },
+                datetime: MoreThanOrEqual(oneHourAgo.toISOString()),
+            },
+            });
+
+            return irEvents;
+        }
+
+        async getPedalEventsInLastHour(kmoBoxMac: string): Promise<Event[]> {
+            const oneHourAgo = new Date();
+            oneHourAgo.setHours(oneHourAgo.getHours() - 1);
+
+            const pedalEvents = await this.eventRepository.find({
+            where: {
+                type: TypeEvent.PEDAL,
+                kmoBox: {
+                mac: kmoBoxMac,
+                },
+                datetime: MoreThanOrEqual(oneHourAgo.toISOString()),
+            },
+            });
+
+            return pedalEvents;
+        }
+        ```
+        - [x] Ajout logique front : 
+        ```
+        getIREventsInLastHour(kmoBoxMac: string): Observable<any[]> {
+            return this.httpclient.get<any[]>(`${this.apiUrl}/ir-events-in-last-hour/${kmoBoxMac}`);
+        }
+
+        getPedalEventsInLastHour(kmoBoxMac: string): Observable<any[]> {
+            return this.httpclient.get<any[]>(`${this.apiUrl}/pedal-events-in-last-hour/${kmoBoxMac}`);
+        }
+        ```
+        &
+        ```
+        this.eventsService.getIREventsInLastHour(kmoBoxMac).subscribe({
+        next: (events) => {        
+            this.irEventCount = events.length;
+        },
+        error: (err) => {
+            this.snackBar.open(err, 'Ok');
+        },
+        });
+
+        this.eventsService.getPedalEventsInLastHour(kmoBoxMac).subscribe({
+        next: (events) => {        
+            this.pedalEventCount = events.length;
+        },
+        error: (err) => {
+            this.snackBar.open(err, 'Ok');
+        },
+        });
+        ```
