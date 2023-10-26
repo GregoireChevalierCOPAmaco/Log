@@ -156,3 +156,10 @@
 - [x] Réunion rôles keycloak
     - [x] Création du rôle user_cop
     - [x] Export du realm
+
+
+**26 Octobre**
+- [x] Check des mails
+- [ ] Mise à jour Jira
+- [ ] Suite kp-556
+    - [ ] KP-570 moyennes IR & Pédale
