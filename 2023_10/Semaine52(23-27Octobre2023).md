@@ -243,3 +243,23 @@
         },
         });
         ```
+
+**27 Octobre**
+- [x] Check des mails
+- [ ] Mise à jour Jira
+- [ ] Réunion exploitation des données
+/events
+- motor overheat : exploitée par la lambda, pas par l'app X
+- trapdoor : exploitée par la lambda, pas par l'app relever et afficher par semaine ->  KP-588
+- kmo flag : ? pas exploité, pas relevé X
+- motor : pas exploité, mais possibilité : motor = écrit en base ou nb de moteurs détectés ? NtH, voir plus tard
+/gw
+- datetime : correspond à quoi ?    naissance de la gw, 1ere co à internet, pas à exploiter dans l'application
+- disk usage : renvoyé ? Exploitable mais voir sous quelle forme (warning, un message d'état, etc..) visibilité sur /cop/iddumagasin en dessous du message existant                         : V2, NtH
+- freeRam : même constat que diskUsage   : V2, NtH
+- temperature CPU : température de quoi ? Affichée dans card /cop/magasin
+/historygateway
+- pas exploitable sur MVP ?
+/kmobox
+
+ajouter champ version hardware/software pour gw & kmo
