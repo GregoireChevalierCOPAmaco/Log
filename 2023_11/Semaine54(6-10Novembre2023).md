@@ -3,8 +3,21 @@
 - [ ] Mise à jour Jira
 - [ ] Reprise sujets Anthony
     - [ ] Déploiement Predict
-        - [ ] Récupération des infos d'Anthony
-            - [ ] Connection à l'instance
-            - [ ] Relance de Docker
+        - [x] Récupération des infos d'Anthony
+            - [x] Connection à l'instance
+                - [x] Erreur : ```@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @```
+                - [x] Suppression du fichier /ssh/known hosts et reconnexion : 
+                ```
+                Warning: Permanently added 'ec2-52-58-79-10.eu-central-1.compute.amazonaws.com' (ED25519) to the list of known hosts.
+                ubuntu@ec2-52-58-79-10.eu-central-1.compute.amazonaws.com: Permission denied (publickey).
+                ```
+                - [x] Récupération de la public key 
+                - [x] ```sudo apt upgrade```et reboot de l'instance
+            - [x] Relance de Docker : 
+                - [ ] Résolution 
+                ```
+                ERROR [internal] booting buildkit  
+                http: invalid Host header
+                ```
     - [ ] Sécurisation API
         - [ ] Auth keycloak
