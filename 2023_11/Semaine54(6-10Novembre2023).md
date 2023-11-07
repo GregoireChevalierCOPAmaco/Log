@@ -33,6 +33,57 @@
 **7 Novembre**
 - [ ] Check des mails
 - [ ] Mise à jour Jira
+    - [x] Display dans la modale de caisse le nombre d'events de trappe par semaine
+        - [x] Back
+            - [x] events.controller : 
+            ```
+              @Get('trapdoor-events-in-last-week/:kmoBoxMac')
+                async getTrapdoorEventsInLastWeek(@Param('kmoBoxMac') kmoBoxMac: string) {
+                const oneWeekAgo = new Date();
+                oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+
+                const trapdoorEvents = await this.eventsService.getTrapdoorEventsInLastWeek(kmoBoxMac, oneWeekAgo);
+
+                return trapdoorEvents;
+            }
+            ```
+            - [x] events.service : 
+            ```
+            async getTrapdoorEventsInLastWeek(kmoBoxMac: string, startTime: Date): Promise<Event[]> {
+                const trapdoorEvents = await this.eventRepository.find({
+                where: {
+                    type: TypeEvent.TRAPDOOR_TRIGGERED,
+                    kmoBox: {
+                    mac: kmoBoxMac,
+                    },
+                    datetime: MoreThanOrEqual(startTime.toISOString()),
+                },
+                });
+            
+                return trapdoorEvents;
+            }
+            ```
+        - [x] Front :
+            - [x] events.service : 
+            ```
+            getTrapdoorEventsInLastWeek(kmoBoxMac: string): Observable<any[]> {
+            return this.httpclient.get<any[]>(`${this.apiUrl}/trapdoor-events-in-last-week/${kmoBoxMac}`);
+            }
+            ```
+            - [x] cop-dialog.component :
+            ```
+            this.eventsService.getTrapdoorEventsInLastWeek(this.data.mac).subscribe({
+                next: (events) => {
+                    this.trapdoorTriggeredEventCount = events.length;
+                },
+                error: (err) => {
+                    this.snackBar.open(err, 'Ok');
+                },
+                });
+            }
+            ```
+        - [ ] Linting
+        - [ ] Tests
 - [ ] Reprise sujets Anthony
     - [ ] Sécurisation API
         - [ ] Auth keycloak
