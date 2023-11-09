@@ -91,11 +91,13 @@
 
 **9 Novembre**
 - [ ] Check des mails
-- [ ] Mise à jour Jira
-- [ ] Créer la logique pour afficher la dernière fois que la caisse a été allumée
-    - [ ] Créer la route backend
-    - [ ] Relier la logique sur le front
-    - [ ] Display sur la modale
+- [x] Mise à jour Jira
+- [x] Créer la logique pour afficher la dernière fois que la caisse a été allumée
+    - [x] Créer la route backend
+    - [x] Relier la logique sur le front
+    - [x] Display sur la modale
+        - [ ] Linting
+        - [ ] Tests
 - [ ] Reprise sujets Anthony
     - [ ] Sécurisation API
         - [ ] Auth keycloak
