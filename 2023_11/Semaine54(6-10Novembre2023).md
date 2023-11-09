@@ -82,8 +82,20 @@
                 });
             }
             ```
-        - [ ] Linting
-        - [ ] Tests
+        - [x] Linting
+        - [x] Tests
+- [ ] Reprise sujets Anthony
+    - [ ] Sécurisation API
+        - [ ] Auth keycloak
+        
+
+**9 Novembre**
+- [ ] Check des mails
+- [ ] Mise à jour Jira
+- [ ] Créer la logique pour afficher la dernière fois que la caisse a été allumée
+    - [ ] Créer la route backend
+    - [ ] Relier la logique sur le front
+    - [ ] Display sur la modale
 - [ ] Reprise sujets Anthony
     - [ ] Sécurisation API
         - [ ] Auth keycloak
