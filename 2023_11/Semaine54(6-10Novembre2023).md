@@ -95,9 +95,62 @@
 - [x] Créer la logique pour afficher la dernière fois que la caisse a été allumée
     - [x] Créer la route backend
     - [x] Relier la logique sur le front
+    ```
+    this.eventsService.getLatestOpenedEvent(kmoBoxMac).subscribe({
+      next: (latestOpenedEvent) => {
+        if (latestOpenedEvent) {
+          this.lastOpenedDate = latestOpenedEvent.datetime.slice(0,10);
+        } else {
+          this.lastOpenedDate = "Aujourd'hui";
+        }
+      }
+    });
+    ```
     - [x] Display sur la modale
-        - [ ] Linting
-        - [ ] Tests
+        - [x] Linting
+        - [x] Tests
+- [ ] MàJ de predict prod
+    - [ ] git pull origin develop, retour : 
+    ```
+    git@github.com: Permission denied (publickey).
+    fatal: Could not read from remote repository.
+
+    Please make sure you have the correct access rights
+    and the repository exists.
+    ```
+    - [x] Ajout de clé ssh
+    ```
+    sudo ssh-keygen -t ed25519 -C "g.chevalier@cop-amaco.com"
+    ```
+    - [x] Ajout aux clés ssh du github
+    ```
+    sudo cat /root/.ssh/id_ed25519.pub
+    ```
+    mais sans succes, pull renvoie toujours : 
+    ```
+    git@github.com: Permission denied (publickey).
+    fatal: Could not read from remote repository.
+
+    Please make sure you have the correct access rights
+    and the repository exists.
+    ```
+    Bah au final c'est anthony qui a pull develop -_-
+- [ ] KP-585 Flagging de gateway en HS après x jours de non utilisation 
+    - [ ] Création de la logique
 - [ ] Reprise sujets Anthony
     - [ ] Sécurisation API
-        - [ ] Auth keycloak
+        - [ ] Auth keycloak        
+
+
+**10 Novembre**
+- [ ] Check des mails
+- [x] Mise à jour Jira
+- [ ] Mise en marche du "magasin de tests" en réel
+    - [x] Purge de la db de prod
+    - [x] Détection du bug denon assignation d'un storeId à une GW lors de la création d'un magasin via l'interface
+    - [x] Résolution : 
+        - [x] Changement de gateway à gatewayMac dans les fichiers back de store.service & create-store.dto
+        - [x] Changement de gateway à gatewayMac dans les fichiers front add-store.component store.ts & post.store.interface
+        - [ ] Lint
+        - [ ] Tests
+    - [ ] Détection du bug de non assignation d'une GW à une KMOBOX
