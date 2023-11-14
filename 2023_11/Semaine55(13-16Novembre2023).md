@@ -107,5 +107,21 @@ try {
 **14 Novembre**
 - [x] Check des mails
 - [x] Mise à jour Jira
+- [ ] MàJ du fichier de tests
 - [ ] Mise en marche du "magasin de tests" en réel
-    - [ ] Résolution du bug de non assignation d'une GW à une KMOBOX
+    - [x] Ligne 38 ; passage à test réussi & update ligne en conséquence
+    - [x] Ligne 44 ; update du message d'erreur
+    - [x] Ligne 45 ; passage à test réussi & update ligne en conséquence
+    - [x] Ligne 46 ; création du ticket KP-597 & update ligne en conséquence
+    - [x] Ligne 47 ; création du ticket KP-598 & update ligne en conséquence
+    - [x] Ligne 51 ; passage à test réussi & update ligne en conséquence
+    - [x] Ligne 55 ; passage à test réussi & update ligne en conséquence
+    - [x] Ligne 56 ; passage à test réussi & update ligne en conséquence
+    - [x] Ligne 57 ; passage à test réussi & update ligne en conséquence
+    - [x] Ligne 58 ; passage à test réussi & update ligne en conséquence
+    - [x] Ligne 59 ; passage à test réussi & update ligne en conséquence
+    - [x] Ligne 65 ; Création de ligne pour KP-542 & update ligne en conséquence
+    - [x] Ligne 65 ; Création de ligne pour KP-551 & update ligne en conséquence
+- [ ] Résolution du bug de non assignation d'une GW à une KMOBOX
+- [x] Essais multiples sur la kmobox de test réel salle à côté
+- [x] Création des tickets KP-597 à KP-600 pour fit needs
