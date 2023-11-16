@@ -107,8 +107,8 @@ try {
 **14 Novembre**
 - [x] Check des mails
 - [x] Mise à jour Jira
+- [x] Mise en marche du "magasin de tests" en réel
 - [ ] MàJ du fichier de tests
-- [ ] Mise en marche du "magasin de tests" en réel
     - [x] Ligne 38 ; passage à test réussi & update ligne en conséquence
     - [x] Ligne 44 ; update du message d'erreur
     - [x] Ligne 45 ; passage à test réussi & update ligne en conséquence
@@ -121,7 +121,49 @@ try {
     - [x] Ligne 58 ; passage à test réussi & update ligne en conséquence
     - [x] Ligne 59 ; passage à test réussi & update ligne en conséquence
     - [x] Ligne 65 ; Création de ligne pour KP-542 & update ligne en conséquence
-    - [x] Ligne 65 ; Création de ligne pour KP-551 & update ligne en conséquence
+    - [x] Ligne 66 ; Création de ligne pour KP-551 & update ligne en conséquence
+    - [x] Ligne 67 ; Création de ligne pour KP-591 & update ligne en conséquence
+    - [x] Ligne 68 ; Création de ligne pour KP-595 & update ligne en conséquence
+    - [x] Ligne 69 ; Création de ligne pour KP-596 & update ligne en conséquence
 - [ ] Résolution du bug de non assignation d'une GW à une KMOBOX
 - [x] Essais multiples sur la kmobox de test réel salle à côté
-- [x] Création des tickets KP-597 à KP-600 pour fit needs
+- [x] Création des tickets KP-597 à KP-601 pour fit needs
+- [ ] MàJ du fichier de tests
+    - [x] Ligne 70 ; Création de ligne pour KP-601 & update ligne en conséquence
+    - [x] Ligne 71 ; Création de ligne pour KP-600 & update ligne en conséquence
+- [x] Retour sur develop en local 
+- [x] ```git pull origin develop```
+- [x] Cleanup de branches locales :
+```
+git branch -D feat/KP-425_display_dynamicly_/cop_gateways_card
+git branch -D feat/KP-425bis_display_dynamicly_/cop_gateways_card
+git branch -D feat/KP-466_display_dynamically_checkouts_status_incard
+git branch -D fix/KP-424_/administration_sorting_table
+git branch -D test/KP-218_catching_every_frontend_test
+git branch -D test/KP-176_unit_testing
+git branch -D test/KP-216_front_unit_test_authguard
+git branch -D refactor/KP-175_clean_administration.component
+git branch -D test/KP-177_store_deactivation_e2e_testing
+git branch -D feat/KP-467_display_dynamically_critical_stores_incard
+```
+Retour : 
+```
+Deleted branch feat/KP-425_display_dynamicly_/cop_gateways_card (was a8a13f2e).
+Deleted branch feat/KP-425bis_display_dynamicly_/cop_gateways_card (was 256b1cfe).
+Deleted branch feat/KP-466_display_dynamically_checkouts_status_incard (was de3fa34a).
+Deleted branch fix/KP-424_/administration_sorting_table (was ff35a098).
+Deleted branch refactor/KP-175_clean_administration.component (was a6541e0c).
+Deleted branch test/KP-218_catching_every_frontend_test (was 5d859593).
+Deleted branch test/KP-216_front_unit_test_authguard (was 8eb35037).
+Deleted branch test/KP-177_store_deactivation_e2e_testing (was d198aa83).
+Deleted branch test/KP-176_unit_testing (was adc0376d).
+Deleted branch feat/KP-467_display_dynamically_critical_stores_incard (was 63e547c2).
+```
+- [x] Gestion départ tablette Salomon Chaucron
+
+
+**16 Novembre**
+- [x] Check des mails
+- [x] Mise à jour Jira
+- [x] Mise en marche du "magasin de tests" en réel
+- [ ] MàJ du fichier de tests
