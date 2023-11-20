@@ -166,4 +166,8 @@ Deleted branch feat/KP-467_display_dynamically_critical_stores_incard (was 63e54
 - [x] Check des mails
 - [x] Mise à jour Jira
 - [x] Mise en marche du "magasin de tests" en réel
+    - [x] Création de branche fix/KP-596_fix_connection_kmoBox-gatewayMac_on_storeCreate_via_interface et switch dessus
 - [ ] MàJ du fichier de tests
+- [ ] Créer une série de méthodes dans les fichiers concernés pour, à la création de la gateway
+modal de caisse : changer durée on/durée off en motor on/motor off & temps en usage → Temps d'allumage/Temps caisse allumée/ouverte
+en déduire le temps de passage moyen entre caisse ouverte divisé par nombre de clients(passages carte/espèce)

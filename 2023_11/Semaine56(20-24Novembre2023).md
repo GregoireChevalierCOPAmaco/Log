@@ -1,0 +1,15 @@
+**20 Novembre**
+- [ ] Check des mails
+- [ ] Mise à jour Jira
+- [ ] MàJ du fichier de tests
+- [x] Mise en marche du "magasin de tests" en réel
+    - [ ] fix/KP-596_fix_connection_kmoBox-gatewayMac_on_storeCreate_via_interface et switch dessus
+- [ ] Créer une série de méthodes dans les fichiers concernés pour solutionner les problèmes d'overwrite à la création de la gateway
+    - [ ] Changer les routes en PATCH qui prend des arguments optionnels pour :
+        - [ ] createGateway
+        - [ ] createKmoBox
+    - [ ] Créer une route GET gateway/mac qui retourne toutes les infos de la GW
+- [ ] Appliquer les changements sémantiques à la modale de caisse 
+    - [ ] Changer durée on/durée off en motor on/motor off 
+    - [ ] Changer temps en usage → Temps d'allumage/Temps caisse allumée/ouverte
+    - [ ] Déduire le temps de passage moyen entre caisse ouverte divisé par nombre de clients(passages carte/espèce)
