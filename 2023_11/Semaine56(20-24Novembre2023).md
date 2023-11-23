@@ -82,10 +82,76 @@
 - [ ] Check des mails
 - [ ] Mise à jour Jira
 - [ ] MàJ du fichier de tests
-- [ ] Ajout de la route get gateway/mac au websocket
+- [x] Ajout de la route get gateway/mac au websocket
+    - [x] Ajout dans le fichier gateways.gateway.ts : 
+    ``` 
+    @SubscribeMessage('getGatewayByMac')
+    async getGatewayByMac(@MessageBody() mac: string) {
+    const gateway = await this.gatewaysService.getGatewayByMac(mac);
+    this.server.emit('gatewayDataByMac', {
+        gateway,
+    });
+    }
+    ```
+    - [x] Lint, test, push & PR
+    - [x] Reco à l'instance prod
+    - [x] Arrêt des containers front & back, ```git pull origin develop``` & recréation du docker
+    - [x] Vérification avec jacko, on reçoit null
+    - [x] Changement, ajout de : gateway à la méthode : 
+    ```
+    @SubscribeMessage('getGatewayByMac')
+    async getGatewayByMac(@MessageBody() mac: string) {
+        const gateway = await this.gatewaysService.getGatewayByMac(mac);
+        this.server.emit('gatewayDataByMac', {
+        gateway: gateway,
+        });
+    }
+    ```
+    - [x] Reco à l'instance prod
+    - [x] Arrêt des containers front & back, ```git pull origin develop``` & recréation du docker
 - [x] Mise en marche du "magasin de tests" en réel
-    - [ ] fix/KP-596_fix_connection_kmoBox-gatewayMac_on_storeCreate_via_interface et switch dessus
+    - [ ] fix/KP-596_fix_connection_kmoBox-gatewayMac_on_storeCreate_via_interface et switch dessus 
 - [ ] Appliquer les changements sémantiques à la modale de caisse 
     - [ ] Changer durée on/durée off en motor on/motor off 
     - [ ] Changer temps en usage → Temps d'allumage/Temps caisse allumée/ouverte
     - [ ] Déduire le temps de passage moyen entre caisse ouverte divisé par nombre de clients(passages carte/espèce)
+
+passage gateway HS → fonctionnel : codé ou pas ? est ce que ça marche
+
+
+
+**23 Novembre**
+- [ ] Check des mails
+- [ ] Mise à jour Jira
+- [ ] MàJ du fichier de tests
+- [x] Ajout de la route get gateway/mac au websocket
+    - [x] TLDR du problème : le websocket attendait juste un objet string plutôt qu'un JSON contenant le string
+    - [x] Résolution : 
+        - [x] Création d'un DTO : 
+        ```
+        import { ApiProperty } from "@nestjs/swagger";
+
+        export class GatewayMacDTO {
+            @ApiProperty()
+            mac: string
+        }
+        ```
+        - [x] Modification du controller :
+        ```
+        @Get('/:mac')
+        getGatewayByMac(@Param('mac') mac: string): Promise<Gateway | undefined> {
+            const macDTO: GatewayMacDTO= { mac };
+            return this.gatewaysService.getGatewayByMac(macDTO);
+        }
+        ``` 
+        - [x] Modification du service : 
+        ```
+        async getGatewayByMac(mac: GatewayMacDTO): Promise<Gateway | undefined> {
+            const gateway = await Gateway.createQueryBuilder('gateway')
+            .where('gateway.mac = :mac', { mac: mac.mac })
+            .leftJoinAndSelect('gateway.kmoBoxes', 'kmoBoxes')
+            .getOne();
+
+            return gateway;
+        }
+        ```
