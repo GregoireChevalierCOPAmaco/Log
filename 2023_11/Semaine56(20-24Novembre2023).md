@@ -169,3 +169,23 @@ passage gateway HS → fonctionnel : codé ou pas ? est ce que ça marche
     - on fait la différence avec la datetime du premier event du jour de la caisse
     - et on l'ajoute au uptime
     - [ ] Résoudre le problème de uptime qui diminue avec le temps
+
+    
+
+**24 Novembre**
+- [ ] Check des mails
+- [ ] Mise à jour Jira
+- [ ] MàJ du fichier de tests
+- [ ] Résolution du problème de uptime
+    - [ ] Les events motor viennent 10s en 10s up à la suite de up
+    à résoudre, logique à refaire pour le motor up : 
+    - à chaque fois qu'un event motor est émis, 
+    - si le state = up
+    - on ajoute la duration au motorUp
+    à résoudre, logique à refaire pour le uptime :
+    - à chaque fois qu'un event state = power_off 
+    - si c'est le premier power off du jour
+    - on prend la datetime
+    - on fait la différence avec la datetime du premier event du jour de la caisse
+    - et on l'ajoute au uptime
+    - [ ] Résoudre le problème de uptime qui diminue avec le temps
