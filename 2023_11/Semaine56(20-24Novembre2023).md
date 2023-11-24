@@ -189,3 +189,17 @@ passage gateway HS → fonctionnel : codé ou pas ? est ce que ça marche
     - on fait la différence avec la datetime du premier event du jour de la caisse
     - et on l'ajoute au uptime
     - [ ] Résoudre le problème de uptime qui diminue avec le temps
+
+à voir par la suite ; 
+si une GW envoie des données de caisse null, faire une routine ?
+    non car kmo pas créable si champs null
+
+
+entité, valeur "défault" mettable si data required et null obtenu à la création de l'entité
+
+596 : renvoyer au websocket les datas GW + KMOs, et dans le back, faire de l'asynchrone pour ne créer la KMO qu'une fois que la GW est bel et bien en base
+
+verifier si possible de remplacer GW mais pas kmos 
+vé rifier si possible de remplacer une ou plus kmo mais pas la GW
+vérifier les relations
+
