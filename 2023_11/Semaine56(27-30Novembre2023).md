@@ -2,6 +2,11 @@
 - [ ] Check des mails
 - [ ] Mise à jour Jira
 - [ ] MàJ du fichier de tests
+- [x] Fix des erreurs d'orthographe
+    - [x] Création de la branche fix/KP-451_fix_typos
+    - [x] Ajout du s à 'Nombre de caisse' dans les fichiers add-store, tab-store & cop-store-details
+    - [x] Fix des autres erreurs, voir PR si besoin
+    - [x] Commit & push
 - [ ] Résolution du problème de uptime
     - [ ] Les events motor viennent 10s en 10s up à la suite de up
     à résoudre, logique à refaire pour le motor up : 
@@ -15,6 +20,8 @@
     - on fait la différence avec la datetime du premier event du jour de la caisse
     - et on l'ajoute au uptime
     - [ ] Résoudre le problème de uptime qui diminue avec le temps
+- [ ] Résolution du problème de motor_overheat
+    - [ ] Tests et conclusion : un event motor overheat est émis par le firmware après un timeout pour dire que "tout va bien" avec le state up. Ajouter une condition dans le code pour différencier un event up de down pour motor_overheat
 
 à voir par la suite ; 
 si une GW envoie des données de caisse null, faire une routine ?
