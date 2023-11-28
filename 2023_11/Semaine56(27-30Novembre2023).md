@@ -28,8 +28,21 @@
 
 **28 Novembre**
 - [ ] Résolution du problème de uptime
-    - [ ] Réplique des events de prod en dev pour reproduction de uptime négatif
+    - [x] Réplique des events de prod en dev pour reproduction de uptime négatif
+    - [x] Copie des events et modification des champs gatewaymac & datetime
+    - [x] Si le dernier event state == down, le uptime est incrémental comme prévu, mais si le dernier event == up, le uptime incrémente négativement
+    - [x] Le problème vient du fait que uptime est basé sur des états d'events up & down au lieu de open & closed
     - [ ] Résoudre le problème de uptime qui diminue avec le temps
+        - [x] Changer la logique pour chercher les events open & closed
+        ```
+        .where('event.state = :state', { state: StateEvent.OPEN }
+        ```
+        ```
+        .where('event.state = :state', { state: StateEvent.CLOSED }
+        ```
+        - [ ] Ajuster la logique pour l'update du motorusage
+        - [x] Push, PR, pull sur le serveur de prod & redémarrage des containers
+        - [ ] Vérification sur le setup de prod
 - [ ] Résolution du problème de motor_overheat
     - [ ] Tests et conclusion : un event motor overheat est émis par le firmware après un timeout pour dire que "tout va bien" avec le state up. Ajouter une condition dans le code pour différencier un event up de down pour motor_overheat
 
