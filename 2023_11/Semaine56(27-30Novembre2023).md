@@ -20,8 +20,19 @@
     - on fait la différence avec la datetime du premier event du jour de la caisse
     - et on l'ajoute au uptime
     - [ ] Résoudre le problème de uptime qui diminue avec le temps
+    - [ ] Chercher dans les conditions des lignes 147-174 pour trouver pourquoi le offtime est de zéro
+    actuellement, ces lignes prennent en compte sans discriminer tous les events up & down, pas que le moteur ou IR Rajouter une condition ?
 - [ ] Résolution du problème de motor_overheat
     - [ ] Tests et conclusion : un event motor overheat est émis par le firmware après un timeout pour dire que "tout va bien" avec le state up. Ajouter une condition dans le code pour différencier un event up de down pour motor_overheat
+
+
+**28 Novembre**
+- [ ] Résolution du problème de uptime
+    - [ ] Réplique des events de prod en dev pour reproduction de uptime négatif
+    - [ ] Résoudre le problème de uptime qui diminue avec le temps
+- [ ] Résolution du problème de motor_overheat
+    - [ ] Tests et conclusion : un event motor overheat est émis par le firmware après un timeout pour dire que "tout va bien" avec le state up. Ajouter une condition dans le code pour différencier un event up de down pour motor_overheat
+
 
 à voir par la suite ; 
 si une GW envoie des données de caisse null, faire une routine ?
