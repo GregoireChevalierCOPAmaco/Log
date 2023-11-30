@@ -82,7 +82,25 @@ vérifier les relations
     - [ ] Mise en prod
     - [ ] Test fonctionnel de corrélation
 - [ ] Ajout d'un champ closedTime dans l'entité kmoBox
-- [ ] Refonte du fichier SQL pour le dev dans discord
+    - [x] Création de la branche feat/KP-650_add_closedTime_to_kmo
+    - [ ] Modification de kmo-box
+        - [ ] Entity
+        - [ ] Interface
+        - [ ] Interface spec
+        - [ ] Service spec
+        - [ ] DTO create
+        - [ ] DTO update
+        - [ ] DTO get lambda
+        - [ ] GW interface spec
+        - [ ] GW logs interface spec
+        - [ ] STORE component spec
+        - [ ] CHECKOUT modal component spec
+        - [ ] COP dialog component
+        - [ ] COP dialog component spec
+        - [ ] COP dialog component html
+    - [ ] Event service
+    - [ ] Event service spec
+- [x] Refonte du fichier SQL pour le dev dans discord
 - [ ] Ajuster la logique pour l'update du motorusage
 - [ ] Résolution du problème de motor_overheat
     - [x] Tests et conclusion : un event motor overheat est émis par le firmware après un timeout pour dire que "tout va bien" avec le state up. Ajouter une condition dans le code pour différencier un event up de down pour motor_overheat
