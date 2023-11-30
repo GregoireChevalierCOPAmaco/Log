@@ -62,8 +62,30 @@ vérifier les relations
 
 
 **28 Novembre**
-- [ ] Résoudre le problème de uptime qui diminue avec le temps
+- [x] Résoudre le problème de uptime qui augmente même en power_off
+    - [x] Aucun problème dans la logique front qui se contente d'aller fetch en base kmoBox.data.uptime
+    - [x] Check du fichier events.service.ts dans le back
+    - [x] Ajout de  : 
+    ```
+    const lastPowerOffEvent = await this.eventRepository
+        .createQueryBuilder('event')
+        .where('event.state = :state', { state: StateEvent.POWER_OFF })
+        .andWhere('event.kmoBox.mac = :kmoBoxMac', { kmoBoxMac })
+        .orderBy('event.datetime', 'DESC')
+        .getOne();
+
+    if (lastUpEvent && lastPowerOffEvent && lastPowerOffEvent.datetime > lastUpEvent.datetime) {
+        continue;
+    }
+    ```
+    - [x] Lint, tests, commit, ```git push``` & PR
+    - [ ] Mise en prod
+    - [ ] Test fonctionnel de corrélation
+- [ ] Ajout d'un champ closedTime dans l'entité kmoBox
+- [ ] Refonte du fichier SQL pour le dev dans discord
 - [ ] Ajuster la logique pour l'update du motorusage
 - [ ] Résolution du problème de motor_overheat
     - [x] Tests et conclusion : un event motor overheat est émis par le firmware après un timeout pour dire que "tout va bien" avec le state up. Ajouter une condition dans le code pour différencier un event up de down pour motor_overheat
     - [x] Transfert du ticket KP-639 à Anthony pour gestion dans la lambda
+- [x] Mise à jour Jira
+- [x] MàJ du fichier de tests
