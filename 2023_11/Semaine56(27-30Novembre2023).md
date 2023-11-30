@@ -59,3 +59,11 @@ entité, valeur "défault" mettable si data required et null obtenu à la créat
 verifier si possible de remplacer GW mais pas kmos 
 vé rifier si possible de remplacer une ou plus kmo mais pas la GW
 vérifier les relations
+
+
+**28 Novembre**
+- [ ] Résoudre le problème de uptime qui diminue avec le temps
+- [ ] Ajuster la logique pour l'update du motorusage
+- [ ] Résolution du problème de motor_overheat
+    - [x] Tests et conclusion : un event motor overheat est émis par le firmware après un timeout pour dire que "tout va bien" avec le state up. Ajouter une condition dans le code pour différencier un event up de down pour motor_overheat
+    - [x] Transfert du ticket KP-639 à Anthony pour gestion dans la lambda
