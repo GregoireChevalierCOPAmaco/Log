@@ -61,7 +61,7 @@ vé rifier si possible de remplacer une ou plus kmo mais pas la GW
 vérifier les relations
 
 
-**28 Novembre**
+**30 Novembre**
 - [x] Résoudre le problème de uptime qui augmente même en power_off
     - [x] Aucun problème dans la logique front qui se contente d'aller fetch en base kmoBox.data.uptime
     - [x] Check du fichier events.service.ts dans le back
@@ -79,24 +79,23 @@ vérifier les relations
     }
     ```
     - [x] Lint, tests, commit, ```git push``` & PR
-    - [ ] Mise en prod
-    - [ ] Test fonctionnel de corrélation
+    - [x] Mise en prod
+    - [ ] Test fonctionnel de corrélation : Résultat, le uptime ne prend que le temps moteur on. Changer cela 
 - [ ] Ajout d'un champ closedTime dans l'entité kmoBox
     - [x] Création de la branche feat/KP-650_add_closedTime_to_kmo
     - [ ] Modification de kmo-box
-        - [ ] Entity
-        - [ ] Interface
-        - [ ] Interface spec
-        - [ ] Service spec
-        - [ ] DTO create
-        - [ ] DTO update
-        - [ ] DTO get lambda
-        - [ ] GW interface spec
-        - [ ] GW logs interface spec
-        - [ ] STORE component spec
-        - [ ] CHECKOUT modal component spec
+        - [x] Entity
+        - [x] Interface
+        - [x] Interface spec
+        - [x] Service spec
+        - [x] DTO create
+        - [x] DTO get lambda
+        - [x] GW interface spec
+        - [x] GW logs interface spec
+        - [x] STORE component spec
+        - [x] CHECKOUT modal component spec
         - [ ] COP dialog component
-        - [ ] COP dialog component spec
+        - [x] COP dialog component spec
         - [ ] COP dialog component html
     - [ ] Event service
     - [ ] Event service spec
@@ -107,3 +106,32 @@ vérifier les relations
     - [x] Transfert du ticket KP-639 à Anthony pour gestion dans la lambda
 - [x] Mise à jour Jira
 - [x] MàJ du fichier de tests
+
+**30 Novembre**
+- [x] Résoudre le problème de uptime qui augmente même en power_off
+    - [ ] Test fonctionnel de corrélation : Résultat, le uptime ne prend que le temps moteur on. Changer cela 
+- [ ] Ajout d'un champ closedTime dans l'entité kmoBox
+    - [x] Création de la branche feat/KP-650_add_closedTime_to_kmo
+    - [ ] Modification de kmo-box
+        - [x] Entity
+        - [x] Interface
+        - [x] Interface spec
+        - [x] Service spec
+        - [x] DTO create
+        - [x] DTO get lambda
+        - [x] GW interface spec
+        - [x] GW logs interface spec
+        - [x] STORE component spec
+        - [x] CHECKOUT modal component spec
+        - [ ] COP dialog component
+        - [x] COP dialog component spec
+        - [ ] COP dialog component html
+    - [ ] Event service
+    - [ ] Event service spec
+- [x] Refonte du fichier SQL pour le dev dans discord
+- [ ] Ajuster la logique pour l'update du motorusage
+- [ ] Résolution du problème de motor_overheat
+    - [x] Tests et conclusion : un event motor overheat est émis par le firmware après un timeout pour dire que "tout va bien" avec le state up. Ajouter une condition dans le code pour différencier un event up de down pour motor_overheat
+    - [x] Transfert du ticket KP-639 à Anthony pour gestion dans la lambda
+- [ ] Mise à jour Jira
+- [ ] MàJ du fichier de tests
