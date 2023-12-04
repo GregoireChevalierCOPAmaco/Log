@@ -1,0 +1,14 @@
+**1er Décembre**
+- [ ] Résoudre le problème de uptime 
+    - [ ] Test fonctionnel de corrélation : Résultat, le uptime ne prend que le temps moteur on. Changer cela 
+- [ ] Ajout d'un champ closedTime dans l'entité kmoBox
+    - [x] Création de la branche feat/KP-650_add_closedTime_to_kmo
+    - [ ] Modification de kmo-box
+        - [ ] COP dialog component
+        - [ ] COP dialog component html
+    - [ ] Event service
+    - [ ] Event service spec
+    - [ ] Résolution des bugs
+- [ ] Ajuster la logique pour l'update du motorusage
+- [ ] Mise à jour Jira
+- [ ] MàJ du fichier de tests

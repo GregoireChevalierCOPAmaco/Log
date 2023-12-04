@@ -107,7 +107,7 @@ vérifier les relations
 - [x] Mise à jour Jira
 - [x] MàJ du fichier de tests
 
-**30 Novembre**
+**1er Décembre**
 - [x] Résoudre le problème de uptime qui augmente même en power_off
     - [ ] Test fonctionnel de corrélation : Résultat, le uptime ne prend que le temps moteur on. Changer cela 
 - [ ] Ajout d'un champ closedTime dans l'entité kmoBox
