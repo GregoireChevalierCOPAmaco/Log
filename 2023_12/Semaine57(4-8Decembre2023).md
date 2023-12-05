@@ -36,12 +36,96 @@ ajouter ticket ajout condition (state) pour detection event trappes courant dern
 - [x] Réalisation whiteboard usecases uptime 
 - [ ] Résoudre le problème de uptime 
     - [ ] Test fonctionnel de corrélation : Résultat, le uptime ne prend que le temps moteur on. Changer cela 
-- [ ] Ajout d'un champ closedTime dans l'entité kmoBox  
-    - [ ] Connexion à l'instance
-    - [ ] Stop des containers app & pg
-    - [ ] Remove du container pg
-    - [ ] Rebuild des containers
+    - [ ] Refonte de la logique
+        - [x] Initialize lastTreatedEvent :
+        ```
+        private lastTreatedEventByKmo: { [kmo: string]: { treatedEventId: string; treatedEventDatetime: string } } = {};
+        private lastEventByKmo: { [kmo: string]: { eventId: string; eventDatetime: string } } = {};
+        ```
+        la méthode pour remplir ce dictionnaire est : 
+        ```
+        // Set values for a key ("kmo")
+        this.lastTreatedEventByKmo["kmo"] = {
+        mac: "value",
+        datetime: "date&heure",
+        };
+        ```
+        - [x] Récupération de la mac de chaque kmoBox qui **a des events qui lui sont liés** : 
+        ```
+        const uniqueKmoBoxMacs = await this.kmoBoxRepository
+            .createQueryBuilder('kmoBox')
+            .select('DISTINCT kmoBox.mac', 'kmoBoxMac')
+            .innerJoin('kmoBox.events', 'event')
+            .getRawMany();
+        ```
+        - [x] for each uniqueKmoBoxMacWithEvents, aller set le dernier event : 
+        ```
+        const uniqueKmoBoxMacWithEvents = await this.kmoBoxRepository
+            .createQueryBuilder('kmoBox')
+            .select('DISTINCT kmoBox.mac', 'kmoBoxMac')
+            .innerJoin('kmoBox.events', 'event')
+            .getRawMany();
+
+            for (const kmo of uniqueKmoBoxMacWithEvents) {
+            const mac = kmo.kmoBoxMac;
+
+            const latestEvent = await this.eventRepository
+            .createQueryBuilder('event')
+            .where('event.kmoBox.mac = :kmoBoxMac', { kmoBoxMac: mac })
+            .orderBy('event.datetime', 'DESC')
+            .getOne();
+
+            if (latestEvent) {
+                this.lastEventByKmo[mac] = {
+                eventId: latestEvent.id,
+                eventDatetime: latestEvent.datetime.toString()
+                };
+            }
+        }
+        ```
+        - [ ] for each event that event.datetime > lastTreatedEvent.datetime 
+            - [ ] return all events where datetime > lastTreatedEvent.datetime 
+            - [ ] si allPosteriorEvents.state == !=power_off
+                - [ ] get first allPosteriorEvents.datetime
+                - [ ] timeDiff = latestEvent.datetime - first allPosteriorEvents.datetime
+                - [ ] uptime+= timeDiff
+            - [ ] si allPosteriorEvents.state != !=power_off
+                - [ ] sort power_off events by ASC
+                - [ ] pour chaque powerOffEventsSortedByASC
+                    - [ ] timeDiff = lastTreatedEvent.datetime  - powerOffEvent.datetime
+                    - [ ] uptime += timeDiff
+                    - [ ] powerOffEvent -> lastTreatedEvent
+        - [x] twoMinutesAgo = Time - 2 *60
+        - [x] if(lastEvent.state != power_off && lastEvent.datetime > twoMinutesAgo) uptime += 120
+        ```
+        if (latestEvent) {
+            const eventDate = new Date(latestEvent.datetime);
+
+            this.lastEventByKmo[mac] = {
+            lastEventId: latestEvent.id,
+            lastEventDatetime: eventDate.toISOString(),
+            lastEventState: latestEvent.state
+            };
+
+            if (latestEvent.state !== 'power_off') {
+            const kmoBox = await this.kmoBoxRepository.findOne({ where: { mac } });
+            kmoBox.uptime += 12; 
+
+            await this.kmoBoxRepository.save(kmoBox);
+            }
+        }
+        ```
+- [x] Ajout d'un champ closedTime dans l'entité kmoBox  
+    - [x] Connexion à l'instance
+    - [x] Stop des containers app & pg
+    - [x] Remove du container pg
+    - [x] Rebuild des containers
 - [ ] Ajuster la logique pour l'update du motorusage
 - [ ] Mise à jour Jira
 - [ ] MàJ du fichier de tests
+    - [ ] Ajouter le test : 
+        - ouvrir une kmo & faire des events
+        - down le serveur pendant que des events sont émis
+        - re up le serveur
+        - constater que le uptime s'est correctement incrémenté
 ajouter ticket ajout condition (state) pour detection event trappes courant dernière semaine afin d'éviter les détections de timeouts
