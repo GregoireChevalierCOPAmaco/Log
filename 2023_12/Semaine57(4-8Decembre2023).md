@@ -144,7 +144,138 @@ ajouter ticket ajout condition (state) pour detection event trappes courant dern
 - [ ] Résoudre le problème de uptime 
     - [ ] Test fonctionnel de corrélation : Résultat, le uptime ne prend que le temps moteur on. Changer cela 
     - [ ] Refonte de la logique
-        - [ ] Refactorisation du fichier en sortant la logique de la fonction updateuptime pour la mettre dans des méthodes qui seront appelées dans updateuptime
-        - [ ] Création de méthode pour détecter les events postérieurs au lastTreatedEvent
-        - [ ] Création de méthode pour ajouter au uptime le temps depuis le premier event postérieur au lastTreatedEvent SI PAS d'events power_off
-        - [ ] Création de méthode pour ajouter au uptime le temps depuis le premier event postérieur au lastTreatedEvent SI events power_off
+        - [x] Refactorisation du fichier en sortant la logique de la fonction updateuptime pour la mettre dans des méthodes qui seront appelées dans updateuptime : 
+        ```
+        private async getUniqueKmoBoxMacWithEvents() {
+        return await this.kmoBoxRepository
+            .createQueryBuilder('kmoBox')
+            .select('DISTINCT kmoBox.mac', 'kmoBoxMac')
+            .innerJoin('kmoBox.events', 'event')
+            .getRawMany();
+        }
+
+        private async getLatestEventByMac(mac: string) {
+        return await this.eventRepository
+            .createQueryBuilder('event')
+            .where('event.kmoBox.mac = :kmoBoxMac', { kmoBoxMac: mac })
+            .orderBy('event.datetime', 'DESC')
+            .getOne();
+        }
+        
+        private async updateUptimeForKmoBox(mac: string, latestEvent: any) {
+        const kmoBox = await this.kmoBoxRepository.findOne({ where: { mac } });
+
+        if (kmoBox && latestEvent.state !== 'power_off') {
+            kmoBox.uptime += 12;
+            await this.kmoBoxRepository.save(kmoBox);
+        }
+        }
+
+        private setLastTreatedEventByKmo(mac: string) {
+        this.lastTreatedEventByKmo[mac] = {
+            treatedEventId: this.lastEventByKmo[mac].lastEventId,
+            treatedEventDatetime: this.lastEventByKmo[mac].lastEventDatetime,
+            treatedEventState: this.lastEventByKmo[mac].lastEventState,
+        };
+        }
+
+        private setLastEventByKmo(mac: string, latestEvent: Event) {
+        const eventDate = new Date(latestEvent.datetime);
+        this.lastEventByKmo[mac] = {
+            lastEventId: latestEvent.id,
+            lastEventDatetime: eventDate.toISOString(),
+            lastEventState: latestEvent.state
+        };
+        }
+        ```
+        - [x] Création de méthode pour détecter les events postérieurs au lastTreatedEvent : 
+        ```
+        private isLastEventAfterTreatedEvent(mac: string): boolean {
+        const lastEvent = this.lastEventByKmo[mac];
+        
+        const lastTreatedEvent = this.lastTreatedEventByKmo[mac];
+        
+        return lastEvent && lastTreatedEvent && new Date(lastEvent.lastEventDatetime) > new Date(lastTreatedEvent.treatedEventDatetime);
+        }
+        ```
+        et  insertion de la logique dans la boucle juste avant :
+        ```
+        this.setLastTreatedEventByKmo(mac);
+        ```
+        - [x] Création de méthode pour ajouter au uptime le temps depuis le premier event postérieur au lastTreatedEvent SI PAS d'events power_off : 
+        ```
+        private async addTimeDiffToUptime(mac: string, timeDiff: number) {
+            const kmoBox = await this.kmoBoxRepository.findOne({ where: { mac } });
+            if (kmoBox) {
+                kmoBox.uptime += timeDiff;
+                await this.kmoBoxRepository.save(kmoBox);
+            }
+        }
+        ```
+        &
+        ```
+        if (!hasPowerOffEvent) {
+                console.log('No power_off event in the posterior events');        
+                const nonPowerOffEvents = await this.getNonPowerOffEvents(mac);
+                if (nonPowerOffEvents.length > 0) {
+                  const sortedEvents = nonPowerOffEvents.sort(
+                    (a, b) => new Date(b.datetime).getTime() - new Date(a.datetime).getTime()
+                  );
+                  const lastEvent = sortedEvents[0];
+                  const timeDiff = Math.floor((new Date(lastEvent.datetime).getTime() - new Date(this.lastTreatedEventByKmo[mac].treatedEventDatetime).getTime()) / 1000);
+                  await this.addTimeDiffToUptime(mac, timeDiff);
+                }
+        ```
+        - [x] Création de méthode pour ajouter au uptime le temps depuis le premier event postérieur au lastTreatedEvent SI events power_off : 
+        ```
+        const posteriorEvents = await this.eventRepository.find({
+              where: {
+                kmoBox: { mac },
+                datetime: MoreThan(
+                  this.lastTreatedEventByKmo[mac].treatedEventDatetime,
+                ),
+              },
+              order: {
+                datetime: 'ASC',
+              },
+            });
+
+            const powerOffEvents = posteriorEvents.filter(
+              (event) => event.state === StateEvent.POWER_OFF,
+            );
+
+            // Ajout de la différence de temps entre chaque power_off
+            // et le premier non power_off d'avant à l'uptime de la kmo
+            for (const powerOffEvent of powerOffEvents) {
+              let currentEvent = powerOffEvent;
+              let firstEventAfterPowerOff: Event | null = null;
+
+              for (
+                let i = posteriorEvents.indexOf(powerOffEvent) - 1;
+                i >= 0;
+                i--
+              ) {
+                if (posteriorEvents[i].state !== StateEvent.POWER_OFF) {
+                  firstEventAfterPowerOff = posteriorEvents[i];
+                  break;
+                }
+              }
+
+              if (firstEventAfterPowerOff) {
+                let timeDiff = Math.floor(
+                  (new Date(firstEventAfterPowerOff.datetime).getTime() -
+                    new Date(currentEvent.datetime).getTime()) /
+                    1000,
+                );
+
+                if (timeDiff < 0) {
+                  timeDiff *= -1;
+                }
+
+                await this.addTimeDiffToUptime(mac, timeDiff);
+                this.setLastTreatedEventByKmo(mac);
+
+                currentEvent = firstEventAfterPowerOff;
+              }
+            }
+        ```
