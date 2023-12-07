@@ -83,6 +83,14 @@ ajouter ticket ajout condition (state) pour detection event trappes courant dern
             }
         }
         ```
+        - [x] Prise en compte du lastTreatedEventByKmo à la fin de la function : 
+        ```
+        this.lastTreatedEventByKmo[mac] = {
+            treatedEventId: this.lastEventByKmo[mac].lastEventId,
+            treatedEventDatetime: this.lastEventByKmo[mac].lastEventDatetime,
+            treatedEventState: this.lastEventByKmo[mac].lastEventState,
+        };
+        ```
         - [ ] for each event that event.datetime > lastTreatedEvent.datetime 
             - [ ] return all events where datetime > lastTreatedEvent.datetime 
             - [ ] si allPosteriorEvents.state == !=power_off
@@ -120,6 +128,7 @@ ajouter ticket ajout condition (state) pour detection event trappes courant dern
     - [x] Stop des containers app & pg
     - [x] Remove du container pg
     - [x] Rebuild des containers
+- [ ] Éclater la fonction processEventsAndUpdateUptime en un maximum de petites fonctions à paramètres
 - [ ] Ajuster la logique pour l'update du motorusage
 - [ ] Mise à jour Jira
 - [ ] MàJ du fichier de tests
@@ -129,3 +138,13 @@ ajouter ticket ajout condition (state) pour detection event trappes courant dern
         - re up le serveur
         - constater que le uptime s'est correctement incrémenté
 ajouter ticket ajout condition (state) pour detection event trappes courant dernière semaine afin d'éviter les détections de timeouts
+
+
+**7 Décembre**
+- [ ] Résoudre le problème de uptime 
+    - [ ] Test fonctionnel de corrélation : Résultat, le uptime ne prend que le temps moteur on. Changer cela 
+    - [ ] Refonte de la logique
+        - [ ] Refactorisation du fichier en sortant la logique de la fonction updateuptime pour la mettre dans des méthodes qui seront appelées dans updateuptime
+        - [ ] Création de méthode pour détecter les events postérieurs au lastTreatedEvent
+        - [ ] Création de méthode pour ajouter au uptime le temps depuis le premier event postérieur au lastTreatedEvent SI PAS d'events power_off
+        - [ ] Création de méthode pour ajouter au uptime le temps depuis le premier event postérieur au lastTreatedEvent SI events power_off
