@@ -24,4 +24,36 @@
     - [ ] 
     - [ ] 
 
+    !!!! ! OFFTIME != CLOSEDTIME !!!!!!
+    rajouter closed time dans la modale 
+
     Reprendre la documentation de la fonction gestion uptime
+
+
+**19 Décembre**
+- [x] Ajout du calcul front pour le openTime et affichage dans la modale
+- [x] Push 
+- [ ] Setup en prod
+- [ ] Clean des tables event & kmo sur base prod
+
+**21 Décembre**
+- [ ] Reprise des tests fonctionnels
+    - [ ] Refaire les lignes de Jacques avec lui pour déterminer le processus
+    - [x] Flush les données
+    - [ ] Ecrire la série de tests fonctionnels depuis zéro
+        - Création d'une GW en réel
+        - Affichage front lors de la création d'une GW en réel
+        - Création d'un store en réel
+        - Assignation automatique store - GW
+        - Assignation automatique GW - store
+        - Affichage front lors de la création d'un store en réel
+        - Création d'une deuxième GW en réel
+        - Affichage front lors de la création d'une GW en réel
+        - Changer la GW associée à un magasin
+    - [ ] Réinstaller une GW avec 2 caisses
+    - [ ] Reproduire le mode opératoire
+- [ ] Créer un objet front modale de modification store
+    - [ ] Supprimer l'option de réassignation de GW dans cette modale
+
+
+**22 Décembre**
