@@ -7,3 +7,13 @@
     - [ ] Reprise des KP du tableau Jira
         - [ ] Validation de KP-642 : Fix la corrélation temps depuis la dernière utilisation
 - [ ] Reprendre la documentation de la fonction gestion uptime
+- [x] Démarrage atmos beta pour tests guillaume
+
+
+**4 Janvier**
+- [ ] Redémarrage atmos beta
+    - [ ] Redéploiment du docker certificat ssl
+- [ ] Push des changements sur develop
+    - lint
+    - rename de l'uptime
+    - ajout de closedtime
