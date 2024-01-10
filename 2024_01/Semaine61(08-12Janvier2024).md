@@ -136,9 +136,11 @@
             return lambdaBox;
         }
         ```
-        - [ ] Clean des nombreux console logs
-        - [ ] Lint
-        - [ ] Tests
-        - [ ] Commit & push
-        - [ ] PR
-        - [ ] mise en prod du fix
+        - [x] Clean des nombreux console logs
+        - [x] Lint
+        - [x] Tests
+        - [x] Commit & push
+        - [x] PR
+        - [x] mise en prod du fix
+- [ ] Penser à enlever la console log ```console.log(response.payload);``` de cop store detail
+- [ ] Penser à enlever le {{ kmoBox.gatewayMac }} de la modlae kmobox preventive
