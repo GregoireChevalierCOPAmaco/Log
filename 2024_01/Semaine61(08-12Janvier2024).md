@@ -79,3 +79,66 @@
         }
         ```
 - [ ] Passage sur KP-680 fix le lien vers les stores à risque & kmo à risque
+
+
+**10 janvier**
+- [ ] Passage sur KP-680 fix le lien vers les stores à risque & kmo à risque
+    - [x] Cassage de crâne avec gpt pour savoir d'où vient le problème
+        - [x] la propriété gatewayMac est undefined dans le fronend, ce qui empêche d'avoir l'id du store et donc de rediriger correctement
+        - [x] la propriété gatewayMac n'existe pas dans le DTO GET de /kmo-boxes, ajout: 
+        ```
+        import { Event } from '../../events/entities/event.entity';
+        import { Gateway } from '../../gateways/entities/gateway.entity';
+
+        export class GetLambdaKmoBoxDto {
+        mac: string;
+        checkoutNumber: number;
+        datetime: string;
+        uptime: number;
+        closedTime: number;
+        firmwareVersion: number;
+        isOutOfOrder: boolean;
+        maintenanceLevel: string;
+        lastMaintenance: string;
+        events: Event[];
+        gateway: Gateway;
+        gatewayMac: string;
+        }
+        ```
+        - [x] La propriété n'existe pas dans la méthode associée du kmoBoxService du backend, ajout : 
+        ```
+        async getKmoBoxesWithEvents(): Promise<GetLambdaKmoBoxDto[]> {
+            const kmoBoxes = await KmoBox.createQueryBuilder('kmoBox')
+            .leftJoinAndSelect('kmoBox.events', 'event')
+            .addSelect('kmoBox.gatewayMac')
+            .leftJoinAndSelect('kmoBox.gateway', 'gateway')
+            .addSelect('gateway.mac')
+            .getMany();
+            console.log(kmoBoxes);
+            
+
+            for (const kmoBox of kmoBoxes) {
+            if (kmoBox.lastMaintenance != null) {
+                const eventsAfterMaintenance = await Event.createQueryBuilder('event')
+                .where('event.kmoBox.mac = :kmoBoxId', { kmoBoxId: kmoBox.mac })
+                .andWhere('event.datetime > :lastMaintenance', {
+                    lastMaintenance: kmoBox.lastMaintenance,
+                })
+                .getMany();
+
+                kmoBox.events = eventsAfterMaintenance;
+            }
+            }
+            const lambdaBox: GetLambdaKmoBoxDto[] = kmoBoxes.map((item) => ({
+            ...item,
+            gatewayMac: item.gateway.mac
+            }));
+            return lambdaBox;
+        }
+        ```
+        - [ ] Clean des nombreux console logs
+        - [ ] Lint
+        - [ ] Tests
+        - [ ] Commit & push
+        - [ ] PR
+        - [ ] mise en prod du fix
