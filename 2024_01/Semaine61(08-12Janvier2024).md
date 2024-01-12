@@ -153,5 +153,59 @@
 
 **12 Janvier**
 - [ ] Poursuite de KP-687 ajouter données de stores désactivés à la modale de /cop
-    - [ ] Créer une route backend qui GET les stores by isActive
+    - [x] Création et switch sur branche adaptée ``` git checkout -b feat/KP-687-688_add_inactive-stores_data_to_cop_view```
+    - [x] Créer une route backend qui GET les stores by isActive
+    ```    
+    @Get('inactive-stores')
+    findInactiveStores() {
+        return this.storesService.findInactiveStores();
+    }
+    ```
+    - [x] Créer la logique dans le service associé :
+    ```
+    async findInactiveStores(): Promise<Store[]> {
+        try {
+        return await this.storeRepository.find({
+            where: { isStoreActive: false },
+        });
+        } catch (e) {
+        throw new HttpException(e, 500);
+        }
+    }
+    ```
+    - [x] Ajout du code utile dans le frontend
+        - [x] cop store details component : 
+        ```
+        public inactiveStores: StoreInterface[] = [];
+
+        ...
+
+        ngOnInit(){
+            ...
+            this.fetchInactiveStores();
+            ...
+        }
+
+        ...
+
+        fetchInactiveStores() {
+            this.storeService.getInactiveStores().subscribe({
+            next: (data) => {
+                this.inactiveStores = data;
+            },
+            error: (err) => {
+                this.snackBar.open(err.message, 'Ok');
+            },
+            });
+        }
+        ```
+        - [x]  store service front : 
+        ```
+        getInactiveStores(): Observable<StoreInterface[]> {
+            return this.httpclient.get<StoreInterface[]>(environment.apiUrl + '/stores/inactive-stores');
+        }
+        ```
+        - [ ] Récupérer la .length des stores inactifs
+        - [ ] Afficher le nombre de stores inactifs dans la modale
+        - [ ] Afficher les stores inactifs & leur id avec lien dans la modale
 - [ ] Poursuite de KP-688 mettre un code couleur aux stores désactivés de /cop
