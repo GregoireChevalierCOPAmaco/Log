@@ -144,3 +144,14 @@
         - [x] mise en prod du fix
 - [ ] Penser à enlever la console log ```console.log(response.payload);``` de cop store detail
 - [ ] Penser à enlever le {{ kmoBox.gatewayMac }} de la modlae kmobox preventive
+
+
+**11 janvier**
+- [ ] Passage sur KP-687 ajouter données de stores désactivés à la modale de /cop
+- [ ] Passage sur KP-688 mettre un code couleur aux stores désactivés de /cop
+
+
+**12 Janvier**
+- [ ] Poursuite de KP-687 ajouter données de stores désactivés à la modale de /cop
+    - [ ] Créer une route backend qui GET les stores by isActive
+- [ ] Poursuite de KP-688 mettre un code couleur aux stores désactivés de /cop
