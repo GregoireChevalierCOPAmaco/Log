@@ -82,3 +82,50 @@
     }
     ```
     Risque de surcharge de la page /cop & /administration
+
+
+
+**16 janvier**
+- [ ] Passage sur KP-665 Rajouter dynamiquement le nombre de caisses d'un magasin au tableau en reprenant la route /GET store/paginate
+    - [x] Update requête à gpt : 
+    ```
+    knowing that a store does not have a numberOfCheckouts property but updateStoreDTO does, and
+    knowing that a store has a "gatewayMac" property that corresponds to a Gateway's "mac" property, and that every KmoBox has a "gatewayMac" property, i can know how many KmoBoxes a stores has by filtering all the kmoBoxes that share their "gatwayMac" property with the "gatwayMac" property of the store itself.
+    There is no gateway.kmoBoxes.length property, so the way to go would be to iterate on kmoBoxes to see which have a "gatewayMac" property that corresponds to the "gatewayMac" property of the store
+
+    Now what i want is to update the @Get('/paginate/') route for it to  return the number of KmoBoxes a store has when submitted its "id" property, and append it to the object returned as numberOfCheckouts
+
+    can you help me do that ?
+    ```
+    - [x] Application de la réponse : 
+        - [x] store controller : 
+        ```
+         @Get('/paginate/')
+            async getAll(
+                @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
+                @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
+                @Query('searchTerm') searchTerm: string,
+            ): Promise<Pagination<Store | UpdateStoreDto>> {
+            //   return this.storesService.findAllPaginate({ page, limit }, searchTerm);
+            // }
+                const storesPaginated = await this.storesService.findAllPaginate(
+                { page, limit },
+                searchTerm,
+                );
+
+                const storesWithKmoBoxes: UpdateStoreDto[] = [];
+
+                for (const store of storesPaginated.items) {
+                const numberOfCheckouts = await this.storesService.getNumberOfKmoBoxes(store.id);
+                const storeWithKmoBoxes: UpdateStoreDto = {
+                    ...store,
+                    numberOfCheckouts,
+                };
+                storesWithKmoBoxes.push(storeWithKmoBoxes);
+            }
+
+            return { ...storesPaginated, items: storesWithKmoBoxes };
+        }
+        ```
+        - [x] store service : 
+        ```
