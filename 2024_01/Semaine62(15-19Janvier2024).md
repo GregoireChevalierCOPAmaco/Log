@@ -129,3 +129,64 @@
         ```
         - [x] store service : 
         ```
+        async getNumberOfKmoBoxes(storeId: string): Promise<number> {
+            try {
+            const store = await this.storeRepository.findOne({
+                where: { id: storeId },
+                relations: ['gateway', 'gateway.kmoBoxes'],
+            });
+
+            if (!store) {
+                throw new HttpException(`Store with ID ${storeId} not found`, 404);
+            }
+
+            
+            const kmoBoxes = store.gateway.kmoBoxes.filter(
+                (kmoBox) => kmoBox.gatewayMac === store.gatewayMac,
+            );
+
+            return kmoBoxes.length;
+            } catch (e) {
+            throw new HttpException(e, 500);
+            }
+        }
+        ```
+        - [x] Résolution de l'erreur créée : 
+        ```
+        Property 'filter' does not exist on type 'KmoBox'.
+
+        for the line  : 
+            const kmoBoxes = store.gateway.kmoBoxes.filter(
+        in  the getNumberOfKmoBoxes method
+        ```
+        ajout de  : 
+        ```
+        async getNumberOfKmoBoxes(storeId: string): Promise<number> {
+            try {
+            const store = await this.storeRepository.findOne({
+                where: { id: storeId },
+                relations: ['gateway', 'gateway.kmoBoxes'],
+            });
+
+            if (!store) {
+                throw new HttpException(`Store with ID ${storeId} not found`, 404);
+            }
+
+            const kmoBoxes: KmoBox[] = (store.gateway.kmoBoxes as unknown) as KmoBox[];
+            const filteredKmoBoxes = kmoBoxes.filter(
+                (kmoBox) => kmoBox.gateway.mac === store.gatewayMac,
+            );
+
+            return filteredKmoBoxes.length;
+            } catch (e) {
+            throw new HttpException(e, 500);
+            }
+        }
+        ``` 
+    - [x] Écriture du code sous nouvelle branche
+        - [x] ```git checkout -b fix/KP-665_adjust_paginate_route_toGet_numberOfCheckouts```
+        - [x] lint
+        - [ ] test
+        - [ ] push
+        - [ ] PR
+        - [ ] mise en prod
