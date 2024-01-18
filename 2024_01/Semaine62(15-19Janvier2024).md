@@ -185,8 +185,48 @@
         ``` 
     - [x] Écriture du code sous nouvelle branche
         - [x] ```git checkout -b fix/KP-665_adjust_paginate_route_toGet_numberOfCheckouts```
-        - [x] lint
-        - [ ] test
-        - [ ] push
-        - [ ] PR
-        - [ ] mise en prod
+        - [ ] Résolution du problème : 
+        ```
+        Http failure response for http://localhost:3001/stores/paginate?page=1&limit=7&searchTerm=: 500 Internal Server Error
+
+        cop-store-details.component.ts:116 
+            
+            
+        GET http://localhost:3001/stores/paginate?page=1&limit=7&searchTerm= 500 (Internal Server Error)
+        ```
+        - [x] ```git reset --hard```
+        - [x] Ajout de ```numberOfKmoBoxes?: number``` dans la storeInterface
+        - [x] deux autres essais infructueux, git reset hard encore
+        
+liste des éléments pour le test grandeur nature de predict : 
+- 5 GW en réel fonctionnelles
+    - 5 GW
+    - 1 routeur 4G
+    - 1 SIM active
+- 10 caisses
+    - 10 boitiers kmo OU esp
+- 2/3 comptes user basique associé à un store sur keycloak
+- 1 compte user +
+
+tests de corrélation matériel / données
+tests user à faire plus tard
+module statistique, voir pour alerte trappe, etc
+secu api anthony
+
+
+**18 Janvier**
+- [ ] Testing exhaustif de corrélation données caisse / données logicielles
+    - [ ] Listing des paramètres à tester
+        - [ ] Données caisse
+            - Date d'installation
+            - Version firmware
+            - État caisse
+            - Temps depuis dernière utilisation ?
+            - Évènements dernière heure
+            - Évènements trappe semaine
+            - Température CPU
+            - Courant moteur
+            - Temps moteur
+            - Temps d'ouverture
+            - Temps de fermeture
+            - Niveau de maintenance
