@@ -230,3 +230,34 @@ secu api anthony
             - Temps d'ouverture
             - Temps de fermeture
             - Niveau de maintenance
+- [ ] Résolution KP-691 Fix l'affichage de temps depuis la dernière utilisation dans la modale d'informations de caisse
+    - [x] Création de branche et checkout ```git checkout -b fix/KP-691_fix_time_since_last_use```
+    - [x] ajout dans le cop-dialog.component.ts de :
+    ```
+    ...
+    public hoursSinceLastUse = 0;
+    public minutesSinceLastUse = 0;
+    ...
+    this.eventsService.getLatestOpenedEvent(kmoBoxMac).subscribe({
+      next: (latestOpenedEvent) => {
+        if (latestOpenedEvent) {
+          const currentDate = new Date();
+    
+          const openedDate = new Date(latestOpenedEvent.datetime);
+    
+          const timeDifference = currentDate.getTime() - openedDate.getTime();
+    
+          this.hoursSinceLastUse = Math.floor(timeDifference / (1000 * 60 * 60));
+          this.minutesSinceLastUse = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+        }
+      }
+    });
+    ```
+    - [ ] Lint
+    - [ ] Test
+    - [ ] Commit
+    - [ ] Push
+    - [ ] PR
+    - [ ] Déploiement prod
+
+user story = dev de fonctionnalité user ou developpeur
