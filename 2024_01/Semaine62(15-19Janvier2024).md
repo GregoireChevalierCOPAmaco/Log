@@ -253,11 +253,11 @@ secu api anthony
       }
     });
     ```
-    - [ ] Lint
-    - [ ] Test
-    - [ ] Commit
-    - [ ] Push
-    - [ ] PR
-    - [ ] Déploiement prod
+    - [x] Lint
+    - [x] Test
+    - [x] Commit
+    - [x] Push
+    - [x] PR
+    - [x] Déploiement prod
 
 user story = dev de fonctionnalité user ou developpeur
