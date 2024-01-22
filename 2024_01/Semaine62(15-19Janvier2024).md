@@ -218,19 +218,19 @@ secu api anthony
 - [ ] Testing exhaustif de corrélation données caisse / données logicielles
     - [ ] Listing des paramètres à tester
         - [ ] Données caisse
-            - Date d'installation
-            - Version firmware
-            - État caisse
-            - Temps depuis dernière utilisation ?
-            - Évènements dernière heure
-            - Évènements trappe semaine
-            - Température CPU
-            - Courant moteur
-            - Temps moteur
-            - Temps d'ouverture
-            - Temps de fermeture
-            - Niveau de maintenance
-- [ ] Résolution KP-691 Fix l'affichage de temps depuis la dernière utilisation dans la modale d'informations de caisse
+            - Date d'installation 
+            - Version firmware 
+            - État caisse 
+            - Temps depuis dernière utilisation ✔
+            - Évènements dernière heure 
+            - Évènements trappe semaine 
+            - Température CPU 
+            - Courant moteur 
+            - Temps moteur 
+            - Temps d'ouverture 
+            - Temps de fermeture 
+            - Niveau de maintenance 
+- [x] Résolution KP-691 Fix l'affichage de temps depuis la dernière utilisation dans la modale d'informations de caisse
     - [x] Création de branche et checkout ```git checkout -b fix/KP-691_fix_time_since_last_use```
     - [x] ajout dans le cop-dialog.component.ts de :
     ```
@@ -261,3 +261,6 @@ secu api anthony
     - [x] Déploiement prod
 
 user story = dev de fonctionnalité user ou developpeur
+
+**19 Janvier**
+Récupération

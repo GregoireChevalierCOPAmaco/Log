@@ -1,0 +1,16 @@
+**22 Janvier**
+- [ ] Testing exhaustif de corrélation données caisse / données logicielles
+    - [ ] Listing des paramètres à tester
+        - [ ] Données caisse
+            - Date d'installation 
+            - Version firmware 
+            - État caisse 
+            - Temps depuis dernière utilisation ✔
+            - Évènements dernière heure 
+            - Évènements trappe semaine 
+            - Température CPU 
+            - Courant moteur 
+            - Temps moteur 
+            - Temps d'ouverture 
+            - Temps de fermeture 
+            - Niveau de maintenance 
