@@ -301,3 +301,4 @@ Remember that these optimizations depend on the specific requirements of your ap
     - [x] Check de (https://www.emretosun.dev/post/mastering-performance-optimization-in-nestjs-a-comprehensive-guide)
     - [x] Check de (https://ariya.io/2013/07/profile-guided-javascript-optimization)
     - [x] Check de (https://www.atatus.com/blog/nestjs-monitoring-with-atatus/#monitoring-nest.js)
+- [ ] Réunion des objectifs et du salaire sa mère
