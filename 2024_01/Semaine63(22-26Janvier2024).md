@@ -153,3 +153,11 @@ Batch Processing: If possible, process data in smaller batches instead of loadin
 Remember that these optimizations depend on the specific requirements of your application, and it's essential to test and measure the impact of each optimization to ensure it meets your performance goals.
 ```
 - [ ] Monitoring des ressources du controller kmo boxes
+
+
+
+**23 Janvier**
+- [ ] Monitoring des ressources du controller kmo boxes
+    - [ ] Connexion à la prod
+        - [ ] Modification du kmoBox controller dans le back, ajout de code de monitoring de memory : 
+        ```
