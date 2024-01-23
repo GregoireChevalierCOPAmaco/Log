@@ -281,7 +281,23 @@ Remember that these optimizations depend on the specific requirements of your ap
         ```
     - [x] Réimport des 349000 events en base
     - [x] Predict crash avec heap limit
-    - [ ] Réduction de la table à 19400 events
-    - [ ] Arrêt des containers
-    - [ ] Suppression des containers
-    - [ ] Relance des containers
+    - [x] Réduction de la table à 19400 events
+    - [x] Arrêt des containers
+    - [x] Suppression des containers
+    - [x] Relance des containers
+    - [ ] Benchmark Memory Useage (end)
+ | Events  | rss       | heapTotal     | heapUsed    | external  | arrayBuffers
+> | 000000 | 114.970.624 | 57.171.968 | 51.516.728 | 2.270.549 | 502.504
+| 001000 | 144.396.288 | 70.017.024 | 60.270.312 | 3.344.662 | 2.224.879
+| 010000 | 200.359.936 | 125.517.824 | 97.214.704 | 5.482.565 | 4.363.234
+| 020000 | 265.805.824 | 186.163.200 | 162.733.384 | 15.235.793 | 14.116.710 
+| 050000 | 538.877.952 | 414.986.240 | 375.865.928 | 58.056.636 | 65.937.553
+| 100000 | 813.940.736 | 672.014.336 | 636.550.184 | 65.792.727 | 64.673.647
+| 150000 | 947.228.672 | 771.317.760 | 536.745.080 | 96.858.320 | 95.739.493
+| 200000 | 1.303.130.112 | 1.096.142.848 | 934.523.232 | 128.171.432 | 127.052.605
+| 250000 | 1.539.579.904 | 1.340.178.432 | 905.232.184 | 160.733.815 | 159.614.738
+| 300000 | memory heap & crash du back
+- [ ] Poursuite des recherches sur l'optimisation et le profiling
+    - [x] Check de (https://www.emretosun.dev/post/mastering-performance-optimization-in-nestjs-a-comprehensive-guide)
+    - [x] Check de (https://ariya.io/2013/07/profile-guided-javascript-optimization)
+    - [x] Check de (https://www.atatus.com/blog/nestjs-monitoring-with-atatus/#monitoring-nest.js)
