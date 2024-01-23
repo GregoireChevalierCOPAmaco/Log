@@ -158,6 +158,130 @@ Remember that these optimizations depend on the specific requirements of your ap
 
 **23 Janvier**
 - [ ] Monitoring des ressources du controller kmo boxes
-    - [ ] Connexion à la prod
-        - [ ] Modification du kmoBox controller dans le back, ajout de code de monitoring de memory : 
+    - [x] Connexion à la prod ```ssh -i "Predict-Beta.pem" ubuntu@ec2-3-76-238-223.eu-central-1.compute.amazonaws.com```
+        - [x] Modification du kmoBox service dans le back, ajout de code de monitoring de memory dans la method getKmoBoxesWithEvents: 
         ```
+        async getKmoBoxesWithEvents(): Promise<GetLambdaKmoBoxDto[]> {
+            try {
+            const kmoBoxes = await KmoBox.createQueryBuilder('kmoBox')
+                .leftJoinAndSelect('kmoBox.events', 'event')
+                .addSelect('kmoBox.gatewayMac')
+                .leftJoinAndSelect('kmoBox.gateway', 'gateway')
+                .addSelect('gateway.mac')
+                .getMany();
+
+            for (const kmoBox of kmoBoxes) {
+                if (kmoBox.lastMaintenance != null) {
+                const eventsAfterMaintenance = await Event.createQueryBuilder('event')
+                    .where('event.kmoBox.mac = :kmoBoxId', { kmoBoxId: kmoBox.mac })
+                    .andWhere('event.datetime > :lastMaintenance', {
+                    lastMaintenance: kmoBox.lastMaintenance,
+                    })
+                    .getMany();
+
+                kmoBox.events = eventsAfterMaintenance;
+                }
+            }
+
+            const lambdaBox: GetLambdaKmoBoxDto[] = kmoBoxes.map((item) => ({
+                ...item,
+                gatewayMac: item.gateway.mac,
+            }));
+
+            return lambdaBox;
+            } catch (error) {
+            throw new HttpException('Failed to fetch KmoBoxes with events', 500);
+            }
+        }
+        ```
+    - [x] Relance des dockers
+    - [x] Connexion à predict
+    - [x] Allumage
+    - [ ] Monitoring
+        - [x] Table events vide : 
+        ```
+         ==================================================
+        Memory usage (start): {
+        rss: 114167808,
+        heapTotal: 57171968,
+        heapUsed: 50317968,
+        external: 2135207,
+        arrayBuffers: 387737
+        }
+        Memory usage (end): {
+        rss: 114249728,
+        heapTotal: 57171968,
+        heapUsed: 50721888,
+        external: 2189564,
+        arrayBuffers: 425622
+        }
+        ```
+        puis récurrence de la methode quatre autres fois : 
+        ```
+        ==================================================
+        Memory usage (start): {
+          rss: 114429952,
+          heapTotal: 57171968,
+          heapUsed: 50708648,
+          external: 2135207,
+          arrayBuffers: 387737
+        }
+        Memory usage (end): {
+          rss: 114905088,
+          heapTotal: 57171968,
+          heapUsed: 51359040,
+        external: 2209590,
+          arrayBuffers: 445648
+        }
+        ==================================================
+        Memory usage (start): {
+          rss: 114298880,
+          heapTotal: 57171968,
+          heapUsed: 50425968,
+          external: 2135207,
+          arrayBuffers: 387737
+        }
+        Memory usage (end): {
+          rss: 114552832,
+          heapTotal: 57171968,
+          heapUsed: 51116656,
+          external: 2229616,
+          arrayBuffers: 462794
+        }
+        ==================================================
+        Memory usage (start): {
+          rss: 114561024,
+          heapTotal: 57171968,
+          heapUsed: 50816192,
+          external: 2135207,
+          arrayBuffers: 387737
+        }
+        Memory usage (end): {
+          rss: 114315264,
+          heapTotal: 57171968,
+          heapUsed: 50856712,
+          external: 2249642,
+          arrayBuffers: 481597
+        }
+        ==================================================
+        Memory usage (start): {
+          rss: 114298880,
+          heapTotal: 57171968,
+          heapUsed: 50601064,
+          external: 2135207,
+          arrayBuffers: 387737
+        }
+        Memory usage (end): {
+          rss: 114970624,
+          heapTotal: 57171968,
+          heapUsed: 51516728,
+          external: 2270549,
+          arrayBuffers: 502504
+        }
+        ```
+    - [x] Réimport des 349000 events en base
+    - [x] Predict crash avec heap limit
+    - [ ] Réduction de la table à 19400 events
+    - [ ] Arrêt des containers
+    - [ ] Suppression des containers
+    - [ ] Relance des containers
