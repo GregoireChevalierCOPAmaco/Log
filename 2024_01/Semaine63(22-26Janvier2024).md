@@ -305,9 +305,9 @@ Remember that these optimizations depend on the specific requirements of your ap
 
 
 **25 Janvier**
-- [ ] Écriture des tickets KP-705/706/707
-- [ ] Passage du fix KP-691 en prod
-  - [ ] ```git reset --hard``` & extraction du code de test mémoire :
+- [x] Écriture des tickets KP-705/706/707
+- [x] Passage du fix KP-691 en prod
+  - [x] ```git reset --hard``` & extraction du code de test mémoire :
   ```
   async getKmoBoxesWithEvents(): Promise<GetLambdaKmoBoxDto[]> {
     try {
@@ -350,4 +350,7 @@ Remember that these optimizations depend on the specific requirements of your ap
   }
   }
   ```
-  - [ ] ```git pull origin develop``` & rebuild docker
+  - [x] ```git pull origin develop``` & rebuild docker
+  - [ ] Réflexion sur comment faker le débranchement de la fiche trappe pour l'afficher immédiatement
+    - [ ] Faire une route API qui checke les events trapdoor, et y faire appel toutes les 5? secondes et en fonction du retour, recharger la page 
+  - [ ] KP-709 Créer une route API pour checker toutes les x secondes les events trapdoor et recharger la page avec les nouvelles infos le cas échéant
