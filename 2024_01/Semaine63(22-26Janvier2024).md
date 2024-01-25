@@ -301,4 +301,53 @@ Remember that these optimizations depend on the specific requirements of your ap
     - [x] Check de (https://www.emretosun.dev/post/mastering-performance-optimization-in-nestjs-a-comprehensive-guide)
     - [x] Check de (https://ariya.io/2013/07/profile-guided-javascript-optimization)
     - [x] Check de (https://www.atatus.com/blog/nestjs-monitoring-with-atatus/#monitoring-nest.js)
-- [ ] Réunion des objectifs et du salaire sa mère
+- [ ] Réunion des objectifs 
+
+
+**25 Janvier**
+- [ ] Écriture des tickets KP-705/706/707
+- [ ] Passage du fix KP-691 en prod
+  - [ ] ```git reset --hard``` & extraction du code de test mémoire :
+  ```
+  async getKmoBoxesWithEvents(): Promise<GetLambdaKmoBoxDto[]> {
+    try {
+      const startMemory = process.memoryUsage();
+    const kmoBoxes = await KmoBox.createQueryBuilder('kmoBox')
+      .leftJoinAndSelect('kmoBox.events', 'event')
+      .addSelect('kmoBox.gatewayMac')
+      .leftJoinAndSelect('kmoBox.gateway', 'gateway')
+      .addSelect('gateway.mac')
+      .getMany();
+
+    for (const kmoBox of kmoBoxes) {
+      if (kmoBox.lastMaintenance != null) {
+        const eventsAfterMaintenance = await Event.createQueryBuilder('event')
+          .where('event.kmoBox.mac = :kmoBoxId', { kmoBoxId: kmoBox.mac })
+          .andWhere('event.datetime > :lastMaintenance', {
+            lastMaintenance: kmoBox.lastMaintenance,
+          })
+          .getMany();
+
+        kmoBox.events = eventsAfterMaintenance;
+      }
+    }
+
+    const endMemory = process.memoryUsage();
+    console.log('==================================================');
+
+    console.log('Memory usage (start):', startMemory);
+    console.log('Memory usage (end):', endMemory);
+
+    const lambdaBox: GetLambdaKmoBoxDto[] = kmoBoxes.map((item) => ({
+      ...item,
+      gatewayMac: item.gateway.mac,
+    }));
+    return lambdaBox;
+  } catch (error) {
+    // Handle errors
+    console.error('Error in getKmoBoxesWithEvents:', error);
+    throw new HttpException('Failed to get KmoBoxes with events', 500);
+  }
+  }
+  ```
+  - [ ] ```git pull origin develop``` & rebuild docker
