@@ -354,3 +354,30 @@ Remember that these optimizations depend on the specific requirements of your ap
   - [ ] Réflexion sur comment faker le débranchement de la fiche trappe pour l'afficher immédiatement
     - [ ] Faire une route API qui checke les events trapdoor, et y faire appel toutes les 5? secondes et en fonction du retour, recharger la page 
   - [ ] KP-709 Créer une route API pour checker toutes les x secondes les events trapdoor et recharger la page avec les nouvelles infos le cas échéant
+
+
+**26 Janvier**
+- [ ] Réflexion sur comment faker le débranchement de la fiche trappe pour l'afficher immédiatement
+  - [ ] Faire une route API qui checke les events trapdoor, et y faire appel toutes les 5? secondes et en fonction du retour, recharger la page 
+- [ ] KP-709 Créer une route API pour checker toutes les x secondes les events trapdoor et recharger la page avec les nouvelles infos le cas échéant
+  - [x] ```git checkout -b feat/KP-709_create_API_route_to_lastTrapdoorEvent_ofKmo```
+  - [x] Demande à gpt : 
+  ```
+  i want to create an API route with a GET endpoint that would return the latest trapdoor event for a specific gateway (with the gateway mac)
+  ```
+  - [ ] Ajout dans l'events.service.ts de : 
+  ```
+  ```
+  - [ ] Ajout dans l'events.controller.ts de : 
+  ```
+  @Get('latest-trapdoor-event/:gatewayMac')
+  async getLatestTrapdoorEvent(@Param('gatewayMac') gatewayMac: string) {
+    try {
+      const event = await this.eventsService.getLatestTrapdoorEvent(gatewayMac);
+      return event;
+    } catch (error) {
+      console.error('Error fetching latest trapdoor event:', error);
+      return { error: 'Failed to fetch latest trapdoor event' };
+    }
+  }
+  ```
