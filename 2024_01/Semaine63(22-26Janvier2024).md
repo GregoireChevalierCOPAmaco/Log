@@ -370,14 +370,5 @@ Remember that these optimizations depend on the specific requirements of your ap
   ```
   - [ ] Ajout dans l'events.controller.ts de : 
   ```
-  @Get('latest-trapdoor-event/:gatewayMac')
-  async getLatestTrapdoorEvent(@Param('gatewayMac') gatewayMac: string) {
-    try {
-      const event = await this.eventsService.getLatestTrapdoorEvent(gatewayMac);
-      return event;
-    } catch (error) {
-      console.error('Error fetching latest trapdoor event:', error);
-      return { error: 'Failed to fetch latest trapdoor event' };
-    }
-  }
+  
   ```
