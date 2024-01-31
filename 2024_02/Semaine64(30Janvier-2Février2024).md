@@ -50,4 +50,36 @@
     git checkout -b fix/KP-716_display_stores_gatewayMacaddress
     ```
     - [x] Isolation du code concerné : le fichier cop.component.html & .ts
-    - [ ]
+    - [x] Ajout de  : 
+    ```
+    ...
+    public gatewayMac: any ;
+    ...
+    getStore() {
+        this.storeService.getStoreById(this.idStore).subscribe({
+        next: (data) => {
+            this.store = data;
+            this.gateway = data.gateway;
+            this.isBroken = data.gateway.isBroken
+            this.gatewayMac = data.gatewayMac
+            
+        },
+        error: (err) => {
+            throw err;
+        },
+        });
+    }
+    ```
+    dans le ts
+    - [x] Ajout de  : 
+    ```
+    ...
+    <div>Macadresse de la gateway : <strong>{{this.gatewayMac}}</strong> </div>
+    ```
+    dans le html
+    - [x] lint
+    - [x] test
+    - [x] commit
+    - [x] push
+    - [x] PR
+    - [ ] merge
