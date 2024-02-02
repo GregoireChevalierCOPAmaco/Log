@@ -101,3 +101,22 @@ faire une liste de cas d'usage salon à tester fonctionnellement
 - [ ] Créer une route API pour checker toutes les x secondes les events trapdoor et recharger la page avec les nouvelles infos le cas échéant
 - [ ] Au retrait de la fiche trappe de la caisse, s'assurer que l'état de la caisse en question change d'état de maintenance. Voir en combien de temps le changement s'opère
 - [ ] Au retrait de la fiche trappe de la caisse, faire apparaître un toaster qui informe l'utilisateur que la caisse (numéro & magasin) est passé en maintenance prédictive/curative
+- [x] Résolution du problème docker local : 
+```
+Error response from daemon: Ports are not available: exposing port TCP 0.0.0.0:3000 -> 0.0.0.0:0: listen tcp 0.0.0.0:3000: bind: An attempt was made to access a socket in a way forbidden by its access permissions.
+```
+- [x] Check si le port est en usage : 
+```
+Get-NetTCPConnection -LocalPort 3000
+```
+Reéponse : 
+```
+Get-NetTCPConnection : Aucun objet MSFT_NetTCPConnection avec la propriété « LocalPort » égale à « 3000 » n’a été trouvé. Vérifiez la valeur de la propriété et réessayez.
+Au caractère Ligne:1 : 1
++ Get-NetTCPConnection -LocalPort 3000
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (3000:UInt16) [Get-NetTCPConnection], CimJobException
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_LocalPort,Get-NetTCPConnection
+```
+Le port n'est pas déjà en usage
+- [x] Redémarrer fix le problème
