@@ -82,4 +82,20 @@
     - [x] commit
     - [x] push
     - [x] PR
-    - [ ] merge
+    - [x] merge
+
+surveillance datas gunder
+corrélation données caisses, données base
+fix affichage mac gw
+route last trapdoor event ok avec gwmac mais lourd donc refait
+toaster quasi prêt pour deployer quand route ok (!)
+
+clearer les rapports d'erreur si passage à état RAS
+cas d'usage à check : je mets en RAS via l'interface alors que la trappe est toujours down
+
+faire une liste de cas d'usage salon à tester fonctionnellement
+
+
+
+**2 février**
+- [ ] Passage sur afficher la mac de la Gateway associée d'un magasin sur modale
