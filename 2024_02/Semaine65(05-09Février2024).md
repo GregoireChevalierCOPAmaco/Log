@@ -242,6 +242,89 @@
 - [ ] Au retrait de la fiche trappe de la caisse, faire apparaître un toaster qui informe l'utilisateur que la caisse (numéro & magasin) est passé en maintenance prédictive/curative
 
 
-**6 Février**
+**7 Février**
 - [ ] Créer une route API pour checker toutes les x secondes les events trapdoor et recharger la page avec les nouvelles infos le cas échéant
-    - [ ] Régler la multiplicité de l'Occurence de periodic refresh
+    - [x] Régler la multiplicité de l'Occurence de periodic refresh : 
+    ```
+    // ... (other imports)
+
+    @Component({
+    // ... (component metadata)
+    })
+    export class CopDialogComponent implements OnInit {
+    // ... (existing class properties)
+
+    private isRefreshing: boolean = false; // Flag to track if data is being refreshed
+
+    // ... (existing constructor and other methods)
+
+    ngOnDestroy(): void {
+        // Unsubscribe from the refresh subscription when the component is destroyed
+        if (this.refreshSubscription) {
+        this.refreshSubscription.unsubscribe();
+        }
+    }
+
+    private startPeriodicRefresh(): void {
+        console.log("startPeriodicRefresh");
+        
+        this.refreshSubscription = interval(20000).pipe(
+        switchMap(() => this.refreshData())
+        ).subscribe(() => {
+        // Optional: You can add additional logic here if needed after each refresh
+        });
+    }
+
+    private refreshData(): Observable<any> {
+        if (!this.isRefreshing) {
+        this.isRefreshing = true;
+        this.showToaster(); 
+        }
+
+        return of(null);
+    }
+
+    private showToaster() {
+        const kmoBoxMac = this.data.mac;
+
+        this.eventsService.getGatewayMacByKmoBoxMac(kmoBoxMac).subscribe({
+        next: (response) => {
+            if (response && response.gatewayMac) {
+            const gwMac = response.gatewayMac;
+
+            this.eventsService.getLatestTrapdoorEvent(gwMac).subscribe({
+                next: (latestTrapdoorEvent) => {
+                this.checkTrapdoorEventTiming(latestTrapdoorEvent);
+                this.isRefreshing = false; // Reset the flag after the code execution
+                },
+                error: (err) => {
+                this.snackBar.open(err, 'Ok');
+                this.isRefreshing = false; // Reset the flag in case of an error
+                },
+            });
+            } else {
+            console.error('GatewayMac not found in the response');
+            this.isRefreshing = false; // Reset the flag in case of an error
+            }
+        },
+        error: (err) => {
+            this.snackBar.open(err, 'Ok');
+            this.isRefreshing = false; // Reset the flag in case of an error
+        },
+        });
+    }
+
+    // ... (existing methods)
+    }
+    ```
+
+
+
+**8 Février**
+- [ ] Créer une route API pour checker toutes les x secondes les events trapdoor et recharger la page avec les nouvelles infos le cas échéant
+    - [ ] Déplacer la logique et la répétabilité sur la page /cop
+    - [ ] Chercher le dernier event trapdoor & up
+    - [ ] Checker la date et l'heure
+    - [ ] Afficher le toaster si date < 30 secondes
+    - [ ] Afficher le numéro de caisse et le magasin confirmé
+        - [ ] Créer une route API getStoreByGatewayMac
