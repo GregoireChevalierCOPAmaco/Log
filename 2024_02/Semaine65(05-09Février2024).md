@@ -322,9 +322,226 @@
 
 **8 Février**
 - [ ] Créer une route API pour checker toutes les x secondes les events trapdoor et recharger la page avec les nouvelles infos le cas échéant
-    - [ ] Déplacer la logique et la répétabilité sur la page /cop
-    - [ ] Chercher le dernier event trapdoor & up
-    - [ ] Checker la date et l'heure
-    - [ ] Afficher le toaster si date < 30 secondes
-    - [ ] Afficher le numéro de caisse et le magasin confirmé
-        - [ ] Créer une route API getStoreByGatewayMac
+    - [x] Déplacer la logique et la répétabilité sur la page /cop
+    - [x] Chercher le dernier event trapdoor & up, modif de la méthode dans le service events :
+        - [x] Créer une route API get latest trapdoor up
+        ```
+        async getLatestTrapdoorEvent(): Promise<Event | null> {
+            try {
+            const event = await Event.createQueryBuilder('event')
+                .leftJoin('event.kmoBox', 'kmoBox')
+                .where('event.type = :type', { type: TypeEvent.TRAPDOOR_TRIGGERED })
+                .andWhere('event.state = :state', { state: StateEvent.UP })
+                .orderBy('event.datetime', 'DESC')
+                .getOne();
+
+            return event;
+            } catch (error) {
+            console.error('Error fetching latest trapdoor event:', error);
+            throw new HttpException('Failed to fetch latest trapdoor event', 500);
+            }
+        }
+        ```
+    - [x] Checker la date et l'heure, cop-store details component : 
+    ```
+    const trapdoorDate = new Date(response.datetime);
+          const currentDate = new Date();
+          const timeDifference = currentDate.getTime() - trapdoorDate.getTime();
+
+    ```
+    - [x] Afficher le toaster si date < 30 secondes
+    ```
+    const timeDifferenceInSeconds = timeDifference / 1000;
+    console.log("Time difference in seconds:", timeDifferenceInSeconds);
+
+    if (timeDifferenceInSeconds < 30)
+    ```
+    - [x] Afficher le numéro de caisse et le magasin confirmé
+        - [x] Créer une route API getEventKmobox events controller : 
+        ```
+        @Get('kmo-box-mac/:eventId')
+        async getKmoBoxMacByEventId(@Param('eventId') eventId: string) {
+            try {
+            const kmoBoxMac = await this.eventsService.getKmoBoxMacByEventId(eventId);
+            return { kmoBoxMac };
+            } catch (error) {
+            console.error('Error fetching kmoBoxMac by eventId:', error);
+            return { error: 'Failed to fetch kmoBoxMac' };
+            }
+        }
+        ```
+        events service : 
+        ```
+        async getKmoBoxMacByEventId(eventId: string): Promise<string | null> {
+            try {
+            const event = await this.eventRepository
+                .createQueryBuilder('event')
+                .leftJoinAndSelect('event.kmoBox', 'kmoBox')
+                .where('event.id = :eventId', { eventId })
+                .getOne();
+        
+            return event ? event.kmoBox?.mac : null;
+            } catch (error) {
+            console.error('Error fetching kmoBoxMac by eventId:', error);
+            throw new HttpException('Failed to fetch kmoBoxMac', 500);
+            }
+        }
+        ```
+        - [x] Créer une route API get gateway by kmo mac controller : 
+        ```
+        @Get(':mac/gateway-mac')
+        async getGatewayMacByKmoBoxMac(@Param('mac') kmoBoxMac: string) {
+            try {
+            const gatewayMac = await this.kmoBoxesService.getGatewayMacByKmoBoxMac(kmoBoxMac);
+
+            if (!gatewayMac) {
+                throw new NotFoundException(`GatewayMac not found for KmoBox with MAC '${kmoBoxMac}'`);
+            }
+
+            return { gatewayMac };
+            } catch (error) {
+            throw new NotFoundException(`Error fetching GatewayMac for KmoBox with MAC '${kmoBoxMac}'`);
+            }
+        }
+        ```
+        service : 
+        ```
+        async getGatewayMacByKmoBoxMac(kmoBoxMac: string): Promise<string | undefined> {
+            try {
+            const kmoBox = await KmoBox.findOne({ where: { mac: kmoBoxMac }, relations: ['gateway'] });
+
+            if (!kmoBox || !kmoBox.gateway) {
+                return undefined;
+            }
+
+            return kmoBox.gateway.mac;
+            } catch (error) {
+            throw new HttpException(`Error fetching GatewayMac for KmoBox with MAC '${kmoBoxMac}'`, 500);
+            }
+        }
+        ```
+        - [x] Créer une route API get store by gateway mac controller : 
+        ```
+        @Get('by-gateway-mac/:gatewayMac')
+        async findStoreInfoByGatewayMac(@Param('gatewayMac') gatewayMac: string) {
+            try {
+            const storeInfo = await this.storesService.findStoreInfoByGatewayMac(gatewayMac);
+
+            if (!storeInfo) {
+                throw new NotFoundException(`Store not found for Gateway with MAC '${gatewayMac}'`);
+            }
+
+            return storeInfo;
+            } catch (error) {
+            throw new NotFoundException(`Error fetching Store info for Gateway with MAC '${gatewayMac}'`);
+            }
+        }
+        ```
+        service : 
+        ```
+        async findStoreInfoByGatewayMac(gatewayMac: string): Promise<{ address: string, brand: string, city: string } | undefined> {
+            try {
+            const store = await this.storeRepository.findOne({ where: { gatewayMac }, select: ['address', 'brand', 'city'] });
+
+            if (!store) {
+                return undefined;
+            }
+
+            return {
+                address: store.address,
+                brand: store.brand,
+                city: store.city,
+            };
+            } catch (error) {
+            throw new HttpException(`Error fetching Store info for Gateway with MAC '${gatewayMac}'`, 500);
+            }
+        }
+        ```
+        - [x] Ajout de fonction dans le service front kmo :
+        ```
+        getGatewayMacByKmoMac(mac: string){
+            return this.httpclient.get<any>(`${this.apiUrl}${mac}/gateway-mac`);
+        }
+        ```
+        - [x] Ajout de fonction dans le service front event :
+        ```
+        getKmoBoxMacByEventId(eventId: string): Observable<any> {
+            return this.httpclient.get<any>(`${this.apiUrl}/kmo-box-mac/${eventId}`)
+        }
+        ```
+        - [x] Ajout de fonction dans le service front store :
+        ```
+        getStoreInfoByGatewayMac(gatewayMac: string): Observable<any> {
+            return this.httpclient.get<any>(`${this.apiUrl}/by-gateway-mac/${gatewayMac}`);
+        }
+        ```
+        - [x] Function dans le component : 
+        ```
+        ngOnDestroy(): void {
+            if (this.refreshSubscription) {
+            this.refreshSubscription.unsubscribe();
+            }
+        }
+
+        private startPeriodicRefresh(): void {
+            console.log("startPeriodicRefresh");
+            
+            this.refreshSubscription = interval(20000).pipe(
+            switchMap(() => this.refreshData())
+            ).subscribe(() => {
+            });
+        }
+
+        private refreshData(): Observable<any> {
+            if (!this.isRefreshing) {
+            this.isRefreshing = true;
+            this.showToaster(); 
+            }
+
+            return of(null);
+        }
+
+        private showToaster() {
+            this.eventService.getLatestTrapdoorEvent().subscribe({
+            next: async (response) => {
+                if(response) {
+
+                const trapdoorDate = new Date(response.datetime);
+                const currentDate = new Date();
+                const timeDifference = currentDate.getTime() - trapdoorDate.getTime();
+
+                const timeDifferenceInSeconds = timeDifference / 1000;
+                console.log("Time difference in seconds:", timeDifferenceInSeconds);
+
+                if (timeDifferenceInSeconds < 30) {
+                    const kmoMacObservable = this.eventService.getKmoBoxMacByEventId(response.id);
+                    const kmoMac = await kmoMacObservable.toPromise();
+
+                    const gwMacObservable = this.kmoBoxesService.getGatewayMacByKmoMac(kmoMac.kmoBoxMac);
+                    const gwMac = await gwMacObservable.toPromise();
+
+                    const storeInfoObservable = this.storeService.getStoreInfoByGatewayMac(gwMac.gatewayMac);
+                    const storeInfo = await storeInfoObservable.toPromise();
+                    this.snackBar.open(
+                    'Trapdoor error! A checkout from the store: ' + 
+                    `${storeInfo.brand}` + ' located at ' +
+                    ` ${storeInfo.address}` + ' ' +
+                    `${storeInfo.city}` + ' has had a trapdoor issue !' ,
+                    'Close', {
+                    duration: 5000,
+                    panelClass: ['red-snackbar'],
+                    });
+                } else {
+                    this.snackBar.open('Trapdoor ok!', 'Close', {
+                    duration: 5000,
+                    panelClass: ['green-snackbar'],
+                    });
+                }
+
+                this.isRefreshing = false;
+
+                }
+            }
+            })
+        }
+        ```
