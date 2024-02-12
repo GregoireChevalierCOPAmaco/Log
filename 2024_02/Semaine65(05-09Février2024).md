@@ -545,3 +545,11 @@
             })
         }
         ```
+
+**9 Février**
+- [ ] Passer la caisse en état maintenance curative si trapdoor event détecté
+    - [ ] Cleaner la base de prod pour tests au 12
+        - [ ] Faire un export, copie de la base de prod
+        - [ ] Fix le time code utc 0
+    - [ ] Update de la prod, pull et rebuild docker
+    - [ ] Créer fonction à mettre dans le ngOninit de la modale de caisse pour : si le dernier event trapdoor est up, pass ela caisse en rouge, sinon non
