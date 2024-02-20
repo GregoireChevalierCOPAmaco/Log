@@ -104,3 +104,6 @@
     - [ ] PR
     - [ ] Déploiement en prod
 - [ ] KP 745 Ajouter un code coloré dans la page de magasin pour traduire l'ouverture/fermeture de caisse
+- [ ] Créer un nouveau client keycloak
+- [ ] Créer une instance vierge et déployer dessus
+- [ ] Créer un user demoCOP avec tous les droits
