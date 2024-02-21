@@ -97,13 +97,53 @@
 
 
 **20 Février**
-- [ ] Poursuite user story KP-705
-    - [ ] Lint
-    - [ ] Tests
-    - [ ] Push
-    - [ ] PR
-    - [ ] Déploiement en prod
+- [x] Poursuite user story KP-705
+    - [x] Lint
+    - [x] Tests
+    - [x] Push
+    - [x] PR
+    - [x] Déploiement en prod
 - [ ] KP 745 Ajouter un code coloré dans la page de magasin pour traduire l'ouverture/fermeture de caisse
-- [ ] Créer un nouveau client keycloak
-- [ ] Créer une instance vierge et déployer dessus
-- [ ] Créer un user demoCOP avec tous les droits
+- [x] Créer un nouveau client keycloak
+- [x] Créer une instance vierge et déployer dessus
+    - [x] Connexion 
+    - [x] Installer git (déjà installé)
+    - [ ] Installer docker ```sudo snap install docker```
+    - [x] Lier git et le serveur par clé ssh git
+        - ```ssh-keygen```
+        - cat  /home/ubuntu/.ssh/id_rsa.pub
+        - Ajout dans la liste des clés de github
+        - clone du repo ```git clone git@github.com:COP-AMACO/KMO_PREDICT.git```
+    - [x] cd 
+    - [x] checkout develop_demoEuroCIS
+    - [x] Modifs du .env.prod
+    - [x] sudo docker
+    - [x]  sudo  docker compose --env-file .env.prod -f docker-compose-prod.yml up --always-recreate-deps --build
+    - [x] network net declared as external, but could not be found, :
+    ```
+    sudo docker network create net
+    ```
+    - [x] docker de certification :
+    ```
+    sudo  docker compose --env-file .env.prod -f docker-compose-cert.yml up --build
+    ```
+    - [x] Ouvrir ports 80 & 443 sur groupes de sécurité amazon aws (entrant & sortant)
+    - [x] Ouvrir port 5432 pour db aussi
+    - [x] Relance docker cert
+    - [x] changer les envs prod dans le front et back
+    - [x] Recréer les docker
+    - [x] Réassignation des bonnes routes à la base de démo
+    - [x] Créer un magasin 
+    - [x] Assigner GW
+    - [x] Créer caisse
+- [x] Créer un user demoCOP avec tous les droits
+
+
+**21 Février**
+- [ ] Terminer préparatifs pour EuroCIS
+    - [ ] KP-745 Ajouter un code coloré dans la page de magasin pour traduire l'ouverture/fermeture de caisse
+    - [ ] KP-762 Changer le thème de login KC
+    - [ ] KP-765 Changer les libellés de caisse
+    - [ ] KP-766 Traduire l'application en anglais
+    - [ ] KP-767 Supprimer la mat-tab "message d'erreur" pour le salon
+    - [ ] KP-768 Retirer l'apparition de la snackbar "Trapdoor OK" quand il n'y a pas eu d'event de trapdoor dans les 30 secondes
