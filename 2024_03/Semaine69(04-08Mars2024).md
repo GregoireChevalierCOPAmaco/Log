@@ -67,3 +67,5 @@
     - [ ] merge
     - [ ] resolve conflicts
     - [ ] push
+- résolution de la merde créée par un merge impromptu de demo eurocis dans develop
+- [ ] Réunion aws

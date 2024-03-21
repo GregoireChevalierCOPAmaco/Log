@@ -1,0 +1,1 @@
+Va falloir faire une user story pour faire passer toute la logique relative aux events à travers le spectre du filtre des horaires d'ouverture des magasins
