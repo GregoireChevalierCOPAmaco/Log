@@ -86,5 +86,23 @@
         return this.storesService.findStoresWithNonOperationalKmoBoxes();
     }
     ```
-    - [ ] Assignation de la liste à la variable impactedStores
-    - [ ] Assignation des impactedStores à la modale
+    - [x] Ajout au store service front : 
+    ```
+    fetchImpactedStores(): Observable<StoreInterface[]> {
+        return this.httpclient.get<StoreInterface[]>(environment.apiUrl + '/stores/with-non-operational-kmoboxes');
+    }
+    ```
+    - [x] Assignation de la liste à la variable impactedStores dans cop store details component : 
+    ```
+    fetchImpactedStores() {
+        this.storeService.fetchImpactedStores().subscribe({
+        next: (impactedStores) => {
+            this.impactedStores = impactedStores;        
+        },
+        error: (err) => {
+            console.error('Error fetching impacted stores', err);
+        },
+        });
+    } 
+    ```
+    - [x] Assignation des impactedStores à la modale
