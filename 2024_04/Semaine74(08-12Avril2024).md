@@ -109,22 +109,84 @@
 
 
 **10 Avril**
-- [ ] KP-889 Fix l'affichage des magasins à risque dans la modale sur /cop
-    - [ ] KP-915 Créer une route API pour récupérer les stores qui ont au moins une caisse en maintenance préventive
-    - [x] Création d'une route back qui récupère tous les stores qui ont une caisse preventive, store service : 
+- [x] KP-889 Fix l'affichage des magasins à risque dans la modale sur /cop
+    - [x] KP-915 Créer une route API pour récupérer les stores qui ont au moins une caisse en maintenance préventive
+    - [x] Création d'une route back qui récupère tous les stores qui ont une caisse preventive, store controller : 
     ```
+    @Get('with-preventive-kmoboxes')
+    async findStoresWithPreventiveKmoBoxes(): Promise<Store[]> {
+        return this.storesService.findStoresWithPreventiveKmoBoxes();
+    }
     ```
-    - [ ] Modifictation de la méthode : 
+    - [x] Création de la méthode dans le service: 
     ```
+    async findStoresWithPreventiveKmoBoxes(): Promise<Store[]> {
+        try {
+        const stores = await Store.createQueryBuilder('store')
+            .innerJoinAndSelect('store.gateway', 'gateway')
+            .innerJoinAndSelect(
+            'gateway.kmoBoxes',
+            'kmoBox',
+            'kmoBox.maintenanceLevel = :maintenanceLevel',
+            { maintenanceLevel: 'Preventive' },
+            )
+            .getMany();
+
+        return stores;
+        } catch (error) {
+        throw new Error(
+            `Error finding stores with preventive KmoBoxes: ${error.message}`,
+        );
+        }
+    }
     ```
-    - [x] Assignation de la liste à la variable impactedStores dans cop store details component : 
-- [ ] KP-914 Fix l'affichage des magasins critiques dans la modale sur /cop
-    - [ ] KP-919 Créer une route API pour récupérer les stores qui ont au moins une caisse en maintenance curative
-    - [x] Création d'une route back qui récupère tous les stores qui ont une caisse preventive, store service : 
+    - [x] Assignation de la liste à la variable preventiveStores dans cop store details component : 
     ```
+    openMediumRiskStoresModalComponent() {
+      this.dialog.open(MediumRiskStoresModalComponent, {
+        data: this.mediumRiskStores
+      });
+      this.fetchMediumRiskStores();
+    }
     ```
-    - [ ] Modifictation de la méthode : 
+- [x] KP-914 Fix l'affichage des magasins critiques dans la modale sur /cop
+    - [x] KP-919 Créer une route API pour récupérer les stores qui ont au moins une caisse en maintenance curative
+    - [x] Création d'une route back qui récupère tous les stores qui ont une caisse preventive, store controller : 
     ```
+    @Get('with-curative-kmoboxes')
+    async findStoresWithCurativeKmoBoxes(): Promise<Store[]> {
+        return this.storesService.findStoresWithCurativeKmoBoxes();
+    }
     ```
-    - [x] Assignation de la liste à la variable impactedStores dans cop store details component : 
-- [ ] Réunion Okta concurrent keycloak
+    - [x] Création de la méthode dans le service : 
+    ```
+    async findStoresWithCurativeKmoBoxes(): Promise<Store[]> {
+        try {
+        const stores = await Store.createQueryBuilder('store')
+            .innerJoinAndSelect('store.gateway', 'gateway')
+            .innerJoinAndSelect(
+            'gateway.kmoBoxes',
+            'kmoBox',
+            'kmoBox.maintenanceLevel = :maintenanceLevel',
+            { maintenanceLevel: 'Curative' },
+            )
+            .getMany();
+
+        return stores;
+        } catch (error) {
+        throw new Error(
+            `Error finding stores with preventive KmoBoxes: ${error.message}`,
+        );
+        }
+    }
+    ```
+    - [x] Assignation de la liste à la variable criticalStores dans cop store details component : 
+    ```
+    openCriticalStoresModalComponent() {
+        this.dialog.open(CriticalStoresModalComponent, {
+        data: this.criticalStores
+        });
+        this.fetchCriticalStores();
+    }
+    ```
+- [x] Réunion Okta concurrent keycloak
