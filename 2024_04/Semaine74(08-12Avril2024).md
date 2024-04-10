@@ -106,3 +106,25 @@
     } 
     ```
     - [x] Assignation des impactedStores à la modale
+
+
+**10 Avril**
+- [ ] KP-889 Fix l'affichage des magasins à risque dans la modale sur /cop
+    - [ ] KP-915 Créer une route API pour récupérer les stores qui ont au moins une caisse en maintenance préventive
+    - [x] Création d'une route back qui récupère tous les stores qui ont une caisse preventive, store service : 
+    ```
+    ```
+    - [ ] Modifictation de la méthode : 
+    ```
+    ```
+    - [x] Assignation de la liste à la variable impactedStores dans cop store details component : 
+- [ ] KP-914 Fix l'affichage des magasins critiques dans la modale sur /cop
+    - [ ] KP-919 Créer une route API pour récupérer les stores qui ont au moins une caisse en maintenance curative
+    - [x] Création d'une route back qui récupère tous les stores qui ont une caisse preventive, store service : 
+    ```
+    ```
+    - [ ] Modifictation de la méthode : 
+    ```
+    ```
+    - [x] Assignation de la liste à la variable impactedStores dans cop store details component : 
+- [ ] Réunion Okta concurrent keycloak
