@@ -202,3 +202,56 @@
 **11 Avril**
 - [ ] KP-868 Caisse ouverte - Alors qu'elle semble fermée
 - [ ] KP-869 Etat des caisses - nombre caisses fonctionnelles
+- [x] KP-921 Optimiser les fonctions de recherche de stores ayant des kmo non-opérationnelles
+    - [x] Inscription à Mistral AI
+    - [x] Demande : 
+    ```
+    ... fourniture des fichiers ...
+    Pour les méthodes telles que fetchMediumRiskStores(), fetchCriticalStores() ou encore fetchImpactedStores(), et l'assignation de leurs variables respectives, existe-t-il une manière plus efficace/optimale pour effectuer ces méthodes, et si oui réécris les parties concernées du component s'il te plaît
+    ```
+    - [x] Réponse de Mistral : 
+    ```
+    Pour optimiser les méthodes fetchMediumRiskStores(), fetchCriticalStores() et fetchImpactedStores(), vous pouvez utiliser forkJoin de RxJS pour effectuer plusieurs requêtes HTTP en parallèle. Cela permettra de réduire le temps d'attente global pour ces requêtes et d'améliorer les performances de votre application.
+
+    Voici comment vous pouvez réécrire les parties concernées du component en utilisant forkJoin :
+
+    Importez forkJoin et Observable en ajoutant ces lignes en haut de votre fichier :
+
+    import { forkJoin, Observable } from 'rxjs';
+    Remplacez les méthodes fetchMediumRiskStores(), fetchCriticalStores() et fetchImpactedStores() par la méthode fetchStoreData() suivante :
+
+    fetchStoreData(): void {
+    forkJoin({
+        mediumRiskStores: this.storeService.fetchMediumRiskStores(),
+        criticalStores: this.storeService.fetchCriticalStores(),
+        impactedStores: this.storeService.fetchImpactedStores(),
+    }).subscribe(
+        (results) => {
+        this.mediumRiskStores = results.mediumRiskStores;
+        this.criticalStores = results.criticalStores;
+        this.impactedStores = results.impactedStores;
+        },
+        (error) => {
+        console.error('Error fetching store data', error);
+        },
+    );
+    }
+    Dans la méthode ngOnInit(), remplacez les appels aux méthodes fetchMediumRiskStores(), fetchCriticalStores() et fetchImpactedStores() par un appel à fetchStoreData() :
+
+    ngOnInit(): void {
+    // ...
+    this.fetchStoreData();
+    // ...
+    }
+    Avec cette approche, les trois requêtes seront effectuées en parallèle, et les résultats seront traités une fois que toutes les requêtes auront été résolues. Cela devrait améliorer les performances de votre application, en particulier si les requêtes individuelles prennent du temps à être résolues.
+    ```
+- [x] Optimiser les fonctions de cop-store details pour éviter les memory leaks on destroy
+    - [x] Importer subject et takeuntil
+    ```
+    import { Subject, takeUntil } from 'rxjs';
+    ```
+    - [x] Créer un subject qui va "s'activer" onDestroy
+    ```
+    private readonly destroy$ = new Subject<void>();
+    ```
+    - [x] Insérer : ```.pipe(takeUntil(this.destroy$))``` dans toutes les requêtes avant ```.subscribe```
