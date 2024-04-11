@@ -255,3 +255,13 @@
     private readonly destroy$ = new Subject<void>();
     ```
     - [x] Insérer : ```.pipe(takeUntil(this.destroy$))``` dans toutes les requêtes avant ```.subscribe```
+- [x] Optimiser les fonctions de cop-dialog pour éviter les memory leaks on destroy (KP-923)
+    - [x] Importer subject et takeuntil
+    ```
+    import { Subject, takeUntil } from 'rxjs';
+    ```
+    - [x] Créer un subject qui va "s'activer" onDestroy
+    ```
+    private readonly destroy$ = new Subject<void>();
+    ```
+    - [x] Insérer : ```.pipe(takeUntil(this.destroy$))``` dans toutes les requêtes avant ```.subscribe```
