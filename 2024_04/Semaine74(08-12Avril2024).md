@@ -190,3 +190,15 @@
     }
     ```
 - [x] Réunion Okta concurrent keycloak
+- [x] commit, push, PR, et resolve conflits
+- [ ] Redémarrage prod
+    - [x] Connexion à l'instance
+    - [x] Arrêt des containers
+    - [x] git pull origin develop
+    - [ ] Rebuild des containers et vérification sur le site en prod
+- [ ] Mise à jour 
+
+
+**11 Avril**
+- [ ] KP-868 Caisse ouverte - Alors qu'elle semble fermée
+- [ ] KP-869 Etat des caisses - nombre caisses fonctionnelles
