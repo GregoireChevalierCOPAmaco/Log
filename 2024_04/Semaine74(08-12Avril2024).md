@@ -265,3 +265,86 @@
     private readonly destroy$ = new Subject<void>();
     ```
     - [x] Insérer : ```.pipe(takeUntil(this.destroy$))``` dans toutes les requêtes avant ```.subscribe```
+- [ ] KP-916 Faire passer le fetch des magasins à risque / à surveiller / critiques dans une routine de fond plutôt qu'au clic de la modale
+    - [x] Demande à mistral : 
+    ```
+    in my component, i use methods such as fetchCriticalStores, fetchImpactedStores, fetchMediumRiskStores & fetchAllStores, which i use to populate datas into modal components.
+
+    I wanted to know if there is a way to precalculate it and only access to the data, and if there is a way, if it is more optimal than it is right now
+    ```
+    - [ ] Réponse de mistral : 
+    ```
+    Yes, there is a way to precalculate the data and store it in a service or a store (like Redux, NgRx, or Akita) to avoid making repeated API calls. This approach can be more optimal, especially if the data is large and the API calls are frequent.
+
+    Here's a simplified example of how you can do it:
+
+    Precalculate and store data in a service:
+    You can create a service, let's call it DataService, where you can precalculate and store your data.
+
+
+    @Injectable({
+    providedIn: 'root'
+    })
+    export class DataService {
+    criticalStores: StoreInterface[] = [];
+    impactedStores: StoreInterface[] = [];
+    mediumRiskStores: StoreInterface[] = [];
+    totalStores: number = 0;
+
+    constructor(private storeService: StoreService) {}
+
+    fetchAndStoreData() {
+        this.storeService.fetchCriticalStores().subscribe(criticalStores => {
+        this.criticalStores = criticalStores;
+        });
+
+        this.storeService.fetchImpactedStores().subscribe(impactedStores => {
+        this.impactedStores = impactedStores;
+        });
+
+        this.storeService.fetchMediumRiskStores().subscribe(mediumRiskStores => {
+        this.mediumRiskStores = mediumRiskStores;
+        });
+
+        this.storeService.getAllStores().subscribe(totalStores => {
+        this.totalStores = totalStores.length;
+        });
+    }
+    }
+    Access stored data from your component:
+    Then, in your component, you can inject DataService and access the precalculated data.
+
+
+    export class HomeCopComponent implements AfterViewInit, OnInit {
+    constructor(private dataService: DataService) {}
+
+    ngOnInit(): void {
+        this.dataService.fetchAndStoreData();
+    }
+
+    get criticalStores() {
+        return this.dataService.criticalStores;
+    }
+
+    get impactedStores() {
+        return this.dataService.impactedStores;
+    }
+
+    get mediumRiskStores() {
+        return this.dataService.mediumRiskStores;
+    }
+
+    get totalStores() {
+        return this.dataService.totalStores;
+    }
+    }
+    This way, you're only making the API calls once when the HomeCopComponent is initialized, and then you're accessing the stored data for the rest of the component's lifecycle.
+
+    Please note that this is a simplified example. In a real-world application, you might want to handle loading states, errors, and updates more gracefully. Also, depending on the size and complexity of your application, you might want to use a more sophisticated state management solution, like NgRx or Akita.
+
+    As for whether this approach is more optimal, it depends on the specifics of your application. If you're making the same API calls frequently, then yes, precalculating and storing the data can be more efficient. However, if the data changes frequently on the server side, you might end up with stale data in your application. In that case, you might need to implement a strategy for updating the stored data, like polling or using web sockets.
+    ```
+
+
+**12 Avril**
+Récupération
