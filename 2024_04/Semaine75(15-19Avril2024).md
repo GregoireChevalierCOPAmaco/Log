@@ -418,4 +418,207 @@
 
 **18 Avril**
 - [ ] KP-943 optimiser les services backend
-    - [ ] KP-945 Optimiser le service backend kmoBoxes
+    - [x] KP-945 Optimiser le service backend kmoBoxes
+        - [x] Refonte de la méthode getKmoBoxesWithEvents, passage de :
+        ```
+        async getKmoBoxesWithEvents(): Promise<KmoBox[]> {
+            const kmoBoxesTable = await KmoBox.createQueryBuilder('kmoBox').getMany();
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            const KmoBoxes: KmoBox[] = [];
+
+            for (const kmoBox of kmoBoxesTable) {
+            const eventsAfterMaintenance = await KmoBox.createQueryBuilder('kmoBox')
+                .where('kmoBox.mac = :mac', { mac: kmoBox.mac })
+                .leftJoinAndSelect('kmoBox.events', 'event')
+                .andWhere('event.datetime > :lastTime', {
+                lastTime: kmoBox.lastMaintenance,
+                })
+                .getOne();
+
+            if (eventsAfterMaintenance) {
+                KmoBoxes.push(eventsAfterMaintenance);
+            }
+            }
+            return KmoBoxes;
+        }
+        ```
+        à 
+        ```
+        async getKmoBoxesWithEvents(): Promise<KmoBox[]> {
+            const kmoBoxes = await KmoBox.find({
+            relations: ['events'],
+            });
+
+            return kmoBoxes.filter((kmoBox) =>
+            kmoBox.events.some((event) => event.datetime > kmoBox.lastMaintenance),
+            );
+        }
+        ```
+        Ce qui fetche les kmoBoxes avec une seule query qui utilise l'option "relations", puis filtre les résultats. Cette façon de faire réduit le nombre de requêtes à la db et améliore donc la performance.
+        - [x] Refonte de la méthode readReport(), passage de :
+        ```
+        async readReport(reports: any) {
+            for (const data of reports) {
+            const mac = data.mac;
+            const kmobox = await KmoBox.findOneBy({ mac });
+            kmobox.maintenanceLevel = data.maintenance;
+            kmobox.report = data.defects;
+            await KmoBox.save(kmobox);
+            }
+            return reports;
+        }
+        ```
+        à
+        ```
+        async readReport(reports: any): Promise<any> {
+            const macs = reports.map((data: any) => data.mac);
+            const kmoBoxes = await KmoBox.findBy({ mac: In(macs) });
+            const kmoBoxMap = new Map(kmoBoxes.map((kmoBox) => [kmoBox.mac, kmoBox]));
+
+            for (const data of reports) {
+            const kmoBox = kmoBoxMap.get(data.mac);
+            if (kmoBox) {
+                kmoBox.maintenanceLevel = data.maintenance;
+                kmoBox.report = data.defects;
+                await kmoBox.save();
+            }
+            }
+            return reports;
+        }
+        ```
+        Initialement il y avait une boucle qui itérait sur chaque rapport et exécutait une requête de base de données séparée pour trouver la KmoBox correspondante, ce qui entraînait plusieurs requêtes de base de données, et pouvait entraîner des problèmes de performance, si gestion d'un grand nombre de rapports.
+        La nouvelle méthode extrait la mac de tous les rapports, en créée un tableau, et remplace les multiples requêtes de base de données dans la boucle d'origine par une seule requête qui récupère toutes les KmoBox dont les valeurs mac sont présentes dans le tableau macs. L'opérateur In est utilisé pour correspondre à l'une des valeurs mac données.
+        Et refonte de la boucle pour chaque rapport, elle recherche la KmoBox correspondante à l'aide de la Map et met à jour ses propriétés maintenanceLevel et report si la KmoBox existe. Ensuite, elle enregistre la KmoBox mise à jour.
+    - [x] KP-947 Optimiser le service backend stores
+        - [x] Refonte de la méthode getKmoBoxesWithEvents, passage de :
+        ```
+        findAllPaginate
+            ...
+            queryBuilder.leftJoinAndSelect('store.gateway', 'gateway');
+            queryBuilder.addSelect('store.gatewayMac');
+            queryBuilder.leftJoinAndSelect('gateway.kmoBoxes', 'kmoBoxes');
+            ...
+        ```
+        à
+        ```
+        findAllPaginate
+            ...
+            queryBuilder.leftJoinAndSelect('store.gateway', 'gateway');
+            queryBuilder.leftJoinAndSelect('gateway.kmoBoxes', 'kmoBoxes');
+            ...
+        ```
+        suppression de la méthode inutilisée
+        ```
+        async findStoreByGatewayMac2(
+            gatewayMac: string,
+        ) /*: Promise<Store | null> */ {
+            try {
+            return Store.findOne({ where: { gatewayMac } });
+            } catch (e) {
+            throw new HttpException(e, 500);
+            }
+        }
+        ```
+        reasignStoreAndGateWays() : retrait de variables non nécessaires & ajout d'error handling
+        ```
+        async reasignStoreAndGateWays(id: string, mac: string) {
+            const store = await this.storeRepository.findOne({
+            where: { id },
+            relations: {
+                gateway: true,
+            },
+            });
+            if (!store) {
+            throw new HttpException('Store not found', 404);
+            }
+
+            const reassignedGateway = await Gateway.findOne({
+            where: { mac },
+            });
+            if (!reassignedGateway) {
+            throw new HttpException('Gateway not found', 404);
+            }
+
+            store.gateway = reassignedGateway;
+            await this.storeRepository.save(store);
+
+            const updatedStore = await this.storeRepository.findOne({ where: { id } });
+            return updatedStore;
+        }
+        ```
+
+**19 Avril**
+- [ ] KP-943 optimiser les services backend
+    - [x] KP-947 Optimiser le service backend stores
+        - [x] Refonte de la méthode createStore(), passage de :
+        ```
+        async createStore(createStoreDto: CreateStoreDto) {
+            try {
+            const store = await Store.create({ ...createStoreDto });
+            const gateway = await Gateway.findOne({
+                where: { mac: createStoreDto.gatewayMac },
+            });
+            await Store.save(store);
+            gateway.store = await Store.findOne({
+                where: { address: createStoreDto.address },
+            });
+            await gateway.save();
+            return store;
+            } catch (e) {
+            throw new HttpException(e, 500);
+            }
+        }
+        ```
+        à
+        ```
+        async createStore(createStoreDto: CreateStoreDto) {
+            try {
+            const store = await Store.create({ ...createStoreDto });
+            const gateway = await Gateway.findOne({
+                where: { mac: createStoreDto.gatewayMac },
+            });
+            await Store.save(store);
+            gateway.store = store;
+            await gateway.save();
+            return store;
+            } catch (e) {
+            throw new HttpException(e, 500);
+            }
+        }
+        ```
+        utilisation du résultat du premier appel au store créé pour le stocker dans une variable et le réutiliser, ce qui permet d'éviter le second appel
+        - [x] Refonte de la méthode updateStore(), passage de :
+        ```
+        async updateStore(id: string, updateStoreDto: UpdateStoreDto) {
+            try {
+            const store = Store.findOneBy({ id });
+
+            if (!store) {
+                throw new HttpException('Store not found', 404);
+            }
+
+            return await Store.save({ id, ...updateStoreDto });
+            } catch (e) {
+            throw new HttpException(e, 500);
+            }
+        }
+        ```
+        à 
+        ```
+        async updateStore(id: string, updateStoreDto: UpdateStoreDto) {
+            try {
+            const store = await this.storeRepository.findOneBy({ id });
+
+            if (!store) {
+                throw new HttpException('Store not found', 404);
+            }
+
+            Object.assign(store, updateStoreDto);
+            await this.storeRepository.save(store);
+            return store;
+            } catch (e) {
+            throw new HttpException(e, 500);
+            }
+        }
+        ```
+        Initialement, updateStore() essayait de sauvegarder un magasin mis à jour en créant une nouvelle instance de Store avec l'id du magasin à mettre à jour et les propriétés de updateStoreDto. La modif a changé la récupération du magasin à l'aide du référentiel : Au lieu d'utiliser Store.findOneBy({ id }), this.storeRepository.findOneBy({ id }) est préférable parce que le référentiel est injecté pour Store dans le constructeur du service, et il est donc préférable de l'utiliser pour la cohérence et pour profiter de toute optimisation ou personnalisation potentielle qui pourrait être appliquée au référentiel (maintenabilité & anti regression). Puis mise à jour de l'instance de magasin existante, et save
