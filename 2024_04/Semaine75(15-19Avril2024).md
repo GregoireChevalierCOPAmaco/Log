@@ -622,3 +622,60 @@
         }
         ```
         Initialement, updateStore() essayait de sauvegarder un magasin mis à jour en créant une nouvelle instance de Store avec l'id du magasin à mettre à jour et les propriétés de updateStoreDto. La modif a changé la récupération du magasin à l'aide du référentiel : Au lieu d'utiliser Store.findOneBy({ id }), this.storeRepository.findOneBy({ id }) est préférable parce que le référentiel est injecté pour Store dans le constructeur du service, et il est donc préférable de l'utiliser pour la cohérence et pour profiter de toute optimisation ou personnalisation potentielle qui pourrait être appliquée au référentiel (maintenabilité & anti regression). Puis mise à jour de l'instance de magasin existante, et save
+    - [x] KP-944 Optimiser le service backend events
+        - [x] Refonte de la méthode createEvents(), passage de :
+        ```
+        async createEvent(createEvent: CreateEventDto): Promise<Event> {
+            try {
+            const newEvent = await Event.save({ ...createEvent });
+            if (newEvent.type === TypeEvent.CO_STATE_CHANGED) {
+                console.log('UP', newEvent.kmoBox);
+                const mac: any = newEvent.kmoBox;
+                await this.kmoBoxesService.updateKMOboxIsOpen({
+                mac: mac,
+                isOpened: newEvent.state,
+                });
+            }
+            if (newEvent.state === StateEvent.OPEN) {
+                await this.updateClosedTime(newEvent.kmoBox.mac, newEvent.datetime);
+            }
+
+            return newEvent;
+            } catch (e) {
+            console.error(createEvent.kmoBox.mac, e);
+            throw new HttpException(e, 500);
+            }
+        }
+        ```
+        à : 
+        ```
+        ```
+        ce qui change : 
+        - [x] Refonte de la méthode createEvents(), passage de :
+        ```
+        ```
+        à : 
+        ```
+        ```
+        ce qui change : 
+        - [x] Refonte de la méthode createEvents(), passage de :
+        ```
+        ```
+        à : 
+        ```
+        ```
+        ce qui change : 
+        - [x] Refonte de la méthode createEvents(), passage de :
+        ```
+        ```
+        à : 
+        ```
+        ```
+        ce qui change : 
+        - [x] Refonte de la méthode createEvents(), passage de :
+        ```
+        ```
+        à : 
+        ```
+        ```
+        ce qui change : 
