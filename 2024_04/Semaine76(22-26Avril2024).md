@@ -235,3 +235,9 @@
         - [ ] Rectification des unit tests foireux
 - [x] Réunion de mise à jour des objectifs de prédict, partie 1
 - [x] Réunion avec Anthony & discussion sur Okta
+
+**24 Avril**
+- [ ] KP-943 optimiser les services backend
+    - [x] Mise en pause et passage sur : 
+- [ ] KP-960 Changer le libellé de "Caisses hors-service" en "Boitiers Kmo hors-service"
+- [ ] KP-950 Fix le bug qui a désaffiché l'état de caisse dans la modale
