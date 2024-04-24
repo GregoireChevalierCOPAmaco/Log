@@ -234,3 +234,4 @@
         Le fetch se fait maintenant sur chaque kmoBox unique au lieu de chercher chaque kmoBox mac, fetch les gateways seulement une fois et stockage dans un Set pour plus d'efficacité. Et utilisation de Promise.all pour fetch tous les events en parallèle sans utiliser de boucle
         - [ ] Rectification des unit tests foireux
 - [x] Réunion de mise à jour des objectifs de prédict, partie 1
+- [x] Réunion avec Anthony & discussion sur Okta
