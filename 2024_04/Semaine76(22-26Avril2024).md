@@ -239,5 +239,86 @@
 **24 Avril**
 - [ ] KP-943 optimiser les services backend
     - [x] Mise en pause et passage sur : 
-- [ ] KP-960 Changer le libellé de "Caisses hors-service" en "Boitiers Kmo hors-service"
+- [x] KP-960 Changer le libellé de "Caisses hors-service" en "Boitiers Kmo hors-service"
+    - [x] ```git checkout develop``` && ```git pull origin develop``` puis ```git checkout -b fix/KP-950-960_various_copdialog_interface_fixes```
+    - [x] Remplacement de Caisse Hors-service par Boîtiers KMO Hors-service dans les fichiers : 
+        - cop store details html
+        - broken kmo modal html
 - [ ] KP-950 Fix le bug qui a désaffiché l'état de caisse dans la modale
+    - [x] Baser this.kmoCurrentState sur this.kmoBox.isOpened : 
+    ```
+    forkJoin([
+    this.kmoBoxesService.getKmoBoxById(this.data.mac) as Observable<KmoBoxInterface>,
+    ...
+    ]).subscribe({
+    next: ([
+      kmoBox,
+    ]) => {
+        this.kmoBox = kmoBox;
+      switch (kmoBox.isOpened) {
+        case 'open':
+          this.kmoCurrentState = 'ouvert';
+          break;
+        case 'closed':
+          this.kmoCurrentState = 'fermé';
+          break;
+        case 'power_off':
+          this.kmoCurrentState = 'caisse éteinte';
+          break;
+        default:
+          this.kmoCurrentState = 'pas de données sur cette caisse';
+      };
+    }
+    })
+    ...
+    ```
+    - [x] lint, test, commit & push
+- [x] Documentation sur l'optimisation :
+    - https://www.brilworks.com/blog/optimize-your-nest-js-app-performance-with-these-practices/
+    - https://www.bymoji.com/blog/Scaling_NestJS_APIs_Tips_for_Large_Data_Sets_and_High_Traffic
+- [x] Réunion jira longue sa mère
+- [ ] Se renseigner sur le temps que prendrait la mise en place de tests d'intégration, à savoir
+    - rédaction des étapes de la C.I.
+    - création d'outil
+    - création de script
+    - reproduction des éléments de prod
+        - docker
+            - db
+            - apps
+            - websocket
+        - injection des données
+    - [ ] Demande à mistral : 
+    ```
+    I am working on a project of store checkout surveilance. 
+    The goal is to retrieve machine data from our kmoBoxes via a gateway-websocket system which is functional.
+    The application is an angular-nestJs-mysql dockerized and hosted on an aws server.
+    I want to set up a series of integration tests using an automated script to replicate and deploy the application and inject an export of the database.
+
+    to further help you, here are a few files : 
+
+    dockerfile : 
+    ...
+
+
+    production docker compose : 
+    ...
+
+
+    .env.prod file : 
+    ...
+
+
+    frontend package.json : 
+    ...
+
+
+
+    backend package.json 
+    ...
+
+    i will later provide the export of database, so you can focus on it later. For now, i  want to set up a series of integration tests using an automated script to replicate and deploy the application and inject an export of the database.
+    ```
+    - [ ] Réponse : 
+    ```
+    ```
+    
