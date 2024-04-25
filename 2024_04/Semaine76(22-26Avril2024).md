@@ -322,3 +322,11 @@
     ```
     ```
     
+
+**25 Avril**
+- [ ] Mise en prod des fix KP-950/960
+    - [x] Connexion à l'instance
+    - [x] ```sudo docker stop kmo-predict-front kmo-predict-back```
+    - [x] ```git pull origin develop```
+    - [x] ```sudo docker remove kmo-predict-front kmo-predict-back```
+    - [x] ```sudo  docker compose --env-file .env.prod -f docker-compose-prod.yml up --always-recreate-deps --build```
