@@ -330,3 +330,18 @@
     - [x] ```git pull origin develop```
     - [x] ```sudo docker remove kmo-predict-front kmo-predict-back```
     - [x] ```sudo  docker compose --env-file .env.prod -f docker-compose-prod.yml up --always-recreate-deps --build```
+- [ ] Reprise de KP-943 optimiser les services backend
+    - [ ] KP-944 Optimiser le service backend events
+- [x] Réunion longue samere, version 2 cette fois sur le sujet de la récupération de l'ERP de nicolas decornet qui s'en va
+
+
+**26 Avril**
+- [ ] Remise en marche de la prod predict
+    - [ ] Résolution du problème : 
+    ```
+    Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+    ```
+- [ ] Réunion(s ?) de briefing sur Copaco, l'erm de nicolas decornet
+    - [x] Réunion Copaco 26/04, matinée
+    Niveau process de prod, demander à Fédé plutôt que Denis, qui est moins objectif
+    
