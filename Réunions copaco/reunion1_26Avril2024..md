@@ -34,3 +34,12 @@
     - 2, faisable, les étapes précédentes ont été faites (découpe et pliage avant peinture par ex)
     - 3 démarré (assigné par un utilisateur d'atelier), en cours d'exécution
     - 4 clôturé 
+    Les commandes sont aussi retrouvables indépendamment sur la vue correspondante (rubrique tolerie, peinture, etc) pour suivre leur avancement
+    Toute la logique de démarrage/clôture de l'opération à l'intérieur de l'O.F est débrayée pour que chaque opérateur puisse voir qui fait quoi et quelle tâche est disponible.
+    Des chevalets physiques sont posés sur les pièces en fabrication pour que les ouvriers sachent quelle pièce déjà commencée leur est attribuée pour leur tâche.
+    Lorsque l'opération est validée, l'état correspondant change et sa couleur passe en vert dans la vue lancement atelier, et la pièce finie passe dans l'inventaire.
+    Les mouvements de stocks permettent de régulariser les quantités ; exemple, j'ai utilisé 380g de poudre peinture au lieu de 400, j'en remets 20 dans le stock.
+    **___** Achats -> Le C.B.N va regarder à chaque fois qu'une commande a plus de besoins que de stocks.  Le cbn va agir de façon chronologique avec les besoins exprimés prévus semaine par semaine, et tout le passé va être passé sous le flag "semaine 00"
+    Montage/assemblage
+    Les caristes sont sensé être des magasiniers, ils sont responsabilisés pour gérer le réapprovisionnement
+    **___** Expédition & palettisation -> pas développé dans la réunion
