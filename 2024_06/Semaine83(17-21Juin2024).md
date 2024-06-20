@@ -120,4 +120,78 @@ at pictures/pictures.service.spec.ts:48:5
 at pictures/pictures.service.spec.ts:47:3
 at Object.<anonymous> (pictures/pictures.service.spec.ts:9:1)
 ```
-- [ ] Résolution du fail
+- [x] Résolution du fail
+    - [x] Ajout du async/await
+    - [x] Modification de l'expected pour retourner l'objet et non son contenu : 
+    ```
+    describe('update', () => {
+    it('should send an update request and handle response', async () => {
+      const id_esl = '1';
+      const updatePictureDto: UpdatePictureDto = { picture: 'new-image' };
+
+      const response: AxiosResponse = {
+        data: { success: true },
+        status: 200,
+        statusText: 'OK',
+        headers: {},
+        config: {},
+      } as AxiosResponse;
+
+      jest.spyOn(httpService, 'post').mockReturnValue(of(response));
+
+      const result = await service.update(id_esl, updatePictureDto).toPromise();
+      expect(result).toEqual(response);
+    });
+    ```
+  - [x] Résolution des multiples erreurs : ```Argument of type 'any' is not assignable to parameter of type 'never'.```
+  passage de : 
+  ```
+  describe('findOne', () => {
+    it('should return an ESL by id', async () => {
+      const id = '1';
+      const mockEsl = { id: '1', id_esl: 'ID1', supplier: 'Supplier1', width: 100, height: 200, version_name: 'v1.0' };
+
+      jest.spyOn(service, 'findOne').mockResolvedValue(mockEsl as any);
+
+      const result = await controller.findOne(id);
+
+      expect(result).toEqual(mockEsl);
+      expect(service.findOne).toHaveBeenCalledWith(+id);
+    });
+  });
+  ```
+  à
+  ```
+  it('should return an ESL by id', async () => {
+    const id = '1';
+    const mockEsl: Esl = {
+      id: '1',
+      id_esl: 'ID1',
+      supplier: 'Supplier1',
+      width: 100,
+      height: 200,
+      version_name: 'v1.0',
+      picture: '',
+      power: 0,
+      average_rssi: 0,
+      hasId: jest.fn(),
+      save: jest.fn(),
+      remove: jest.fn(),
+      softRemove: jest.fn(),
+      recover: jest.fn(),
+      reload: jest.fn(),
+    };
+
+    (service.findOne as jest.Mock).mockResolvedValue(mockEsl);
+
+    const result = await controller.findOne(id);
+
+    expect(result).toEqual(mockEsl);
+    expect(service.findOne).toHaveBeenCalledWith(+id);
+  });
+  ```
+  ne plus utiliser mockResolvedValue a semblé circonvenir
+
+
+  **20 Juin**
+  - [ ] Unit testing du controller pictures
