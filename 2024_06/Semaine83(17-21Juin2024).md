@@ -194,4 +194,82 @@ at Object.<anonymous> (pictures/pictures.service.spec.ts:9:1)
 
 
   **20 Juin**
-  - [ ] Unit testing du controller pictures
+  - [x] Unit testing du controller pictures : 
+  ```
+  import { Test, TestingModule } from '@nestjs/testing';
+  import { PicturesController } from './pictures.controller';
+  import { PicturesService } from './pictures.service';
+  import { CreatePictureDto } from './dto/create-picture.dto';
+  import { UpdatePictureDto } from './dto/update-picture.dto';
+
+  describe('PicturesController', () => {
+    let controller: PicturesController;
+    let service: PicturesService;
+
+    const mockPicturesService = {
+      create: jest.fn(dto => ({
+        id: '1',
+        ...dto,
+      })),
+      update: jest.fn((id, dto) => ({
+        id,
+        ...dto,
+      })),
+    };
+
+    beforeEach(async () => {
+      const module: TestingModule = await Test.createTestingModule({
+        controllers: [PicturesController],
+        providers: [
+          {
+            provide: PicturesService,
+            useValue: mockPicturesService,
+          },
+        ],
+      }).compile();
+
+      controller = module.get<PicturesController>(PicturesController);
+      service = module.get<PicturesService>(PicturesService);
+    });
+
+    it('should be defined', () => {
+      expect(controller).toBeDefined();
+    });
+
+    describe('create', () => {
+      it('should create a picture', async () => {
+        const createPictureDto: CreatePictureDto = {
+          picture: 'sample_picture_data',
+        };
+
+        expect(await controller.create(createPictureDto)).toEqual({
+          id: '1',
+          ...createPictureDto,
+        });
+
+        expect(service.create).toHaveBeenCalledWith(createPictureDto);
+      });
+    });
+
+    describe('update', () => {
+      it('should update a picture', async () => {
+        const updatePictureDto: UpdatePictureDto = {
+          picture: 'updated_picture_data',
+        };
+
+        const id = '1';
+
+        expect(await controller.update(id, updatePictureDto)).toEqual({
+          id,
+          ...updatePictureDto,
+        });
+
+        expect(service.update).toHaveBeenCalledWith(id, updatePictureDto);
+      });
+    });
+  });
+  ```
+
+
+  **21 Juin**
+  - [ ] Poursuite des tests du frontend nouvellement créé
