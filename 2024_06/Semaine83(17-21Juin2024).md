@@ -273,3 +273,11 @@ at Object.<anonymous> (pictures/pictures.service.spec.ts:9:1)
 
   **21 Juin**
   - [ ] Poursuite des tests du frontend nouvellement créé
+    - [x] Résolution de l'erreur : ```Maximum call stack size exceeded```
+    Application de la solution de gpt : 
+    ```The error is caused by the document.createElement mock calling itself recursively. Instead of mocking document.createElement directly, we can mock HTMLCanvasElement and HTMLAnchorElement separately.```
+    - [x] Résolution de l'erreur : ```Unexpected directive 'TemplateImageCreatorComponent' imported by the module 'DynamicTestModule'. Please add an @NgModule annotation.```
+    ajout du forms module dans les imports & déclaration du 
+      declarations: [TemplateImageCreatorComponent],      
+    - [x] Résolution de l'erreur : ```RangeError: Maximum call stack size exceeded```
+    suppression des appels récursifs
