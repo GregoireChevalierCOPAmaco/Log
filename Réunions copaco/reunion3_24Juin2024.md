@@ -18,3 +18,12 @@ devis
 commande (généré mais pas prêt)
 fabrication
 soldé (expédié)
+
+
+comment savoir où est le code concerné lorsqu'il y a un souci ; 
+aller voir le fichier ajax qui gère la page en question, mais des fois y a pas d'ajax
+bonne chance
+$pref dans les fichiers indique l'arborescence (préfixe), et ramène à la racine
+quand il y a inventaire en paramètre, ça implique de ne pas tenir compte de la qté existante et de repartir de la nouvelle valeur
+michel est un sac à merde
+A.R.C = Accusé-Réception de Commande
