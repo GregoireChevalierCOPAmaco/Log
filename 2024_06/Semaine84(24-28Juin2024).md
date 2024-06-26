@@ -31,4 +31,15 @@
 - [ ] Poursuite copaco
     - [x] Gestion de problème humain : Vincent est venu voir Nicolas pour une galère en fait causée par le fait que Denis n'a pas calculé l'OF dans Copaco, mais uniquement dans Clipper, ce qui a créé un décalage
     - [ ] Résolution du problème en cours ; le port et la pose n'apparaissent pas sur le BL alors qu'ils le devraient
-    Recherche dans les fichiers 
+    Recherche dans les fichiers gestion_expe.php
+    A priori, l'état de la ligne est à 4 alors qu'il devrait être inférieur à 4 pour apparaître sur le BL.
+    ligne 207, ajout d'une condition else : si la l'article n'est pas défini ou n'existe pas
+    dans mobile_pce_ligne.php, ligne 223 - 231 retrait du if(isset $articleObj)
+    créée une erreur
+    ligne 272, problème avec le code_art, retrait du code.
+    - [ ] Tester avec du partial la composant relatif à la bâche
+Expédition : 
+à la sélection d'une commande (bouton +), on génère toutes les lignes relatives aux articles et leurs pièces. Puis on fait le décompte du stock des emplacements correspondants vers l'expédition en sélectionnant manuellement les pièces ligne par ligne.
+Quand toutes les lignes sont vertes (marchandise à l'expé), la commande va passer en vert (prête à partir), à l'expédition, Alain Boontz va créer le BL qui va LUI, décompter les articles dans les stocks
+Ventilation : ensemble de mouvements de stocks qui permettent d'avoir la bonne quantité préparée par rapport à la qté de la commande. 
+Les OFs mettent en ligne la commande
