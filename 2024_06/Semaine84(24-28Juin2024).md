@@ -26,3 +26,9 @@
     fichier : gestion_expe.php, lignes   
     ```
 - [ ] Petite remise à niveau PHP
+
+**26 Juin**
+- [ ] Poursuite copaco
+    - [x] Gestion de problème humain : Vincent est venu voir Nicolas pour une galère en fait causée par le fait que Denis n'a pas calculé l'OF dans Copaco, mais uniquement dans Clipper, ce qui a créé un décalage
+    - [ ] Résolution du problème en cours ; le port et la pose n'apparaissent pas sur le BL alors qu'ils le devraient
+    Recherche dans les fichiers 
