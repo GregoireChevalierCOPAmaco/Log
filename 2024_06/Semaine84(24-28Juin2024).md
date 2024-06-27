@@ -43,3 +43,11 @@ Expédition :
 Quand toutes les lignes sont vertes (marchandise à l'expé), la commande va passer en vert (prête à partir), à l'expédition, Alain Boontz va créer le BL qui va LUI, décompter les articles dans les stocks
 Ventilation : ensemble de mouvements de stocks qui permettent d'avoir la bonne quantité préparée par rapport à la qté de la commande. 
 Les OFs mettent en ligne la commande
+Articles de substitution : référence strictement identique à plusieurs autres sous dénomination/référence différente qui regroupe lesdites références (pour pallier aux demandes spécifiques clients)
+- [ ] Résolution de  : Si validation de la même commande deux fois de suite, la première fois tout vabien. Si clic sur la croix rouge qui supprime l'expé et qu'on refait l'expé les qté commande sont fausses
+
+
+**27 Juin**
+- [ ] Reprise ESLs
+    - [x] Création de tickets Jira ESL-53→56
+    - [ ] ESL-56 : Créer une modale
