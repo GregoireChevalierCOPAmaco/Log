@@ -51,3 +51,21 @@ Articles de substitution : référence strictement identique à plusieurs autres
 - [ ] Reprise ESLs
     - [x] Création de tickets Jira ESL-53→56
     - [ ] ESL-56 : Créer une modale
+        - [x] Installation de material angular ```ng add @angular/material```
+        ```
+        npm error Fix the upstream dependency conflict, or retry
+        npm error this command with --force or --legacy-peer-deps
+        npm error to accept an incorrect (and potentially broken) dependency resolution.
+        npm error
+        npm error
+        npm error For a full report see:
+        npm error C:\Users\gchevalier\AppData\Local\npm-cache\_logs\2024-06-27T08_57_30_116Z-eresolve-report.txt
+
+        npm error A complete log of this run can be found in: C:\Users\gchevalier\AppData\Local\npm-cache\_logs\2024-06-27T08_57_30_116Z-debug-0.log
+        ✖ Packages installation failed, see above.
+        ```
+        essai avec npm et legacy deps ```npm install --save @angular/material @angular/cdk @angular/animations --legacy-peer-deps```
+        - [x] Import de MatDialogModule dans app.module.ts
+        - [x] ```ng generate component template-image-preview```
+        - [x] Création de la fonction dans le component modal & modification du service frontend
+- [x] Repasse sur copaco en peer programming avec Nicolas ; fichier gestion OFs, ajout de fonctionnalité quantité de sécurité
