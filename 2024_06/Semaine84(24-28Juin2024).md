@@ -69,3 +69,8 @@ Articles de substitution : référence strictement identique à plusieurs autres
         - [x] ```ng generate component template-image-preview```
         - [x] Création de la fonction dans le component modal & modification du service frontend
 - [x] Repasse sur copaco en peer programming avec Nicolas ; fichier gestion OFs, ajout de fonctionnalité quantité de sécurité
+
+
+**28 Juin**
+- [ ] Reprise ESL
+    - [ ] Fix du problème d'image vide sur la preview & la save.
