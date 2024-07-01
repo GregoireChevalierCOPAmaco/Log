@@ -74,3 +74,48 @@ Articles de substitution : référence strictement identique à plusieurs autres
 **28 Juin**
 - [ ] Reprise ESL
     - [ ] Fix du problème d'image vide sur la preview & la save.
+        - [x] Refonte de la fonction createTemplateImage de l'image creator component pour gérer l'async : 
+        ```
+        createTemplateImage() {
+            if (this.selectedImage) {
+            this.templateImageService.createTemplateImage(this.text1, this.text2, this.text3, this.selectedImage).then(imageUrl => {
+                this.generatedImageUrl = imageUrl;
+                this.openPreviewModal(this.generatedImageUrl);
+            });
+            } else {
+            alert('Please select an image');
+            }
+        }
+        ```
+        - [x] Passage des données au mat dialog dans le component de preview : 
+        ```
+        import { Component, Inject } from '@angular/core';
+        import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+
+        @Component({
+        selector: 'app-template-image-preview',
+        templateUrl: './template-image-preview.component.html',
+        styleUrls: ['./template-image-preview.component.scss']
+        })
+        export class TemplateImagePreviewComponent {
+        imageUrl?: string;
+
+        constructor(
+            private dialogRef: MatDialogRef<TemplateImagePreviewComponent>,
+            @Inject(MAT_DIALOG_DATA) public data: any
+        ) {
+            this.imageUrl = data.imageUrl;
+        }
+
+        onCancel() {
+            this.dialogRef.close(false);
+        }
+
+        onConfirm() {
+            this.dialogRef.close(true);
+        }
+        }
+
+        ```
+
+- [x] Tests unitaires
