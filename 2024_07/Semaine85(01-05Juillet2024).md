@@ -97,4 +97,188 @@
         ```
         git checkout -b feat/ESL-68_link_template_creation_toBackend
         ```
-        
+        - [x] Description des attentes à gpt : 
+        ```
+        this is my component : 
+
+        [...] code fourni ici
+
+        what i want is : 
+        - change the html form to be with one field for the name of the template to create, one field for an image to load, two fields for the x and y position of the image, and then one text field with two fileds for its x and y coordinates (as for the image) and a button to add another extra field (repeatable)
+        - make the template creation logic (createTemplate, not createTemplateImage) frontend and link it to the backend existing logic
+        - make possible to create a template on click of a button when submitting a form with an image and x text fields
+        - save that template into the backend when created
+        - allow the selection of an existing template via dropdown in the component
+        - create the template display html and logic and  display the selected template on the page to fill 
+        - link the createTemplateImage() function to the eventual selected template
+        ```
+        - [x] Changement du html : 
+        ```
+        <div>
+            <input type="text" [(ngModel)]="templateName" placeholder="Enter template name">
+
+            <input type="file" (change)="onFileSelected($event)">
+            <input type="number" [(ngModel)]="imageX" placeholder="Image X position">
+            <input type="number" [(ngModel)]="imageY" placeholder="Image Y position">
+
+            <div *ngFor="let field of textFields; let i = index">
+                <input type="text" [(ngModel)]="field.text" placeholder="Enter text {{i + 1}}">
+                <input type="number" [(ngModel)]="field.x" placeholder="Text {{i + 1}} X position">
+                <input type="number" [(ngModel)]="field.y" placeholder="Text {{i + 1}} Y position">
+            </div>
+
+            <button (click)="addTextField()">Add Text Field</button>
+            <button (click)="createTemplate()">Create Template</button>
+            
+            <select [(ngModel)]="selectedTemplate" (change)="onSelectTemplate($event.target.value)">
+                <option *ngFor="let template of templates" [value]="template">{{ template.name }}</option>
+            </select>
+
+            <button (click)="createTemplateImage()">Create Template Image</button>
+            </div>
+
+            <div *ngIf="selectedTemplate">
+            <h3>Selected Template: {{ selectedTemplate.name }}</h3>
+            <div *ngFor="let data of selectedTemplate.templateDatas">
+                <p>Text: {{ data.text }} ({{ data.positionX }}, {{ data.positionY }})</p>
+            </div>
+        </div>
+        ```
+        - [x] Changement du component : 
+        ```
+        import { Component } from '@angular/core';
+        import { MatDialog } from '@angular/material/dialog';
+        import { TemplateImageService } from '../../services/template-image.service';
+        import { TemplateImagePreviewComponent } from '../template-image-preview/template-image-preview.component';
+        import { TemplateService } from '../../services/template-service';
+
+        @Component({
+        selector: 'app-template-image-creator',
+        templateUrl: './template-image-creator.component.html',
+        styleUrls: ['./template-image-creator.component.scss']
+        })
+        export class TemplateImageCreatorComponent {
+        templateName: string = '';
+        selectedImage: File | null = null;
+        imageX: number = 0;
+        imageY: number = 0;
+        textFields: { text: string, x: number, y: number }[] = [{ text: '', x: 0, y: 0 }];
+        templates: any[] = [];
+        selectedTemplate: any;
+        generatedImageUrl: string = '';
+
+        constructor(
+            private templateImageService: TemplateImageService,
+            private templateService: TemplateService,
+            private dialog: MatDialog
+        ) {}
+
+        onFileSelected(event: Event) {
+            const input = event.target as HTMLInputElement;
+            if (input.files && input.files.length > 0) {
+            this.selectedImage = input.files[0];
+            }
+        }
+
+        addTextField() {
+            this.textFields.push({ text: '', x: 0, y: 0 });
+        }
+
+        createTemplate() {
+            if (this.selectedImage) {
+            const templateData = this.textFields.map(field => ({
+                text: field.text,
+                positionX: field.x,
+                positionY: field.y
+            }));
+            const template = {
+                name: this.templateName,
+                templateDatas: templateData
+            };
+
+            this.templateService.createTemplate(template).subscribe(response => {
+                console.log('Template created successfully', response);
+                this.loadTemplates();
+            }, error => {
+                console.error('Error creating template', error);
+            });
+            } else {
+            alert('Please select an image');
+            }
+        }
+
+        loadTemplates() {
+            this.templateService.getTemplates().subscribe(templates => {
+            this.templates = templates;
+            });
+        }
+
+        onSelectTemplate(template: any) {
+            this.selectedTemplate = template;
+        }
+
+        createTemplateImage() {
+            if (this.selectedImage && this.selectedTemplate) {
+            const { templateDatas } = this.selectedTemplate;
+            const fields = templateDatas.map((data: any) => ({
+                text: data.text,
+                x: data.positionX,
+                y: data.positionY
+            }));
+
+            this.templateImageService.createCustomTemplateImage(
+                fields[0].text, fields[0].x, fields[0].y,
+                fields[1]?.text, fields[1]?.x, fields[1]?.y,
+                fields[2]?.text, fields[2]?.x, fields[2]?.y,
+                this.selectedImage, this.imageX, this.imageY
+            ).then(imageUrl => {
+                this.generatedImageUrl = imageUrl;
+                this.openPreviewModal(this.generatedImageUrl);
+            });
+            } else {
+            alert('Please select an image and a template');
+            }
+        }
+
+        private openPreviewModal(imageUrl: string) {
+            const dialogRef = this.dialog.open(TemplateImagePreviewComponent, {
+            data: { imageUrl },
+            width: '500px'
+            });
+
+            dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                this.templateImageService.saveImage(this.generatedImageUrl);
+            }
+            });
+        }
+
+        ngOnInit() {
+            this.loadTemplates();
+        }
+        }
+        ```
+        - [x] Création d'un service template dans le front : 
+        ```
+        import { Injectable } from '@angular/core';
+        import { HttpClient } from '@angular/common/http';
+        import { Observable } from 'rxjs';
+
+        @Injectable({
+        providedIn: 'root'
+        })
+        export class TemplateService {
+        private baseUrl = 'http://your-backend-url/api/Templates';
+
+        constructor(private http: HttpClient) {}
+
+        createTemplate(template: any): Observable<any> {
+            return this.http.post(`${this.baseUrl}`, template);
+        }
+
+        getTemplates(): Observable<any[]> {
+            return this.http.get<any[]>(`${this.baseUrl}`);
+        }
+        }
+        ```
+        - [ ] Résolution des erreurs de build angular
