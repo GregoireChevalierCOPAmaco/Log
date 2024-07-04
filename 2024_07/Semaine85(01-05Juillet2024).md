@@ -309,11 +309,26 @@ and here is the TemplateData service backend :
 
 [...]
 
-
-
-now as it stands, the frontend angular is as follows : i have a component supposed to generate Templates using TemplateDatas submitted via html form. Below the files : 
+The ESL entity is as follows with its DTO : 
 
 [...]
+
+
+alongside are the backend service & controller for ESL : 
+
+[...]
+
+below the frontend esl table component : 
+
+[...]
+
+i also have this frontend service : 
+
+[...]
+
+what i want is :
+- to add a button on each line of the table that takes as parameters : esl.id_esl, esl.width & esl.height and redirects to the component templateCreator with those cited parameters
+- to create a component templateCreator that would display an html form with 3 text fields and one image field, each having two number fields to submit x & y position. The submit button would create a template in base. I want to use the template-image frontend service to do so, you can redo it as you see fit for the createCustomTemplateImage to take as other parameters the esl.id_esl, esl.width & esl.height in order to create dynamic templates ; change canvas.height & canvas.width with the parameters
 
 
 **4 Juillet**
@@ -323,4 +338,228 @@ now as it stands, the frontend angular is as follows : i have a component suppos
   // laisser le component en l'état et y remettre l'ancienne createTemplate
   // et renommer en predefinedTemplate 1, 2 & 3. Faire un menu de sélection
   // et donner la possiblité de faire les 3 templates 360x240
+  ```
+
+
+
+  interface principale : liste ESLs
+  sur chaque ligne, ajouter un bouton "créer un template" en bout de ligne qui prend en paramètres width & height + id_esl (pour further envoi de l'image à ladite ESL) et qui redirige vers la page/component correspondant aux templates de la bonne résolution
+  créer un component d'ensemble qui affiche tous les templates relatifs à la résolution et masque les autres
+
+  - [x] Création d'un component dynamique pour créer un template selon la résolution de l'ESL choisie
+    - [x] Ajustement de la table ESL : 
+      - [x] html : 
+      ```
+      <p>esl-table works!</p>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>ID ESL</th>
+            <th>Version Name</th>
+            <th>Width</th>
+            <th>Height</th>
+            <th>Average RSSI</th>
+            <th>Power</th>
+            <th>Supplier</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let esl of esls">
+            <td>{{ esl.id }}</td>
+            <td>{{ esl.id_esl }}</td>
+            <td>{{ esl.version_name }}</td>
+            <td>{{ esl.width }}</td>
+            <td>{{ esl.height }}</td>
+            <td>{{ esl.average_rssi }}</td>
+            <td>{{ esl.power }}</td>
+            <td>{{ esl.supplier }}</td>
+            <td><button (click)="redirectToTemplateCreator(esl.id_esl, esl.width, esl.height)">Create Template</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="pagination">
+        <button (click)="onPageChange(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
+        <span>Page {{ currentPage }}</span>
+        <button (click)="onPageChange(currentPage + 1)" [disabled]="currentPage * pageSize >= totalItems">Next</button>
+      </div>
+      ```
+      - [x] Ajustement du component table esl : 
+      ```
+      import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+      import { Router } from '@angular/router';
+      import { EslService } from '../../services/esl.service';
+      import { HttpClient, HttpClientModule } from '@angular/common/http';
+      import { CommonModule } from '@angular/common';
+      import { NgFor } from '@angular/common';
+
+      @Component({
+        selector: 'app-esl-table',
+        templateUrl: './esl-table.component.html',
+        styleUrls: ['./esl-table.component.scss'],
+        standalone: true,
+        imports: [
+          HttpClientModule,
+          CommonModule,
+          NgFor
+        ]
+      })
+      export class EslTableComponent implements OnInit {
+        esls: any[] = [];
+        currentPage: number = 1;
+        pageSize: number = 10;
+        totalItems: number = 0;
+
+        constructor(
+          private eslService: EslService, 
+          private http: HttpClient,
+          private cdr: ChangeDetectorRef,
+          private router: Router
+        ) { }
+
+        ngOnInit(): void {
+          this.getEsls(this.currentPage);
+        }
+
+        getEsls(page: number): void {
+          this.eslService.getEsls(page, this.pageSize).subscribe(
+            response => {
+              this.esls = response;
+              this.totalItems = response.length;
+              this.cdr.markForCheck();
+            },
+            error => {
+              console.error('Error fetching ESLs:', error);
+            }
+          );
+        }
+
+        onPageChange(page: number): void {
+          this.currentPage = page;
+          this.getEsls(page);
+        }
+
+        redirectToTemplateCreator(id_esl: string, width: number, height: number): void {
+          this.router.navigate(['/template-creator'], { queryParams: { id_esl, width, height } });
+        }
+      }
+      ```
+    - [x] Nouveau component : 
+    ```
+    import { Component, OnInit } from '@angular/core';
+    import { ActivatedRoute } from '@angular/router';
+    import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+    import { TemplateImageService } from '../../services/template-image.service';
+
+    @Component({
+      selector: 'app-template-creator',
+      templateUrl: './template-creator.component.html',
+      styleUrls: ['./template-creator.component.scss'],
+      imports: [ReactiveFormsModule],
+      standalone: true
+    })
+    export class TemplateCreatorComponent implements OnInit {
+      templateForm: FormGroup;
+      id_esl!: string;
+      width!: number;
+      height!: number;
+
+      constructor(
+        private route: ActivatedRoute,
+        private fb: FormBuilder,
+        private templateImageService: TemplateImageService
+      ) {
+        this.templateForm = this.fb.group({
+          text1: ['', Validators.required],
+          text1X: [0, Validators.required],
+          text1Y: [0, Validators.required],
+          image1: [null],
+          image1X: [0, Validators.required],
+          image1Y: [0, Validators.required]
+        });
+      }
+
+      ngOnInit(): void {
+        this.route.queryParams.subscribe(params => {
+          this.id_esl = params['id_esl'];
+          this.width = +params['width'];
+          this.height = +params['height'];
+        });
+      }
+
+      onImageChange(event: any): void {
+        const file = event.target.files[0];
+        this.templateForm.patchValue({ image1: file });
+      }
+
+      // submitTemplate(): void {
+      //   const fields = [
+      //     { text: this.templateForm.value.text1, image: null, x: this.templateForm.value.text1X, y: this.templateForm.value.text1Y },
+      //     { text: null, image: this.templateForm.value.image1, x: this.templateForm.value.image1X, y: this.templateForm.value.image1Y }
+      //   ];
+
+      //   this.templateImageService.createCustomTemplateImage(fields, this.id_esl, this.width, this.height)
+      //     .then(imageUrl => {
+      //       this.templateImageService.saveImage(imageUrl);
+      //       // Save le template dans le backend ici
+      //       this.templateImageService.saveTemplate({ id_esl: this.id_esl, imageUrl }).subscribe();
+      //     })
+      //     .catch(error => {
+      //       console.error('Error creating template image:', error);
+      //     });
+      // }
+      submitTemplate(): void {
+        const fields = [
+          { text: this.templateForm.value.text1, image: this.templateForm.value.image1, x: this.templateForm.value.text1X, y: this.templateForm.value.text1Y },
+          { text: null, image: this.templateForm.value.image1, x: this.templateForm.value.image1X, y: this.templateForm.value.image1Y }
+        ];
+      
+        if (this.id_esl && this.width && this.height) {
+          this.templateImageService.createCustomTemplateImage(fields, this.id_esl, this.width, this.height)
+            .then(imageUrl => {
+              this.templateImageService.saveImage(imageUrl);
+              // Save le template en back ici
+              this.templateImageService.saveTemplate({ id_esl: this.id_esl, imageUrl }).subscribe();
+            })
+            .catch(error => {
+              console.error('Error creating template image:', error);
+            });
+        } else {
+          console.error('ID ESL, width, or height is not defined.');
+        }
+      }
+      
+    }
+    ```
+    &
+    ``` 
+    <form [formGroup]="templateForm" (ngSubmit)="submitTemplate()">
+    <div>
+      <label for="text1">Text 1</label>
+      <input id="text1" formControlName="text1" type="text" />
+    </div>
+    <div>
+      <label for="text1X">Text 1 X Position</label>
+      <input id="text1X" formControlName="text1X" type="number" />
+    </div>
+    <div>
+      <label for="text1Y">Text 1 Y Position</label>
+      <input id="text1Y" formControlName="text1Y" type="number" />
+    </div>
+    <div>
+      <label for="image1">Image 1</label>
+      <input id="image1" type="file" (change)="onImageChange($event)" />
+    </div>
+    <div>
+      <label for="image1X">Image 1 X Position</label>
+      <input id="image1X" formControlName="image1X" type="number" />
+    </div>
+    <div>
+      <label for="image1Y">Image 1 Y Position</label>
+      <input id="image1Y" formControlName="image1Y" type="number" />
+    </div>
+    <button type="submit">Submit</button>
+  </form>
   ```
