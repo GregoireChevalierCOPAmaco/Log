@@ -282,3 +282,45 @@
         }
         ```
         - [ ] Résolution des erreurs de build angular
+
+
+i am a developer working on an Electronic Shleves Labeling (ESL) project.
+The idea is to allow a user to simply edit ESLs from a wab app filling some fields.
+I am using Angular, nest, postgres and MQTT, all dockerized. 
+Mqtt and postgres work fine, lets focus on the angular nest part.
+
+ESLs are managed like this : as it is a technology that uses liquid crystals keeping in memory pixels so it does not refresh any other way but by user input, and then saves energy.
+To lighten the process and save ESL memory, i create base-64 images that are sent to the ESL.
+We call the images sent to the ESL "Templates". Below, the backend entity & its DTO : 
+
+
+These templates contain TemplateData, which are the content itself of the Template. Below the entity & DTO : 
+
+
+[...]
+
+
+here is the TemplateService backend : 
+
+[...]
+
+
+and here is the TemplateData service backend : 
+
+[...]
+
+
+
+now as it stands, the frontend angular is as follows : i have a component supposed to generate Templates using TemplateDatas submitted via html form. Below the files : 
+
+[...]
+
+
+**4 Juillet**
+- [ ] Suite ESLs
+  - [ ] Appliquer les directives : 
+  ```
+  // laisser le component en l'état et y remettre l'ancienne createTemplate
+  // et renommer en predefinedTemplate 1, 2 & 3. Faire un menu de sélection
+  // et donner la possiblité de faire les 3 templates 360x240
+  ```
