@@ -106,3 +106,9 @@ export class TemplateCreatorComponent implements OnInit {
 }
 ```
 - [x] Clean de la branche 68 et ajustement des tests
+
+
+**11 Juillet**
+- [ ] Créer un 2nd template
+    - [x] Création et switch de branche ```git checkout -b feat/ESL-54_create2nd_template ``` 
+    
