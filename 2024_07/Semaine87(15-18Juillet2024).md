@@ -557,5 +557,135 @@
 
 **18 Juillet**
 - [ ] ESL-89 Reprendre et terminer la branche 83 d'Anthony
-    - [ ] ESL-90 Écrire et faire passer les tests unitaires sur les nouvelles fonctionnalités
+    - [x] ESL-90 Écrire et faire passer les tests unitaires sur les nouvelles fonctionnalités
         - [x] EslTableComponent spec : 
+        modifications au fichier de test : 
+        ```
+        it('should fetch ESLs on initialization', () => {
+            const mockResponse = {
+            items: [{ "id": 1, "name": "ESL 1" }],
+            meta: { totalItems: 1 }
+            };
+            httpClientSpy.get.mockReturnValue(of(mockResponse));
+
+            component.ngOnInit();
+            expect(httpClientSpy.get).toHaveBeenCalledWith(`${eslService.route}/paginate/?page=${component.currentPage}&limit=${component.pageSize}`);
+            expect(component.esls).toEqual(mockResponse.items);
+            expect(component.totalItems).toEqual(mockResponse.meta.totalItems);
+        });
+
+        it('should update ESLs on page change', () => {
+            const mockResponse = {
+            items: [{ "id": 1, "name": "ESL 1" }],
+            meta: { totalItems: 1 }
+            };
+            httpClientSpy.get.mockReturnValue(of(mockResponse));
+
+            const newPage = 2;
+            component.onPageChange(newPage);
+
+            expect(httpClientSpy.get).toHaveBeenCalledWith(`${eslService.route}/paginate/?page=${newPage}&limit=${component.pageSize}`);
+            expect(component.esls).toEqual(mockResponse.items);
+            expect(component.totalItems).toEqual(mockResponse.meta.totalItems);
+        });
+        ```
+        - [x] ArticleListComponent spec : 
+        écriture de tests : 
+        ```
+        import { ComponentFixture, TestBed } from '@angular/core/testing';
+        import { HttpClientTestingModule } from '@angular/common/http/testing';
+        import { of } from 'rxjs';
+        import { HttpClient } from '@angular/common/http';
+        import { ArticleListComponent } from './article-list.component';
+        import { StoreArticleService } from '../../services/store-article.service';
+
+        describe('ArticleListComponent', () => {
+        let component: ArticleListComponent;
+        let fixture: ComponentFixture<ArticleListComponent>;
+        let storeArticleService: StoreArticleService;
+        let httpClientSpy: { get: jest.Mock };
+
+        beforeEach(async () => {
+            httpClientSpy = {
+            get: jest.fn().mockReturnValue(of({ items: [], meta: { totalItems: 0 } })),
+            };
+
+            await TestBed.configureTestingModule({
+            imports: [ArticleListComponent, HttpClientTestingModule],
+            providers: [
+                StoreArticleService,
+                { provide: HttpClient, useValue: httpClientSpy }
+            ],
+            }).compileComponents();
+
+            fixture = TestBed.createComponent(ArticleListComponent);
+            component = fixture.componentInstance;
+            storeArticleService = TestBed.inject(StoreArticleService);
+        });
+
+        it('should create', () => {
+            expect(component).toBeTruthy();
+        });
+
+        it('should initialize with empty articles array and pagination variables', () => {
+            expect(component.articles).toEqual([]);
+            expect(component.currentPage).toEqual(1);
+            expect(component.pageSize).toEqual(10);
+            expect(component.totalItems).toEqual(0);
+        });
+
+        it('should fetch articles on initialization', () => {
+            const mockResponse = {
+            items: [{ "id": 1, "title": "Article 1" }],
+            meta: { totalItems: 1 }
+            };
+            httpClientSpy.get.mockReturnValue(of(mockResponse));
+
+            component.ngOnInit();
+            expect(component.articles).toEqual(mockResponse.items);
+        });
+
+        it('should update articles on page change', () => {
+            const mockResponse = {
+            items: [{ "id": 1, "title": "Article 1" }],
+            meta: { totalItems: 1 }
+            };
+            httpClientSpy.get.mockReturnValue(of(mockResponse));
+
+            const newPage = 2;
+            component.onPageChange(newPage);
+
+            expect(component.articles).toEqual(mockResponse.items);
+        });
+        });
+        ```
+    - [ ] ESL-93 Fix l'affichage des ESL par page & la pagination
+- [ ] Réunion COPACO avec pascal denis fede loic franck
+```
+fede soulève la possibilité que les stocks soient vérolés par l'utilisation de copaco
+utilisation de moulinette pour trouver les références réservées par commande
+service achat sous effectif et pas fiable selon pascal avec (?) conflit au sein du service 
+"on est partis pour supprimer copaco et retourner à l'état d'avant" - pascal -
+problème soulevé par loic ; thierry se sert des douchettes et de copaco pour faire les inventaires, que faire à ce sujet
+suggestion pascal : faire un inventaire physique d'abord, validé par fede pour avoir la vue stock + réservations plutôt que juste compter ce que j'ai sous les yeux
+franck pas emballé de laisser 10% de copaco juste pour tirer profit d'une ou deux fonctionnalités -> inventaire annuel par exemple. 
+Le problème est que pascal voudrait utiliser copaco pour l'inventaire tournant pour garder les stocks à jour (relativement). 
+Or, ce module n'existe pas encore dans copaco, ou n'est pas fiable/utilisable en l'état
+Check sur une douchette si on a accès à la version de clipper mobile (pas payée selon pascal - mais possiblement incluse dans le bundle de service de maintenance)
+fede : essayer de migrer clipper sur des SSD depuis les HDD actuellement en usage
+franck veut temporiser et tester avant de le faire ↑
+discussions avec le commercial pour un environnement de test ; le commercial a répondu qu'il faut une licence pour déployer un nouveau serveur. Quel est l'état des licences ?
+Vœu pieu de franck de tisser plus de liens avec Clipper quitte à travailler avec.
+Franck va prendre rdv avec le support clipper pour poser les questions à poser avec fede, denis et loic ; utilise-t-on bien clipper comme il a été prévu, comment peut-on se faire accompagner, trouver les bonnes questions à poser.
+fede propose de developper un copaco v2 pour "juste" faire module après module (détaché) et déployer au compte goutte
+fede propose donc de faire développer de nouvelles interfaces pour clipper par le pôle dev
+consensus général sur le fait qu'il faut échanger plus avec clipper. Franck suggère de d'abord faire part de la dissatisfaction que l'on a au sein de l'entreprise de l'utilisation  qu'on en a avant de demander à payer des formations pour attendrir les futures négociations
+Denis est 100% satisfait de clipper dans le spectre de prod uniquement. Pour la logistique, pas trop, "pour la logistique il y a tout à faire". Planning de prod pas ouf non plus
+demander à clipper si on a la possibilité de dialoguer en mqtt - ou autre - pour récupérer les données & developper notre propre verrue pour afficher les données voulues dans des fenêtres dédiées
+clipper est sur nos serveurs, pas en cloud
+tester impérativement le module copaco d'inventaire de fin d'année
+réinventorier 120 reférences hornbach pour repasser sur clipper et lâcher copaco
+actuellement, la version mobile de clipper sur les douchettes permet de scanner un code barre pour afficher la qté actuelle. si on ajoute en entrée une qté, elle va écraser la valeur précédente, ce qui va fausser la qté totale si on ajoute en entrée les qtés d'une même référence à x endroits différents.
+```
+- [ ] ESL-89 Reprendre et terminer la branche 83 d'Anthony
+    - [ ] Fix l'affichage du contenu dans la page
