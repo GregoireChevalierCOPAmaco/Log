@@ -63,3 +63,64 @@ with that said, i want to :
 - in the disableTemplate" component, i want to have a button that on click, creates an image of the size of the esl's width & height, with a text field that says "This ESL is disabled", and with a barcode corresponding to the barcode of its id_esl, and finally, save that image
 
 disabled template image :
+```
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import jsBarcode from 'jsbarcode';
+
+@Component({
+  selector: 'app-disable-template',
+  templateUrl: './disable-template.component.html',
+  styleUrls: ['./disable-template.component.scss']
+})
+export class DisableTemplateComponent implements OnInit {
+  idEsl: string = '';
+  width: number = 100;
+  height: number = 100;
+
+  constructor(private route: ActivatedRoute) {
+    
+  }
+
+  ngOnInit(): void {
+    this.idEsl = this.route.snapshot.paramMap.get('id_esl')!;
+    this.width = Number(this.route.snapshot.paramMap.get('width'));
+    this.height = Number(this.route.snapshot.paramMap.get('height'));
+  }
+
+  generateImage() {
+    const canvas = document.createElement('canvas');
+    canvas.width = this.width;
+    canvas.height = this.height;
+    const ctx = canvas.getContext('2d');
+
+    if (ctx) {
+      ctx.fillStyle = 'white';
+      ctx.fillRect(0, 0, this.width, this.height);
+      ctx.fillStyle = 'black';
+      ctx.font = '20px Arial';
+      ctx.fillText('This ESL is disabled', 10, 50);
+
+      const barcodeCanvas = document.createElement('canvas');
+      jsBarcode(barcodeCanvas, this.idEsl, { format: 'CODE128' });
+
+      const barcodeImage = barcodeCanvas.toDataURL();
+      const barcode = new Image();
+      barcode.src = barcodeImage;
+      barcode.onload = () => {
+        ctx.drawImage(barcode, 10, 80);
+
+        const finalImage = canvas.toDataURL('image/png');
+        this.saveImage(finalImage);
+      };
+    }
+  }
+
+  saveImage(dataUrl: string) {
+    const link = document.createElement('a');
+    link.href = dataUrl;
+    link.download = 'disabled-esl.png';
+    link.click();
+  }
+}
+```
