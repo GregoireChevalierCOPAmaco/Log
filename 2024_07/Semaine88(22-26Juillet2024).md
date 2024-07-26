@@ -56,3 +56,10 @@
         ```
         - [x] Linting
         - [x] push & PR
+
+with that said, i want to :
+- create a "disableTemplate" component
+- add a "disable" button to each line of the esl-table component that redirects to the disableTemplate component, taking as parameters (or in the url) the esl's id_esl, its height & width
+- in the disableTemplate" component, i want to have a button that on click, creates an image of the size of the esl's width & height, with a text field that says "This ESL is disabled", and with a barcode corresponding to the barcode of its id_esl, and finally, save that image
+
+disabled template image :
