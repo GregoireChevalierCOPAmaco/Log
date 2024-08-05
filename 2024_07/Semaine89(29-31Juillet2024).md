@@ -44,4 +44,16 @@
         }
     }
     ```
-    - [ ] ESL-110 Changer la logique de génération de template disable depuis la page attitrée vers un simple bouton disable depuis la table ESL
+    - [ ] ESL-110 Changer la logique de génération de template disable depuis la page attitrée vers un simple bouton disable depuis la table ESL :
+    ```
+    what i want is : 
+    - on click of the "Disable" button of the esl-table, redirect to template-editor with the information of height & width in the url (as is for edit button)
+    - have a button "disable in the template-editor component that is linked to the logic of the DisableTemplateComponent
+    - on click of said Disable button, use generateImage function, and then send the image generated to the ESL, using Base64imageConverterService's functions
+    ```
+
+**30 Juillet**
+- [x] Photoshop ; fonds pour les ESLs
+
+**31 Juillet, 1er & 2 Aout**
+Arrêt 
