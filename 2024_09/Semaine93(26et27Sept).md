@@ -5,3 +5,9 @@
     - [ ] Veille lib Js canvas suggérée par Jacques
         - [ ] Check de (https://interactjs.io/)
         - [ ] Check de (http://fabricjs.com/super-sub-script)
+- [ ] ESL
+    - [x] Prise de connaisance du point entre Franck & Anthony de la veille
+    - [x] Review de la PR ESL-Paris
+    - [ ] Création de tickets Jira correspondant aux nouvelles tâches
+    - [ ] ESL-138 Update le fichier de tests de store-articles dans le back
+- [ ] Réunion de reprise
