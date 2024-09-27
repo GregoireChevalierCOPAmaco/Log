@@ -44,3 +44,10 @@
 - [x] Réunion de reprise
     - [ ] Décalée au lendemain
 - [x] Évaluation des prospects alternant web
+
+
+**27 Septembre**
+- [ ] ESL
+    - [x] ESL-138 Update le fichier de tests de store-articles dans le back
+        - [x] Merge
+    - [ ] ESL-137 Résoudre le mauvais scaling sur les nouvelles ESLs
