@@ -51,3 +51,19 @@
     - [x] ESL-138 Update le fichier de tests de store-articles dans le back
         - [x] Merge
     - [ ] ESL-137 Résoudre le mauvais scaling sur les nouvelles ESLs
+        - [x] Création de branche
+        - [x] Switch de branche 
+        - [ ] Examen des nouvelles ESLs
+        - [ ] Revue du code
+- [x] Réunion de reprise : 
+```
+moins de monde mais plus de dialogues consturctif et étendu
+petites choses à améliorer
+- écran du fleg ?
+- tare négative de la balance
+- position de la balance pour ne pas suggérer de s'appuyer / s'asseoir dessus, ou mettre un sticker
+les ESLs ont plu et interessé, ça va être le plan de dev dans les prochains temps
+retour kevin utilisation ESLs, association compliquée et champs non cleanés après scan / association
+digital signage un peu osef de la part des visiteurs, ça leur semble basique, voire ils ne l'ont pas remarqué
+atmos BLE pas fiable à 100%. Ni même 50% à priori
+```
