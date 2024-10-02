@@ -147,3 +147,54 @@
         Pas d'appétence particulière pour une techno quelle qu'elle soit
         Met des trucs random sur son cv et "oh bah je sais plus trop"
         ```
+
+
+**2 Octobre**
+- [x] Check des mails
+- [ ] ESL
+    - [x] Relance du container back 
+    - [x] Check de la DB et de l'état disable des ESLs
+    - [x] Test du flow pour mettre une image sur une ESL
+        - [x] Scan de l'ID, sélection d'image appropriée et envoi
+        - [x] Rien ne se passe, pour aucune des 2 ESLs
+        - [x] Débug
+            - [x] Test en local du blink
+            - [x] Test en prod du blink avec (http://192.168.1.252:3000/esl/blink/688880e4-9c1c-4e78-afe2-4c7920c2cf50/red). Retour : 
+            ```
+            {"closed":false,"_parentage":null,"_finalizers":[null],"isStopped":false,"destination":{"partialObserver":{}}}
+            ```
+            (retour attendu)
+            mais erreur dans le container back : 
+            ```
+            AxiosError: Request failed with status code 500
+                at settle (/app/node_modules/axios/lib/core/settle.js:19:12)
+                ...
+                url: 'http://mqtt_api:5002/esl_blink',
+                data: '{"id_esl":"688880e4-9c1c-4e78-afe2-4c7920c2cf50","color":"red"}'
+                },
+                ...
+                },
+                data: "'EslNotFoundError'"
+            },
+            status: 500
+            }
+            ```
+            - [x] Résolution de l'erreur "'EslNotFoundError'"
+                - [x] Échange avec Anthony
+                - [x] Check du container mqtt-api de prod, pas d'erreurs de ce côté là
+                - [x] Redo du flow depuis la zapette connectée au pc, avec android Studio d'ouvert
+                dans les logs : 
+                ```
+                W  File: https://localhost/polyfills.45b15749fa958a1d.js - Line 1 - Msg: Mixed Content: The page at 'https://localhost/tabs/change-image' was loaded over HTTPS, but requested an insecure XMLHttpRequest endpoint 'http://192.168.1.2:3000/Templates/picture/1530018d'. This content should also be served over HTTPS.
+                ```
+                Apparemment on tape sur une route en .2 au lieu de .252
+                - [x] Dans vscode sur le projet ESLsMobile, dans le terminal : 
+                ```
+                ionic capacitor sync android
+                ionic capacitor build android
+                ```
+                - [x] Suppression de l'app sur la zappette
+                - [x] Rebuild de l'app via Android studio
+    - [ ] ESL-137 Résoudre le mauvais scaling sur les nouvelles ESLs
+        - [ ] Examen des nouvelles ESLs
+- [ ] Entretiens
