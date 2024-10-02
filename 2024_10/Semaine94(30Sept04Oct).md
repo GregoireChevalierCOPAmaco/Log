@@ -91,4 +91,59 @@
         animée par le sentiment de se savoir utile 
         ambitieuse
         ```
-        
+        - [x] Arthur Frisch
+        ```
+        Petite chemise, j'aime bien
+        Avenant dans son expression orale
+        véhiculé + père habite pas loin si besoin
+        rythme : 3s/1s
+        bac en 22, puis alternance, direct dans le dev avec mise en pratique, bac + 2 en 24, bac plus 3 en cours (alternance)
+        bonne élocution, on sent le passionné. Plutôt humble imo
+        projet de station météo : projet de formation sous raspberry, script en µpython avec interface web. Interconnection pi-API-interface web
+        ↓→ a touché à toutes le sparties du projet, mais a développé les requêtes rasp → API, équipe de 2
+        pas de jira mais notion, et utilisation de git. 
+        connaissance des tests unitaires/intégration/e2e
+        bases de TDD
+        frontend backend, différence connue
+        scalaire, pas connu mais belle mentalité face à la non connaissance
+        bonne attitude de recherches avant de commencer un projet au lieu de foncer tête baissée
+        pas peur des responsabilités, tant qu'il y a eu formation. Petite tendance à trop être dans son coin peut-être ?
+        ```
+        - [x] Angelina Droz
+        ! attention mélanie accaparée par une mission bien plus importante ?!
+        ```
+        j'aime bien le côté je m'interesse à ce que fait mon entourage pour comprendre ce qu'ils disent.
+        bootcampus universitaire : projets de A à Z toute seule
+        demande à apprendre, se forme de son côté
+        wild code school : 5 mois, Js React & Vite, NodeJs, express. base de MVC. Suivi par un formateur. Cours le matin & livecoding.
+        autoformée. Autonomie : oui je pense, petit plus du conjoint qui est codeur
+        projets, a travaillé sur l'authentification from scratch
+        3s/1s pour le rythme
+        mi novembre pour le début de l'alternance
+        ```
+        - [x] Florian Mounkala
+        ```
+        Chemise, mais détendu. Attentif en général
+        Curieux de découvrir l'autonomie
+        Famille à Strasbourg en attendant. Véhiculé soon
+        Pas hyper éloquent, mais facilité à parler. Attention au langage peu châtié
+        3s/1s rythme, alternance à l'IDEM. Pas clair sur quoi est son master
+        passage de .NET à nodeJs, pas clair tout ça 
+        beaucoups de parlotte. 
+        Plutôt disposé à apprendre
+        Se perd un peu dans ses explications, beaucoup de phrases pour dire peu.
+        "C'est un peu flou dans ma tête"
+        ```
+        Bref, gros non.
+        - [x] Robin Vidal
+        ```
+        École en distanciel, possibilité de déménager
+        Parle pas beaucoup. Pas expressif.
+        Élocution pas évidente
+        faut lui tirer les vers du nez
+        Il se souvient pas de ce qu'il a utilisé et il a pas peur de le dire.
+        il a DEEEUUUUUX DE TENS'
+        pas loquace, marmonne dans sa barbe
+        Pas d'appétence particulière pour une techno quelle qu'elle soit
+        Met des trucs random sur son cv et "oh bah je sais plus trop"
+        ```
