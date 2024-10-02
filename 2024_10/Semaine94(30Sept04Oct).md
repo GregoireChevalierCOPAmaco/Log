@@ -185,7 +185,10 @@
                 - [x] Redo du flow depuis la zapette connectée au pc, avec android Studio d'ouvert
                 dans les logs : 
                 ```
-                W  File: https://localhost/polyfills.45b15749fa958a1d.js - Line 1 - Msg: Mixed Content: The page at 'https://localhost/tabs/change-image' was loaded over HTTPS, but requested an insecure XMLHttpRequest endpoint 'http://192.168.1.2:3000/Templates/picture/1530018d'. This content should also be served over HTTPS.
+                W  File: https://localhost/polyfills.45b15749fa958a1d.js - Line 1 - Msg: 
+                Mixed Content: The page at 'https://localhost/tabs/change-image' was loaded over HTTPS, 
+                but requested an insecure XMLHttpRequest endpoint 'http://192.168.1.2:3000/Templates/picture/1530018d'. 
+                This content should also be served over HTTPS.
                 ```
                 Apparemment on tape sur une route en .2 au lieu de .252
                 - [x] Dans vscode sur le projet ESLsMobile, dans le terminal : 
@@ -197,4 +200,23 @@
                 - [x] Rebuild de l'app via Android studio
     - [ ] ESL-137 Résoudre le mauvais scaling sur les nouvelles ESLs
         - [ ] Examen des nouvelles ESLs
-- [ ] Entretiens
+- [ ] Réunion "Copaco 2"
+4Cad
+Entretien avec Loic Pelissier & Carlo Zammito
+Objectifs 
+- mettre au clair la façon de travailler ensemble
+- échanger sur les problématiques qui nous concerne (connection erp-windchill)
+- licences 4Cad (Créo). Pas de licences éphémères ; et prix sur 6 mois quasiment égaux à prix pour un an (politique éditeur, pas 4Cad)
+- Incompatibilité Créo 7 / Créo 8 ? Rétrocompatibilité du nouveau vers l'ancien mais pas inversement
+- pascal veut faire basculer la saisie des quantités, code articles, matières etc depuis les mains des méthodes vers un processus automatisé. Loic propose une bascule de fichier à plat (depuis un excel ou autre) vu qu'on ne sait pas extraire une nomenclature de windchill. Le B.E. a un PDE (coffre fort numérique, pas sensé faire ça.) Loic propose de passer à un PLM qui sert ajouter tous les éléments qui ne se dessinent pas (visserie, quincaillerie, graisse, etc). Changement de périmètre Windchill → passage à la licence au-dessus recommandé (ibom?)S, sauf pour l'histoire d'intégrer la nomenclature dans clipper.
+- deux possibilités, soit utiliser les déclencheurs de windchill (trigger lors du passage d'un statut à un autre, en cours, prototype, en production ...) pour extraire un fichier à plat avec les attributs :
+    - code article, 
+    - destination article, 
+    - matiere, 
+    - quantité, 
+    - nomenclature, 
+    - surface mouillée, 
+    - poids
+soit utiliser un bus de données qui va interagir avec l'ERP.
+Démonstration PLM proposée et à priori acceptée par Federico & Pascal
+Après 49 minutes de réunion, première mention du bureau digital, début de la discussion pour potentiellement automatiser des tâches à base de connecteurs logiciels
