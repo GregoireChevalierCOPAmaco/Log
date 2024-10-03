@@ -200,7 +200,7 @@
                 - [x] Rebuild de l'app via Android studio
     - [ ] ESL-137 Résoudre le mauvais scaling sur les nouvelles ESLs
         - [ ] Examen des nouvelles ESLs
-- [ ] Réunion "Copaco 2"
+- [x] Réunion "Copaco 2"
 4Cad
 Entretien avec Loic Pelissier & Carlo Zammito
 Objectifs 
@@ -220,3 +220,11 @@ Objectifs
 soit utiliser un bus de données qui va interagir avec l'ERP.
 Démonstration PLM proposée et à priori acceptée par Federico & Pascal
 Après 49 minutes de réunion, première mention du bureau digital, début de la discussion pour potentiellement automatiser des tâches à base de connecteurs logiciels
+
+
+
+**3 Octobre**
+- [x] Check des mails
+- [ ] ESL
+    - [ ] ESL-137 Résoudre le mauvais scaling sur les nouvelles ESLs
+        - [ ] Examen des nouvelles ESLs
