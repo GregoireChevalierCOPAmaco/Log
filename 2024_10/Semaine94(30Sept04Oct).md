@@ -226,5 +226,22 @@ Après 49 minutes de réunion, première mention du bureau digital, début de la
 **3 Octobre**
 - [x] Check des mails
 - [ ] ESL
-    - [ ] ESL-137 Résoudre le mauvais scaling sur les nouvelles ESLs
-        - [ ] Examen des nouvelles ESLs
+    - [x] ESL-137 Résoudre le mauvais scaling sur les nouvelles ESLs
+        - [x] Examen des nouvelles ESLs
+        - [x] Check des résolutions : 296x128 fail, au-dessus ça va
+        - [x] Création de logique pour agrandir le code barre sur les plus petites ESLs
+            - [x] Essai d'augmentation de la largeur des barres du code, dans DisableTemplateService, passage de :
+            ```
+            jsBarcode(barcodeCanvas, id_esl, { format: 'CODE128' });
+            ```
+            à
+            ```
+            jsBarcode(barcodeCanvas, id_esl, {
+            format: 'CODE128',
+            width: 3, // Increase the width of each bar
+            height: barcodeCanvas.height * 0.7, // Adjust height
+            displayValue: false, // Optionally remove the text below the barcode
+            });
+            ```
+            modif en prod et relance dockers
+    - [ ] ESL-140 Brancher les barres de recherches au back (voir code predict)
