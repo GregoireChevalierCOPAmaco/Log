@@ -245,3 +245,13 @@ Après 49 minutes de réunion, première mention du bureau digital, début de la
             ```
             modif en prod et relance dockers
     - [ ] ESL-140 Brancher les barres de recherches au back (voir code predict)
+        - [ ] Check du code de predict
+
+
+
+**4 Octobre**
+- [x] Check des mails
+- [ ] ESL
+    - [ ] ESL-140 Brancher les barres de recherches au back (voir code predict)
+        - [x] Check du code de predict
+        - [ ] Développement de la searchbar
