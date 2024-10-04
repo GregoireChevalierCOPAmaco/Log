@@ -208,7 +208,7 @@ Objectifs
 - échanger sur les problématiques qui nous concerne (connection erp-windchill)
 - licences 4Cad (Créo). Pas de licences éphémères ; et prix sur 6 mois quasiment égaux à prix pour un an (politique éditeur, pas 4Cad)
 - Incompatibilité Créo 7 / Créo 8 ? Rétrocompatibilité du nouveau vers l'ancien mais pas inversement
-- pascal veut faire basculer la saisie des quantités, code articles, matières etc depuis les mains des méthodes vers un processus automatisé. Loic propose une bascule de fichier à plat (depuis un excel ou autre) vu qu'on ne sait pas extraire une nomenclature de windchill. Le B.E. a un PDE (coffre fort numérique, pas sensé faire ça.) Loic propose de passer à un PLM qui sert ajouter tous les éléments qui ne se dessinent pas (visserie, quincaillerie, graisse, etc). Changement de périmètre Windchill → passage à la licence au-dessus recommandé (ibom?)S, sauf pour l'histoire d'intégrer la nomenclature dans clipper.
+- pascal veut faire basculer la saisie des quantités, code articles, matières etc depuis les mains des méthodes vers un processus automatisé. Loic propose une bascule de fichier à plat (depuis un excel ou autre) vu qu'on ne sait pas extraire une nomenclature de windchill. Le B.E. a un PDE (coffre fort numérique, pas sensé faire ça.) Loic propose de passer à un PLM qui sert ajouter tous les éléments qui ne se dessinent pas ((visserie), quincaillerie, graisse, peinture, colle, etc). Changement de périmètre Windchill → passage à la licence au-dessus recommandé (ibom?)S, sauf pour l'histoire d'intégrer la nomenclature dans clipper.
 - deux possibilités, soit utiliser les déclencheurs de windchill (trigger lors du passage d'un statut à un autre, en cours, prototype, en production ...) pour extraire un fichier à plat avec les attributs :
     - code article, 
     - destination article, 
@@ -217,9 +217,29 @@ Objectifs
     - nomenclature, 
     - surface mouillée, 
     - poids
+    - longueur
 soit utiliser un bus de données qui va interagir avec l'ERP.
 Démonstration PLM proposée et à priori acceptée par Federico & Pascal
 Après 49 minutes de réunion, première mention du bureau digital, début de la discussion pour potentiellement automatiser des tâches à base de connecteurs logiciels
+
+Demande de Franck:
+windchill : epdm
+Passer du temps avec les gars du BE pour comprendre ce qu'ils font dans le sens où on veut savoir pourquoi ils impriment 15 feuilles au lieu de faire un export à plat d'un excel avec toutes les nomenclatures(nomenclature m-bom != e-bom). Est ce qu'ils peuvent ?
+ - il est possible en l'état actuel des choses de faire un export à plat. Mais pas possible d'automatiser 
+ - assemblage : une pièce est une référence, un assemblage est fait de sous assemblages, de pièces, de refs, de pièces en vrac etc
+ - transmission à l'ordo : tout ce qui est nouveau est transmis avec tous les assemblages. Effectivement le BE veut pouvoir générer un excel. + Est-il possible de générer l'excel avec toutes les infos dont on a besoin ? (exemple longueur & épaisseur) Mathieu ne sait pas. Possibilité de rajouter des colonnes lors de l'export du csv pour avoir les différents attributs.. Mais pas sur qu'on sache où trouver tous les attributs/paramètres voulus.  Pour les attributs de base plutot oui, voire oui franc, mais pour code article destination article ça se complique : une pièce peinte, une burte et une peinte autre couleur = 3 articles diffts. Pour l'arborescence, la différence existe pour repérer les ensembles de pièces, mais elle est ténue
+ voir travail nico decornet pour voir si on peut comprendre comment récupérer les infos manquantes (ex arborescence) selon emmanuel 70-80% des paramètres qui sont obtenables
+ génération du step que au moment du passage de statut en valide
+ conclusion sur ce point : on peut à qqes détails près. Et on n'a qu'à remplacer les triggers par une consigne au BE de sortir le CSV que quand ils passent au statut valide
+E-BOM/M-BOM ? est-ce ce dont on a besoin ? → voir avec emmanuel : nomenclature différant de m-bom pour méthode. e-bom = voir définition plus haut fin de ligne 211. Pour le cas de la peinture, si tu sais comment ça se fait, tu dois pouvoir récupérer les infos graisse/peinture dans clip selon emmanuel. Mais dur d'évaluer le coefficient à appliquer dans tous les cas
+Comment ils font transiter les infos vers l'ordonnancement ? : c'est selon ; module copaco et papier(seul papier référence de tête) pour Andzrei, plutôt papier pour denis, papier ++ pour fede
+Transi conception/fabrication ? 
+
+au vu des infos récupérées, à nous de synthétiser pour décider des réponses aux questions suivantes :
+Est-ce qu'il est pas déjà possible d'automatiser le transfert ? Est-ce que ça nécessite vraaaaiiiment d'upgrader les licences et tout le bordel ?
+
+7 licences pro et 3 de consultation (à partir de windchill 11)
+indice sur une pièce : A 1, A2, A3, B 15, c164189, Indice = lettre, chiffre= itération les deux ensembles = version
 
 
 
@@ -254,4 +274,29 @@ Après 49 minutes de réunion, première mention du bureau digital, début de la
 - [ ] ESL
     - [ ] ESL-140 Brancher les barres de recherches au back (voir code predict)
         - [x] Check du code de predict
-        - [ ] Développement de la searchbar
+        - [x] Développement de la searchbar
+            - [x] fichier html : 
+            ```
+            ```
+- [x] Passage au BE relatif aux questions lignes ~210-220-230
+
+Demande de Franck:
+windchill : epdm
+Passer du temps avec les gars du BE pour comprendre ce qu'ils font dans le sens où on veut savoir pourquoi ils impriment 15 feuilles au lieu de faire un export à plat d'un excel avec toutes les nomenclatures(nomenclature m-bom != e-bom). Est ce qu'ils peuvent ?
+ - il est possible en l'état actuel des choses de faire un export à plat. Mais pas possible d'automatiser 
+ - assemblage : une pièce est une référence, un assemblage est fait de sous assemblages, de pièces, de refs, de pièces en vrac etc
+ - transmission à l'ordo : tout ce qui est nouveau est transmis avec tous les assemblages. Effectivement le BE veut pouvoir générer un excel. + Est-il possible de générer l'excel avec toutes les infos dont on a besoin ? (exemple longueur & épaisseur) Mathieu ne sait pas. Possibilité de rajouter des colonnes lors de l'export du csv pour avoir les différents attributs.. Mais pas sur qu'on sache où trouver tous les attributs/paramètres voulus.  Pour les attributs de base plutot oui, voire oui franc, mais pour code article destination article ça se complique : une pièce peinte, une burte et une peinte autre couleur = 3 articles diffts. Pour l'arborescence, la différence existe pour repérer les ensembles de pièces, mais elle est ténue
+ voir travail nico decornet pour voir si on peut comprendre comment récupérer les infos manquantes (ex arborescence) selon emmanuel 70-80% des paramètres qui sont obtenables
+ génération du step que au moment du passage de statut en valide
+ conclusion sur ce point : on peut à qqes détails près. Et on n'a qu'à remplacer les triggers par une consigne au BE de sortir le CSV que quand ils passent au statut valide
+E-BOM/M-BOM ? est-ce ce dont on a besoin ? → voir avec emmanuel : nomenclature différant de m-bom pour méthode. e-bom = voir définition plus haut fin de ligne 211. Pour le cas de la peinture, si tu sais comment ça se fait, tu dois pouvoir récupérer les infos graisse/peinture dans clip selon emmanuel. Mais dur d'évaluer le coefficient à appliquer dans tous les cas
+Comment ils font transiter les infos vers l'ordonnancement ? : c'est selon ; module copaco et papier(seul papier référence de tête) pour Andzrei, plutôt papier pour denis, papier ++ pour fede
+Transi conception/fabrication ? 
+
+le csv va devoir être retravaillé un peu dans tous les cas, à priori tout le monde est d'accord la dessus
+
+au vu des infos récupérées, à nous de synthétiser pour décider des réponses aux questions suivantes :
+Est-ce qu'il est pas déjà possible d'automatiser le transfert ? Est-ce que ça nécessite vraaaaiiiment d'upgrader les licences et tout le bordel ?
+
+7 licences pro et 3 de consultation (pas used constamment ? Denis Methodes, Fouad Chiffrage, la 3e libre a priori, & la licence administrateur wcadmin / wcadmin) (à partir de windchill 11)
+indice sur une pièce : A 1, A2, A3, B 15, c164189, Indice = lettre, chiffre= itération les deux ensembles = version
