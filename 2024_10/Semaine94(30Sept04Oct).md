@@ -67,7 +67,7 @@
         compétences : a testé tous les frameworks personnellement, les langages vanilla en cours pour comprendre. Va apprendre React & .NET avec api rest nodeJs 
         bonne élocution, fait de bons parallèles
         travaillé en équipe ? avec un autre alternant 
-        a fait de la DOC OMG
+        a fait de la DOC OMG (site de documentation interne pour l'entreprise en alternance / mise à plat pour procédure & démarchage avec les utilisateurs futurs)
         tests logiciels : unit tests intégrés au lancement du serveur web avec lien mail si fail
         PSR4 pour php / design pattern, context
         déploiement du porfolio perso
