@@ -28,10 +28,20 @@
 
 **18 Octobre**
 - [ ] ESL
-    - [ ] ESL-153 Ajouter la propriété timestamp_rssi aux entités la nécessitant pour matcher le code de Jacques
-        - [ ] Création de la propriété dans les entités
-        - [ ] Rajout des mentions à timestamp_rssi dans les fichiers : 
-            - [ ] 
-            - [ ] 
-            - [ ] 
-            - [ ] 
+    - [x] ESL-153 Ajouter la propriété timestamp_rssi aux entités la nécessitant pour matcher le code de Jacques
+        - [x] Création de la propriété dans les entités
+        - [x] Rajout des mentions à timestamp_rssi dans les fichiers : 
+            - [x] EslService
+            - [x] EslEntity
+            - [x] GetUpdateEslDTO
+            - [x] StoreArticleEntity
+            - [x] StoreArticleService test file
+            - [x] StoreArticleController test file
+        - [x] Rebuild des containers en dev
+        - [ ] Rebuild des containers en prod
+        - [ ] Supprimer les volumes non utilisées sur docker depuis docker23 : 
+        ```
+        docker volume prune --filter all=1
+        ```
+- [ ] Regarder s'il est possible d'ouvrir sur tablettes des plans 3D (step, stl & autres), voir si les monteurs / la prod / l'atelier peuvent ouvrir creo view sur pc / creo view express pour afficher des plans en décochant le sparties non souhaitées et voir le transfert de fichiers depuis pc jusqu'à tablettes (voir avec 4cad aussi ?)
+    - [x] Le mdp des tablettes est bonetto en chiffres, soit 2663886
