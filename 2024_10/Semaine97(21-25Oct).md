@@ -111,7 +111,90 @@
 **22 Octobre**
 - [ ] ESL
     - [ ] ESL-147 Mettre à jour les ESLs en fournissant un fichier en entrée
+        - [x] ESL-158 Créer un fichier csv placeholder et console.log() ses données
+        ```
+        id,name,price,bar_code,origine,updatedAt,rssiUpdatedAt,eslId
+        1,Bananes bio,3.59,1234567890123,France,2024-10-20 12:30:00,2024-10-21 10:00:00,14d0178c
+        2,Coca-cola 33 cl,4.58,9876543210987,États-Unis,2024-10-21 11:20:00,2024-10-21 10:00:00,15300198
+        3,Pêches plates,2.69,1234598765432,Spain,2024-10-20 09:10:00,2024-10-20 08:00:00,145032eb
+        ```
+        &
+        ```
+        parseCSV(file: File): void {
+            Papa.parse(file, {
+            header: true,
+            skipEmptyLines: true,
+            complete: (result) => {
+                this.csvData = result.data;
+                this.uploadCSVData(this.csvData);
+                
+                console.log('%cCSV Data (Raw Object):', 'color: blue; font-weight: bold;');
+                console.log(this.csvData); 
+                
+                console.log('%cCSV Data (Table Format):', 'color: green; font-weight: bold;');
+                console.table(this.csvData); 
+            }
+            });
+        }
+        ```
         - [ ] ESL-150 Créer un bouton pour mettre à jour toutes les ESLs concernées par un changement depuis la page d' soumission de fichier entrée
+            - [x] Résolution de l'erreur 500 : 
+            ```
+            article-list.component.ts:87 Error processing CSV data: 
+            HttpErrorResponse {headers: _HttpHeaders, status: 500, statusText: 'Internal Server Error', url: 'http://localhost:3000/store-articles/upload-csv', ok: false, …}
+            error
+            : 
+            {statusCode: 500, message: 'Failed to process CSV data'}
+            headers
+            : 
+            _HttpHeaders {normalizedNames: Map(0), lazyUpdate: null, lazyInit: ƒ}
+            message
+            : 
+            "Http failure response for http://localhost:3000/store-articles/upload-csv: 500 Internal Server Error"
+            name
+            : 
+            "HttpErrorResponse"
+            ok
+            : 
+            false
+            status
+            : 
+            500
+            statusText
+            : 
+            "Internal Server Error"
+            url
+            : 
+            "http://localhost:3000/store-articles/upload-csv"
+            ```
+            - [x] Modification de la méthode update du store articles service backend, ajout de  : 
+            ```
+            if (updateStoreArticleDto.esl) {
+                const esl = await this.Esl.findOne({ where: { id_esl: updateStoreArticleDto.esl.id_esl } });
+                if (!esl) {
+                    throw new HttpException('ESL not found', 404);
+                }
+                article.esl = esl;
+            }
+            ```
+            - [x] Modification de la méthode updateArticleFromCSV : 
+            ```
+            // If the eslId is present, find the ESL and associate it
+            if (eslId) {
+                const esl = await this.Esl.findOne({ where: { id_esl: eslId } });
+                if (!esl) {
+                    console.error(`ESL not found for eslId: ${eslId}`);
+                } else {
+                    article.esl = esl; // Associate ESL with the article
+                }
+            }
+            ```
+            - [x] Modification de l'entité store-article :
+            ```
+            @Column({nullable:true, type:'float'})
+            price:number
+            ```
+            rajout du type float pour que la base de données pour que number soit compris comme float et pas integer
         - [ ] ESL-151 Créer la logique back pour recharger toutes les ESLs
         - [ ] ESL-152 Créer la logique front pour recharger toutes les ESLs
         - [ ] ESL-156 Filtrer les données du fichier en entrée pour exclure la màj des store-articles pas liés à une ESL
