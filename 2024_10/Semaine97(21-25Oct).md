@@ -199,3 +199,12 @@
         - [ ] ESL-152 Créer la logique front pour recharger toutes les ESLs
         - [ ] ESL-156 Filtrer les données du fichier en entrée pour exclure la màj des store-articles pas liés à une ESL
         - [ ] ESL-157 Filtrer les données du fichier en entrée pour pointer à l'utilisateur les ESLs n'étant pas liées à un article
+
+
+**22 Octobre**
+- [ ] ESL
+    - [ ] ESL-147 Mettre à jour les ESLs en fournissant un fichier en entrée
+        - [ ] Changer le store-article entity pour que la colonne esl soit manyToOne ? ouoneTo Many ?
+        - [ ] ESL-152 Créer le front pour recharger toutes les ESLs
+        - [ ] ESL-151 Créer la logique back pour recharger toutes les ESLs
+        - [ ] ESL-159 Gérer le rechargement en masse des ESL
