@@ -201,10 +201,39 @@
         - [ ] ESL-157 Filtrer les données du fichier en entrée pour pointer à l'utilisateur les ESLs n'étant pas liées à un article
 
 
-**22 Octobre**
+**24 Octobre**
 - [ ] ESL
     - [ ] ESL-147 Mettre à jour les ESLs en fournissant un fichier en entrée
-        - [ ] Changer le store-article entity pour que la colonne esl soit manyToOne ? ouoneTo Many ?
+        - [x] Changer le store-article entity pour que la colonne esl soit manyToOne ? ou oneTo Many ? : Non car pas plus d'une esl par article en magasin
         - [ ] ESL-152 Créer le front pour recharger toutes les ESLs
+            - [ ] Créer une route update qui prenne en paramètre un fichier csv et qui mette à jour toutes les ESLs qui ont un store article associé
+            - [x] Prompt  : 
+            in the same ESL project, i want to create a backend esl route taking  a csv file as parameter, that updates all ESLs  that have a store_article associated. Below are the files
+            - [x] Installation des dépendances de gestion de csv
+            ```
+            npm install csv-parser
+            npm install @nestjs/platform-express
+            ```
         - [ ] ESL-151 Créer la logique back pour recharger toutes les ESLs
-        - [ ] ESL-159 Gérer le rechargement en masse des ESL
+        à suivre : 
+            - supprimer le bouton de la page esltable
+            - regrouper les logiques esltable & store article
+            - au submit du fichier csv, faire une comparaison des changements de champs/paramètres pour chaque ligne du csv puis 
+            - sur la liste des store article qui ont changé, récupérer les esls correspondantes puis
+            - mettre à jour les esls avec les nouvelles infos
+        - [ ] ESL-159 Gérer le rechargement en masse des ESL (charge)
+        
+
+**25 Octobre**
+- [ ] ESL
+    - [ ] ESL-147 Mettre à jour les ESLs en fournissant un fichier en entrée
+        - [ ] ESL-152 Créer le front pour recharger toutes les ESLs
+            - [ ] Créer une route update qui prenne en paramètre un fichier csv et qui mette à jour toutes les ESLs qui ont un store article associé
+            - [ ] ESL-151 Créer la logique back pour recharger toutes les ESLs
+        à suivre : 
+            - supprimer le bouton de la page esltable
+            - regrouper les logiques esltable & store article
+            - au submit du fichier csv, faire une comparaison des changements de champs/paramètres pour chaque ligne du csv puis 
+            - sur la liste des store article qui ont changé, récupérer les esls correspondantes puis
+            - mettre à jour les esls avec les nouvelles infos
+        - [ ] ESL-159 Gérer le rechargement en masse des ESL (charge)
