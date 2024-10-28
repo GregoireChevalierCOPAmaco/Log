@@ -229,11 +229,78 @@
     - [ ] ESL-147 Mettre à jour les ESLs en fournissant un fichier en entrée
         - [ ] ESL-152 Créer le front pour recharger toutes les ESLs
             - [ ] Créer une route update qui prenne en paramètre un fichier csv et qui mette à jour toutes les ESLs qui ont un store article associé
+            - [ ] ESL-152 Créer la logique front pour recharger toutes les ESLs
+                - [ ] Voir la doc fabric pour les objets JSON, regarder le champ text $price$ et le changer
+                - [ ] Créer la route update dans les ESL
+                - [ ] Utiliser la méthode pas la route pour envoyer l'image aux ESLs
+                - [ ] développer la logique de création de template d’après les infos récupérées du csv
+                - [ ] développer l' esl.service.ts frontend et créer sa méthode update (voir avec template/update & la conversion en base 64)
+                ```
+                {
+                    "_id": {
+                        "$oid": "6719f49917759f38b0aa762d"
+                    },
+                    "objects": [
+                        {
+                        "fontSize": 20,
+                        "fontWeight": "normal",
+                        "fontFamily": "Times New Roman",
+                        "fontStyle": "normal",
+                        "lineHeight": 1.16,
+                        "text": "$price$",
+                        "charSpacing": 0,
+                        "textAlign": "left",
+                        "styles": [],
+                        "pathStartOffset": 0,
+                        "pathSide": "left",
+                        "pathAlign": "baseline",
+                        "underline": false,
+                        "overline": false,
+                        "linethrough": false,
+                        "textBackgroundColor": "",
+                        "direction": "ltr",
+                        "type": "IText",
+                        "version": "6.4.3",
+                        "originX": "left",
+                        "originY": "top",
+                        "left": 100,
+                        "top": 100,
+                        "width": 59.9707,
+                        "height": 22.6,
+                        "fill": "black",
+                        "stroke": null,
+                        "strokeWidth": 1,
+                        "strokeDashArray": null,
+                        "strokeLineCap": "butt",
+                        "strokeDashOffset": 0,
+                        "strokeLineJoin": "miter",
+                        "strokeUniform": false,
+                        "strokeMiterLimit": 4,
+                        "scaleX": 1,
+                        "scaleY": 1,
+                        "angle": 0,
+                        "flipX": false,
+                        "flipY": false,
+                        "opacity": 1,
+                        "shadow": null,
+                        "visible": true,
+                        "backgroundColor": "",
+                        "fillRule": "nonzero",
+                        "paintFirst": "fill",
+                        "globalCompositeOperation": "source-over",
+                        "skewX": 0,
+                        "skewY": 0
+                        }
+                    ],
+                    "width": 400,
+                    "height": 400,
+                    "version": "6.4.3",
+                    "esl_id": "",
+                    "name": "gggg",
+                    "__v": 0
+                    }
+                    ```
             - [ ] ESL-151 Créer la logique back pour recharger toutes les ESLs
-        à suivre : 
-            - supprimer le bouton de la page esltable
-            - regrouper les logiques esltable & store article
-            - au submit du fichier csv, faire une comparaison des changements de champs/paramètres pour chaque ligne du csv puis 
-            - sur la liste des store article qui ont changé, récupérer les esls correspondantes puis
-            - mettre à jour les esls avec les nouvelles infos
+                - [ ] Modifier l'update-esl.dto
+                - [ ] développer l' esl.service.ts backend et créer sa méthode update
         - [ ] ESL-159 Gérer le rechargement en masse des ESL (charge)

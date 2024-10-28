@@ -1,0 +1,14 @@
+**25 Octobre**
+- [ ] ESL
+    - [ ] ESL-147 Mettre à jour les ESLs en fournissant un fichier en entrée
+        - [ ] ESL-152 Créer le front pour recharger toutes les ESLs
+            - [ ] Créer la logique front pour recharger toutes les ESLs
+                - [ ] Voir la doc fabric pour les objets JSON, regarder le champ text $price$ et le changer
+                - [ ] Créer la methode update dans les ESL
+                - [ ] Utiliser la méthode pas la route pour envoyer l'image aux ESLs
+                - [ ] développer la logique de création de template d’après les infos récupérées du csv
+                - [ ] développer l' esl.service.ts frontend et créer sa méthode update (voir avec template/update & la conversion en base 64)
+            - [ ] ESL-151 Créer la logique back pour recharger toutes les ESLs
+                - [ ] Modifier l'update-esl.dto
+                - [ ] développer l' esl.service.ts backend et créer sa méthode update
+        - [ ] ESL-159 Gérer le rechargement en masse des ESL (charge)
