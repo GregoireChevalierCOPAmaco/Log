@@ -41,6 +41,9 @@
                 - [x] barcode : récupération du store_article
                 - [x] store_article : récupération de l'ESL via liaison
                 - [x] esl_id : créer une route GET template by eslId
-                - [ ] template : modifier le champ prix
+                - [x] template : modifier le champ prix
                 - [ ] Générer l'image, utiliser le service base64 et envoyer à l'ESL
                 - [ ] transformer en base64 & envoyer
+            - [ ] Tout refaire sur le back 
+                - [ ] Enoyer les données du csv dans le back
+                - [ ] Reprendre la logique dans le back 
