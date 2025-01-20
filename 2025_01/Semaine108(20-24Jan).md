@@ -3,7 +3,7 @@
     - [ ] ESL-230 Créer un menu de changement des infos d'une ESL dans l'application web   
         - [ ] Correction des problèmes de [(ngModel)]
 - [ ] Remettre develop sur la prod
-- [ ] Entretien candidat Artem Tatkov
+- [x] Entretien candidat Artem Tatkov
 
 
 appétance front/back ?
@@ -43,5 +43,49 @@ place dans une équipe ?
 explique les "sites dynamiques" de ton cv
 mise en ligne? du projet thisIsVal
 
+premier ressenti un peu mou. N'a pas regardé où était l'entreprise. 
+Se décrit comme ayant eu l'occasion de "maîtriser" git & docker ... maitrise ?
+présentation perso très succincte ; pas mal de "euh". Mobilité : a permis & voiture & envisage de déménager. Veut être embauché juste après le stage. 4 de ses 6 mois de stage seront conventionnés, pas les 2 restants.
+
+question code quality :
+répond à côté avec MVC,
+Documentation & commentaire. Stresse sur la question, l'a avoué. Pas de connaissances de tests unitaires, nommage & linter mais a déja utilisé une CI
+KMO video :
+- recherche d'infos sur le hardware & comment communiquer avec
+- rédaction du cahier des charges.
+pas trop mal
+
+Utilise Ts, pas de soucis pour la stack
+Appétance front & UX/UI mais pas de soucis avec le back
+Plutôt suiveur mais sait s'adapter et être proactif
+
+expérience mise en ligne "ThisIsVal" stressante selon lui mais a su faire face.
+
+Peu loquace, mais s'exprime correctement. A déja travaillé en équipe.
+
+potentiellement prometteur mais manque de maturité. Pourrait être exploitable si on investit assez de temps. A les bases mais peu de pratique. Interrogation sur son autonomie sur le long terme
+Retour Anthony très différent : plutot convaincu par sa volonté de s'autoformer (?) et sa curiosité vis a vis des technos et tendances. Anthony d'accord sur le fait qu'il manque un peu de maturité mais trouve sa candidature pertinente.
+Terrain d'entente : il a la stack et saurait bosser si encadré.
 
 
+- [ ] ESL
+- [ ] Remettre develop sur la prod
+    - [x] Connexion à ```ssh esl@192.168.1.252``` avec pw comme d'hab
+    - [x] Purge des dockers containers & volume : 
+    ```
+    sudo docker volume prune --filter all=1
+    sudo docker system prune -a
+    ```
+    - [x] Arrêt des containers concernés :
+    ```
+    sudo docker stop esl_front esl_api
+    sudo docker remove esl_front esl_api
+    ```
+    - [x] Checkout sur develop, pull et rebuild :
+    ```
+    git checkout develop
+    nano environments.ts
+    sudo docker compose  --env-file .env.prod -f docker-compose.prod.yml up --build
+    ```
+    - [ ] ESL-230 Créer un menu de changement des infos d'une ESL dans l'application web   
+        - [ ] Correction des problèmes de [(ngModel)]
