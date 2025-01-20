@@ -557,3 +557,51 @@
             }
             }
             ```
+
+
+    ESL-237
+    ESL-213
+    ESL-224 ++*
+
+
+**09 Janvier**
+- [ ] ESL
+    - [ ] ESL-237 Réparer la génération du code barre depuis $barcode$ dans le template
+        - [x] ```git checkout develop```
+        - [x] Retrouver le commit git par branche et par date : 
+        ```git log --all --date-order --pretty=format:"%h %ad | %s%d [%an]" --date=short```
+        - [x] Retour sur la bonne branche : 
+        ```
+        feat/ESL-241_getESLs_width_height_byEslId
+        ```
+
+
+Retour réunion Paul Kobana
+freelance + exp en CIV
+présentation succincte. En 50s il a fait le tour de son backgroundColor
+Cherche 5-6 mois, prêt à déménager
+parcours : licence 3, master en CIV, potentiellement
+
+jobs en freelance : combien de jobs, pour qui et quelles tech
+
+question code quality : 
+suit les bonnes pratiques apprises dans formations & livres. 
+Se documente sur les bonnes pratiques. Commente son code. Open source ? Pas clair
+Tests unitaires : Connait de nom mais pas de pratique.
+
+renseigne sur les videos à diffuser, veille à minimiser la latence. 
+Met en place des tests unitaires, distingue environnements de test et prod, et s'occupe de rendre l'interface responsive
+
+exp de formateur : introduction au HTML, css & Js pour créer des sites (débutants)
+
+hackathon capgemini 2024, proposer des solutions digi pour inclusion et diversité. App mobile android pour malvoyants
+Son rôle dans le projet : a gérer l'app seul ; interfaces pour l'intermédiaire avec le formulaire.
+utilisation de expo speech, lecture de formulaire, projet freiné par le manque d'autorisations et par le côté payant de google
+react native
+
+appétance pour le web du fait de la pratique
+transparent, pose des questions sur l'équipe
+
+freelance entre amis, un exemple : site e-commerce ReactJs, Next & Node
+
+
