@@ -89,3 +89,28 @@ Terrain d'entente : il a la stack et saurait bosser si encadré.
     ```
     - [ ] ESL-230 Créer un menu de changement des infos d'une ESL dans l'application web   
         - [ ] Correction des problèmes de [(ngModel)]
+
+
+
+**22 Janvier**
+- [ ] ESL
+    - [x] Fix dashboard error : 
+    ```
+    Error: Canvas is already in use. Chart with ID '1' must be destroyed before the canvas with ID 'eslHourlyActivityChart' can be reused.
+    ``` 
+    - [ ] Modification dashboard component, ajout de  : 
+    ```
+    OnInit()
+    
+    private eslActivityChart: Chart | null = null;
+    private eslHourlyActivityChart: Chart | null = null;
+    private eslDailyActivityChart: Chart | null = null;
+    private eslAssociationChart: Chart | null = null;
+     ...
+
+    initializeHourlyActivityChart() {
+    if (this.eslHourlyActivityChart) {
+      this.eslHourlyActivityChart.destroy();
+    }
+    ```
+- [ ] Réunion Avancement projets digital
