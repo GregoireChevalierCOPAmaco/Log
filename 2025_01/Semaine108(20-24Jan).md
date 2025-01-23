@@ -113,4 +113,9 @@ Terrain d'entente : il a la stack et saurait bosser si encadré.
       this.eslHourlyActivityChart.destroy();
     }
     ```
-- [ ] Réunion Avancement projets digital
+
+
+**23 Janvier**
+- [ ] ESL
+    - [ ] ESL-248_refreshESL_onButtonClick
+        - [ ] Refonte du store-article service pour inclure un force refresh
