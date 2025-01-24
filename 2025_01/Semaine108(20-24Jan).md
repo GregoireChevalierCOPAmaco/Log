@@ -118,4 +118,56 @@ Terrain d'entente : il a la stack et saurait bosser si encadré.
 **23 Janvier**
 - [ ] ESL
     - [ ] ESL-248_refreshESL_onButtonClick
-        - [ ] Refonte du store-article service pour inclure un force refresh
+        - [ ] Refonte du store-article service backend pour inclure un force refresh
+            - [x] Front end, ajout du bouton hmtl, reprise du component edit store article & ajout d'une méthode dans le service  :
+            ```
+            <div>
+            <button (click)="forceRefresh()" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-orange-600 text-base font-medium text-white hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm">
+                Force Refresh
+            </button>
+            </div>
+            ```
+            ```
+            export class EditStoreArticlesComponent implements OnInit {
+            article: any;
+            editForm: FormGroup;
+            editedArticle: any = {};
+            eslId: string = '';
+
+            constructor(
+            private fb: FormBuilder,
+            private storeArticleService: StoreArticleService,
+
+            forceRefresh(): void {
+                this.storeArticleService.forceRefresh(this.editedArticle).subscribe(
+                response => {
+                    console.log('Force refresh successful', response);
+                },
+                error => {
+                    console.error('Error forcing refresh', error);
+                }
+                );
+            }
+            ```
+            ```
+            forceRefresh(article: any): Observable<any> {
+                console.log(article);
+                
+                return this.httpClient.post(`${this.apiUrl}/force-refresh`, article);
+            }
+            ```
+        - [ ] Backend
+            - [ ] Récupérer via endpoint le storeArticle
+            - [ ] Get son ESL associée s'il en a une
+            - [ ] résolution de l'erreur : 
+
+
+**24 Janvier**
+- [ ] ESL
+    - [x] Reprise et recréation de templates
+- [ ] Entretiens en physique
+    - [ ] Artem - 14h
+```
+
+```
+    - [ ] Adam  - 16h
