@@ -168,6 +168,21 @@ Terrain d'entente : il a la stack et saurait bosser si encadré.
 - [ ] Entretiens en physique
     - [ ] Artem - 14h
 ```
-
+Arrive en avance de 35 minutes dû aux transports en commun
+Parle très vite, a tendance à mâcher un peu ses mots?
+Pas de mobile atm, comment réagirait si on le mettait sur un projet mobile : connait flutter, saurait globalement par où commencer, mais verra ça en 3e année
+question qu'est-ce qu'il a compris du digital : qu'on travaille sur atmos ? pas clair, n'a pas su trop en parler ou dire qu'il n'avait pas compris/ pas su s'exprimer
+a du répondant ; on est là pour apprendre, cherche à comprendre comment ça marcherait de bosser sur mobile
+est conscient du côté montée en compétence nécessaire, se sent prêt à relever le challenge si on lui laisse le temps.
+projets personnels : portfolio en vueJs, a dans l'idée de dev une app de case-opening
+quelle pluvalue pense-t-il apporter à l'équipe : 
+travail d'équipe, autonomie, force de proposition. Pas spécialement de préférence entre travail équipe/seul par manque d'exp dans le sujet ?
+Plus tard c'est quoi l'objectif ? : freelance ou création de boîte ou aller chez un gros de la tech. Se voit toujours dans le dev, et le fullstack plus précisément.
+Aspect web, les frameworks sont connus. A fait beaucoup de PHP aussi, notamment avec Laravel, chez Perflinker (marketing digital)
+a pas l'air d'aimer se répéter, une phrase qui revenait souvent : "Comme je l'ai déjà dit à ..."
+Attentes pour le stage : accumuler l'expérience dans le domaine, petit intérêt dans le retail car se demande ce qu'il y a derrière, cherche en général à savoir comment sont faites les choses.
+Personnalité facile à communiquer avec. Semble gérer le stress
+date début de stage : 17 février +- 2 semaines
+a conscience qu'on va pas lui trouver un logement, mais est prêt à chercher ; a les pieds sur terre
 ```
     - [ ] Adam  - 16h
