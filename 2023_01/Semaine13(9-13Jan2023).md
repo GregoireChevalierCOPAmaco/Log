@@ -244,16 +244,7 @@
                     - [x] Reboot docker, reboot pc
                 - [x] Nouvel essai de commande docker : 
                 ```
-                echo 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 | docker login ghcr.io -u gregoirechevaliercopamaco --password-stdin
-                ```
-                retour console : 
-                ```
-                Error response from daemon: Get "https://ghcr.io/v2/": denied: denied
-                ```
-                - [x] Nouvel essai de commande docker : 
-                ```
-                echo "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" | docker login ghcr.io -u "gregoirechevaliercopamaco" --password-stdin
-                ```
+                
                 sans succès
                 - [x] Re-création d'un personal access token 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 & reprise de toute la procédure.
     - [x] Récupérer le package serveur de github
