@@ -246,7 +246,7 @@
                 ```
                 
                 sans succès
-                - [x] Re-création d'un personal access token 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 & reprise de toute la procédure.
+                - [x] Re-création d'un personal access token
     - [x] Récupérer le package serveur de github
     - [ ] Construire les images docker
         - [x] Docker system prune -a -f pour repartir d'une base saine sans image parasite
