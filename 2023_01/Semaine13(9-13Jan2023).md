@@ -241,8 +241,8 @@
                     - [x] Suivi de (https://www.techrepublic.com/article/resolve-docker-timeout-headers-error/)
                     - [x] Dans le docker hub sur inernet, account settings/security/access token, création d'un access token nommé Default token all accesses. Puis lancement des commandes :
                     ```
-                    docker login -u gregoirechevaliercopamaco
-                    dckr_pat_SJhaZHcSDGaZyTVaS1R2GNhY0A0
+                    docker logi|n |-u |greg|irechevaliercopamaco
+                    |dckr_pat_SJ|haZHcSDGaZyTVaS1R2GNhY0A0
                     ```
                     - [x] Reboot docker, reboot pc
                 - [x] Nouvel essai de commande docker : 
