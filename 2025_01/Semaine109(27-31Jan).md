@@ -154,3 +154,5 @@ esl cloud, voir ce que ça implique
     - [x] ESL-257
         - [x] Suppression des liens & icônes dans la sidebar
     - [ ] Redéploiement
+        - [x] fix des tests frontend
+        - [x] Repush 
