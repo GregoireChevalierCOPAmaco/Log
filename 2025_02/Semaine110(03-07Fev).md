@@ -37,3 +37,61 @@
         - [ ] ESL-255 faire en sorte que l'on ne puisse pas poste un template si il existe déjà un template de la même taille dans le style
         - [ ] ESL-256 Fix la désactivation des ESLs depuis le front
         - [ ] ESL-258 Ajouter un onHover pour foncer les onglets du menu au survol
+
+
+        0661873285
+
+
+**07 Février**
+- [ ] ESL
+    - [ ] Poursuite des tickets
+        - [x] ESL-260 Rajouter des titres au dessus de chaque tableau
+            - [x] Dashboard component, rename des labels de charts & des titres associés
+        - [ ] ESL-255 faire en sorte que l'on ne puisse pas poster un template si il existe déjà un template de la même taille dans le style
+            - [x] prompt :
+            ```
+            fichiers templates backend,
+            i want to create a route and method that gets all templates matching the provided parameters of width AND height
+            ```
+            - [ ] Récupérer tous les templates associés à une dimension d'ESL
+            - [ ] Récupérer tous les templates liés à un style :
+                - [x] Controller 
+                    ```
+                    @Get('filter-by-dimensions')
+                        @ApiOperation({ summary: 'Get templates by width and height' })
+                        async findByWidthAndHeight(
+                            @Query('width') width: number,
+                            @Query('height') height: number,
+                        ) {
+                            return this.templateService.findByWidthAndHeight(Number(width), Number(height));
+                        }
+                        @Get('filter-by-dimensions-and-style')
+                        @ApiOperation({ summary: 'Get templates by width and height' })
+                        async findByWidthHeightAndStyle(
+                            @Query('width') width: number,
+                            @Query('height') height: number,
+                            @Query('style') style: string,
+                        ) {
+                            return this.templateService.findByWidthHeightAndStyle(Number(width), Number(height), String(style));
+                        }
+                    ```
+                    - [x] Service backend : 
+                    ```
+                      async findByWidthAndHeight(width: number, height: number): Promise<Template[]> {
+                        return this.templateModel.find({ width, height }).exec();
+                    }
+
+                    async findByWidthHeightAndStyle(width: number, height: number, styleName:string): Promise<Template[]> {
+                        return this.templateModel.find({ width, height, styleName }).exec();
+                    }
+                    async existsByWidthHeightAndStyle(width: number, height: number, styleName: string): Promise<boolean> {
+                        const template = await this.templateModel.findOne({ width, height, styleName }).exec();
+                        return !!template; // Returns true if found, false otherwise
+                    }
+                    ```
+                    - [x] Kill du container et rebuild avec 
+                    ```
+                    docker compose  --env-file .env.dev -f docker-compose.api.yml up --build
+                    ```
+                    - [ ] Connection au front
+        - [ ] ESL-256 Fix la désactivation des ESLs depuis le front
