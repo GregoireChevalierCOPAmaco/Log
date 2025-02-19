@@ -93,5 +93,65 @@
                     ```
                     docker compose  --env-file .env.dev -f docker-compose.api.yml up --build
                     ```
-                    - [ ] Connection au front
+            - [x] Connection au front
+                - [x] template service
+                ```
+                checksIfExistsByWidthHeightAndStyle(width: number, height: number, styleName: string): Observable<boolean> {
+                    return this.http.get<boolean>(`${this.baseUrl}/exists-by-dimensions-and-style`, {
+                    params: { width: width.toString(), height: height.toString(), style: styleName }
+                    });
+                }
+                ```
+                - [x] Update du component : 
+                ```
+                 constructor(
+                    private router: Router,
+                    private styleService: StyleService,
+                    private eslService: EslService,
+                    private templateService: TemplateService,
+                    private snackBar: MatSnackBar
+                ) {}
+
+                OnSubmit() {
+                    const styleName = this.styleNameControl.value;
+                    const [width, height] = this.templateSize.value.split('x').map(Number);
+
+                    this.templateService.checksIfExistsByWidthHeightAndStyle(width, height, styleName)
+                    .subscribe((exists) => {
+                    if (exists) {
+                        // Show snackbar and block submission
+                        this.snackBar.open('Un template existe déjà pour ce style avec ces dimensions', 'Close', {
+                        duration: 3000, // Duration in milliseconds
+                        panelClass: ['error-snackbar'] // Custom styling (optional)
+                        });
+                    } else {
+                        // Proceed with submission logic
+                        this.proceedWithSubmit(styleName);
+                    }
+                    });
+                }
+
+                proceedWithSubmit(styleName: string){
+                    // If it's a new style, then we'll try to create it in db
+                    if (
+                    !this.styles
+                        .map((s) => s.name.toLowerCase())
+                        .includes(styleName?.toLowerCase())
+                    ) {
+                    this.styleService.create(styleName).subscribe({
+                        next: () => {
+                        this.redirectToCreate();
+                        },
+                        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                        error: (error) => {
+                        this.redirectToCreate();
+
+                        console.error();
+                        },
+                    });
+                    } else {
+                    this.redirectToCreate();
+                    }
+                }
+                ```
         - [ ] ESL-256 Fix la désactivation des ESLs depuis le front
