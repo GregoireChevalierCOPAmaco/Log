@@ -122,3 +122,40 @@
             "message": "Error communicating with ESL service(updateOnEslAndDisable())"
             }
             ```
+
+
+
+**20 Février**
+- [x] Check mails
+- [ ] ESL
+    - [ ] Poursuite des tickets
+        - [x] Repasse sur l'application avec Ivann
+            - [x] Nouveau ticket : ESL-261 Centrer la barre d'actions d'objet dans l'interface de création de template
+            - [x] Nouveau ticket : ESL-262 Assigner le code barre produit au refresh des esl via csv
+            - [x] Nouveau ticket : ESL-263 Fix la dissociation du storeArticle de son ESL
+            - [x] Nouveau ticket : ESL-264 Ajouter un retour snackbar au clic de faire clignoter une ESL
+            - [x] Nouveau ticket : ESL-265 Virer le bouton Editer de la table des store articles
+            - [x] Nouveau ticket : ESL-266 Faire un bouton de suppression dans la table des store articles
+            - [x] Nouveau ticket : ESL-267 Ajouter un filtre pour trier les ESLs associées
+            - [x] Nouveau ticket : ESL-268 Afficher le nom du style des ESLs assoicées
+            - [x] Nouveau ticket : ESL-269 Ajouter une interface de changement de style à l'application web
+            - [x] Nouveau ticket : ESL-270 Enlever les décimales des labels de charts dans le dashboard
+            - [x] Nouveau ticket : ESL-271         Au clic du bouton Sauvegarder de l'édition de template, envoyer un snackbar de confirmation et / ou rediriger vers le menu
+            - [x] Nouveau ticket : ESL-272 Fix la barre de recherche de la page storeArticle table
+            - [x] Nouveau ticket : ESL-273 Dissocier l'eslId du storeArticle associé en même temps que la dissociation storeArticleID de l'ESL
+            - [x] Nouveau ticket : ESL-274 Trouver pourquoi l'esl 15300182 n'est pas GET par findAllPaginate mais est GET par findAll
+            - [x] Nouveau ticket : ESL-275 Fix la modification des formes nouvellement ajoutées au template lors de l'édition de template
+            - [x] Nouveau ticket : ESL-276 Ajouter un bouton "ajouter champ ..." par champ optionnel lors de la création de template
+            - [x] Nouveau ticket : ESL-277 Ajouter un bouton "ajouter champ ..." par champ optionnel lors de l'édition de template
+            - [x] Nouveau ticket : ESL-278 Ajouter un retour message erreur/succes à l'application d'un style sur l'app mobile
+            - [x] Nouveau ticket : ESL-279 Performer un rafraîchissement de l'application mobile après chaque association/dissociation pour remettre les informations à jour
+            - [x] Nouveau ticket : ESL-280 Ajouter un bouton de force refresh dans l'interface de management de l'ESL
+            - [x] Nouveau ticket : ESL-281 Application mobile PDA, développer une sulfateuse à style
+            - [x] Nouveau ticket : ESL-282 Appliquer un style par défaut à l'initialisation des ESLs
+            - [x] Nouveau ticket : ESL-283 Ajouter la concaténation du sigle de devise après le prix dans la création de template
+            - [x] Nouveau ticket : ESL-284 Ajouter une sélection de devises dans la création de template
+            - [x] Nouveau ticket : ESL-285 Changer le code barre des ESLs depuis le produit vers le ESL Id
+            - [x] Nouveau ticket : ESL-286 Changer les labels du tableau ESL table pour avoir des metrics utiles et virer le technique
+            - [x] Nouveau ticket : ESL-287 Ajouter un bouton aperçu pour pop-up une prévisualisation de l'ESL dans la ESL table
+            - [x] Nouveau ticket : ESL-288 Synthétiser les infos utiles dans le dashboard et mettre en forme façon Delfi
+            - [x] Nouveau ticket : ESL-289 Virer la modale des esls non assignées au clic de submit du csv, et la déplacer ailleurs où c'est pertinent
