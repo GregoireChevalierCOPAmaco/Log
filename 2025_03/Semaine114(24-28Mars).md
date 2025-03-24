@@ -1,0 +1,11 @@
+- [ ] Retour de vacances
+    - [x] Nettoyage du poste de travail
+    - [x] Check des mails et tri
+    - [x] Catchup Discord
+    - [x] Replongée dans le projet
+    - [x] Reprise des commits & PRs
+    - [x] Passage aux RHs pour infos paternité
+    - [x] Reprise des tickets
+- [ ] ESL
+    - [x] Repasse sur les nouveaux tickets avec Anthony
+    - [ ] 
