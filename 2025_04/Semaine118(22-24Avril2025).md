@@ -188,3 +188,15 @@
         - [x] UI interface sur l'écran du bureau connecté, ajout de toasters
         - [x] Moteur du bureau connecté. Marche mieux mais tests de fiabilité à faire (contrôle du moteur)
         - [x] Radar pour cabine decathlon
+- [ ] ESL
+    - [x] Quickfix du $currency$ not found lors du setStyle() de store article service
+        - [x] ajout du currencyFieldFound = true; dans la boucle :
+        ```
+        else if (obj.text === '$currency$') {
+        obj.text = storeArticle.currency.toString();
+        console.log('Currency updated in object:', obj.text);
+        currencyFieldFound = true;
+        }
+        ```
+        - [x] commit, push & PR merge
+    - [ ] 
