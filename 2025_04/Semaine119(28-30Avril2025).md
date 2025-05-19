@@ -129,3 +129,218 @@
         Error in eslTemplateManagement: storeArticle.price.toFixed is not a function
         ```
         - [x] Console.logging du storeArticle.price
+        - [x] Solution  : 
+        ```
+        async eslTemplateManagement(storeArticle: StoreArticle) {
+          const results = [];
+          const requestLogData: CreateRequestLogDto = {
+            eslId: '',
+            storeArticleId: null,
+            success: false,
+            code: '',
+            message: '',
+          };
+          requestLogData.storeArticleId = storeArticle.id;
+
+          try {
+            const esl = await this.getEslByStoreArticleId(storeArticle.id);      
+
+            if (!esl || !esl.style) {
+              console.warn(`No ESL or ESL style associated with Store Article ID ${storeArticle.id}`);
+              requestLogData.message = 'No ESL or ESL style associated';
+              requestLogData.code = '404';
+              await this.requestLogService.create(requestLogData);
+              return results;
+            }
+
+            // Validation des dimensions et du style
+            const { width, height, style } = esl;
+            if (!width || !height || !style.name) {
+              console.warn(`Invalid ESL dimensions or style for Store Article ID ${storeArticle.id}`);
+              requestLogData.message = 'Invalid ESL dimensions or style';
+              requestLogData.code = '500';
+              requestLogData.success = false;
+              requestLogData.storeArticleId = storeArticle.id;
+              requestLogData.eslId = esl.id_esl;
+              await this.requestLogService.create(requestLogData);
+              return results;
+            }
+
+            const template = await this.templateService.findOneByProperties(style.name, width, height);
+            // console.log("template : " + template);
+
+            if (!template || !Array.isArray(template.objects) || template.objects.length === 0) {
+              console.warn(`Template not found or invalid for style ${style.name}`);
+              requestLogData.message = `Template not found or invalid for style ${style.name}`;
+              requestLogData.code = '404';
+              requestLogData.success = false;
+              requestLogData.storeArticleId = storeArticle.id;
+              requestLogData.eslId = esl.id_esl;
+              await this.requestLogService.create(requestLogData);
+              return results;
+            }
+
+            let priceFieldFound = false;
+            let currencyFieldFound = false;
+            let measurementUnitFieldFound = false;
+            // const barcodeFieldFound = false;
+
+            const fabricCanvas = new StaticCanvas(null);
+            fabricCanvas.setDimensions({ width: template.width, height: template.height });
+            fabricCanvas.backgroundColor = '#FFFFFF';
+            
+            const newObjects = [];
+
+            for (const obj of template.objects) {
+              if (obj.type === 'IText') {
+                const originalFontSize = obj.fontSize || 20;
+
+                if (obj.text === '$price$') {
+                  // const priceParts = storeArticle.price.toFixed(2).split('.');
+                  const price = Number(storeArticle.price);
+                  if (!isNaN(price)) {
+                    const priceParts = new Intl.NumberFormat('en-US', {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                      useGrouping: false,
+                    })
+                      .format(price)
+                      .split('.');
+                  
+                  const integerPart = priceParts[0];
+                  const decimalPart = priceParts[1];
+
+                  const integerText = {
+                    ...obj,
+                    text: integerPart,
+                    fontSize: originalFontSize * 2,
+                  };
+
+                  const dotText = {
+                    ...obj,
+                    text: '.',
+                    left: obj.left + (integerPart.length * (originalFontSize * 2 * 0.6)),
+                    fontSize: originalFontSize,
+                  };
+
+                  const decimalText = {
+                    ...obj,
+                    text: decimalPart,
+                    left: dotText.left + (originalFontSize * 0.6),
+                    fontSize: originalFontSize,
+                  };
+                  newObjects.push(integerText, dotText, decimalText);
+                  priceFieldFound = true;
+                }
+
+                } else if (obj.text === '$currency$') {
+                  obj.text = storeArticle.currency.toString();
+                  newObjects.push(obj);
+                  currencyFieldFound = true;
+
+                } else if (obj.text === '$preDiscountPrice$') {
+                  // obj.text = storeArticle.preDiscountPrice.toFixed(2).toString();
+                  obj.text = new Intl.NumberFormat('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                    useGrouping: false,
+                  }).format(Number(storeArticle.preDiscountPrice));
+                  newObjects.push(obj);
+
+                } else if (obj.text === '$measurementUnit$') {
+                  obj.text = storeArticle.measurementUnit.toString();
+                  newObjects.push(obj);
+                  measurementUnitFieldFound = true;
+
+                } else if (obj.text === '$origin$') {
+                  obj.text = storeArticle.origine.toString();
+                  newObjects.push(obj);
+
+                } else if (obj.text === '$name$') {
+                  obj.text = storeArticle.name.toString();
+                  newObjects.push(obj);
+
+                } else if (obj.text === '$pkg$') {
+                  obj.text = storeArticle.price_per_kilo.toString();
+                  newObjects.push(obj);
+
+                } else {
+                  newObjects.push(obj); 
+                }
+
+              } else if (obj.type === 'Image' && this.isImageSame(obj.src, this.generateHash(this.base64Ref))) {
+                try {
+                  const barcodeImageBase64 = await generateBarcode2(storeArticle.bar_code, esl.width, esl.height);
+                  obj.src = barcodeImageBase64;
+                  obj.scaleX = 1;
+                  obj.scaleY = 1;
+                } catch (err) {
+                  console.error('Error adding barcode image to template:', err.message);
+                }
+
+                newObjects.push(obj);
+
+              } else {
+                newObjects.push(obj); // Non-text, non-barcode image objects
+              }
+            }
+
+            template.objects = newObjects;
+
+
+            if (!priceFieldFound) {
+              console.warn(`No "$price$" field found in template for ESL ${esl.id_esl}`);
+              requestLogData.code = '404';
+              requestLogData.success = false;
+              requestLogData.storeArticleId = storeArticle.id;
+              requestLogData.eslId = esl.id_esl;
+              requestLogData.message = `No "$price$" field found in template for ESL ${esl.id_esl}`;
+              await this.requestLogService.create(requestLogData);
+              return results;
+            }
+
+            if (!currencyFieldFound) {
+              console.warn(`No "$currency$" field found in template for ESL ${esl.id_esl}`);
+              requestLogData.code = '404';
+              requestLogData.success = false;
+              requestLogData.storeArticleId = storeArticle.id;
+              requestLogData.eslId = esl.id_esl;
+              requestLogData.message = `No "$currency$" field found in template for ESL ${esl.id_esl}`;
+              await this.requestLogService.create(requestLogData);
+              return results;
+            }
+
+            if (!measurementUnitFieldFound) {
+              console.warn(`No "$measurementUnit$" field found in template for ESL ${esl.id_esl}`);
+              requestLogData.code = '404';
+              requestLogData.success = false;
+              requestLogData.storeArticleId = storeArticle.id;
+              requestLogData.eslId = esl.id_esl;
+              requestLogData.message = `No "$measurementUnit$" field found in template for ESL ${esl.id_esl}`;
+              await this.requestLogService.create(requestLogData);
+              return results;
+            }
+
+            // Génération et envoi de l'image
+            await this.generateAndSendImageToEsl(esl.id_esl, template, storeArticle.bar_code);
+
+          } catch (error) {
+            console.error('Error in eslTemplateManagement:', error.message);
+            requestLogData.message = error.message || 'Failed to process ESL template management';
+            requestLogData.code = '500';
+            requestLogData.success = false;
+            requestLogData.storeArticleId = storeArticle.id;
+            await this.requestLogService.create(requestLogData);
+
+          }
+
+          // Création du log
+          try {
+            await this.requestLogService.create(requestLogData);
+          } catch (logError) {
+            console.error('Failed to log request:', logError);
+          }
+
+        return results;
+      }
+      ```
