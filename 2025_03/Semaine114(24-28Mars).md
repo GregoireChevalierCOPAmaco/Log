@@ -253,3 +253,11 @@ RDV apres le summit pour discuter de l'architecture en fonction des services qu'
     
 
     FAIRE UNE WISHLIST des besoins réseau pour mercredi (machines de tests, pas pcs)
+
+    gestion d'erreurs : dissocier les erreurs systemes des erreurs utilisateurs, et montrer là ou c'est pertinent
+
+    faire un check dans le backend pour avoir un état des constantes nécessaires au moment du lancement
+    fichier d'env avec idealement les IP & MAC des equipements hardware ?
+    + routine une fois lancé pour avoir une alerte si une ou plusieurs partie ne répond pas
+
+    ajouter deux champs au store article : stock & ventes ce mois
