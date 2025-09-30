@@ -136,3 +136,137 @@
         MQTT : relance un client et teste la connexion.
         ```
     - [ ] ESL-441 Ajuster le script de détection des bases pour prendre en compte 192.168.1 en plus du préfixe réseau
+        - [x] Refonte du script pour exclure le 192.168.1.1 et ne sélectionner que les bases Equitech : 
+        ```
+        function Install-Nmap {
+            if (-not (Get-Command nmap -ErrorAction SilentlyContinue)) {
+                Write-Host "Installation de Nmap..."
+                # Telecharger et installer Nmap
+                Invoke-WebRequest -Uri "https://nmap.org/dist/nmap-7.92-setup.exe" -OutFile "nmap-installer.exe"
+                Start-Process -Wait -FilePath .\nmap-installer.exe -ArgumentList '/S'
+                Remove-Item .\nmap-installer.exe
+            } else {
+                Write-Host "Nmap est deja installe."
+            }
+        }
+
+        # Function to get the network prefix from ipconfig
+        function Get-NetworkPrefix {
+            $ipconfigOutput = ipconfig
+            $ipv4Pattern = "(?:Adresse IPv4|IPv4 Address)[^:]+:\s*(\d{1,3}\.\d{1,3}\.\d{1,3})\.\d{1,3}"
+
+            $networkPrefix = $null
+
+            # Iterate through each line of the ipconfig output
+            $ipconfigOutput | ForEach-Object {
+                $line = $_
+                if ($line -match $ipv4Pattern) {
+                    $networkPrefix = $matches[1]
+                    Write-Host "Adresse IP trouvee : $networkPrefix"
+                }
+            }
+
+            if ($networkPrefix) {
+                Write-Host "Prefixe reseau : $networkPrefix"
+                return $networkPrefix
+            } else {
+                throw "Impossible de determiner le prefixe reseau avec ipconfig."
+            }
+        }
+
+        # Fonction pour extraire IPs d'un resultat nmap -sn (SEULEMENT vendor Equitech)
+        function Parse-NmapHosts {
+            param(
+                [string[]]$ScanOutput
+            )
+
+            $ips = @()
+            for ($i = 0; $i -lt $ScanOutput.Count; $i++) {
+                $line = $ScanOutput[$i]
+
+                # Extraire l'IP de la ligne de rapport
+                $ipMatch = [regex]::Match($line, "Nmap scan report for (?:[^\(]+ \()?(\d{1,3}(?:\.\d{1,3}){3})\)?")
+                if ($ipMatch.Success) {
+                    $ip = $ipMatch.Groups[1].Value
+
+                    # Verifie les lignes suivantes (jusqu'à 5) pour trouver un vendor
+                    $vendor = $null
+                    for ($j = $i + 1; $j -lt [Math]::Min($i + 6, $ScanOutput.Count); $j++) {
+                        $macLine = $ScanOutput[$j]
+                        $vendorMatch = [regex]::Match($macLine, "MAC Address:\s*[0-9A-Fa-f:]{17}\s*\((.+?)\)")
+                        if ($vendorMatch.Success) {
+                            $vendor = $vendorMatch.Groups[1].Value
+                            break
+                        }
+                    }
+
+                    if ($vendor -and $vendor -imatch "Equitech" -and $ip -ne "192.168.1.1") {
+                        $ips += $ip
+                    }
+                }
+            }
+
+            return $ips | Sort-Object -Unique
+        }
+
+
+
+        # Fonction pour scanner le reseau et detecter les bases
+        function Scan-Network {
+            $outputFile = "bases.txt"
+            $allBases = @()
+
+            Write-Host "Premier scan par defaut : nmap -sn 192.168.1.0/24"
+            try {
+                $defaultScan = & nmap -sn "192.168.1.0/24" 2>&1
+            } catch {
+                Write-Host "Erreur lors de l'execution de nmap sur 192.168.1.0/24 : $_"
+                $defaultScan = @()
+            }
+
+            $found = Parse-NmapHosts -ScanOutput $defaultScan
+
+            if ($found.Count -gt 0) {
+                Write-Host "Bases trouvees avec le scan par defaut:"
+                $found | ForEach-Object { Write-Host $_ }
+                $allBases += $found
+            } else {
+                Write-Host "Aucune base trouvee avec 192.168.1.0/24. Repli sur la logique actuelle..."
+                try {
+                    $networkPrefix = Get-NetworkPrefix
+                }
+                catch {
+                    Write-Host "Utilisation du prefixe reseau par defaut 192.168.1"
+                    $networkPrefix = "192.168.1"
+                }
+
+                Write-Host "Execution de nmap -sn $($networkPrefix).0/24"
+                try {
+                    $scanResults = & nmap -sn "$($networkPrefix).0/24" 2>&1
+                } catch {
+                    Write-Host "Erreur lors de l'execution de nmap sur $($networkPrefix).0/24 : $_"
+                    $scanResults = @()
+                }
+
+                $found2 = Parse-NmapHosts -ScanOutput $scanResults
+
+                if ($found2.Count -gt 0) {
+                    Write-Host "Bases trouvees avec le scan sur $networkPrefix.0/24:"
+                    $found2 | ForEach-Object { Write-Host $_ }
+                    $allBases += $found2
+                } else {
+                    Write-Host "Aucune base trouvee avec la logique actuelle non plus."
+                }
+            }
+
+            # Sauvegarder les adresses IP dans un fichier (même si vide)
+            $allBases = $allBases | Sort-Object -Unique
+            $allBases | Out-File -FilePath $outputFile -Force
+            Write-Host "Les adresses IP des bases ont ete sauvegardees dans $outputFile (count: $($allBases.Count))"
+        }
+
+        # Executer les fonctions
+        Install-Nmap
+        Scan-Network
+        ```
+    - [ ] ESL-370 Créer un script pour associer automatiquement les bases au mqtt via gopod
