@@ -270,3 +270,109 @@
         Scan-Network
         ```
     - [ ] ESL-370 Créer un script pour associer automatiquement les bases au mqtt via gopod
+    ```
+    $basesFile = "bases.txt"
+    $httpPort = 8080
+    $logFile = "config-log.txt"
+    $timeoutSec = 10
+
+    # Obtenir l'IP du container Docker "mqtt_broker"
+    # try {
+    #     $brokerIP = docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mqtt_broker 2>$null
+    #     if (-not $brokerIP) {
+    #         throw "Impossible de recuperer l'adresse IP du container mqtt_broker."
+    #     }
+    #     Write-Host "Adresse IP du broker MQTT (mqtt_broker) : $brokerIP"
+    # }
+    # catch {
+    #     Write-Error "Erreur : $_"
+    #     exit 1
+    # }
+    $brokerIP   = "localhost"
+    $brokerPort = 1884
+    Write-Host "Adresse MQTT configurée : $brokerIP`:$brokerPort"
+
+    # Nettoyer / initialiser le log
+    if (Test-Path $logFile) { Remove-Item $logFile -ErrorAction SilentlyContinue }
+    Add-Content -Path $logFile -Value ("=== Debut " + (Get-Date).ToString("s") + " ===")
+
+    # Lire les IPs (supprime espaces et lignes vides)
+    if (-not (Test-Path $basesFile)) {
+        Write-Error "Fichier $basesFile introuvable."
+        exit 1
+    }
+    $basesRaw = Get-Content -Path $basesFile
+    $bases = $basesRaw | ForEach-Object { $_.Trim() } | Where-Object { $_ -and -not $_.StartsWith("#") }
+
+    if ($bases.Count -eq 0) {
+        Write-Host "Aucune IP trouvee dans $basesFile."
+        exit 0
+    }
+
+    # Payload 'ext' commun (objet) — converti en string JSON par la suite
+    $extObj = @{
+        TOPIC_REFRESH_LIST    = "001/refresh/queue"
+        TOPIC_CONFIG          = "001/device/config"
+        TOPIC_DEVICE_PROPERTY = "/device/property"
+        TOPIC_NOTIFY          = "/refresh/notify"
+        psm_group             = 32
+    }
+    $extString = ($extObj | ConvertTo-Json -Compress)  # -> "{\"TOPIC_REFRESH_LIST\":\"...\"}"
+
+    # Boucler sur chaque base
+    [int]$index = 1
+    foreach ($ip in $bases) {
+        # numero formate: test001, test002, ...
+        $num = "{0:D3}" -f $index
+        $userpass = "test$($num)"
+
+        $url = "http://$ip`:$httpPort/api/web/config"
+
+        $payload = @{
+            host     = "mqtt://$brokerIP`:$brokerPort"
+            password = $userpass
+            user     = $userpass
+            ext      = $extString
+        }
+
+        # Convertir en JSON (ConvertTo-Json va correctement echapper ext qui est dejà une chaîne JSON)
+        $jsonBody = $payload | ConvertTo-Json -Compress
+
+        Write-Host "[$index] Envoi configuration à $ip ..."
+        Add-Content -Path $logFile -Value ("[$(Get-Date -Format s)] Tentative -> $ip : user/password = $userpass")
+
+        try {
+            $response = Invoke-RestMethod -Uri $url -Method Post -Body $jsonBody -ContentType 'application/json' -TimeoutSec $timeoutSec
+            $message = "[$ip] Succes - Reponse: $($response | ConvertTo-Json -Compress -Depth 5)"
+            Write-Host $message
+            Add-Content -Path $logFile -Value $message
+        }
+        catch {
+            try {
+                $wr = Invoke-WebRequest -Uri $url -Method Post -Body $jsonBody -ContentType 'application/json' -TimeoutSec $timeoutSec -ErrorAction Stop
+                $message = "[$ip] Succes (via Invoke-WebRequest) - StatusCode: $($wr.StatusCode) - Content: $($wr.Content)"
+                Write-Host $message
+                Add-Content -Path $logFile -Value $message
+            }
+            catch {
+                $err = $_.Exception.Message
+                $message = "[$ip] Erreur: $err"
+                Write-Warning $message
+                Add-Content -Path $logFile -Value ("[$(Get-Date -Format s)] " + $message)
+            }
+        }
+
+        $index++
+        Start-Sleep -Milliseconds 300   # delai court entre chaque requête
+    }
+
+    Add-Content -Path $logFile -Value ("=== Fin " + (Get-Date).ToString("s") + " ===")
+    Write-Host "`nTermine. Voir $logFile pour le detail."
+    ```
+
+**03 Octobre**
+- [ ] ESL
+    - [ ] ESL-433 Adapter le mqtt au système Bowtz pour communiquer entre back & base
+        - [ ] Réunion avec Anthony pour récupérer les infos de ce qu'il a déjà pu faire.
+- [x] Montage des bureaux co chez amaco
+- [x] Préparation à l'expédition
